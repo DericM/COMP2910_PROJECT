@@ -1,0 +1,109 @@
+<body>
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+<script>
+	
+	
+var window = new Window();
+var player = new Player();
+function Player() {
+	var xCoord = 0;
+	var yCoord = 0;
+	this.move = function(xDir, yDir) {
+		if(xCoord + xDir < 0 || xCoord + xDir >= window.getGrid().getWidth()
+			|| yCoord + yDir < 0 || yCoord + yDir >= window.getGrid().getHeight()) {
+			console.log("Out of Bounds!");
+		} else {
+			xCoord += xDir;
+			yCoord += yDir;
+			window.clearGrid();
+			window.paintGrid();
+			window.paintPlayer(xCoord, yCoord);
+		}
+	}
+}
+
+function Window() {
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		var grid = new Grid(400, 400, 20, 20);
+
+		this.getGrid = function() {
+			return grid;
+		}
+
+		
+		function Grid(width, height, horzSquares, vertSquares) {
+			var width = width;
+			var height = height;
+			var horzSquares = horzSquares;
+			var vertSquares = vertSquares;
+			var gridSectWidth = width / horzSquares;
+			var gridSectHeight = height / vertSquares;
+			var grid = [];
+			for(var i = 0; i < horzSquares; i++) {
+				grid[i] = [];
+				for(var j = 0; j < vertSquares; j++) {
+					grid[i][j] = new GridSection(i, j);
+					grid[i][j].paint();
+				}
+			}
+
+			function GridSection(horzLoc, vertLoc) {
+				var xCoord = (horzLoc * gridSectWidth);
+				var yCoord = (vertLoc * gridSectHeight);
+				this.paint = function(color) {
+					ctx.fillStyle = color;
+					ctx.fillRect(xCoord, yCoord, gridSectWidth, gridSectHeight);
+				}
+			}
+
+			this.getWidth = function() {
+				return horzSquares;
+			}
+
+			this.getHeight = function() {
+				return horzSquares;
+			}
+
+			this.paintGrid = function(){
+				ctx.fillStyle = "#FFFFFF";
+				ctx.fillRect(0, 0, ctx.width, ctx.height);
+			}
+
+			this.clearGrid = function() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+			}
+
+			this.paintPlayer = function(xCoord, yCoord) {
+				grid[xCoord][yCoord].paint("#BBB777");
+			}
+		}
+	}
+
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        player.move(0, 1); 
+    }
+    else if (e.keyCode == '40') {
+        player.move(0, -1);
+    }
+    else if (e.keyCode == '37') {
+       player.move(-1, 0)
+    }
+    else if (e.keyCode == '39') {
+		player.move(1, 0);
+    }
+
+}
+
+
+
+	
+</script>
+</body>
