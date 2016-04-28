@@ -1,8 +1,9 @@
 <body>
 <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
 <script>
-	
-	
+var regColor = "#00CC00";
+		var mineColor = "#FF0000";
+		var playerColor = "#663300";
 var grid = new Grid(400, 400, 20, 20);
 var player = new Player();
 function Player() {
@@ -13,14 +14,16 @@ function Player() {
 			|| yCoord + yDir < 0 || yCoord + yDir >= grid.getHeight()) {
 			console.log("Out of Bounds!");
 		} else {
+			grid.getSectAt(xCoord, yCoord).setPlayer(0);
 			xCoord += xDir;
 			yCoord += yDir;
+			grid.getSectAt(xCoord, yCoord).setPlayer(1);
 			grid.clearGrid();
 			grid.paintGrid();
-			grid.paintPlayer(xCoord, yCoord);
 		}
 	}
 }
+
 
 function Grid(width, height, horzSquares, vertSquares) {
 	var c = document.getElementById("myCanvas");
@@ -32,11 +35,16 @@ function Grid(width, height, horzSquares, vertSquares) {
 	var gridSectWidth = width / horzSquares;
 	var gridSectHeight = height / vertSquares;
 	var grid = [];
+
+	var random;
 	for(var i = 0; i < horzSquares; i++) {
 		grid[i] = [];
 		for(var j = 0; j < vertSquares; j++) {
 			grid[i][j] = new GridSection(i, j);
-			grid[i][j].paint();
+			random = Math.floor((Math.random() * 6) + 1);
+			if(random == 5) {
+				grid[i][j].setMine(1);
+			}
 		}
 	}
 
@@ -49,24 +57,43 @@ function Grid(width, height, horzSquares, vertSquares) {
 	}
 
 	this.paintGrid = function(){
-		ctx.fillStyle = "#FFFFFF";
-		ctx.fillRect(0, 0, ctx.width, ctx.height);
+		for(var i = 0; i < horzSquares; i++) {
+			for(var j = 0; j < vertSquares; j++) {
+				grid[i][j].paint();
+			}
+		}
 	}
 
 	this.clearGrid = function() {
-		ctx.clearRect(0, 0, ctx.width, ctx.height);
+		ctx.clearRect(0, 0, width, height);
 	}
 
-	this.paintPlayer = function(xCoord, yCoord) {
-		grid[xCoord][yCoord].paint("#BBB777");
+	this.getSectAt = function(xCoord, yCoord) {
+		return grid[xCoord][yCoord];
 	}
 
 	function GridSection(horzLoc, vertLoc) {
 		var xCoord = (horzLoc * gridSectWidth);
 		var yCoord = (vertLoc * gridSectHeight);
-		this.paint = function(color) {
-			ctx.fillStyle = color;
+		var isMine = 0;
+		var isPlayer = 0;
+		this.paint = function() {
+			if(isMine) {
+				ctx.fillStyle = mineColor;
+			} else if(isPlayer) {
+				ctx.fillStyle = playerColor;
+			} else {
+				ctx.fillStyle = regColor;
+			}
 			ctx.fillRect(xCoord, yCoord, gridSectWidth, gridSectHeight);
+		}
+
+		this.setMine = function(mine) {
+			isMine = mine;
+		}
+
+		this.setPlayer = function(player) {
+			isPlayer = player;
 		}
 	}
 }
