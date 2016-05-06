@@ -1,0 +1,127 @@
+<body>
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+<script>
+var regColor = "#00CC00";
+		var mineColor = "#FF0000";
+		var playerColor = "#663300";
+var grid = new Grid(400, 400, 20, 20);
+var player = new Player();
+function Player() {
+	var xCoord = 0;
+	var yCoord = 0;
+	this.move = function(xDir, yDir) {
+		if(xCoord + xDir < 0 || xCoord + xDir >= grid.getWidth()
+			|| yCoord + yDir < 0 || yCoord + yDir >= grid.getHeight()) {
+			console.log("Out of Bounds!");
+		} else {
+			grid.getSectAt(xCoord, yCoord).setPlayer(0);
+			xCoord += xDir;
+			yCoord += yDir;
+			grid.getSectAt(xCoord, yCoord).setPlayer(1);
+			grid.clearGrid();
+			grid.paintGrid();
+		}
+	}
+}
+
+
+function Grid(width, height, horzSquares, vertSquares) {
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	var width = width;
+	var height = height;
+	var horzSquares = horzSquares;
+	var vertSquares = vertSquares;
+	var gridSectWidth = width / horzSquares;
+	var gridSectHeight = height / vertSquares;
+	var grid = [];
+
+	var random;
+	for(var i = 0; i < horzSquares; i++) {
+		grid[i] = [];
+		for(var j = 0; j < vertSquares; j++) {
+			grid[i][j] = new GridSection(i, j);
+			random = Math.floor((Math.random() * 6) + 1);
+			if(random == 5) {
+				grid[i][j].setMine(1);
+			}
+		}
+	}
+
+	this.getWidth = function() {
+		return horzSquares;
+	}
+
+	this.getHeight = function() {
+		return horzSquares;
+	}
+
+	this.paintGrid = function(){
+		for(var i = 0; i < horzSquares; i++) {
+			for(var j = 0; j < vertSquares; j++) {
+				grid[i][j].paint();
+			}
+		}
+	}
+
+	this.clearGrid = function() {
+		ctx.clearRect(0, 0, width, height);
+	}
+
+	this.getSectAt = function(xCoord, yCoord) {
+		return grid[xCoord][yCoord];
+	}
+
+	function GridSection(horzLoc, vertLoc) {
+		var xCoord = (horzLoc * gridSectWidth);
+		var yCoord = (vertLoc * gridSectHeight);
+		var isMine = 0;
+		var isPlayer = 0;
+		this.paint = function() {
+			if(isMine) {
+				ctx.fillStyle = mineColor;
+			} else if(isPlayer) {
+				ctx.fillStyle = playerColor;
+			} else {
+				ctx.fillStyle = regColor;
+			}
+			ctx.fillRect(xCoord, yCoord, gridSectWidth, gridSectHeight);
+		}
+
+		this.setMine = function(mine) {
+			isMine = mine;
+		}
+
+		this.setPlayer = function(player) {
+			isPlayer = player;
+		}
+	}
+}
+
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        player.move(0, -1); 
+    }
+    else if (e.keyCode == '40') {
+        player.move(0, 1);
+    }
+    else if (e.keyCode == '37') {
+       player.move(-1, 0)
+    }
+    else if (e.keyCode == '39') {
+		player.move(1, 0);
+    }
+
+}
+
+
+
+	
+</script>
+</body>
