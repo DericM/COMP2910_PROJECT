@@ -1,0 +1,63 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<div id = "canvas_container">
+
+</div>
+<script>
+var ONE_HUNDRED_EIGHTY_DEGREES = 180;
+function Canvas() {
+
+	this.canvasElement;
+	this.ctx;
+	var width;
+	var height;
+
+
+	this.setWindowDimensions = function() {
+		var e = window;
+		var a = 'inner';
+		if (!( 'innerWidth' in window )) {
+			a = 'client';
+			e = document.documentElement || document.body;
+		}
+		width = e[a+'Width'];
+		height = e[a+'Height'];
+	}
+
+	this.getWidth = function() {
+		return width;
+	}
+
+	this.getHeight = function() {
+		return height;
+	}
+
+	this.createCanvas = function() {
+		if(width == undefined) {
+			this.setWindowDimensions();
+		}
+		canvasElement = document.createElement("canvas");
+		canvasElement.style.width = width;
+		canvasElement.style.height = height;
+		canvasElement.style.border = "1px solid black";
+		document.getElementById("canvas_container").appendChild(canvasElement);
+		ctx = canvasElement.getContext("2d");
+	}
+
+	this.rotateCanvas = function() {
+		ctx.translate(100, 100);
+		//ctx.rotate(90 * Math.PI / 180);
+	}
+}
+
+var canvas = new Canvas();
+canvas.createCanvas();
+ctx.fillStyle = "#ccc000";
+ctx.fillRect(20, 20, 200, 200);
+setTimeout("canvas.rotateCanvas()", 1000);
+
+</script>
+</body>
