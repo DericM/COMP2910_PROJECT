@@ -1,3 +1,6 @@
+/**
+ * @param {PlayerData} player
+ */
 function Menu(){
 
     this.play = function () {
