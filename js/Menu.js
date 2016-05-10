@@ -7,7 +7,7 @@ function Menu(){
         CONTEXT.clearRect(0, 0, WIDTH, HEIGHT);
 
         //-----------------
-        //temporary call to play. In the finished menu onclick="play()"
+        //temporary call to play. In the finished menu: Playbutton onclick="play()"
         this.play();
         //-------------------
     };
