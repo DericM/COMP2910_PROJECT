@@ -29,8 +29,8 @@ function Game(){
                 grid[i][j].setLayer1(tile);
 
                 CONTEXT.drawImage(RESOURCES.mine.img, x, y);
-                
-                document["myimg"].src = RESOURCES.mine.img.src;
+
+                document.getElementById("myimg").src = RESOURCES.mine.img.src;
 
                 //------------------------------
                 //for testing
