@@ -1,16 +1,13 @@
 /**
- * @param {PlayerData} player
+ *
  */
-function Game(player){
+function Game(){
 
-
-    var canvas = document.getElementById("game");
-    var context   = canvas.getContext("2d");
-    
+    CONTEXT.clearRect(0, 0, WIDTH, HEIGHT);
 
     var cells = [];
 
-    var current_map = MAPS.getMap(player.getLevel());
+    var current_map = MAPS.getMap(PLAYER.getLevel());
 
     for(var i = 0; i < current_map.length;i++){
         cells[i] = [];
@@ -26,9 +23,9 @@ function Game(player){
 
             //alert("" + cell.x + " " + cell.y);
 
-            context.fillRect(cell.x, cell.y, 19, 19);
-            
-            context.drawImage(cell.getCanvas(), cell.x, cell.y);
+            CONTEXT.fillRect(cell.x, cell.y, 19, 19);
+
+            CONTEXT.drawImage(cell.getCanvas(), cell.x, cell.y);
         }
     }
 }
