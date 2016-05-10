@@ -1,22 +1,30 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Trump Runner</title>
-	<link rel = "stylesheet" type = "text/css" href = "style.css">
-	<script src = "Canvas.js"></script>
-	<script src = "Point.js"></script>
-	<script src = "GridSection.js"></script>
-	<script src = "Grid.js"></script>
-	<script src = "Drawable.js"></script>
-	
+    <title>TrumpRunner</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+
+    <script src="js/Main.js"></script>
+    <script src="js/Menu.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/Cell.js"></script>
+
+    <script src="js/Maps.js"></script>
+    <script src="js/ResourceManager.js"></script>
+    <script src="js/PlayerData.js"></script>
+
+
+
 </head>
-	<body>
-		<div id = "container" >
+<body onload="Main();">
 
-		</div>
-		<script>
-			gridCanvas = new Canvas();
-			grid = new Grid(250, 250, 10, 10, gridCanvas);
-		</script>
-	</body>
+    <canvas id="game" width="1000px" height="1000px"></canvas>
 
+    <img id="myimg"  />
+
+</body>
 </html>
