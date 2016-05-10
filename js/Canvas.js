@@ -2,14 +2,11 @@
 /* 
 Creates a canvas and inserts it into the container div in index.html.
 
-INSTANCE drawables: Array of objects to be drawn on the canvas.
-INSTANCE canvas: A canvas HTML element.
-INSTANCE context: The context of the canvas. The thing that you draw to.
 Author: Brody
 Date: Sat, 7
 */
 function Canvas() {
-	var drawables = []
+	var drawables = [];
 	var canvas = document.createElement("canvas");
 	canvas.style.width = "360px";
 	canvas.style.height = "640px";
@@ -18,7 +15,7 @@ function Canvas() {
 	var context = canvas.getContext("2d");
 	this.getContext = function() {
 		return context;
-	}
+	};
 
 	/*
 		Adds a drawable to the end of the drawables array.
@@ -31,7 +28,7 @@ function Canvas() {
 
 			}
 		}
-	}
+	};
 
 	/*
 		Calls the draw method on all the drawables in the
@@ -39,10 +36,11 @@ function Canvas() {
 		of this canvas.
 	*/
 	this.draw = function() {
+		context.clearRect(0, 0, canvas.width, canvas.height);
 		for (var i = 0; i < drawables.length(); i++) {
 			drawables[i].draw();
 		}
-	}
+	};
 
 	/*
 		An insertion sort that I copied from the internet. Insertion sort
@@ -53,7 +51,7 @@ function Canvas() {
 
 		author: Brody
 	*/
-	this.insertionSort = function insertionSort() {
+	this.insertionSort = function() {
 		var len = drawables.length;
 		for(var i = 0; i < len; i++) {
 			var tmp = drawables[i]; 
@@ -62,5 +60,5 @@ function Canvas() {
 			}
 			drawables[j+1] = tmp;
 		}
-	}
+	};
 }
