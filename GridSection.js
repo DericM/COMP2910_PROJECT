@@ -1,22 +1,12 @@
-function GridSection(column, row, ctx) {
-	var location = new Point(column, row);
-	var ctx = ctx;
-	var entity;
-
-	this.addEntity = function(entity) {
-		entity = entity;
+function GridSection(image) {
+	var image = image;
+	this.draw = function(context, xOffset, yOffset) {
+		if(image != null) {
+			context.drawImage(image, xOffset, yOffset);
+		}
 	}
 
-	this.removeEntity = function() {
-		entity = null;
-	}
-
-	this.getEntity = function() {
-		return entity;
-	}
-
-	this.paintSection = function() {
-		//tbd
-		//if entity isn't null, get image from entity and draw it to the context.
+	this.setImage = function(newImage) {
+		image = newImage;
 	}
 }
