@@ -2,10 +2,10 @@ function ResourceManager(){
 
 
 
-    var grass = new Tile("assets/Grass.png");
+    var grass = new Tile("assets/grass.png");
 
 
-    var mine = new Tile("assets/Mine.png");
+    var mine = new Tile("assets/mine.png");
 
 
     /**

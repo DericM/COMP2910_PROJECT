@@ -20,6 +20,12 @@ function Cell(x, y, background){
     var context = this.canvas.getContext("2d");
 
 
+    /////
+    var cv = document.getElementById("game");
+    var ctx = cv.getContext("2d");
+
+
+
     this.getCanvas = function(){
         return this.canvas;
     };
@@ -31,13 +37,13 @@ function Cell(x, y, background){
         context.drawImage(this.layer2, 0, 0);
         context.drawImage(this.layer3, 0, 0);
         context.fillRect(0,0,20,20);
+        //ctx.drawImage(this.canvas,this.x,this.y);
     };
     this.build();
 
 
     /**
      * @param {string} source
-     * @param {Image} layer1
      */
     this.setLayer1 = function(source){
         this.layer1.src = source;
@@ -46,7 +52,6 @@ function Cell(x, y, background){
 
     /**
      * @param {string} source
-     * @param {Image} layer2
      */
     this.setLayer2 = function(source){
         this.layer2.src = source;
@@ -55,7 +60,6 @@ function Cell(x, y, background){
 
     /**
      * @param {string} source
-     * @param {Image} layer2
      */
     this.setLayer3 = function(source){
         this.layer3.src = source;
