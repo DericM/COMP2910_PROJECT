@@ -3,9 +3,8 @@
  * @constructor
  * @param {int} x
  * @param {int} y
- * @param {Image} background
  */
-function Cell(x, y, background){
+function Cell(x, y){
     var x_pos;
     var y_pos;
 
@@ -13,62 +12,63 @@ function Cell(x, y, background){
     var layer2;
     var layer3;
 
-    var cellCanvas;
 
-    var cellContext;
-
-    this.constructor = function(x, y, background){
+    this.constructor = function(x, y){
         x_pos = x;
         y_pos = y;
 
-        layer1 = background;
-        layer2 = new Image(TILE_SIZE, TILE_SIZE);
-        layer3 = new Image(TILE_SIZE, TILE_SIZE);
+        layer1 = new Tile("");
+        layer2 = new Tile("");
+        layer3 = new Tile("");
 
-        cellCanvas = document.createElement("canvas");
-        cellCanvas.height = TILE_SIZE;
-        cellCanvas.width = TILE_SIZE;
-
-        cellContext = cellCanvas.getContext("2d");
-
-        this.build();
     };
 
 
-    this.build = function(){
-        cellContext.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
-        cellContext.drawImage(layer1, 0, 0);
-        cellContext.drawImage(layer2, 0, 0);
-        cellContext.drawImage(layer3, 0, 0);
-        cellContext.fillRect(0,0,20,20);
-        CONTEXT.drawImage(cellCanvas, x_pos, y_pos);
-    };
+    
 
 
 
     /**
-     * @param {string} source
+     * @param {Tile} tile
      */
-    this.setLayer1 = function(source){
-        layer1.src = source;
-        this.build();
+    this.setLayer1 = function(tile){
+        layer1 = tile;
     };
 
     /**
-     * @param {string} source
+     * @param {Tile} tile
      */
-    this.setLayer2 = function(source){
-        layer2.src = source;
-        this.build();
+    this.setLayer2 = function(tile){
+        layer2 = tile;
     };
 
     /**
-     * @param {string} source
+     * @param {Tile} tile
      */
-    this.setLayer3 = function(source){
-        layer3.src = source;
-        this.build();
+    this.setLayer3 = function(tile){
+        layer3 = tile;
     };
 
-    this.constructor(x, y, background);
+
+    /**
+     */
+    this.getLayer1 = function(){
+        return layer1;
+    };
+
+    /**
+     */
+    this.getLayer2 = function(){
+        return layer2;
+    };
+
+    /**
+     */
+    this.getLayer3 = function(){
+        return layer3;
+    };
+
+
+
+    this.constructor(x, y);
 }

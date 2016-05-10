@@ -2,10 +2,10 @@ function ResourceManager(){
 
 
 
-    var grass = new Tile("assets/grass.png");
+    this.grass = new Tile("assets/grass.png");
 
 
-    var mine = new Tile("assets/mine.png");
+    this.mine = new Tile("assets/mine.png");
 
 
     /**
@@ -15,9 +15,9 @@ function ResourceManager(){
 
         switch(type){
             case 0:
-                return grass;
+                return this.grass;
             case 1:
-                return mine;
+                return this.mine;
             default:
                 throw "no such tile";
         }
