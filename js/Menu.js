@@ -1,9 +1,17 @@
 /**
- * 
+ *
  */
 function Menu(){
 
-    CONTEXT.clearRect(0, 0, WIDTH, HEIGHT);
+    this.constructor = function(){
+        CONTEXT.clearRect(0, 0, WIDTH, HEIGHT);
+
+        //-----------------
+        //temporary call to play. In the finished menu onclick="play()"
+        this.play();
+        //-------------------
+    };
+
 
     this.play = function () {
         new Game();
@@ -18,8 +26,6 @@ function Menu(){
     };
 
 
-    //-----------------
-    //temporary call to play. In the finished menu onclick="play()"
-    this.play();
-    //-------------------
+
+    this.constructor();
 }

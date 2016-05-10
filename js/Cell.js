@@ -6,47 +6,51 @@
  * @param {Image} background
  */
 function Cell(x, y, background){
-    this.x = x;
-    this.y = y;
+    var x_pos;
+    var y_pos;
 
-    this.layer1 = background;
-    this.layer2 = new Image(TILE_SIZE, TILE_SIZE);
-    this.layer3 = new Image(TILE_SIZE, TILE_SIZE);
+    var layer1;
+    var layer2;
+    var layer3;
 
-    this.canvas = document.createElement("canvas");
-    this.canvas.height = TILE_SIZE;
-    this.canvas.width = TILE_SIZE;
+    var cellCanvas;
 
-    var context = this.canvas.getContext("2d");
+    var cellContext;
 
+    this.constructor = function(x, y, background){
+        x_pos = x;
+        y_pos = y;
 
-    /////
-    var cv = document.getElementById("game");
-    var ctx = cv.getContext("2d");
+        layer1 = background;
+        layer2 = new Image(TILE_SIZE, TILE_SIZE);
+        layer3 = new Image(TILE_SIZE, TILE_SIZE);
 
+        cellCanvas = document.createElement("canvas");
+        cellCanvas.height = TILE_SIZE;
+        cellCanvas.width = TILE_SIZE;
 
+        cellContext = cellCanvas.getContext("2d");
 
-    this.getCanvas = function(){
-        return this.canvas;
+        this.build();
     };
 
 
     this.build = function(){
-        context.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
-        context.drawImage(this.layer1, 0, 0);
-        context.drawImage(this.layer2, 0, 0);
-        context.drawImage(this.layer3, 0, 0);
-        context.fillRect(0,0,20,20);
-        //ctx.drawImage(this.canvas,this.x,this.y);
+        cellContext.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
+        cellContext.drawImage(layer1, 0, 0);
+        cellContext.drawImage(layer2, 0, 0);
+        cellContext.drawImage(layer3, 0, 0);
+        cellContext.fillRect(0,0,20,20);
+        CONTEXT.drawImage(cellCanvas, x_pos, y_pos);
     };
-    this.build();
+
 
 
     /**
      * @param {string} source
      */
     this.setLayer1 = function(source){
-        this.layer1.src = source;
+        layer1.src = source;
         this.build();
     };
 
@@ -54,7 +58,7 @@ function Cell(x, y, background){
      * @param {string} source
      */
     this.setLayer2 = function(source){
-        this.layer2.src = source;
+        layer2.src = source;
         this.build();
     };
 
@@ -62,8 +66,9 @@ function Cell(x, y, background){
      * @param {string} source
      */
     this.setLayer3 = function(source){
-        this.layer3.src = source;
+        layer3.src = source;
         this.build();
     };
 
+    this.constructor(x, y, background);
 }
