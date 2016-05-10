@@ -4,6 +4,26 @@ function Grid(width, height, columns, rows, context) {
 	var columns = columns;
 	var rows = rows;
 	var gridSections = [];
+
+	function GridSection(image, point) {
+		var containsImage;
+		var image = image;
+		var point = point;
+		this.draw = function(context, xOffset, yOffset) {
+			var xCoord = (sectionWidth / 2) + xOffset - (image.width / 2);
+			var yCoord = (sectionHeight / 2) + yOffset - (image.height / 2);
+			context.drawImage(image, xCoord, yCoord);
+		}
+
+		this.setImage = function(newImage) {
+			image = newImage;
+		}
+
+		this.containsImage = function() {
+			return containsImage;
+		}
+	}
+
 	for(i = 0; i < rows; i++) {
 		gridSections[i] = [];
 		for(j = 0; j < columns; j++) {
@@ -29,7 +49,7 @@ function Grid(width, height, columns, rows, context) {
 		return gridSections[row][column];
 	}
 
-	this.insertAt = function(drawable, column, row) {
-		var[row][column]. = drawable;
+	this.insertAt = function(image, column, row) {
+		gridSections[row][column] = gridSection;
 	}
 }
