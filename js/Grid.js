@@ -1,7 +1,11 @@
 /**
 * 
 *
-*
+* {int} Width in pixels.
+* {int} Height in pixels.
+* {int} Number of columns.
+* {int} Number of rows.
+* {Canvas Context} To pass to the enities when they are generated.
 */
 function Grid(width, height, columns, rows, context) {
 	var width = width;
@@ -10,6 +14,8 @@ function Grid(width, height, columns, rows, context) {
 	var rows = rows;
 	var context = context;
 	var entities = [];
+	var sectionWidth = width / columns;
+	var sectionHeight = height / rows;
 
 	this.populate = function(level) {
 		entites = readLevel(level);
@@ -28,11 +34,9 @@ function Grid(width, height, columns, rows, context) {
 	this.draw = function() {
 		var xOffset = 0;
 		var yOffset = 0;
-		var sectionWidth = width / columns;
-		var sectionHeight = height / rows;
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
-				entities[i][j].draw();
+				entities[i][j].draw(xOffset, yOffset);
 				yOffset += sectionHeight;
 			}
 			xOffset += sectionWidth;

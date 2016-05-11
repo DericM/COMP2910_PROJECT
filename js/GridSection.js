@@ -1,3 +1,5 @@
+/* NO LONGER NECESSARY
+
 function GridSection(entity, point) {
 		var entity = entity;
 		var point = point;
@@ -10,3 +12,4 @@ function GridSection(entity, point) {
 			return entity;
 		};
 	};
+*/
