@@ -42,12 +42,12 @@ function readLevel(grid, level_num) {
 
     } else if (ch == 'w') {
 
-      new_array[row][column] = new WhiteHouse(grid, row, column, null);
+      new_array[row][column] = new WhiteHouse(grid, column, row, null);
     } else if (ch == 't') {
-      new_array[row][column] = new Trump(grid, row, column, null);
+      new_array[row][column] = new Trump(grid,column, row, null);
 
     } else if (ch == '*') {
-      new_array[row][column] = new Fadable(grid, row, column, null);
+      new_array[row][column] = new Fadable(grid, column, row, null);
 
     } else {
       alert("there was a problem");
