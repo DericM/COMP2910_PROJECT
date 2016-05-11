@@ -15,27 +15,42 @@
     <script src="old/GridSection.js"></script>
 
     <script src="js/Canvas.js"></script>
-    <script src="js/Context.js"></script>
+    <script src="js/CANVAS_MANAGER.js"></script>
     <script src="js/Drawable.js"></script>
 
-    <script src="js/Login.js"></script>
+    <!-- FUCKED UP <script src="js/Login.js"></script> -->
     <script src="js/Point.js"></script>
 
     <script src="js/Maps.js"></script>
     <script src="js/ResourceManager.js"></script>
     <script src="js/PlayerData.js"></script>
 
+    <script src="js/Grid.js"></script>
+    <script src="js/read_level.js"></script>
+    
+    <script src="js/GridDrawable.js"></script>
+    <!-- GRID DRAWABLE MUST COME BEFORE WHITEHOUSE, FADABLE, AND TRUMP .js files -->
+    <script src="js/WhiteHouse.js"></script>
+    <script src="js/Fadable.js"></script>
+    <script src="js/Trump.js"></script>
 
 
     <script src="js/concrete.min.js"></script>
 
+    <script>
+        var CANVAS_MANAGER;
+        window.onload = function() {
+            CANVAS_MANAGER = new CanvasManager();
+            var game = new Game();
 
+        };
+    </script>
 
 </head>
-<body onload="Main();">
+<body>
 
-    <canvas id="game" width="1000px" height="1000px"></canvas>
+    <div id="container"></div>
 
 
 </body>
-</html>
+</html

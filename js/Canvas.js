@@ -11,6 +11,7 @@ function Canvas() {
 	canvas.style.width = "360px";
 	canvas.style.height = "640px";
 	canvas.style.border = "1px solid black";
+	canvas.style.position = "absolute";
 	document.getElementById("container").appendChild(canvas);
 	var context = canvas.getContext("2d");
 	this.getContext = function() {
@@ -23,7 +24,7 @@ function Canvas() {
 		PARAM drawable: The drawable to be added.
 	*/
 	this.insertDrawable = function(drawable) {
-		for(var i = 0; i < drawables.length(); i++) {
+		for(var i = 0; i < drawables.length; i++) {
 			if(drawable.compare(drawables[i]) >= 0) {
 
 			}
@@ -37,12 +38,13 @@ function Canvas() {
 	*/
 	this.draw = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		for (var i = 0; i < drawables.length(); i++) {
+		for (var i = 0; i < drawables.length; i++) {
 			drawables[i].draw();
 		}
 	};
+}
 
-	/*
+/*
 		An insertion sort that I copied from the internet. Insertion sort
 		because only 1-3 objects will be out of order. You will need to use
 		this if you change the zIndex of objects. 
@@ -50,7 +52,8 @@ function Canvas() {
 		COULD BE FUCKED.
 
 		author: Brody
-	*/
+	*/ 
+	/*
 	this.insertionSort = function() {
 		var len = drawables.length;
 		for(var i = 0; i < len; i++) {
@@ -61,4 +64,4 @@ function Canvas() {
 			drawables[j+1] = tmp;
 		}
 	};
-}
+}*/

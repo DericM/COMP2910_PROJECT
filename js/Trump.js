@@ -2,7 +2,7 @@
 * inherits GridDrawable
 */
 function Trump(grid, column, row, image) {
-	GridDrawable.call(this, grid, column, row, image);\
+	GridDrawable.call(this, grid, column, row, image);
 
 	/**
 	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
@@ -26,7 +26,6 @@ function Trump(grid, column, row, image) {
 			row--;
 		else if(direction == 'down')
 			row++;
-
 		if(grid.getSectionAt(column, row) instanceof Fadable) {
 			console.log("YOU'RE FIRED!!!!");
 		} else {
