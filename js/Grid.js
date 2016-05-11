@@ -7,7 +7,8 @@
 * {int} Number of rows.
 * {Canvas Context} To pass to the enities when they are generated.
 */
-function Grid(context, width, height, columns, rows) {
+function Grid(context, xCoord, yCoord, width, height, columns, rows) {
+	Drawable.call(this, xCoord, yCoord);
 	var context = context;
 	var width = width;
 	var height = height;
@@ -59,8 +60,8 @@ function Grid(context, width, height, columns, rows) {
 	}
 
 	this.draw = function() {
-		var xOffset = 0;
-		var yOffset = 0;
+		var xOffset = xCoord;
+		var yOffset = yCoord;
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
 				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
@@ -75,7 +76,7 @@ function Grid(context, width, height, columns, rows) {
 				}
 				xOffset += sectionWidth;
 			}
-			xOffset = 0;
+			xOffset = xCoord;
 			yOffset += sectionHeight;
 		}
 	}
@@ -84,3 +85,6 @@ function Grid(context, width, height, columns, rows) {
 		return entities[row][column];
 	}
 }
+
+Grid.prototype = Object.create(Drawable.prototype);
+Grid.prototype.constructor = Grid;

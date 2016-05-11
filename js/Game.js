@@ -2,7 +2,8 @@
  *
  */
 function Game() {
-    var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(), 250, 250 * (7/5), 5, 7);
+    var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
+        (360 / 2) - (250 / 2), (640 / 2) - (250 * (7/5) / 2), 250, 250 * (7/5), 5, 7);
     grid.populate(readLevel(grid, 9));
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.draw();

@@ -7,8 +7,7 @@ INSTANCE yCoord: The context of the canvas. The thing that you draw to.
 Author: Brody
 Date: Sat, 7
 */
-function Drawable(zIndex, xCoord, yCoord) {
-	var zIndex = zIndex;
+function Drawable(xCoord, yCoord) {
 	var xCoord = xCoord;
 	var yCoord = yCoord;
 
