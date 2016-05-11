@@ -13,7 +13,7 @@ function Trump(grid, column, row, image) {
 	*/
 	this.draw = function(xCoord, yCoord) {
 		grid.getContext().fillStyle = "#FFFF00";
-		grid.getContext() = fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+		grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 	}
 
 	/*trump moves up,down,left or right*/

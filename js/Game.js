@@ -3,7 +3,7 @@
  */
 function Game() {
     var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(), 100, 100, 5, 7);
-    grid.populate(readLevel(grid, 0));
+    grid.populate(readLevel(grid, 9));
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.draw();
 }

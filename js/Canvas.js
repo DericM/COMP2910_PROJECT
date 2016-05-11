@@ -8,11 +8,11 @@ Date: Sat, 7
 function Canvas() {
 	var drawables = [];
 	var canvas = document.createElement("canvas");
-	canvas.style.width = "360px";
-	canvas.style.height = "640px";
 	canvas.style.border = "1px solid black";
 	canvas.style.position = "absolute";
 	document.getElementById("container").appendChild(canvas);
+	canvas.setAttribute('width', 360);
+	canvas.setAttribute('height', 640);
 	var context = canvas.getContext("2d");
 	this.getContext = function() {
 		return context;
@@ -24,11 +24,7 @@ function Canvas() {
 		PARAM drawable: The drawable to be added.
 	*/
 	this.insertDrawable = function(drawable) {
-		for(var i = 0; i < drawables.length; i++) {
-			if(drawable.compare(drawables[i]) >= 0) {
-
-			}
-		}
+		drawables.push(drawable);
 	};
 
 	/*

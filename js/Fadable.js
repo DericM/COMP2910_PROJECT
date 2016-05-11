@@ -9,7 +9,7 @@ function Fadable(grid, column, row, image) {
 	this.draw = function(xCoord, yCoord) {
 		if(visible) {
 			grid.getContext().fillStyle = "#FF0000";
-			grid.getContext() = fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 		}
 	}
 	this.setVisible = function(visible) {

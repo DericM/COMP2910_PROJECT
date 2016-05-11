@@ -9,12 +9,14 @@
 */
 function Grid(context, width, height, columns, rows) {
 	var context = context;
+	var width = width;
+	var height = height;
 	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
 
 	this.populate = function(level2dArr) {
-		entites = level2dArr;
+		entities = level2dArr;
 	}
 
 	this.setFade = function(visible) {
@@ -40,14 +42,22 @@ function Grid(context, width, height, columns, rows) {
 	}
 
 	this.draw = function() {
+		context.rect(0, 0, width, height);
+		context.stroke();
 		var xOffset = 0;
 		var yOffset = 0;
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
-				entities[i][j].draw(xOffset, yOffset);
-				yOffset += sectionHeight;
+				if(entities[i][j] != null) {
+					entities[i][j].draw(xOffset, yOffset);
+					xOffset += sectionWidth;
+				} else {
+					context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
+					context.stroke();
+				}
 			}
-			xOffset += sectionWidth;
+			xOffset = 0;
+			yOffset += sectionHeight;
 		}
 	}
 
