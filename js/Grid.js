@@ -23,8 +23,8 @@ function Grid(context, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-		entities[trumpCol][trumpRow] = trump;
-		entities[oldCol][oldRow] = null;
+		entities[trumpRow][trumpCol] = trump;
+		entities[oldRow][oldCol] = null;
 		
 	};
 	
