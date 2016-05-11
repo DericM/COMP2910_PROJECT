@@ -1,50 +1,48 @@
-<html>
-<head>
+function MovementSystem(canvas, context) {
+  // document.getElementById("gameCanvas");
 
-</head>
-<body>
-<canvas id="myCanvas" width="360" height="640" style="border:1px solid #000000;">
-</canvas>
+  this.canvas = canvas;
+  this.ctx = context;
 
-<script>
-  var canvas = document.getElementById("myCanvas");
-  var ctx = canvas.getContext("2d");
+  this.ctx.fillStyle = "#000";
+  this.ctx.moveTo(0,0);
+  this.ctx.lineTo(180, 320);
+  this.ctx.lineTo(360, 0);
+  this.ctx.stroke();
 
-  ctx.fillStyle = "#FF0000";
-  ctx.fillRect(20, 20, 100, 20);
+  this.ctx.moveTo(180,320);
+  this.ctx.lineTo(360,640);
+  this.ctx.stroke();
 
-  ctx.fillStyle = "#000";
-  ctx.moveTo(0,0);
-  ctx.lineTo(180, 320);
-  ctx.lineTo(360, 0);
-  ctx.stroke();
+  this.ctx.moveTo(180,320);
+  this.ctx.lineTo(0,640);
+  this.ctx.stroke();
 
-  ctx.moveTo(180,320);
-  ctx.lineTo(360,640);
-  ctx.stroke();
-
-  ctx.moveTo(180,320);
-  ctx.lineTo(0,640);
-  ctx.stroke();
-
-  canvas.addEventListener("click", getPosition, false);
+  this.canvas.addEventListener("click", moveTo, false);
 
 
-  function getPosition(event) {
-    var x = event.pageX - canvas.offsetLeft;
-    var y = event.pageY - canvas.offsetTop;
+  var moveTo = function(event) {
+    var x = event.pageX - this.canvas.offsetLeft;
+    var y = event.pageY - this.canvas.offsetTop;
 
+    /*
+     * myTrump doesn't fucking exist yet
+     */
     if (isInside(0,0,180,320,360,0,x,y)) {
       alert("UP");
+      myTrump.move("up");
     } else if (isInside(360,0,180,320,360,640,x,y)) {
       alert("RIGHT");
+      myTrump.move("right");
     } else if (isInside(360,640,180,320,0,640,x,y)) {
       alert("DOWN");
+      myTrump.move("down");
     } else if (isInside(0,0,180,320,0,640,x,y)) {
       alert("LEFT");
+      myTrump.move("left");
     }
 
-  }
+  };
 
   var area = function(x1, y1, x2,  y2,  x3,  y3) {
     return Math.abs((x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
@@ -67,10 +65,6 @@
 
     /* Check if sum of A1, A2 and A3 is same as A */
     return (A == A1 + A2 + A3);
-  }
+  };
 
-</script>
-</body>
-
-
-</html>
+}
