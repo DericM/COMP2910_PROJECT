@@ -18,26 +18,26 @@ function Grid(width, height, columns, rows, context) {
 	var sectionHeight = height / rows;
 
 	this.populate = function(level) {
-		entites = readLevel(level);
-	}
+		entites = LEVELS.readLevel(level);
+	};
 
 	this.fadeEntities = function() {
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
-				if(!(entity instanceof Trump || entity instanceof WhiteHouse)) {
-					entity.setInvisible();
+				if(entites[i][j] instanceof Fadables) {
+					entities[i][j].setVisible(false);
 				}
 			}
 		}
-	}
+	};
 
 	this.getSectionWidth = function() {
 		return sectionWidth;
-	}
+	};
 
 	this.getSectionHeight = function() {
 		return sectionHeight;
-	}
+	};
 
 	this.draw = function() {
 		var xOffset = 0;
@@ -45,13 +45,13 @@ function Grid(width, height, columns, rows, context) {
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
 				entities[i][j].draw(xOffset, yOffset);
-				yOffset += sectionHeight;
+				xOffset += sectionWidth;
 			}
-			xOffset += sectionWidth;
+			yOffset += sectionHeight;
 		}
-	}
+	};
 
 	this.getSectionAt = function(column, row) {
 		return entities[row][column];
-	}
+	};
 }

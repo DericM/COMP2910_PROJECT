@@ -1,13 +1,13 @@
 /**
 * inherits GridDrawable
 */
-function Trump(row, column, image) {
+function Trump(column, row, image) {
 	GridDrawable.call(this, grid, column, row, image);
 
 	this.draw = function(xCoord, yCoord) {
 		context.fillStyle = "CCC000";
 		context.fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
-	}
+	};
 
 	/*trump moves up,down,left or right*/
 	this.move = function(direction){

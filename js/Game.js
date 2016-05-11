@@ -39,7 +39,7 @@ function Game(){
                 CONTEXT.fillRect(cell.x, cell.y, 19, 19);
                 //--------------------------------
             }
-        }
+        };
 
 
     };
