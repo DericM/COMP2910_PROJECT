@@ -50,7 +50,7 @@ function loadImages(sources, callback) {
 //positions of the buttons
 var buttonX = [width/3,width/3,width/3,width/3];
 var buttonY = [120,200,280,360];
-var buttonWidth = [96,96,96,96];
+var buttonWidth = [95,95,95,95];
 var buttonHeight = [40,40,40,40];
 
 
