@@ -1,12 +1,19 @@
 /**
 * inherits GridDrawable
 */
-function Trump(row, column, image) {
-	GridDrawable.call(this, grid, column, row, image);
+function Trump(grid, column, row, image) {
+	GridDrawable.call(this, grid, column, row, image);\
 
+	/**
+	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
+	* a working grid, delete method and pass trump an image. 
+	*
+	* @param {int} xCoord: x coordinate to draw Trump at.
+	* @param {int} yCoord: y coordinate to draw Trump at.
+	*/
 	this.draw = function(xCoord, yCoord) {
-		context.fillStyle = "CCC000";
-		context.fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+		grid.getContext().fillStyle = "#FFFF00";
+		grid.getContext() = fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 	}
 
 	/*trump moves up,down,left or right*/
@@ -17,8 +24,9 @@ function Trump(row, column, image) {
 			column++;
 		else if(direction == 'up')
 			row--;
-		else
+		else if(direction == 'down')
 			row++;
+
 		if(grid.getSectionAt(column, row) instanceof Fadable) {
 			console.log("YOU'RE FIRED!!!!");
 		} else {

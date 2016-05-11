@@ -7,28 +7,28 @@
 * {int} Number of rows.
 * {Canvas Context} To pass to the enities when they are generated.
 */
-function Grid(width, height, columns, rows, context) {
-	var width = width;
-	var height = height;
-	var columns = columns;
-	var rows = rows;
+function Grid(context, width, height, columns, rows) {
 	var context = context;
-	var entities = [];
+	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
 
-	this.populate = function(level) {
-		entites = readLevel(level);
+	this.populate = function(level2dArr) {
+		entites = level2dArr;
 	}
 
-	this.fadeEntities = function() {
+	this.setFade = function(visible) {
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
-				if(!(entity instanceof Trump || entity instanceof WhiteHouse)) {
-					entity.setInvisible();
+				if(entities[i][j] instanceof Fadable) {
+					entity.setVisible(visible);
 				}
 			}
 		}
+	}
+
+	this.getContext = function() {
+		return context;
 	}
 
 	this.getSectionWidth = function() {

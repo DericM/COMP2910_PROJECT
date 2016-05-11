@@ -8,6 +8,6 @@ function GridDrawable(grid, column, row, image) {
 	var image = image;
 	
 	this.draw = function(xCoord, yCoord) {		
-		canvas1.drawImage(image, xCoord, yCoord);
+		grid.getContext() = drawImage(image, xCoord, yCoord);
 	};
 }
