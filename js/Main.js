@@ -7,7 +7,10 @@ var WIDTH;
 var HEIGHT;
 var MAPS;
 var RESOURCES;
+
 var CONTEXT;
+
+
 var PLAYER;
 
 
@@ -15,9 +18,8 @@ var PLAYER;
  * Entry point.
  */
 function Main(){
-
-    var canvas = document.getElementById("game");
-    CONTEXT = canvas.getContext("2d");
+    
+    CONTEXT = new Context();
 
     
     //------------------------
