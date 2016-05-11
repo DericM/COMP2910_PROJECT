@@ -6,7 +6,7 @@ function WhiteHouse(grid, column, row, image) {
 	GridDrawable.call(this, grid, column, row, image);
 
 	this.draw = function(xCoord, yCoord) {
-		grid.getContext().fillStyle = "#FFFFFF";
+		grid.getContext().fillStyle = "#FFCCCC";
 		grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 	}
 }

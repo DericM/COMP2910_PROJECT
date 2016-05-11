@@ -41,8 +41,8 @@ function readLevel(grid, level_num) {
       new_array[row][column] = null;
 
     } else if (ch == 'w') {
-      new_array[row][column] = new WhiteHouse(grid, row, column, null);
 
+      new_array[row][column] = new WhiteHouse(grid, row, column, null);
     } else if (ch == 't') {
       new_array[row][column] = new Trump(grid, row, column, null);
 

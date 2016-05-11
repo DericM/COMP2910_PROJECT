@@ -11,6 +11,8 @@ function Grid(context, width, height, columns, rows) {
 	var context = context;
 	var width = width;
 	var height = height;
+	var columns = columns;
+	var rows = rows;
 	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
@@ -42,19 +44,16 @@ function Grid(context, width, height, columns, rows) {
 	}
 
 	this.draw = function() {
-		context.rect(0, 0, width, height);
-		context.stroke();
 		var xOffset = 0;
 		var yOffset = 0;
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
+				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
+				context.stroke();
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
-					xOffset += sectionWidth;
-				} else {
-					context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
-					context.stroke();
-				}
+				} 
+				xOffset += sectionWidth;
 			}
 			xOffset = 0;
 			yOffset += sectionHeight;
