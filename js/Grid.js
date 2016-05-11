@@ -14,7 +14,7 @@ function Grid(context, width, height, columns, rows) {
 	var sectionHeight = height / rows;
 
 	this.populate = function(level2dArr) {
-		entites = level2dArr;
+		entities = level2dArr;
 	}
 
 	this.setFade = function(visible) {
