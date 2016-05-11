@@ -14,23 +14,38 @@ function Trump(grid, column, row, image) {
 	this.draw = function(xCoord, yCoord) {
 		grid.getContext().fillStyle = "#FFFF00";
 		grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
-	}
+	};
+	
+	this.getRow = function() {
+		return row;
+	};
+	
+	this.getColumn = function() {
+		return column;
+	};
 
 	/*trump moves up,down,left or right*/
 	this.move = function(direction){
-		if(direction == 'left')
+		var oldX, oldY;
+		oldX = column;
+		oldY = column;
+		if(direction == 'left') {
 			column--;
-		else if(direction == 'right') 
+			grid.moveTrump(oldX, oldY);
+		} else if(direction == 'right') {
 			column++;
-		else if(direction == 'up')
+			grid.moveTrump(oldX, oldY);
+		} else if(direction == 'up') {
 			row--;
-		else if(direction == 'down')
+			grid.moveTrump(oldX, oldY);
+		} else if(direction == 'down') {
 			row++;
+			grid.moveTrump(oldX, oldY);
+		}
 		if(grid.getSectionAt(column, row) instanceof Fadable) {
 			console.log("YOU'RE FIRED!!!!");
-		} else {
-			canvas1.getContext().draw();
-		}
+		} 
+		CANVAS_MANAGER.gameCanvas.draw();
 	};
 }
 

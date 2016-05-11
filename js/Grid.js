@@ -16,6 +16,21 @@ function Grid(context, width, height, columns, rows) {
 	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
+	var trump;
+	var trumpRow;
+	var trumpCol;
+	
+	this.moveTrump = function(oldCol, oldRow) {
+		trumpCol = trump.getColumn();
+		trumpRow = trump.getRow();
+		entities[trumpRow][trumpCol] = trump;
+		entities[oldCol][oldRow] = null;
+		
+	};
+	
+	this.getTrump = function() {
+		return trump;
+	};
 
 	this.populate = function(level2dArr) {
 		entities = level2dArr;
@@ -53,6 +68,11 @@ function Grid(context, width, height, columns, rows) {
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
 				} 
+				if (entities[i][j] instanceof Trump) {
+					trump = entities[i][j];
+					trumpRow = i;
+					trumpCol = j;
+				}
 				xOffset += sectionWidth;
 			}
 			xOffset = 0;

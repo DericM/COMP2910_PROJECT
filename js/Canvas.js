@@ -17,6 +17,10 @@ function Canvas() {
 	this.getContext = function() {
 		return context;
 	};
+	
+	this.getCanvas = function () {
+		return canvas;
+	};
 
 	/*
 		Adds a drawable to the end of the drawables array.
@@ -25,6 +29,7 @@ function Canvas() {
 	*/
 	this.insertDrawable = function(drawable) {
 		drawables.push(drawable);
+		
 	};
 
 	/*
@@ -34,6 +39,7 @@ function Canvas() {
 	*/
 	this.draw = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
+		console.log("drawing");
 		for (var i = 0; i < drawables.length; i++) {
 			drawables[i].draw();
 		}
