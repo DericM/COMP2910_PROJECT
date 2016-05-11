@@ -19,8 +19,6 @@ function MovementSystem(canvas, context, trump) {
   ctx.lineTo(0,640);
   ctx.stroke();
   
-
-
   canvas.addEventListener("click", moveMe, false);
 
   function moveMe(event) {

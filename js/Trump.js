@@ -28,18 +28,18 @@ function Trump(grid, column, row, image) {
 	this.move = function(direction){
 		var oldX, oldY;
 		oldX = column;
-		oldY = column;
+		oldY = row;
 		if(direction == 'left') {
-			column--;
-			grid.moveTrump(oldX, oldY);
-		} else if(direction == 'right') {
-			column++;
-			grid.moveTrump(oldX, oldY);
-		} else if(direction == 'up') {
 			row--;
 			grid.moveTrump(oldX, oldY);
-		} else if(direction == 'down') {
+		} else if(direction == 'right') {
 			row++;
+			grid.moveTrump(oldX, oldY);
+		} else if(direction == 'up') {
+			column--;
+			grid.moveTrump(oldX, oldY);
+		} else if(direction == 'down') {
+			column++;
 			grid.moveTrump(oldX, oldY);
 		}
 		if(grid.getSectionAt(column, row) instanceof Fadable) {

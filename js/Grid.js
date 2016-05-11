@@ -23,7 +23,7 @@ function Grid(context, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-		entities[trumpRow][trumpCol] = trump;
+		entities[trumpCol][trumpRow] = trump;
 		entities[oldCol][oldRow] = null;
 		
 	};
@@ -34,7 +34,7 @@ function Grid(context, width, height, columns, rows) {
 
 	this.populate = function(level2dArr) {
 		entities = level2dArr;
-	}
+	};
 
 	this.setFade = function(visible) {
 		for(i = 0; i < rows; i++) {
