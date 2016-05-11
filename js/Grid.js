@@ -31,6 +31,14 @@ function Grid(width, height, columns, rows, context) {
 		}
 	}
 
+	this.getSectionWidth = function() {
+		return sectionWidth;
+	}
+
+	this.getSectionHeight = function() {
+		return sectionHeight;
+	}
+
 	this.draw = function() {
 		var xOffset = 0;
 		var yOffset = 0;
