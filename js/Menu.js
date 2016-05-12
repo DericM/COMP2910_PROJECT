@@ -65,7 +65,6 @@ function Menu(canvas, game) {
         context.drawImage(images.playImage, buttonX[0], buttonY[0]);
         context.drawImage(images.instructImage, buttonX[1], buttonY[1]);
         context.drawImage(images.settingsImage, buttonX[2], buttonY[2]);
-        context.drawImage(images.creditsImage, buttonX[3], buttonY[3]);
     }
 
     var mouseX;

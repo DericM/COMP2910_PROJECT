@@ -24,5 +24,6 @@ function Main(){
     RESOURCES      = new ResourceManager();
     PLAYER_DATA    = new PlayerData();
     GAME           = new Game();
-    MENU           = new Menu(CANVAS_MANAGER.uiCanvas, GAME);
+    // GAME.newGame();
+    // MENU           = new Menu(CANVAS_MANAGER.uiCanvas, GAME);
 }

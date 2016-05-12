@@ -1,23 +1,39 @@
 /**
  *
  */
+
+var levelComplete = false;
+
 function Game() {
-    this.newGame = function() {
-        var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
-            (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
-        var levels = new LevelManager();
-        grid.populate(levels.readLevel(grid, 9));
-        CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
-        CANVAS_MANAGER.gameCanvas.draw();
+   var levels = new LevelManager();
 
-        var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-            , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
+   var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
+       (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
+   
+   var playLevel = function(alevel) {
 
-        // window.setTimeout(, 5000);
-        window.setTimeout(function () {
-            grid.setFade(false)
-        }, 3000);
-    }
+      
+      grid.populate(levels.readLevel(grid, alevel));
+      CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
+      CANVAS_MANAGER.gameCanvas.draw();
+      var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
+          , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
+      
+   };
+
+   var i = 0;
+
+   CANVAS_MANAGER.gameCanvas.getCanvas().addEventListener("levelcompleted", function(e) {playLevel(i++)}, false);
+   playLevel(0);
+   
+    
+}
+
+function OnLevelComplete(state) {
+   var evt = document.createEvent("Event");
+   evt.state = state;
+   evt.initEvent("levelcompleted", true, false);
+   CANVAS_MANAGER.gameCanvas.getCanvas().dispatchEvent(evt);
 }
 
 /*

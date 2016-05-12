@@ -26,10 +26,20 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 		trumpRow = trump.getRow();
 		
 		if (entities[trumpRow][trumpCol] instanceof Fadable) {
-			alert("YOU LOSE");
+			laugher = document.createElement("audio");
+			laugher.setAttribute("src", "sound_test/snake_woman.ogg");
+			laugher.setAttribute("type", "audio/ogg");
+			laugher.play();
+			
+			var witch = document.createElement("img");
+			witch.setAttribute("src", "sound_test/snake_woman.jpg");
+			witch.setAttribute("width", "360px");
+			witch.setAttribute("height", "400px");
+			witch.style.visibility="visible";
+			document.getElementById("container").appendChild(witch);
 
 		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
-			alert("YOU WIN!!!!!!!!!!!");
+			passedLevel = true;
 		}
 		
 		entities[trumpRow][trumpCol] = trump;
