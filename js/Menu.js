@@ -1,11 +1,15 @@
 
-function Menu(canvas, game) {
-    var game = game;
+function Menu(canvas) {
     var canvas = canvas;
+    var game;
     var canvasElement = canvas.getCanvas();
     var context = canvas.getContext();
     var width = canvasElement.getAttribute('width');
     var height = canvasElement.getAttribute('height');
+
+    this.addGame = function(_game) {
+        game = _game;
+    }
 
     var loadImages = function(sources, callback) {
         var images = {};
@@ -84,7 +88,10 @@ function Menu(canvas, game) {
     }
 
 //array of functions to respond to the clicks to each menu item
-    var a = function(){ clear(); game.newGame(); }//play
+    var a = function(){
+        canvas.setVisible(false);
+        game.newGame();
+    } //play
     var b = function(){ console.log("instructions"); };//instructions
     var c = function(){ console.log("this is function: settings") };//settings
     var d = function(){ console.log("this is function: credits") };//credits

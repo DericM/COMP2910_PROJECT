@@ -8,6 +8,7 @@ var HEIGHT;
 var RESOURCES;
 var PLAYER_DATA;
 var CANVAS_MANAGER;
+var GAME;
 var MENU;
 
 /**
@@ -23,6 +24,7 @@ function Main(){
     //MAPS           = new Maps();
     RESOURCES      = new ResourceManager();
     PLAYER_DATA    = new PlayerData();
-    GAME           = new Game();
-    MENU           = new Menu(CANVAS_MANAGER.uiCanvas, GAME);
+    MENU           = new Menu(CANVAS_MANAGER.menuCanvas);
+    GAME           = new Game(MENU);
+    MENU.addGame(GAME);
 }

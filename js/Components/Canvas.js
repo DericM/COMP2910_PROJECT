@@ -55,26 +55,19 @@ function Canvas(width, height) {
 			drawables[i].draw();
 		}
 	};
-}
 
-/*
-		An insertion sort that I copied from the internet. Insertion sort
-		because only 1-3 objects will be out of order. You will need to use
-		this if you change the zIndex of objects. 
-
-		COULD BE FUCKED.
-
-		author: Brody
-	*/ 
-	/*
-	this.insertionSort = function() {
-		var len = drawables.length;
-		for(var i = 0; i < len; i++) {
-			var tmp = drawables[i]; 
-			for(var j = i - 1; j >= 0 && (drawables[j].compare(tmp) == 1); j--) {
-				drawables[j+1] = drawables[j];
-			}
-			drawables[j+1] = tmp;
+	/**
+	 * Sets the visibility of the canvas html element this canvas object is
+	 * associated with. Passing false removes it from the HTML dom tree,
+	 * passing true adds it to the HTML dom tree.
+	 *
+	 * @param {boolean} visibility: True to add to dom tree, false to remove from.
+     */
+	this.setVisible = function(visibility) {
+		if(visibility == false) {
+			document.getElementById("container").removeChild(canvas);
+		} else {
+			document.getElementById("container").appendChild(canvas);
 		}
-	};
-}*/
+	}
+}
