@@ -7,25 +7,17 @@ var WIDTH;
 var HEIGHT;
 var MAPS;
 var RESOURCES;
-
-var CONTEXT;
-
-
-var PLAYER;
+var PLAYER_DATA;
+var CANVAS_MANAGER;
 
 
 /**
  * Entry point.
  */
 function Main(){
-    
-    CONTEXT = new Context();
 
-    
-    //------------------------
-    //possible loading screen
-    //--------------------------
 
+    CANVAS_MANAGER = new CanvasManager();
 
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
@@ -34,7 +26,7 @@ function Main(){
     MAPS = new Maps();
     RESOURCES  = new ResourceManager();
 
-    PLAYER = new PlayerData();
+    PLAYER_DATA = new PlayerData();
 
     new Menu();
 

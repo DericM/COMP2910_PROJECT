@@ -27,29 +27,21 @@
     <script src="js/Grid.js"></script>
     <script src="js/LevelManager.js"></script>
     
-    <script src="js/entities/Entity.js"></script>
+    <script src="js/Entities/Entity.js"></script>
     <!-- Enitity MUST COME BEFORE WHITEHOUSE, FADABLE, AND TRUMP .js files -->
-    <script src="js/entities/WhiteHouse.js"></script>
-    <script src="js/entities/Fadable.js"></script>
-    <script src="js/entities/Trump.js"></script>
+    <script src="js/Entities/WhiteHouse.js"></script>
+    <script src="js/Entities/Fadable.js"></script>
+    <script src="js/Entities/Trump.js"></script>
     <script src="js/MovementSystem.js"></script>
 
     <script src="js/Popup.js"></script>
-    <script src="js/MainMenu.js"></script>
+    <script src="js/Menu.js"></script>
 
     <script src="js/concrete.min.js"></script>
 
-    <script>
-        var CANVAS_MANAGER;
-        window.onload = function() {
-            CANVAS_MANAGER = new CanvasManager();
-            var game = new Game();
-
-        };
-    </script>
 
 </head>
-<body>
+<body onload="Main()">
 
     <div id="container"></div>
 

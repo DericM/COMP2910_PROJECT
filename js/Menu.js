@@ -1,5 +1,5 @@
 
-function MainMenu(canvas) {
+function Menu(canvas) {
     var canvasElement = canvas.getCanvas();
     var context = canvas.getContext();
     var width = canvas.getWidth();
