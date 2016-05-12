@@ -5,15 +5,18 @@ Creates a canvas and inserts it into the container div in index.html.
 Author: Brody
 Date: Sat, 7
 */
-function Canvas() {
+function Canvas(width, height) {
+	var width = width;
+	var height = height;
 	var drawables = [];
 	var canvas = document.createElement("canvas");
 	canvas.style.border = "1px solid black";
 	canvas.style.position = "absolute";
 	document.getElementById("container").appendChild(canvas);
-	canvas.setAttribute('width', 360);
-	canvas.setAttribute('height', 640);
+	canvas.setAttribute('width', width);
+	canvas.setAttribute('height', height);
 	var context = canvas.getContext("2d");
+
 	this.getContext = function() {
 		return context;
 	};
@@ -21,6 +24,14 @@ function Canvas() {
 	this.getCanvas = function () {
 		return canvas;
 	};
+
+	this.getWidth = function() {
+		return width;
+	}
+
+	this.getHeight = function() {
+		return height;
+	}
 
 	/*
 		Adds a drawable to the end of the drawables array.
