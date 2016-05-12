@@ -4,7 +4,7 @@
 var TILE_SIZE;
 var WIDTH;
 var HEIGHT;
-var MAPS;
+//var MAPS;
 var RESOURCES;
 var PLAYER_DATA;
 var CANVAS_MANAGER;
@@ -20,7 +20,7 @@ function Main(){
     HEIGHT    = 640;
 
     CANVAS_MANAGER = new CanvasManager();
-    MAPS           = new Maps();
+    //MAPS           = new Maps();
     RESOURCES      = new ResourceManager();
     PLAYER_DATA    = new PlayerData();
     GAME           = new Game();

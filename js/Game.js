@@ -2,19 +2,22 @@
  *
  */
 function Game() {
-    var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
-        (360 / 2) - (275 / 2), (640 / 2) - (375 * (7/5) / 2), 275, 375 * (7/5), 5, 7);
-    grid.populate(readLevel(grid, 9));
-    CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
-    CANVAS_MANAGER.gameCanvas.draw();
+    this.newGame = function() {
+        var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
+            (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
+        var levels = new LevelManager();
+        grid.populate(levels.readLevel(grid, 9));
+        CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
+        CANVAS_MANAGER.gameCanvas.draw();
 
-    var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-        , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
-    
-    // window.setTimeout(, 5000);
-    window.setTimeout(function() {
-                        grid.setFade(false)
-                      }, 3000);
+        var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
+            , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
+
+        // window.setTimeout(, 5000);
+        window.setTimeout(function () {
+            grid.setFade(false)
+        }, 3000);
+    }
 }
 
 /*

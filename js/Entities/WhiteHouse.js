@@ -3,7 +3,7 @@
 * Currently Acting as the MINE only.
 */
 function WhiteHouse(grid, column, row, image) {
-	GridDrawable.call(this, grid, column, row, image);
+	Entity.call(this, grid, column, row, image);
 
 	this.draw = function(xCoord, yCoord) {
 		grid.getContext().fillStyle = "#0000ff";
@@ -12,5 +12,5 @@ function WhiteHouse(grid, column, row, image) {
 }
 
 //inheritance stuff
-WhiteHouse.prototype = Object.create(GridDrawable.prototype);
+WhiteHouse.prototype = Object.create(Entity.prototype);
 WhiteHouse.prototype.constructor = WhiteHouse;

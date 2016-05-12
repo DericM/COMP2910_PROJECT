@@ -3,7 +3,7 @@
 * Currently Acting as the MINE only.
 */
 function Fadable(grid, column, row, image) {
-	GridDrawable.call(this, grid, column, row, image);
+	Entity.call(this, grid, column, row, image);
 	var _visible = true;
 
 	this.draw = function(xCoord, yCoord) {
@@ -19,5 +19,5 @@ function Fadable(grid, column, row, image) {
 }
 
 //inheritance stuff
-Fadable.prototype = Object.create(GridDrawable.prototype);
+Fadable.prototype = Object.create(Entity.prototype);
 Fadable.prototype.constructor = Fadable;
