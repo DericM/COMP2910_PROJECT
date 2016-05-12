@@ -1,8 +1,7 @@
 
 /** GLOBAL VARIABLES */
 
-var TILE_SIZE = 40;
-
+var TILE_SIZE;
 var WIDTH;
 var HEIGHT;
 var MAPS;
@@ -16,18 +15,14 @@ var CANVAS_MANAGER;
  */
 function Main(){
 
+    TILE_SIZE = 40;
+    WIDTH     = 360;
+    HEIGHT    = 640;
 
     CANVAS_MANAGER = new CanvasManager();
-
-    WIDTH = canvas.width;
-    HEIGHT = canvas.height;
-
-
-    MAPS = new Maps();
-    RESOURCES  = new ResourceManager();
-
-    PLAYER_DATA = new PlayerData();
+    MAPS           = new Maps();
+    RESOURCES      = new ResourceManager();
+    PLAYER_DATA    = new PlayerData();
 
     new Menu();
-
 }

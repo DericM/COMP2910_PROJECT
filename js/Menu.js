@@ -24,7 +24,7 @@ function Menu(canvas) {
     };
 
     this.loadImages = function(sources, callback) {
-        var images = {};
+        var images = {}; 
         var loadedImages = 0;
         var numImages = 0;
         // get num of sources
