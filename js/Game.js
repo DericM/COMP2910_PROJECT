@@ -7,7 +7,7 @@ function Game() {
     grid.populate(readLevel(grid, 9));
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.draw();
-    
+    var pop = new Popup();
     var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
         , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
     
