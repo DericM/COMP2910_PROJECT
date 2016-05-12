@@ -11,6 +11,13 @@ function LevelManager() {
      *
      * @type {string[]}
      */
+    
+    var levels = ["xxwxxxxx*xxxxxxx*xxxxxxxxxxxxxxtxxx"];
+    for (var i = 1; i < 10; i++) {
+      levels[i] = LevelGenerator();
+    }
+    
+    /*
     var levels = ["xxwxxxxx*xxxxxxx*xxxxxxxxxxxxxxtxxx",
         "xxxxxwx*xxxxxxxxx*xxxxxxxxxxxtxx*xx",
         "xx*xwxx*xxxxxxxxxxx*xxxxxxxxxxxxtxx",
@@ -21,7 +28,8 @@ function LevelManager() {
         "x*wxxx***xxxxxx*xx**xxx*xxx*xxxxtxx",
         "xw**xxxx*x**xxxxx*xxxxxxxx****xxxtx",
         "xw**xxxx*x**xxxxx*xxxxxxxx****xxxtx"];
-
+    */
+    
     this.readLevel = function(grid, level_num) {
         var new_array = [];
         // initialize 2d array of 5 columns
