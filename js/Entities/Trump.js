@@ -2,7 +2,7 @@
 * inherits GridDrawable
 */
 function Trump(grid, column, row, image) {
-	Entity.call(this, grid, column, row, image);
+	GridDrawable.call(this, grid, column, row, image);
 
 	/**
 	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
@@ -30,17 +30,25 @@ function Trump(grid, column, row, image) {
 		oldX = column;
 		oldY = row;
 		if(direction == 'left') {
-			column--;
-			grid.moveTrump(oldX, oldY);
+			if (column > 0) {
+				column--;
+				grid.moveTrump(oldX, oldY);
+			}
 		} else if(direction == 'right') {
-			column++;
-			grid.moveTrump(oldX, oldY);
+			if (column < 4) {
+				column++;
+				grid.moveTrump(oldX, oldY);
+			}
 		} else if(direction == 'up') {
-			row--;
-			grid.moveTrump(oldX, oldY);
+			if (row > 0) {
+				row--;
+				grid.moveTrump(oldX, oldY);
+			}
 		} else if(direction == 'down') {
-			row++;
-			grid.moveTrump(oldX, oldY);
+			if (row < 6) {
+				row++;
+				grid.moveTrump(oldX, oldY);
+			}
 		}
 		if(grid.getSectionAt(column, row) instanceof Fadable) {
 			console.log("YOU'RE FIRED!!!!");
@@ -50,5 +58,5 @@ function Trump(grid, column, row, image) {
 }
 
 //inheritance stuff
-Trump.prototype = Object.create(Entity.prototype);
+Trump.prototype = Object.create(GridDrawable.prototype);
 Trump.prototype.constructor = Trump;

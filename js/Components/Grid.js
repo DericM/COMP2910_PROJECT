@@ -24,9 +24,16 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
+		
+		if (entities[trumpRow][trumpCol] instanceof Fadable) {
+			alert("YOU LOSE");
+
+		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
+			alert("YOU WIN!!!!!!!!!!!");
+		}
+		
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
-		
 	};
 	
 	this.getTrump = function() {
@@ -41,23 +48,24 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
 				if(entities[i][j] instanceof Fadable) {
-					entity.setVisible(visible);
+					entities[i][j].setVisible(visible);
 				}
 			}
 		}
-	}
+		CANVAS_MANAGER.gameCanvas.draw();
+	};
 
 	this.getContext = function() {
 		return context;
-	}
+	};
 
 	this.getSectionWidth = function() {
 		return sectionWidth;
-	}
+	};
 
 	this.getSectionHeight = function() {
 		return sectionHeight;
-	}
+	};
 
 	this.draw = function() {
 		var xOffset = xCoord;
@@ -79,7 +87,7 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 			xOffset = xCoord;
 			yOffset += sectionHeight;
 		}
-	}
+	};
 
 	this.getSectionAt = function(column, row) {
 		return entities[row][column];
