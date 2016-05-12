@@ -1,7 +1,6 @@
 
 function Game() {
-    var mainMenu = new MainMenu(CANVAS_MANAGER.uiCanvas);
-    mainMenu.draw();
+    var mainMenu = new Menu(CANVAS_MANAGER.uiCanvas);
     /*
     var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
         (360 / 2) - (250 / 2), (640 / 2) - (250 * (7/5) / 2), 250, 250 * (7/5), 5, 7);
@@ -11,5 +10,5 @@ function Game() {
     CANVAS_MANAGER.gameCanvas.draw();
     var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
         , CANVAS_MANAGER.uiCanvas.getContext(), grid.getTrump());
-        */
+    */
 }
