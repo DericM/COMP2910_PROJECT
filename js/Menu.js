@@ -32,7 +32,7 @@ function Menu(canvas) {
 
     var sources = {
 
-        bgImage : "Images/Background.png",
+        bgImage : "Images/circles_bg.png",
 
         logoImage : "Images/logo.png",
 
