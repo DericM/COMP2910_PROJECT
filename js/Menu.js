@@ -4,11 +4,8 @@ function Menu(canvas, game) {
     var canvas = canvas;
     var canvasElement = canvas.getCanvas();
     var context = canvas.getContext();
-
-
     var width = canvasElement.getAttribute('width');
     var height = canvasElement.getAttribute('height');
-
 
     var loadImages = function(sources, callback) {
         var images = {};

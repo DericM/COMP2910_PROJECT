@@ -1,41 +1,28 @@
 
 /** GLOBAL VARIABLES */
 
-var TILE_SIZE = 40;
-
+var TILE_SIZE;
 var WIDTH;
 var HEIGHT;
 var MAPS;
 var RESOURCES;
-
-var CONTEXT;
-
-
-var PLAYER;
-
+var PLAYER_DATA;
+var CANVAS_MANAGER;
+var MENU;
 
 /**
  * Entry point.
  */
 function Main(){
-    
-    CONTEXT = new Context();
 
-    
-    //------------------------
-    //possible loading screen
-    //--------------------------
+    TILE_SIZE = 40;
+    WIDTH     = 360;
+    HEIGHT    = 640;
 
-
-    WIDTH = canvas.width;
-    HEIGHT = canvas.height;
-
-
-    MAPS = new Maps();
-    RESOURCES  = new ResourceManager();
-
-    PLAYER = new PlayerData();
-
-    new Menu();
-
+    CANVAS_MANAGER = new CanvasManager();
+    MAPS           = new Maps();
+    RESOURCES      = new ResourceManager();
+    PLAYER_DATA    = new PlayerData();
+    GAME           = new Game();
+    MENU           = new Menu(CANVAS_MANAGER.uiCanvas, GAME);
 }
