@@ -20,18 +20,14 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 	var trump;
 	var trumpRow;
 	var trumpCol;
-	
+
+	this.addTrump = function(_trump) {
+		trump = _trump;
+	};
+
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-		
-		if (entities[trumpRow][trumpCol] instanceof Fadable) {
-			alert("YOU LOSE");
-
-		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
-			alert("YOU WIN!!!!!!!!!!!");
-		}
-		
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
 	};

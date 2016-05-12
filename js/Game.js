@@ -2,22 +2,33 @@
  *
  */
 function Game() {
+    var level = 0;
+    var levels = new LevelManager();
+    var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
+        (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
+    CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
+    var trump = new Trump(grid, 0, 0, null, this);
+    grid.addTrump(trump);
+    var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
+        , CANVAS_MANAGER.gameCanvas.getContext(), trump);
+
     this.newGame = function() {
-        var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
-            (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
-        var levels = new LevelManager();
-        grid.populate(levels.readLevel(grid, 9));
-        CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
-        CANVAS_MANAGER.gameCanvas.draw();
-
-        var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-            , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
-
-        // window.setTimeout(, 5000);
-        window.setTimeout(function () {
-            grid.setFade(false)
-        }, 3000);
+        level = 0;
+        this.setupLevel();
     }
+
+    this.setupLevel = function() {
+        if(level == 10) {
+            console.log("YOU WIN");
+        } else {
+            grid.populate(levels.readLevel(grid, level));
+            CANVAS_MANAGER.gameCanvas.draw();
+            level++;
+            window.setTimeout(function () {
+                grid.setFade(false)
+            }, 3000);
+        }
+    };
 }
 
 /*
