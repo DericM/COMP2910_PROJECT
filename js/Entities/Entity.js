@@ -10,9 +10,7 @@ function Entity(grid, column, row, imageSrc) {
 
 	
 	this.draw = function(xCoord, yCoord) {
-		image.onload = function() {
 			console.log("image");
-			grid.getContext().drawImage(image, xCoord, yCoord);
-		};
+			grid.getContext().drawImage(RESOURCES.getImage("trump"), xCoord, yCoord);
 	};
 }

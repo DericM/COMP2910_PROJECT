@@ -16,7 +16,7 @@ var MENU;
  */
 function Main(){
 
-    TILE_SIZE = 40;
+    TILE_SIZE = 50;
     WIDTH     = 360;
     HEIGHT    = 640;
 

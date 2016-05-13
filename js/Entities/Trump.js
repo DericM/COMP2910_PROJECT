@@ -12,6 +12,7 @@ function Trump(grid, column, row, image, game) {
 	* @param {int} xCoord: x coordinate to draw Trump at.
 	* @param {int} yCoord: y coordinate to draw Trump at.
 	*/
+	
 	this.draw = function(xCoord, yCoord) {
 		grid.getContext().fillStyle = "#FFFF00";
 		grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
