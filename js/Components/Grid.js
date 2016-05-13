@@ -1,5 +1,4 @@
 /**
-* 
 *
 * {int} Width in pixels.
 * {int} Height in pixels.
@@ -7,13 +6,20 @@
 * {int} Number of rows.
 * {Canvas Context} To pass to the enities when they are generated.
 */
-function Grid(context, xCoord, yCoord, width, height, columns, rows) {
-	Drawable.call(this, xCoord, yCoord);
-	var context = context;
-	var width = width;
-	var height = height;
-	var columns = columns;
-	var rows = rows;
+function Grid(canvas) {
+    var canvas = canvas;
+	var context = canvas.getContext();
+    var columns = 5;
+    var rows = 7;
+    var perc = 0.7;
+	var width = WIDTH * perc;
+	var height = width * 7 / 5;
+    if(height > HEIGHT * perc) {
+        height = HEIGHT * perc;
+        width = height * 5 / 7;
+    }
+    var xCoord = (WIDTH / 2) - (width / 2);
+    var yCoord = (HEIGHT / 2) - (height / 2);
 	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
@@ -28,11 +34,8 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-
-
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
-
 	};
 	
 	this.getTrump = function() {
@@ -94,8 +97,5 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 
 	this.getSectionAt = function(column, row) {
 		return entities[row][column];
-	}
+	};
 }
-
-Grid.prototype = Object.create(Drawable.prototype);
-Grid.prototype.constructor = Grid;

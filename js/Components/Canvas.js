@@ -50,7 +50,6 @@ function Canvas(width, height) {
 	*/
 	this.draw = function() {
 		context.clearRect(0, 0, canvas.width, canvas.height);
-		console.log("drawing");
 		for (var i = 0; i < drawables.length; i++) {
 			drawables[i].draw();
 		}

@@ -4,8 +4,7 @@
 function Game() {
     var level = 0;
     var levels = new LevelManager();
-    var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
-        (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
+    var grid = new Grid(CANVAS_MANAGER.gameCanvas);
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     var trump = new Trump(grid, 0, 0, "images/logo.png", this);
     grid.addTrump(trump);
