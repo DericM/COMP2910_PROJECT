@@ -4,6 +4,7 @@ var context = canvas.getContext('2d');
 
 var width = canvas.getAttribute('width');
 var height = canvas.getAttribute('height');
+var score = 0; 
 
 
 var loadImages = function(sources, callback) {
@@ -29,7 +30,7 @@ var loadImages = function(sources, callback) {
         
         bgImage : "Images/Background.png",
 
-        crossImage : "Images/cross.png",
+        //crossImage : "Images/cross.png",
 
         menuImage : "Images/mainMenu.png",
 
@@ -44,7 +45,7 @@ var loadImages = function(sources, callback) {
 
 //positions of the buttons
 var buttonX = [width/8 + 250 , width/3 , width/3];
-var buttonY = [215, height/3, height/2 ];
+var buttonY = [215, height/2 - 40 , height/2 + 40 ];
 var buttonWidth = [96,96,96];
 var buttonHeight = [40,40,40];
 
@@ -57,10 +58,10 @@ function clear(){
 function draw(images) {
 
 context.drawImage(images.bgImage, 0, 0);
-context.drawImage(images.crossImage, buttonX[0] ,buttonY[0]);
+//context.drawImage(images.crossImage, buttonX[0] ,buttonY[0]);
 context.drawImage(images.menuImage, buttonX[1] ,buttonY[1]);
 context.drawImage(images.levelImage, buttonX[2] ,buttonY[2]);
-context.strokeRect(width/8,height/3,300,200);
+context.strokeRect(20,height/3,width-40,height/3 + 40);
 write('score: ' + score , width/3, height-50);
 }
 
@@ -70,9 +71,6 @@ function write(text,x,y){
   context.font = "30px Arial";
   context.fillText(text,x,y);
 } 
-
-var score = 0; 
-
 
 var mouseX;
 var mouseY;
