@@ -1,39 +1,48 @@
 /**
  *
  */
-
-var levelComplete = false;
-
 function Game() {
-   var levels = new LevelManager();
+    var level = 0;
+    var levels = new LevelManager();
+    var grid = new Grid(CANVAS_MANAGER.gameCanvas);
+    CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
+    var trump = new Trump(grid, 0, 0, "images/logo.png", this);
+    grid.addTrump(trump);
+    var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
+        , CANVAS_MANAGER.gameCanvas.getContext(), trump);
 
-   var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
-       (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
-   
-   var playLevel = function(alevel) {
+    this.newGame = function() {
+        level = 0;
+        this.setupLevel(true);
+    };
 
-      
-      grid.populate(levels.readLevel(grid, alevel));
-      CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
-      CANVAS_MANAGER.gameCanvas.draw();
-      var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-          , CANVAS_MANAGER.gameCanvas.getContext(), grid.getTrump());
-      
-   };
-
-   var i = 0;
-
-   CANVAS_MANAGER.gameCanvas.getCanvas().addEventListener("levelcompleted", function(e) {playLevel(i++)}, false);
-   playLevel(0);
-   
+    this.setupLevel = function(repeat) {
+        if(level == 10) {
+            alert("YOU WIN");
+        } else {
+            if (!repeat) {
+                level++;
+            }
+            grid.populate(levels.readLevel(grid, level));
+            CANVAS_MANAGER.gameCanvas.draw();
+            
+            MOVE_MANAGER.toggleListener(false);
+            
+            trump.setVisible(false);
+            
+            window.setTimeout(function() {
+                MOVE_MANAGER.toggleListener(true);
+            }, 2000);
+            
+            window.setTimeout(function () {
+                grid.setFade(false)
+            }, 2000);
+        }
+    };
     
-}
-
-function OnLevelComplete(state) {
-   var evt = document.createEvent("Event");
-   evt.state = state;
-   evt.initEvent("levelcompleted", true, false);
-   CANVAS_MANAGER.gameCanvas.getCanvas().dispatchEvent(evt);
+    this.getLevel = function(){
+        return level;
+    }
 }
 
 /*

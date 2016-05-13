@@ -8,6 +8,7 @@ var HEIGHT;
 var RESOURCES;
 var PLAYER_DATA;
 var CANVAS_MANAGER;
+var GAME;
 var MENU;
 
 /**
@@ -15,15 +16,15 @@ var MENU;
  */
 function Main(){
 
-    TILE_SIZE = 40;
-    WIDTH     = 360;
-    HEIGHT    = 640;
+    TILE_SIZE = 50;
+    WIDTH     = window.innerWidth;
+    HEIGHT    = window.innerHeight;
 
     CANVAS_MANAGER = new CanvasManager();
     //MAPS           = new Maps();
     RESOURCES      = new ResourceManager();
     PLAYER_DATA    = new PlayerData();
-    GAME           = new Game();
-    // GAME.newGame();
-    // MENU           = new Menu(CANVAS_MANAGER.uiCanvas, GAME);
+    MENU           = new Menu(CANVAS_MANAGER.menuCanvas);
+    GAME           = new Game(MENU);
+    MENU.addGame(GAME);
 }

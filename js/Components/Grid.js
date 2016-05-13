@@ -1,5 +1,4 @@
 /**
-* 
 *
 * {int} Width in pixels.
 * {int} Height in pixels.
@@ -7,41 +6,34 @@
 * {int} Number of rows.
 * {Canvas Context} To pass to the enities when they are generated.
 */
-function Grid(context, xCoord, yCoord, width, height, columns, rows) {
-	Drawable.call(this, xCoord, yCoord);
-	var context = context;
-	var width = width;
-	var height = height;
-	var columns = columns;
-	var rows = rows;
+function Grid(canvas) {
+    var canvas = canvas;
+	var context = canvas.getContext();
+    var columns = 5;
+    var rows = 7;
+    var perc = 0.7;
+	var width = WIDTH * perc;
+	var height = width * 7 / 5;
+    if(height > HEIGHT * perc) {
+        height = HEIGHT * perc;
+        width = height * 5 / 7;
+    }
+    var xCoord = (WIDTH / 2) - (width / 2);
+    var yCoord = (HEIGHT / 2) - (height / 2);
 	var entities;
 	var sectionWidth = width / columns;
 	var sectionHeight = height / rows;
 	var trump;
 	var trumpRow;
 	var trumpCol;
-	
+
+	this.addTrump = function(_trump) {
+		trump = _trump;
+	};
+
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-		
-		if (entities[trumpRow][trumpCol] instanceof Fadable) {
-			laugher = document.createElement("audio");
-			laugher.setAttribute("src", "sound_test/snake_woman.ogg");
-			laugher.setAttribute("type", "audio/ogg");
-			laugher.play();
-			
-			var witch = document.createElement("img");
-			witch.setAttribute("src", "sound_test/snake_woman.jpg");
-			witch.setAttribute("width", "360px");
-			witch.setAttribute("height", "400px");
-			witch.style.visibility="visible";
-			document.getElementById("container").appendChild(witch);
-
-		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
-			passedLevel = true;
-		}
-		
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
 	};
@@ -60,6 +52,10 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 				if(entities[i][j] instanceof Fadable) {
 					entities[i][j].setVisible(visible);
 				}
+				if(entities[i][j] instanceof Trump || entities[i][j] instanceof WhiteHouse) {
+					entities[i][j].setVisible(!visible);
+				}
+				
 			}
 		}
 		CANVAS_MANAGER.gameCanvas.draw();
@@ -101,8 +97,5 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 
 	this.getSectionAt = function(column, row) {
 		return entities[row][column];
-	}
+	};
 }
-
-Grid.prototype = Object.create(Drawable.prototype);
-Grid.prototype.constructor = Grid;
