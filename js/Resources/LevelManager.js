@@ -20,7 +20,7 @@ function LevelManager() {
         "x*wxxx***xxxxxx*xx**xxx*xxx*xxxxtxx",
         "xwxxx***xxxxxx*xx*xx*x*xxxxxxxxtxxx",
         "xw**xxxx*x**xxxxx*xxxxxxxx****xxxtx",
-        "*xxxwxx**x*xxx*x*x*xxxxx**x*xxxxxxt",];
+        "*xxxwxx**x*xxx*x*x*xxxxx**x*xxxxxxt"];
 
     this.readLevel = function(grid, level_num) {
         var new_array = [];
