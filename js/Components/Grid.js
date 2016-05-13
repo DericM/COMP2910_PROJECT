@@ -30,6 +30,21 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 		trumpRow = trump.getRow();
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
+		if (entities[trumpRow][trumpCol] instanceof Fadable) {
+			console.log("fjlaksdjlfsjd");
+			laugher = document.createElement("audio");
+			laugher.setAttribute("src", "sound_test/snake_woman.ogg");
+			laugher.setAttribute("type", "audio/ogg");
+			laugher.play();
+
+			var witch = document.createElement("img");
+			witch.setAttribute("src", "sound_test/snake_woman.jpg");
+			witch.setAttribute("width", "360px");
+			witch.setAttribute("height", "400px");
+			witch.style.visibility="visible";
+			document.getElementById("container").appendChild(witch);
+
+		}
 
 	};
 	
