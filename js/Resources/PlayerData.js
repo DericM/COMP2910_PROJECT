@@ -1,5 +1,10 @@
+/**
+ * Stores the Players information.
+ * @constructor
+ */
 function PlayerData(){
-    var currentLevel = 1;
+
+    this.currentLevel = 1;
     //var score = 0;
 
     /*this.reset = function(){
@@ -7,7 +12,17 @@ function PlayerData(){
      score = 0;
      };*/
 
-    this.getLevel = function(){
-        return currentLevel;
-    };
+
 }
+
+
+PlayerData.prototype = {
+
+    /**
+     * Returns the current level.
+     * @returns {number}
+     */
+    getLevel: function(){
+        return this.currentLevel;
+    }
+};
