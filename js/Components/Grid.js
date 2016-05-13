@@ -28,8 +28,11 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
+
+
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
+
 	};
 	
 	this.getTrump = function() {
@@ -46,6 +49,10 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 				if(entities[i][j] instanceof Fadable) {
 					entities[i][j].setVisible(visible);
 				}
+				if(entities[i][j] instanceof Trump || entities[i][j] instanceof WhiteHouse) {
+					entities[i][j].setVisible(!visible);
+				}
+				
 			}
 		}
 		CANVAS_MANAGER.gameCanvas.draw();

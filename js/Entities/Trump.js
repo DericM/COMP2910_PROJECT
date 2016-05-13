@@ -5,6 +5,7 @@ function Trump(grid, column, row, image, game) {
 	Entity.call(this, grid, column, row, image);
 	var game = game;
 	var lives = 3;
+	var _visible = false;
 	/**
 	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
 	* a working grid, delete method and pass trump an image. 
@@ -14,8 +15,14 @@ function Trump(grid, column, row, image, game) {
 	*/
 	
 	this.draw = function(xCoord, yCoord) {
-		grid.getContext().fillStyle = "#FFFF00";
-		grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+		if (_visible) {
+			grid.getContext().fillStyle = "#FFFF00";
+			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+		}
+	};
+	
+	this.setVisible = function(visible) {
+		_visible = visible;
 	};
 
 	this.setLocation = function(_column, _row) {
@@ -72,10 +79,37 @@ function Trump(grid, column, row, image, game) {
 		}
 		CANVAS_MANAGER.gameCanvas.draw();
 	};
+
 	
 	this.checkState = function() {
 		if (grid.getSectionAt(column, row) instanceof Fadable) {
-			console.log("HIT A MINE");
+			
+			if (game.getLevel() === 0) {
+				laugher = document.createElement("audio");
+				laugher.setAttribute("src", "sound_test/snake_woman.ogg");
+				laugher.setAttribute("type", "audio/ogg");
+				laugher.play();
+
+				var witch = document.createElement("img");
+				witch.setAttribute("src", "sound_test/snake_woman.jpg");
+				witch.setAttribute("width", "360px");
+				witch.setAttribute("height", "400px");
+				witch.setAttribute("id", "snake_woman");
+				witch.style.visibility = "visible";
+				var container = document.getElementById("container");
+				container.appendChild(witch);
+
+				window.setTimeout(function() {
+					laugher.pause();
+					laugher.currentTime = 0;
+
+					witch = document.getElementById("snake_woman");
+					witch.style.display="none";
+					container.removeChild(witch);
+					
+				}, 3000);
+			}
+			
 			if (lives == 0) {
 				this.resetLives();
 				game.newGame();
