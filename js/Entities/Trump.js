@@ -92,10 +92,14 @@ function Trump(grid, column, row, image, game) {
 
 				var witch = document.createElement("img");
 				witch.setAttribute("src", "sound_test/snake_woman.jpg");
-				witch.setAttribute("width", "360px");
-				witch.setAttribute("height", "400px");
+				witch.setAttribute("width", "345");
+				witch.setAttribute("height", "470");
 				witch.setAttribute("id", "snake_woman");
+				//witch.style.marginLeft = "162px";
 				witch.style.visibility = "visible";
+				witch.style.display = "block";
+				witch.style.margin = "auto";
+				witch.style.paddingTop = "90px";
 				var container = document.getElementById("container");
 				container.appendChild(witch);
 

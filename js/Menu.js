@@ -9,7 +9,7 @@ function Menu(canvas) {
 
     this.addGame = function(_game) {
         game = _game;
-    }
+    };
 
     var loadImages = function(sources, callback) {
         var images = {};
@@ -28,7 +28,7 @@ function Menu(canvas) {
             };
             images[src].src = sources[src];
         }
-    }
+    };
 
     var sources = {
 
@@ -65,11 +65,10 @@ function Menu(canvas) {
 
     function draw(images) {
         context.drawImage(images.bgImage, 0, 0);
-        context.drawImage(images.logoImage, width/2 - 30 ,10);
+        context.drawImage(images.logoImage, width/3 + 30 ,10);
         context.drawImage(images.playImage, buttonX[0], buttonY[0]);
         context.drawImage(images.instructImage, buttonX[1], buttonY[1]);
         context.drawImage(images.settingsImage, buttonX[2], buttonY[2]);
-        context.drawImage(images.creditsImage, buttonX[3], buttonY[3]);
     }
 
     var mouseX;
@@ -91,7 +90,7 @@ function Menu(canvas) {
     var a = function(){
         canvas.setVisible(false);
         game.newGame();
-    } //play
+    }; //play
     var b = function(){ console.log("instructions"); };//instructions
     var c = function(){ console.log("this is function: settings") };//settings
     var d = function(){ console.log("this is function: credits") };//credits

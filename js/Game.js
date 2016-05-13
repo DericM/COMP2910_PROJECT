@@ -17,7 +17,7 @@ function Game() {
     };
 
     this.setupLevel = function(repeat) {
-        if(level == 10) {
+        if(level == 11) {
             alert("YOU WIN");
         } else {
             if (!repeat) {
