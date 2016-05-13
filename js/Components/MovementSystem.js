@@ -21,6 +21,19 @@ function MovementSystem(canvas, context, trump) {
   
   canvas.addEventListener("click", moveMe, false);
 
+  window.onkeydown = function (e) {
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (code === 37) {
+      myTrump.move("left");
+    } else if (code === 38) {
+      myTrump.move("up");
+    } else if (code === 39) {
+      myTrump.move("right");
+    } else if (code === 40) {
+      myTrump.move("down");
+    }
+  };
+
   function moveMe(event) {
     var x = event.pageX - canvas.offsetLeft;
     var y = event.pageY - canvas.offsetTop;
