@@ -4,6 +4,7 @@
 function Trump(grid, column, row, image, game) {
 	Entity.call(this, grid, column, row, image);
 	var game = game;
+	var lives = 3;
 	/**
 	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
 	* a working grid, delete method and pass trump an image. 
@@ -19,15 +20,18 @@ function Trump(grid, column, row, image, game) {
 	this.setLocation = function(_column, _row) {
 		column = _column;
 		row = _row;
-
 	};
 	
 	this.getRow = function() {
-		return row;w
+		return row;
 	};
 	
 	this.getColumn = function() {
 		return column;
+	};
+	
+	this.resetLives = function() {
+		lives = 3;
 	};
 
 	/*trump moves up,down,left or right*/
@@ -71,11 +75,19 @@ function Trump(grid, column, row, image, game) {
 	this.checkState = function() {
 		if (grid.getSectionAt(column, row) instanceof Fadable) {
 			console.log("HIT A MINE");
-			game.newGame();
+			if (lives == 0) {
+				this.resetLives();
+				game.newGame();
+			} else {
+				lives--;
+				game.setupLevel(true);
+				
+			}
 			return false;
 		} else if(grid.getSectionAt(column, row) instanceof WhiteHouse) {
 			console.log("WIN");
-			game.setupLevel();
+			
+			game.setupLevel(false);
 			return false;
 		}
 		return true;

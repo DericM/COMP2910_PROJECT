@@ -7,23 +7,25 @@ function Game() {
     var grid = new Grid(CANVAS_MANAGER.gameCanvas.getContext(),
         (360 / 2) - (275 / 2), (640 / 2) - (375 * (7 / 5) / 2), 275, 375 * (7 / 5), 5, 7);
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
-    var trump = new Trump(grid, 0, 0, null, this);
+    var trump = new Trump(grid, 0, 0, "images/logo.png", this);
     grid.addTrump(trump);
     var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
         , CANVAS_MANAGER.gameCanvas.getContext(), trump);
 
     this.newGame = function() {
         level = 0;
-        this.setupLevel();
-    }
+        this.setupLevel(true);
+    };
 
-    this.setupLevel = function() {
+    this.setupLevel = function(repeat) {
         if(level == 10) {
             console.log("YOU WIN");
         } else {
+            if (!repeat) {
+                level++;
+            }
             grid.populate(levels.readLevel(grid, level));
             CANVAS_MANAGER.gameCanvas.draw();
-            level++;
             window.setTimeout(function () {
                 grid.setFade(false)
             }, 3000);
