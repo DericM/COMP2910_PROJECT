@@ -6,7 +6,7 @@ var width = canvas.getAttribute('width');
 var height = canvas.getAttribute('height');
 var score = 0; 
 
-
+function NextPopup() {
 var loadImages = function(sources, callback) {
         var images = {};
         var loadedImages = 0;
@@ -112,18 +112,4 @@ function checkClick(mouseEvent){
         }
     }
 }
-
-
-// canvas.addEventListener("mouseover", function(event){
-//    for(i = 0; i < buttonX.length; i++){
-//         if(mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]){
-//             if(mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]){
-//                 canvas.style.cursor = "pointer"; 
-//             }
-//         }else {
-
-//               canvas.style.cursor = "default";
-//         }
-//     } 
-// });
-
+}

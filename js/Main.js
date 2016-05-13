@@ -17,8 +17,8 @@ var MENU;
 function Main(){
 
     TILE_SIZE = 50;
-    WIDTH     = 360;
-    HEIGHT    = 640;
+    WIDTH     = window.innerWidth;
+    HEIGHT    = window.innerHeight;
 
     CANVAS_MANAGER = new CanvasManager();
     //MAPS           = new Maps();
