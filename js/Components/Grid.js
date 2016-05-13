@@ -30,6 +30,7 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 		trumpRow = trump.getRow();
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
+
 	};
 	
 	this.getTrump = function() {
