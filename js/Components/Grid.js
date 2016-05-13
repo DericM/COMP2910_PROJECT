@@ -28,10 +28,9 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
-		entities[trumpRow][trumpCol] = trump;
-		entities[oldRow][oldCol] = null;
+
 		if (entities[trumpRow][trumpCol] instanceof Fadable) {
-			console.log("fjlaksdjlfsjd");
+			console.log("laskjdlfajslkdf");
 			laugher = document.createElement("audio");
 			laugher.setAttribute("src", "sound_test/snake_woman.ogg");
 			laugher.setAttribute("type", "audio/ogg");
@@ -44,7 +43,12 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 			witch.style.visibility="visible";
 			document.getElementById("container").appendChild(witch);
 
+		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
+			passedLevel = true;
 		}
+
+		entities[trumpRow][trumpCol] = trump;
+		entities[oldRow][oldCol] = null;
 
 	};
 	
