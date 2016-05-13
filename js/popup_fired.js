@@ -34,7 +34,7 @@ var loadImages = function(sources, callback) {
 
         menuImage : "Images/mainMenu.png",
 
-        levelImage : "Images/nextLevel.png",
+        //levelImage : "Images/nextLevel.png",
       };
 
 
@@ -44,10 +44,10 @@ var loadImages = function(sources, callback) {
 
 
 //positions of the buttons
-var buttonX = [width/8 + 250 , width/3 , width/3];
-var buttonY = [215, height/2 - 40 , height/2 + 40 ];
-var buttonWidth = [96,96,96];
-var buttonHeight = [40,40,40];
+var buttonX = [ width/3];
+var buttonY = [height/2 ];
+var buttonWidth = [96];
+var buttonHeight = [40];
 
 
 
@@ -59,16 +59,18 @@ function draw(images) {
 
 context.drawImage(images.bgImage, 0, 0);
 //context.drawImage(images.crossImage, buttonX[0] ,buttonY[0]);
-context.drawImage(images.menuImage, buttonX[1] ,buttonY[1]);
-context.drawImage(images.levelImage, buttonX[2] ,buttonY[2]);
+context.drawImage(images.menuImage, buttonX[0] ,buttonY[0]);
+//context.drawImage(images.levelImage, buttonX[1] ,buttonY[1]);
 context.strokeRect(20,height/3,width-40,height/3 + 40);
+context.fillStyle = 'Red';
+write('You\'re Fired!!!', width/3 - 50, height/3 + 50);
 write('score: ' + score , width/3, height-50);
 }
 
 //write text on the canvas 
 //x,y == coordinates
 function write(text,x,y){
-  context.font = "30px Arial";
+  context.font = "40px Arial bold";
   context.fillText(text,x,y);
 } 
 
@@ -88,15 +90,15 @@ function checkPos(mouseEvent){
 }
 
 //array of functions to respond to the clicks to each menu item
-var a = function(){ 
-        clear();  
-        canvas.removeEventListener("mousemove", checkPos);
-        canvas.removeEventListener("mouseup", checkClick);
-      }
-var b = function(){ console.log("main menu"); }
-var c = function(){ console.log("next level"); }
+// var a = function(){ 
+//         clear();  
+//         canvas.removeEventListener("mousemove", checkPos);
+//         canvas.removeEventListener("mouseup", checkClick);
+//       }
+var a = function(){ console.log("main menu"); } //main menu
+//var b = function(){ console.log("next level"); }
   
-  var arrayFunc = [a,b,c];
+  var arrayFunc = [a];
 
   
 
