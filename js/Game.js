@@ -12,12 +12,12 @@ function Game() {
         , CANVAS_MANAGER.gameCanvas.getContext(), trump);
 
     this.newGame = function() {
-        level = 0;
+        level = 10;
         this.setupLevel(true);
     };
 
     this.setupLevel = function(repeat) {
-        if(level == 10) {
+        if(level == 11) {
             alert("YOU WIN");
         } else {
             if (!repeat) {
