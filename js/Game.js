@@ -19,18 +19,31 @@ function Game() {
 
     this.setupLevel = function(repeat) {
         if(level == 10) {
-            console.log("YOU WIN");
+            alert("YOU WIN");
         } else {
             if (!repeat) {
                 level++;
             }
             grid.populate(levels.readLevel(grid, level));
             CANVAS_MANAGER.gameCanvas.draw();
+            
+            MOVE_MANAGER.toggleListener(false);
+            
+            trump.setVisible(false);
+            
+            window.setTimeout(function() {
+                MOVE_MANAGER.toggleListener(true);
+            }, 2000);
+            
             window.setTimeout(function () {
                 grid.setFade(false)
-            }, 3000);
+            }, 2000);
         }
     };
+    
+    this.getLevel = function(){
+        return level;
+    }
 }
 
 /*

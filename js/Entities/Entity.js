@@ -8,11 +8,13 @@ function Entity(grid, column, row, imageSrc) {
 	var image = new Image();
 	image.src = imageSrc;
 
-	
+
 	this.draw = function(xCoord, yCoord) {
 		image.onload = function() {
 			console.log("image");
 			grid.getContext().drawImage(image, xCoord, yCoord);
 		};
 	};
+
+
 }

@@ -12,12 +12,12 @@ function LevelManager() {
      * @type {string[]}
      */
     var levels = ["xxwxxxxx*xxxxxxx*xxxxxxxxxxxxxxtxxx",
-        "xxxxxwx*xxxxxxxxx*xxxxxxxxxxxtxx*xx",
-        "xx*xwxx*xxxxxxxxxxx*xxxxxxxxxxxxtxx",
-        "xxwxxxx**xxxxxxxxxxxxxxxxx**xxxxtxx",
-        "wxxxxxxxxxxx*xxxx*xxxx*xx**xxxxxtxx",
-        "xxxxxxxxxxw*xxxx*xxxxxxxx***xxtxxxx",
-        "x*wxxx***xxxxxx*xx**xxx*xxx*xxxxtxx",
+        "*xxxxwx*xx*xxxxxxx*xxxxxxxxxxtxxxxx",
+        "xxxxxxw*xxx*xxxxxxxxxx*xxx*t*xxxxxx",
+        "xwxxx****xxxxxxx****xxxxx****xxtxxx",
+        "*wxxxx**xxxxxx***xx*xxx*xtxxxxxxxxx",
+        "xxxxxx*w**xx*x*xxxx****xx*txxxxxxxx",
+        "x*wxxx***xxxxxx*xx**xxx*xxx*txxxxxx",
         "xwxxx***xxxxxx*xx*xx*x*xxxxxxxxtxxx",
         "xw**xxxx*x**xxxxx*xxxxxxxx****xxxtx",
         "*xxxwxx**x*xxx*x*x*xxxxx**x*xxxxxxt"];

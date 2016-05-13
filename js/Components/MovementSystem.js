@@ -20,6 +20,15 @@ function MovementSystem(canvas, context, trump) {
   ctx.stroke();
   
   canvas.addEventListener("click", moveMe, false);
+  
+  this.toggleListener = function(switcher) {
+    if (switcher) {
+      canvas.addEventListener("click", moveMe, false);
+    } else {
+      canvas.removeEventListener("click", moveMe, false);
+    }
+    
+  };
 
   function moveMe(event) {
     var x = event.pageX - canvas.offsetLeft;

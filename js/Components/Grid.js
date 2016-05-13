@@ -29,23 +29,6 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
 
-		if (entities[trumpRow][trumpCol] instanceof Fadable) {
-			console.log("laskjdlfajslkdf");
-			laugher = document.createElement("audio");
-			laugher.setAttribute("src", "sound_test/snake_woman.ogg");
-			laugher.setAttribute("type", "audio/ogg");
-			laugher.play();
-
-			var witch = document.createElement("img");
-			witch.setAttribute("src", "sound_test/snake_woman.jpg");
-			witch.setAttribute("width", "360px");
-			witch.setAttribute("height", "400px");
-			witch.style.visibility="visible";
-			document.getElementById("container").appendChild(witch);
-
-		} else if (entities[trumpRow][trumpCol] instanceof WhiteHouse) {
-			passedLevel = true;
-		}
 
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
@@ -66,6 +49,10 @@ function Grid(context, xCoord, yCoord, width, height, columns, rows) {
 				if(entities[i][j] instanceof Fadable) {
 					entities[i][j].setVisible(visible);
 				}
+				if(entities[i][j] instanceof Trump || entities[i][j] instanceof WhiteHouse) {
+					entities[i][j].setVisible(!visible);
+				}
+				
 			}
 		}
 		CANVAS_MANAGER.gameCanvas.draw();
