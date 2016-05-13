@@ -20,6 +20,15 @@ function MovementSystem(canvas, context, trump) {
   ctx.stroke();
   
   canvas.addEventListener("click", moveMe, false);
+  
+  this.toggleListener = function(switcher) {
+    if (switcher) {
+      canvas.addEventListener("click", moveMe, false);
+    } else {
+      canvas.removeEventListener("click", moveMe, false);
+    }
+    
+  };
 
   window.onkeydown = function (e) {
     var code = e.keyCode ? e.keyCode : e.which;
