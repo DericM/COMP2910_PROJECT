@@ -8,19 +8,25 @@ function MovementSystem(canvas, context, trump) {
     var centerHeight = HEIGHT / 2;
     var rightMost = WIDTH;
     var bottomMost = HEIGHT;
+    
     context.beginPath();
     context.fillStyle = "#000";
     context.moveTo(0, 0);
     context.lineTo(centerWidth, centerHeight);
     context.lineTo(rightMost, 0);
+    context.closePath();
     context.stroke();
 
+    context.beginPath();
     context.moveTo(centerWidth, centerHeight);
     context.lineTo(rightMost, bottomMost);
+    context.closePath();
     context.stroke();
 
+    context.beginPath();
     context.moveTo(centerWidth, centerHeight);
     context.lineTo(0, bottomMost);
+    context.closePath();
     context.stroke();
 
     canvas.addEventListener("click", moveMe, false);

@@ -119,7 +119,9 @@ function Grid(canvas) {
 		var yOffset = yCoord;
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
+                context.beginPath();
 				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
+                context.closePath();
 				context.stroke();
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
