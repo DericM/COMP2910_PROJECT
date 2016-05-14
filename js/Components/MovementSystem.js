@@ -8,6 +8,7 @@ function MovementSystem(canvas, context, trump) {
     var centerHeight = HEIGHT / 2;
     var rightMost = WIDTH;
     var bottomMost = HEIGHT;
+    context.beginPath();
     context.fillStyle = "#000";
     context.moveTo(0, 0);
     context.lineTo(centerWidth, centerHeight);
