@@ -1,3 +1,6 @@
+/**
+ * A canvas manager that generates all the necessary canvases.
+ */
 function CanvasManager() {
     this.gameCanvas = new Canvas(WIDTH, HEIGHT);
     this.popupCanvas = new Canvas(WIDTH, HEIGHT);

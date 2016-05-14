@@ -1,4 +1,9 @@
+/**
+ * A Level Manager that contains the hardcoded levels and
+ * the functions to read those levels into the game.
+ */
 function LevelManager() {
+    
     /**
      * An array of strings that represent levels
      *
@@ -23,8 +28,17 @@ function LevelManager() {
         "*xxxwxx**x*xxx*x*x*xxxxx**x*xxxxxxt",
         "*xxx*xx*xxxxw*xx**xxx*t*x*xx*xxxxxx"];
 
+    /**
+     * Read the specified level string and returns
+     * an array of objects to be displayed on the grid for the level.
+     * 
+     * @param {Grid} grid         :  the grid that will be given to the trump object
+     * @param {number} level_num  :  level_num
+     * @returns {Array}           :  The array of objects to be displayed.
+     */
     this.readLevel = function(grid, level_num) {
         var new_array = [];
+        
         // initialize 2d array of 5 columns
         for (var j = 0; j < 7; j++) {
             new_array[j] = []

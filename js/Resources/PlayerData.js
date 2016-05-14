@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 function PlayerData(){
     var currentLevel = 1;
     //var score = 0;

@@ -1,4 +1,3 @@
-
 function Menu(canvas) {
     var canvas = canvas;
     var game;
