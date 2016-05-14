@@ -1,3 +1,6 @@
+//CURRENTLY NOT IN USE.
+
+/*
 function ResourceManager(){
 
     ////////////////////////////////////////////////TILES////////////////////////////////////////////////////
@@ -36,3 +39,4 @@ function ResourceManager(){
      this.instructions = new Image(TILE_SIZE, TILE_SIZE);
      this.instructions.src = "Images/instructions.png";
 }
+*/

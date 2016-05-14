@@ -1,11 +1,10 @@
 /**
-*
-* {int} Width in pixels.
-* {int} Height in pixels.
-* {int} Number of columns.
-* {int} Number of rows.
-* {Canvas Context} To pass to the enities when they are generated.
-*/
+ * Holds entity objects and draws them onto a canvas
+ * in the form of a grid. Entity objects include Donald
+ * Trump, mines, and the whitehouse.
+ *
+ * @param {Canvas} canvas to paint grid to.
+ */
 function Grid(canvas) {
     var canvas = canvas;
 	var context = canvas.getContext();
@@ -27,25 +26,55 @@ function Grid(canvas) {
 	var trumpRow;
 	var trumpCol;
 
+    /**
+     * Adds Donald Trump entity to the grid.
+     *
+     * @param {Trump} _trump: New trump to add to the grid.
+     */
 	this.addTrump = function(_trump) {
 		trump = _trump;
 	};
 
+    /**
+     * Moves Donald Trump entity to a different position on the grid and
+     * removes him from his previous position.
+     *
+     * @param oldCol Donald Trumps' previous column.
+     * @param oldRow Donald Trumps' previous row.
+     */
 	this.moveTrump = function(oldCol, oldRow) {
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
 		entities[trumpRow][trumpCol] = trump;
 		entities[oldRow][oldCol] = null;
 	};
-	
+
+    /**
+     * Returns Donald Trump entity object.
+     *
+     * @returns {Trump} trump: Donald Trump.
+     */
 	this.getTrump = function() {
 		return trump;
 	};
 
+    /**
+     * Sets the contents of the grid.
+     *
+     * @param level2dArr 2d array containing a level to display
+     * on the grid.
+     */
 	this.populate = function(level2dArr) {
 		entities = level2dArr;
 	};
 
+    /**
+     * Sets the visibility property of the mines to the visible
+     * parameter and Trump and the WhiteHouse to the opposite
+     * of the visible parameter.
+     *
+     * @param {boolean} visible Used to set visibility property of entities.
+     */
 	this.setFade = function(visible) {
 		for(i = 0; i < rows; i++) {
 			for(j = 0; j < columns; j++) {
@@ -61,18 +90,30 @@ function Grid(canvas) {
 		CANVAS_MANAGER.gameCanvas.draw();
 	};
 
-	this.getContext = function() {
+    /**
+     * @returns {Context} context: The context the grid is painted to.
+     */
+    this.getContext = function() {
 		return context;
 	};
 
+    /**
+     * @returns {number} sectionWidth Width of individual grid section.
+     */
 	this.getSectionWidth = function() {
 		return sectionWidth;
 	};
 
+    /**
+     * @returns {number} sectionHeight Width of individual grid section.
+     */
 	this.getSectionHeight = function() {
 		return sectionHeight;
 	};
 
+    /**
+     * Draws the grid.
+     */
 	this.draw = function() {
 		var xOffset = xCoord;
 		var yOffset = yCoord;
@@ -83,7 +124,7 @@ function Grid(canvas) {
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
 				} 
-				if (entities[i][j] instanceof Trump) {
+				if(entities[i][j] instanceof Trump) {
 					trump = entities[i][j];
 					trumpRow = i;
 					trumpCol = j;
@@ -95,6 +136,11 @@ function Grid(canvas) {
 		}
 	};
 
+    /**
+     * @param {number} column Column of section to return;
+     * @param {number} row Row of section to return.
+     * @returns {Entity} entity: Desired entity.
+     */
 	this.getSectionAt = function(column, row) {
 		return entities[row][column];
 	};

@@ -1,11 +1,18 @@
 /**
-* inherits GridDrawable
-*/
+ * Donald Trump.
+ *
+ * @param {Grid} grid: Grid that Trump is on.
+ * @param {number} column: Column of Trump.
+ * @param {number} row: Row of Trump.
+ * @param {Image} image: Image that represents Trump.
+ * @param {Game} game: The game.
+ */
 function Trump(grid, column, row, image, game) {
 	Entity.call(this, grid, column, row, image);
 	var game = game;
 	var lives = 3;
-	var _visible = false;
+	var visible = false;
+
 	/**
 	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
 	* a working grid, delete method and pass trump an image. 
@@ -13,36 +20,60 @@ function Trump(grid, column, row, image, game) {
 	* @param {int} xCoord: x coordinate to draw Trump at.
 	* @param {int} yCoord: y coordinate to draw Trump at.
 	*/
-	
 	this.draw = function(xCoord, yCoord) {
-		if (_visible) {
+		if (visible) {
 			grid.getContext().fillStyle = "#FFFF00";
 			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 		}
 	};
-	
-	this.setVisible = function(visible) {
-		_visible = visible;
+
+    /**
+     * Sets visibility property of Trump.
+     *
+     * @param {boolean} visible: Visibility to set Trump to.
+     */
+	this.setVisible = function(_visible) {
+		visible = _visible;
 	};
 
+    /**
+     * Sets Trump's location.
+     *
+     * @param {number} _column: New column to set Trump to.
+     * @param {number} _row: New row to set Trump to.
+     */
 	this.setLocation = function(_column, _row) {
 		column = _column;
 		row = _row;
 	};
-	
+
+    /**
+     * @returns {number} row: Trump's row.
+     */
 	this.getRow = function() {
 		return row;
 	};
-	
+
+    /**
+     * @returns {number} column: Trump's column.
+     */
 	this.getColumn = function() {
 		return column;
 	};
-	
+
+    /**
+     * Sets Trump's lives to the maximum amount of lives.
+     */
 	this.resetLives = function() {
 		lives = 3;
 	};
 
-	/*trump moves up,down,left or right*/
+    /**
+     * Moves Trump one column and calls to check what was is in the
+     * location he moved to.
+     *
+     * @param {String} direction: Direction to move Trump in.
+     */
 	this.move = function(direction){
 		var oldX, oldY;
 		oldX = column;
@@ -80,7 +111,10 @@ function Trump(grid, column, row, image, game) {
 		CANVAS_MANAGER.gameCanvas.draw();
 	};
 
-	
+    /**
+     * @returns {boolean} : If Trump is on a mine or the WhiteHouse it returns false,
+     * if Trump is on an empty section it returns True.
+     */
 	this.checkState = function() {
 		if (grid.getSectionAt(column, row) instanceof Fadable) {
 			

@@ -1,23 +1,39 @@
+/**
+ * Builds a new menu.
+ *
+ * @param canvas
+ * @constructor
+ */
 function Menu(canvas) {
-    var canvas = canvas;
+
+    /** Game object. */
     var game;
+
     var canvasElement = canvas.getCanvas();
     var context = canvas.getContext();
     var width = canvasElement.getAttribute('width');
     var height = canvasElement.getAttribute('height');
 
+
+    /**
+     * Sets the game
+     * @param _game
+     */
     this.addGame = function(_game) {
         game = _game;
     };
 
+
+    /**
+     *
+     * @param sources
+     * @param callback
+     */
     var loadImages = function(sources, callback) {
         var images = {};
         var loadedImages = 0;
-        var numImages = 0;
-        // get num of sources
-        for(var src in sources) {
-            numImages++;
-        }
+        var numImages = 6;
+
         for(var src in sources) {
             images[src] = new Image();
             images[src].onload = function() {
@@ -29,18 +45,17 @@ function Menu(canvas) {
         }
     };
 
+    /**
+     * Array of sources.
+     *
+     * @type {{bgImage: string, logoImage: string, playImage: string, instructImage: string, settingsImage: string, creditsImage: string}}
+     */
     var sources = {
-
         bgImage : "Images/circles_bg.png",
-
         logoImage : "Images/logo.png",
-
         playImage : "Images/play.png",
-
         instructImage : "Images/instructions.png",
-
         settingsImage :   "Images/settings.png",
-
         creditsImage :  "Images/credits.png"
     };
 
@@ -50,18 +65,17 @@ function Menu(canvas) {
     });
 
 
-//positions of the buttons
+    //positions of the buttons
     var buttonX = [width/3,width/3,width/3,width/3];
     var buttonY = [120,200,280,360];
     var buttonWidth = [96,96,96,96];
     var buttonHeight = [40,40,40,40];
 
 
-
-    function clear(){
-        context.clearRect(0, 0, width, height);
-    }
-
+    /**
+     * Draw the images to the canvas.
+     * @param images
+     */
     function draw(images) {
         context.drawImage(images.bgImage, 0, 0);
         context.drawImage(images.logoImage, width/3 + 30 ,10);
@@ -74,7 +88,6 @@ function Menu(canvas) {
     var mouseY;
 
     canvasElement.addEventListener("mousemove", checkPos);
-
     function checkPos(mouseEvent){
         if(mouseEvent.pageX || mouseEvent.pageY == 0){
             mouseX = mouseEvent.pageX - this.offsetLeft;
@@ -85,23 +98,22 @@ function Menu(canvas) {
         }
     }
 
-//array of functions to respond to the clicks to each menu item
-    var a = function(){
+
+    var play = function(){
         canvas.setVisible(false);
         game.newGame();
     }; //play
-    var b = function(){ console.log("instructions"); };//instructions
-    var c = function(){ console.log("this is function: settings") };//settings
-    var d = function(){ console.log("this is function: credits") };//credits
-    var arrayFunc = [a,b,c,d];
+    var inst = function(){ console.log("instructions"); };//instructions
+    var sett = function(){ console.log("this is function: settings") };//settings
+    var cred = function(){ console.log("this is function: credits") };//credits
+
+    var arrayFunc = [play,inst,sett,cred];
 
 
 
 
-    var fadeId = 0;
     canvasElement.addEventListener("mouseup", checkClick);
-
-    function checkClick(mouseEvent){
+    function checkClick(){
         for(i = 0; i < buttonX.length; i++){
             if(mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]){
                 if(mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]){
@@ -112,17 +124,5 @@ function Menu(canvas) {
     }
 
 
-// canvas.addEventListener("mouseover", function(event){
-//    for(i = 0; i < buttonX.length; i++){
-//         if(mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]){
-//             if(mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]){
-//                 canvas.style.cursor = "pointer"; 
-//             }
-//         }else {
-
-//               canvas.style.cursor = "default";
-//         }
-//     } 
-// });
 
 }

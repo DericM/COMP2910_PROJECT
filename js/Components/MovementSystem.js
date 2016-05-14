@@ -16,6 +16,7 @@ function MovementSystem(canvas, context, trump) {
     var bottomMost = HEIGHT;
     
     // Drawing the 'X' to distinguish click sections.
+    context.beginPath();
     context.fillStyle = "#000";
     context.moveTo(0, 0);
     context.lineTo(centerWidth, centerHeight);
