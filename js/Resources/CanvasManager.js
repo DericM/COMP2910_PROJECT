@@ -1,4 +1,5 @@
 /**
+ * A canvas manager that generates all the necessary canvases.
  * Object that contains all the canvases to draw to.
  */
 function CanvasManager() {

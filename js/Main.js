@@ -29,7 +29,7 @@ function Main(){
 
     CANVAS_MANAGER = new CanvasManager();
     RESOURCES      = new ResourceManager();
-    //PLAYER_DATA    = new PlayerData();
+    // PLAYER_DATA    = new PlayerData();
     MENU           = new Menu(CANVAS_MANAGER.menuCanvas);
     GAME           = new Game(MENU);
     MENU.addGame(GAME);
