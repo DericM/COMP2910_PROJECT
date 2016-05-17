@@ -51,12 +51,12 @@ function LevelManager() {
             if (ch == 'x') {
                 new_array[row][column] = null;
             } else if (ch == 'w') {
-                new_array[row][column] = new WhiteHouse(grid, column, row, null);
+                new_array[row][column] = new WhiteHouse(grid, column, row, RESOURCES.getImage("whitehouse"));
             } else if (ch == 't') {
                 new_array[row][column] = grid.getTrump();
                 grid.getTrump().setLocation(column, row);
             } else if (ch == '*') {
-                new_array[row][column] = new Fadable(grid, column, row, null);
+                new_array[row][column] = new Fadable(grid, column, row, RESOURCES.getImage("mine"));
 
             } else {
                 alert("there was a problem");

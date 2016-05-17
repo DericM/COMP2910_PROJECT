@@ -1,40 +1,35 @@
 //CURRENTLY NOT IN USE.
 
-function ResourceManager(){
+function ResourceManager() {
+    var images = {};
+    var loadedImages = 0;
+    var numImages = 0;
+    var sources = {
+        mine: "Images/mine.png",
+        trump: "Images/trump.png",
+        whitehouse: "Images/whitehouse.png",
+        nextlevel: "Images/nextLevel.png"
+    };
 
-    ////////////////////////////////////////////////TILES////////////////////////////////////////////////////
-     this.grass = new Image(TILE_SIZE, TILE_SIZE);
-     this.grass.src = "Images/grass.png";
+    this.loadImages = function() {
+        for(var src in sources) {
+            numImages++;
+        }
 
-     this.mine = new Image(TILE_SIZE, TILE_SIZE);
-     this.mine.src = "Images/mine.png";
+        for(var src in sources) {
+            images[src] = new Image();
+            images[src].onload = function() {
+                if(++loadedImages >= numImages) {
+                    //proved images loaded here.
+                    Main();
 
-     this.trump = new Image();
-     this.trump.src = "Images/trump.png";
+                }
+            };
+            images[src].src = sources[src];
+        }
+    };
 
-     this.whitehouse = new Image(TILE_SIZE, TILE_SIZE);
-     this.whitehouse.src = "Images/whitehouse.png";
-
-
-     //////////////////////////////////////////////BACKGROUND////////////////////////////////////////////////
-
-     this.circles_bg = new Image(TILE_SIZE, TILE_SIZE);
-     this.circles_bg.src = "Images/circles_bg.png";
-
-     /////////////////////////////////////////////MENU///////////////////////////////////////////////////////
-
-     this.credits = new Image(TILE_SIZE, TILE_SIZE);
-     this.credits.src = "Images/credits.png";
-
-     this.play = new Image(TILE_SIZE, TILE_SIZE);
-     this.play.src = "Images/play.png";
-
-     this.settings = new Image(TILE_SIZE, TILE_SIZE);
-     this.settings.src = "Images/settings.png";
-
-     this.ship = new Image(TILE_SIZE, TILE_SIZE);
-     this.ship.src = "Images/ship.png";
-
-     this.instructions = new Image(TILE_SIZE, TILE_SIZE);
-     this.instructions.src = "Images/instructions.png";
+    this.getImage = function(name) {
+        return images[name];
+    };
 }

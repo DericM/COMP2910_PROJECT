@@ -9,12 +9,12 @@ function Game() {
     
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     
-    var trump = new Trump(grid, 0, 0, "images/logo.png", this);
+    var trump = new Trump(grid, 0, 0, RESOURCES.getImage("trump"), this);
     
     grid.addTrump(trump);
     
     var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-        , CANVAS_MANAGER.gameCanvas.getContext(), trump);
+        , CANVAS_MANAGER.uiCanvas.getContext(), trump);
 
     /**
      * Sets up a new game starting at level 0.
@@ -43,13 +43,12 @@ function Game() {
             MOVE_MANAGER.toggleListener(false);
             
             trump.setVisible(false);
-            
-            window.setTimeout(function() {
+            setTimeout(function () {
                 MOVE_MANAGER.toggleListener(true);
             }, 2000);
-            
-            window.setTimeout(function () {
-                grid.setFade(false)
+
+            setTimeout(function () {
+                grid.setFade(false);
             }, 2000);
         }
     };

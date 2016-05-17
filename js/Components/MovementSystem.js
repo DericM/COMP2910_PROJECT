@@ -36,7 +36,7 @@ function MovementSystem(canvas, context, trump) {
     context.closePath();
     context.stroke();
 
-    canvas.addEventListener("click", moveMe, false);
+    //canvas.addEventListener("click", moveMe, false);
 
     /**
      * Toggles the listener to on or off.
@@ -50,7 +50,6 @@ function MovementSystem(canvas, context, trump) {
         } else {
             canvas.removeEventListener("click", moveMe, false);
         }
-
     };
 
     /**
@@ -79,7 +78,6 @@ function MovementSystem(canvas, context, trump) {
     function moveMe(event) {
         var x = event.pageX - canvas.offsetLeft;
         var y = event.pageY - canvas.offsetTop;
-
         if (isInside(0, 0, centerWidth, centerHeight, rightMost, 0, x, y)) {
             trump.move("up");
         } else if (isInside(rightMost, 0, centerWidth, centerHeight, rightMost, bottomMost, x, y)) {
@@ -89,10 +87,7 @@ function MovementSystem(canvas, context, trump) {
         } else if (isInside(0, 0, centerWidth, centerHeight, 0, bottomMost, x, y)) {
             trump.move("left");
         }
-
     }
-
-
 
     /**
      * checks whether point P(x, y) lies inside the triangle formed

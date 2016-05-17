@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
+    <script src="js/EntryPoint.js"></script>
     <script src="js/Game.js"></script>
     <script src="js/Main.js"></script>
     <script src="js/Menu.js"></script>
@@ -14,10 +15,14 @@
     <script src="js/Components/Canvas.js"></script>
     <script src="js/Components/Grid.js"></script>
     <script src="js/Components/MovementSystem.js"></script>
+    <script src="js/Components/Popup.js"></script>
+    <script src="js/Components/Button.js"></script>
+    <script src="js/Components/Contents.js"></script>
 
     <script src="js/Resources/CanvasManager.js"></script>
     <script src="js/Resources/ResourceManager.js"></script>
     <script src="js/Resources/LevelManager.js"></script>
+    <script src="js/Resources/PopupManager.js"></script>
 
     <script src="js/Libraries/concrete.min.js"></script>
 
@@ -25,9 +30,8 @@
     <script src="js/Entities/Fadable.js"></script>
     <script src="js/Entities/WhiteHouse.js"></script>
     <script src="js/Entities/Trump.js"></script>
-
 </head>
-<body onload="Main()">
+<body onload=entryPoint()>
 
     <div id="container"></div>
 

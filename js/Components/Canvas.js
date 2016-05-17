@@ -17,7 +17,6 @@ function Canvas(width, height) {
     this.canvas.setAttribute('height', this.height);
 
     this.context = this.canvas.getContext("2d");
-
     document.getElementById("container").appendChild(this.canvas);
 }
 
