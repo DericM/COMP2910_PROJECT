@@ -3,8 +3,14 @@
  * Object that contains all the canvases to draw to.
  */
 function CanvasManager() {
-    this.gameCanvas = new Canvas(WIDTH, HEIGHT);
-    this.popupCanvas = new Canvas(WIDTH, HEIGHT);
-    this.uiCanvas =  new Canvas(WIDTH, HEIGHT);
-    this.menuCanvas = new Canvas(WIDTH, HEIGHT);
+    this.gameCanvas = new Canvas("canvas-game");
+    this.popupCanvas = new Canvas("canvas-popup");
+    //this.menuCanvas = new Canvas("canvas-menu");
+    this.uiCanvas =  new Canvas("canvas-ui");
+
+    this.gameCanvas.setVisible(false);
+    this.popupCanvas.setVisible(false);
+    this.uiCanvas.setVisible(false);
+
+
 }

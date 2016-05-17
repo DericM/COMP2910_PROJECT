@@ -17,7 +17,7 @@ function ResourceManager() {
     var soundSources = {
         snake_woman : "Sounds/snake_woman.ogg"
     };
-
+    
     this.loadImages = function() {
         for(var src in imageSources) {
             numImages++;
@@ -28,7 +28,8 @@ function ResourceManager() {
             images[src].onload = function() {
                 if(++loadedImages >= numImages) {
                     //proved images loaded here.
-                    Main();
+                    
+                    main.init();
 
                 }
             };
