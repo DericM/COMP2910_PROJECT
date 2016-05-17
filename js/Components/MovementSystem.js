@@ -1,42 +1,49 @@
 /**
  * A Movement system to listen for clicks that issues trumps movement.
  * 
- * @param {Canvas}  canvas    : canvas the movement system lives on
- * @param {Context} context   : canvas' 2d context
- * @param {Trump}   trump     : The trump object that is moved
+ * @param {Canvas}  _canvas    : canvas the movement system lives on
+ * @param {Context} _context   : canvas' 2d context
+ * @param {Trump}   _trump     : The trump object that is moved
  */
-function MovementSystem(canvas, context, trump) {
+function MovementSystem(_canvas, _context, _trump) {
 
-    var canvas = canvas;
-    var context = context;
-    var trump = trump;
+    var canvas = _canvas;
+    var context = _context;
+    var trump = _trump;
     var centerWidth = WIDTH / 2;
     var centerHeight = HEIGHT / 2;
     var rightMost = WIDTH;
     var bottomMost = HEIGHT;
-    
-    // Drawing the 'X' to distinguish click sections.
+
+    var perc = 0.7;
+    var width = WIDTH * perc;
+    var height = width * 7 / 5;
+    if(height > HEIGHT * perc) {
+        height = HEIGHT * perc;
+        width = height * 5 / 7;
+    }
+    var xCoord = (WIDTH / 2) - (width / 2);
+    var yCoord = (HEIGHT / 2) - (height / 2);
+
     context.beginPath();
-    context.fillStyle = "#000";
-    context.moveTo(0, 0);
+    context.fillStyle = "#FFF";
+    context.moveTo(xCoord, yCoord);
     context.lineTo(centerWidth, centerHeight);
-    context.lineTo(rightMost, 0);
+    context.lineTo(xCoord + width, yCoord);
     context.closePath();
     context.stroke();
 
     context.beginPath();
     context.moveTo(centerWidth, centerHeight);
-    context.lineTo(rightMost, bottomMost);
+    context.lineTo(xCoord + width, yCoord + height);
     context.closePath();
     context.stroke();
 
     context.beginPath();
     context.moveTo(centerWidth, centerHeight);
-    context.lineTo(0, bottomMost);
+    context.lineTo(xCoord, yCoord + height);
     context.closePath();
     context.stroke();
-
-    //canvas.addEventListener("click", moveMe, false);
 
     /**
      * Toggles the listener to on or off.
@@ -50,6 +57,7 @@ function MovementSystem(canvas, context, trump) {
         } else {
             canvas.removeEventListener("click", moveMe, false);
         }
+
     };
 
     /**
@@ -78,16 +86,20 @@ function MovementSystem(canvas, context, trump) {
     function moveMe(event) {
         var x = event.pageX - canvas.offsetLeft;
         var y = event.pageY - canvas.offsetTop;
-        if (isInside(0, 0, centerWidth, centerHeight, rightMost, 0, x, y)) {
+
+        if (isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
             trump.move("up");
-        } else if (isInside(rightMost, 0, centerWidth, centerHeight, rightMost, bottomMost, x, y)) {
+        } else if (isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
             trump.move("right");
-        } else if (isInside(rightMost, bottomMost, centerWidth, centerHeight, 0, bottomMost, x, y)) {
+        } else if (isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
             trump.move("down");
-        } else if (isInside(0, 0, centerWidth, centerHeight, 0, bottomMost, x, y)) {
+        } else if (isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
             trump.move("left");
         }
+
     }
+
+
 
     /**
      * checks whether point P(x, y) lies inside the triangle formed
@@ -104,7 +116,7 @@ function MovementSystem(canvas, context, trump) {
      * @returns {boolean}  :  whether the clicked point is inside the triangle
      */
     var isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
-        // Calculate area of triangle ABC 
+        // Calculate area of triangle ABC
         var A = area(x1, y1, x2, y2, x3, y3);
 
         // Calculate area of triangle PBC 
@@ -117,7 +129,7 @@ function MovementSystem(canvas, context, trump) {
         var A3 = area(x1, y1, x2, y2, x, y);
 
         // Check if sum of A1, A2 and A3 is same as A 
-        return (A == A1 + A2 + A3);
+        return (A < (A1 + A2 + A3 + 1) && A > (A1 + A2 + A3 - 1));
     };
 
     /**

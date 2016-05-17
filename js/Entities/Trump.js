@@ -8,10 +8,33 @@
  * @param {Game} game: The game.
  */
 function Trump(grid, column, row, image, game) {
-	Entity.call(this, grid, column, row, image, false);
+	Entity.call(this, grid, column, row, image);
 	var game = game;
-	var lives = 3;
+	var lives = 1;
+	var visible = false;
 
+	/**
+	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
+	* a working grid, delete method and pass trump an image. 
+	*
+	* @param {int} xCoord: x coordinate to draw Trump at.
+	* @param {int} yCoord: y coordinate to draw Trump at.
+	*/
+	this.draw = function(xCoord, yCoord) {
+		if (visible) {
+			grid.getContext().fillStyle = "#FFFF00";
+			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+		}
+	};
+
+    /**
+     * Sets visibility property of Trump.
+     *
+     * @param {boolean} visible: Visibility to set Trump to.
+     */
+	this.setVisible = function(_visible) {
+		visible = _visible;
+	};
 
     /**
      * Sets Trump's location.
@@ -126,17 +149,17 @@ function Trump(grid, column, row, image, game) {
 			}
 			
 			if (lives == 0) {
+				game.logScore();
 				this.resetLives();
 				game.newGame();
 			} else {
 				lives--;
-				game.setupLevel(true);
+				game.setupLevel(false);
 				
 			}
 			return false;
 		} else if(grid.getSectionAt(column, row) instanceof WhiteHouse) {
-			console.log("WIN");
-			game.setupLevel(false);
+			game.setupLevel(true);
 			return false;
 		}
 		return true;
