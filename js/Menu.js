@@ -1,128 +1,72 @@
-/**
- * Builds a new menu.
- *
- * @param canvas
- * @constructor
- */
-function Menu(canvas) {
 
-    /** Game object. */
-    var game;
+function Menu() {
 
-    var canvasElement = canvas.getCanvas();
-    var context = canvas.getContext();
-    var width = canvasElement.getAttribute('width');
-    var height = canvasElement.getAttribute('height');
+    this.menu = document.createElement("div");
+    this.menu.id = "menu";
+    this.menu.class = "page";
 
+    //build
+    var title = document.createElement("h1");
+    title.id = "menu-title";
+    title.innerHTML = "Trump Runner";
 
-    /**
-     * Sets the game
-     * @param _game
-     */
-    this.addGame = function(_game) {
-        game = _game;
-    };
+    var play = document.createElement("button");
+    play.id = "menu-button-play";
+    play.appendChild(document.createTextNode("Play"));
+    play.addEventListener('click', function(){
+        MENU.setVisibility(false);
+        GAME.newGame();
+    });
 
+    var score = document.createElement("button");
+    score.id = "menu-button-score";
+    score.appendChild(document.createTextNode("High Score"));
+    score.addEventListener('click', function(){
+        MENU.setVisibility(false);
+        //future call to high scores
+    });
 
-    /**
-     *
-     * @param sources
-     * @param callback
-     */
-    var loadImages = function(sources, callback) {
-        var images = {};
-        var loadedImages = 0;
-        var numImages = 6;
+    /* CODE FOR FACEBOOK LOGIN BUTTON*/
+    /*
+    var login = document.createElement("div");
+    login.id = "button-login";
+    login.setAttribute("class", "fb-login-button");
+    login.setAttribute("data-max-rows", "1");
+    login.setAttribute("data-size", "xlarge");
+    login.setAttribute("data-show-faces", "false");
+    login.setAttribute("data-auto-logout-link", "false");
+    */
 
-        for(var src in sources) {
-            images[src] = new Image();
-            images[src].onload = function() {
-                if(++loadedImages >= numImages) {
-                    callback(images);
-                }
-            };
-            images[src].src = sources[src];
-        }
-    };
-
-    /**
-     * Array of sources.
-     *
-     * @type {{bgImage: string, logoImage: string, playImage: string, instructImage: string, settingsImage: string, creditsImage: string}}
-     */
-    var sources = {
-        bgImage : "Images/circles_bg.png",
-        logoImage : "Images/logo.png",
-        playImage : "Images/play.png",
-        instructImage : "Images/instructions.png",
-        settingsImage :   "Images/settings.png",
-        creditsImage :  "Images/credits.png"
-    };
-
-
-    loadImages(sources, function(images) {
-        draw(images);
+    var login = document.createElement("button");
+    login.id = "menu-button-login";
+    login.appendChild(document.createTextNode("Login"));
+    login.addEventListener('click', function(){
+        MENU.setVisibility(false);
+        LOGIN.setVisibility(true);
     });
 
 
-    //positions of the buttons
-    var buttonX = [width/3,width/3,width/3,width/3];
-    var buttonY = [120,200,280,360];
-    var buttonWidth = [96,96,96,96];
-    var buttonHeight = [40,40,40,40];
+    this.menu.appendChild(title);
+    this.menu.appendChild(play);
+    this.menu.appendChild(score);
+    this.menu.appendChild(login);
 
-
-    /**
-     * Draw the images to the canvas.
-     * @param images
-     */
-    function draw(images) {
-        context.drawImage(images.bgImage, 0, 0);
-        context.drawImage(images.logoImage, width/3 + 30 ,10);
-        context.drawImage(images.playImage, buttonX[0], buttonY[0]);
-        context.drawImage(images.instructImage, buttonX[1], buttonY[1]);
-        context.drawImage(images.settingsImage, buttonX[2], buttonY[2]);
-    }
-
-    var mouseX;
-    var mouseY;
-
-    canvasElement.addEventListener("mousemove", checkPos);
-    function checkPos(mouseEvent){
-        if(mouseEvent.pageX || mouseEvent.pageY == 0){
-            mouseX = mouseEvent.pageX - this.offsetLeft;
-            mouseY = mouseEvent.pageY - this.offsetTop;
-        }else if(mouseEvent.offsetX || mouseEvent.offsetY == 0){
-            mouseX = mouseEvent.offsetX;
-            mouseY = mouseEvent.offsetY;
-        }
-    }
-
-
-    var play = function(){
-        canvas.setVisible(false);
-        game.newGame();
-    }; //play
-    var inst = function(){ console.log("instructions"); };//instructions
-    var sett = function(){ console.log("this is function: settings") };//settings
-    var cred = function(){ console.log("this is function: credits") };//credits
-
-    var arrayFunc = [play,inst,sett,cred];
-
-
-
-
-    canvasElement.addEventListener("mouseup", checkClick);
-    function checkClick(){
-        for(i = 0; i < buttonX.length; i++){
-            if(mouseX > buttonX[i] && mouseX < buttonX[i] + buttonWidth[i]){
-                if(mouseY > buttonY[i] && mouseY < buttonY[i] + buttonHeight[i]){
-                    arrayFunc[i]();
-                }
-            }
-        }
-    }
 
 
 
 }
+
+
+Menu.prototype = {
+
+    setVisibility: function(visibility){
+        var container = document.getElementById("container");
+        if(visibility == true){
+            container.appendChild(this.menu);
+        }
+        else {
+            container.removeChild(this.menu);
+        }
+    }
+
+};

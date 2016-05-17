@@ -5,9 +5,9 @@
  Author: Brody
  Date: Sat, 7
  */
-function Canvas(width, height) {
-    this.width = width;
-    this.height = height;
+function Canvas(id) {
+    this.width = WIDTH;
+    this.height = HEIGHT;
     this.drawables = [];
 
     this.canvas = document.createElement("canvas");
@@ -15,6 +15,7 @@ function Canvas(width, height) {
     this.canvas.style.position = "absolute";
     this.canvas.setAttribute('width', this.width);
     this.canvas.setAttribute('height', this.height);
+    this.canvas.id = id;
 
     this.context = this.canvas.getContext("2d");
     document.getElementById("container").appendChild(this.canvas);

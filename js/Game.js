@@ -23,6 +23,11 @@ function Game() {
      * Sets up a new game starting at level 0.
      */
     this.newGame = function() {
+
+        CANVAS_MANAGER.gameCanvas.setVisible(true);
+        CANVAS_MANAGER.popupCanvas.setVisible(true);
+        CANVAS_MANAGER.uiCanvas.setVisible(true);
+
         level = 0;
         scoreTracker.resetScore();
         scoreTracker.clearFail();

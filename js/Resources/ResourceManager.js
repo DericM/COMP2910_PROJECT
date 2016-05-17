@@ -11,7 +11,7 @@ function ResourceManager() {
         nextlevel: "Images/nextLevel.png"
     };
 
-    this.loadImages = function() {
+    this.loadImages = function(main) {
         for(var src in sources) {
             numImages++;
         }
@@ -21,7 +21,8 @@ function ResourceManager() {
             images[src].onload = function() {
                 if(++loadedImages >= numImages) {
                     //proved images loaded here.
-                    Main();
+                    
+                    main.init();
 
                 }
             };
