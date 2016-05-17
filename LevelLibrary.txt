@@ -1,0 +1,70 @@
+/* 
+ * Legend:
+ * p = spray tan (least value)
+ * s = star
+ * c = certificate (most value, maybe gives extra life?)
+ *
+ * x = empty
+ * t = Trump
+ * w = White House
+ */
+
+/* LOGAN'S ORIGINAL 11 LEVELS */
+xxwxxxxx*xxxxxxx*xxxxxxxxxxxxxxtxxx
+*xxxxwx*xx*xxxxxxx*xxxxxxxxxxtxxxxx
+xxxxxxw*xxx*xxxxxxxxxx*xxx*t*xxxxxx
+xwxxx****xxxxxxx****xxxxx****xxtxxx
+*wxxxx**xxxxxx***xx*xxx*xtxxxxxxxxx
+xxxxxx*w**xx*x*xxxx****xx*txxxxxxxx
+x*wxxx***xxxxxx*xx**xxx*xxx*txxxxxx
+xwxxx***xxxxxx*xx*xx*x*xxxxxxxxtxxx
+xw**xxxx*x**xxxxx*xxxxxxxx****xxxtx
+*xxxwxx**x*xxx*x*x*xxxxx**x*xxxxxxt
+*xxx*xx*xxxxw*xx**xxx*t*x*xx*xxxxxx
+
+/* 5x7 LEVELS, NO ITEMS */
+xx*wxxxxx*xxx*x**xxxxxxxxx***xxtxxx
+wx*xx*x*x*xxxxxxx*xx**t*xxxxxxx*x*x
+xtx*xx*xxxxxx*x*xxx*xx*xxx***xxxwxx
+x*xxxx*x*wxxx*x*xxx*t*xxxx*x*xxxx*x
+*xw*xxx*xxx**xxxx**t*x*xxxx*xx*xxx*
+txxxx*xx*xxxxxxx**x*xxxxxxxx*x*xxxw
+xxxxx*x*x*xxxxxx*w*xxx*xx*xxx*txxxx
+*xwx**x*x*xxxxxx***xxx*xx*x*x**xtx*
+wxx**x*xxx***xxxxxx*x***xx***xxxtxx
+x*xtxxxxx**x*xx*xxxxxx*xxx*w*xxxxx*
+w*xxxxx*xx*xxxxxxx**x*xxx*x*xxtxxx*
+*xxx*xw*xx**xxxxxxx**x***xx*tx*xxx*
+xxx*xw*xx**t*xxxxx*x*xx*xx*xxx*xx*x
+
+/* 5x7 LEVELS WITH ITEMS */
+xxtxxxxxxxxx*xx*x*x*xx*xxx*x*xpx*xw
+*xxxxxxx*xx**wxxxt**xxx*px*xxxxxxx*
+*xxw*s*xxxxx*xx*x*x*xx*xxx*xxxxxxxt
+**xwxsxx*xx*xxxxxxxx*x*xxxxxxxtxx*x
+xxtxxx***x*xxxxxxxxxx**xxxx*xx*xw*p
+sx*xwxx*xx*xxx*x*xxxxx*xxxxx*xt*xxx
+*x*x*xxxxxx*x*xx*x*xx*s*xxx*wx*xt*x
+wx**pxxx*x*xxxx*x*x*xxxxxxxx*xx*xxt
+xxxx**x*xxxx*xwx****xxx*t**xxxsxxx*
+t*xxxx*x*xxxx*p*xxx*c*xxxx*x*xxxx*w
+xtxx****xxs*xx*xxxxxx*x*xxx****xxwx
+w*xxxxxx*xx***xxx*xx*x*x*xx*xxc*xxt
+xxxxwp*xx**t*xxxxx*xx*x*xc*x*x*xxxx
+
+/* 6x8 LEVELS, WITH ITEMS */
+pxxwxx*x***xxx*xxx*xxxx****xxxxxxxxxx***xxxxtx**
+txxxxxxx*xx*xxx*xsxxxx*xx*xxx*xx*xxxxxx*xx*xxp*w
+x*xxx*xxx*xsx*****xxxxxxx*xx*xwxx**tx*xx*xx**xxx
+*xwxxxc*xxxxxx**xx*xx*xxx*x*x*xxx*xxxx*xxxxxtxxx
+*xxx*sxx*xxx*xxxx*xxt**xxx*wxxx*xxx*xxx*xxx*xxx*
+xwxx****xxxx**x**xxxx**x**xxxx**x**xxxx**x**xxtx
+cx*xxw*x*x*xxx*xxxx*xxx*xx**xx*x*p*xxxxxxxtxx**x
+
+/* 7x9 LEVELS, WITH ITEMS */
+xx*xxxwxx*xxxxxx*xxxxxxxx***xxxxxxxx*****xx*****xx*****xtxxxxxx
+xxx*xx*s*xxxxx*xx*xx*xx***xxxxxtxxxxx***xxxxxxxx*x***x*xxxxxxwx
+wxx*xx***xxx*x*xx*x*xxx*xxxx*x**xxxxxxxx*xx*xxx*xxxx*xxx*xtxx*p
+x*xxxxxxxxx*xxxx*xxxxxxx*wxx*xxt*xx*xxxx*xxxx**xxxxxxxx*cx*xxxx
+*xxx*txxx*xx*x*xx*xxxx*xx***xx*xxx*xxx*xxxx*xx*xxxx*xx*x*xw*xxp
+xxxwxxx***x***xxxpxxx*****x*xxxxxxx**x****xxxxxxx***x***txxxxxx
