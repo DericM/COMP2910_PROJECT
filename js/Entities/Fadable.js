@@ -8,20 +8,6 @@
  */
 function Fadable(grid, column, row, image) {
 	Entity.call(this, grid, column, row, image, true);
-
-    /**
-     * Draws the entity if it is set to visible.
-     *
-     * @param {number} xCoord: X coordinate in pixels to draw the entities image to.
-     * @param {number} yCoord: Y coordinate in pixels to draw the entities image to.
-     */
-    /*
-	this.draw = function(xCoord, yCoord) {
-		if(visible) {
-			grid.getContext().fillStyle = "#FF0000";
-			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
-		}
-	};*/
 }
 
 //inheritance stuff

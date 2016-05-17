@@ -12,7 +12,7 @@ function Game() {
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.insertDrawable(scoreTracker);
     
-    var trump = new Trump(grid, 0, 0, "images/logo.png", this);
+    var trump = new Trump(grid, 0, 0, RESOURCES.getImage("trump"), this);
     
     grid.addTrump(trump);
     
@@ -28,11 +28,11 @@ function Game() {
         scoreTracker.clearFail();
         this.setupLevel(null);
     };
-    
+    /*
     this.logScore = function() {
         var finalScore = scoreTracker.getScore();
         $.post("php/database.php", {score: finalScore});
-    };
+    };*/
 
     /**
      * Sets up the next level to be played

@@ -8,32 +8,20 @@
  * @param {Game} game: The game.
  */
 function Trump(grid, column, row, image, game) {
-	Entity.call(this, grid, column, row, image);
+	Entity.call(this, grid, column, row, image, false);
 	var game = game;
-	var lives = 1;
-	var visible = false;
+	var lives = 3;
+
 
 	/**
-	* Temporary draw method. Draws Trump as a rectangle. Once we have a trump image and
-	* a working grid, delete method and pass trump an image. 
-	*
-	* @param {int} xCoord: x coordinate to draw Trump at.
-	* @param {int} yCoord: y coordinate to draw Trump at.
-	*/
-	this.draw = function(xCoord, yCoord) {
-		if (visible) {
-			grid.getContext().fillStyle = "#FFFF00";
-			grid.getContext().fillRect(xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
-		}
-	};
-
-    /**
-     * Sets visibility property of Trump.
-     *
-     * @param {boolean} visible: Visibility to set Trump to.
-     */
-	this.setVisible = function(_visible) {
-		visible = _visible;
+	 * Sets Trump's location.
+	 *
+	 * @param {number} _column: New column to set Trump to.
+	 * @param {number} _row: New row to set Trump to.
+	 */
+	this.setLocation = function(_column, _row) {
+		column = _column;
+		row = _row;
 	};
 
     /**
