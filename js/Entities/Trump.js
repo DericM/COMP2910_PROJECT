@@ -79,6 +79,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
      * @param {String} direction: Direction to move Trump in.
      */
 	 this.move = function(direction){
+         console.log("TRUMP MOVES");
 		var oldX, oldY;
 		oldX = column;
 		oldY = row;
@@ -183,18 +184,20 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	 * @param {event} event  :
 	 */
     function moveMe(event) {
+
         if(keySwitch) {
             var trump = GAME.getTrump();
             var code = event.keyCode ? event.keyCode : event.which;
             var x = event.pageX - canvas.getCanvas().offsetLeft;
             var y = event.pageY - canvas.getCanvas().offsetTop;
-            if (code == 38 || isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
+            if (code == 38 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
                 trump.move("up");
-            } else if (code == 39 || isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
+            } else if (code == 39 || trump.isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
                 trump.move("right");
-            } else if (code == 40 || isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+            } else if (code == 40 || trump.isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+                //down
                 trump.move("down");
-            } else if (code == 37 || isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+            } else if (code == 37 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
                 trump.move("left");
             }
         }
@@ -216,7 +219,17 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	 * @param y   :  y coordinate of the clicked point
 	 * @returns {boolean}  :  whether the clicked point is inside the triangle
 	 */
-	var isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
+	this.isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
+        x1 += WIDTH2;
+        x2 += WIDTH2;
+        x3 += WIDTH2;
+        var context = CANVAS_MANAGER.uiCanvas.getContext();
+        context.beginPath();
+        context.fillStyle = "#FF0000";
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.lineTo(x3, y3);
+        context.stroke();
 		// Calculate area of triangle ABC
 		var A = area(x1, y1, x2, y2, x3, y3);
 

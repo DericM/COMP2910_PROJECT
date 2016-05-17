@@ -5,6 +5,7 @@
  * @param {Context} _context   : canvas' 2d context
  * @param {Trump}   _trump     : The trump object that is moved
  */
+/*
 function MovementSystem(_canvas, _context, _trump) {
     var centerWidth = WIDTH / 2;
     var centerHeight = HEIGHT / 2;
@@ -39,7 +40,7 @@ function MovementSystem(_canvas, _context, _trump) {
      * 
      * @param {boolean} switcher  :  whether or not you would
      *                               like the listener turned on (true) or off (false)
-     */
+     *//*
     this.toggleListener = function (switcher) {
         if (switcher) {
             canvas.addEventListener("click", moveMe, false);
@@ -55,7 +56,7 @@ function MovementSystem(_canvas, _context, _trump) {
      * Listens for key inputs (used mostly for testing).
      * 
      * @param {event} e  :  the event
-     */
+     *//*
     window.onkeydown = function (e) {
         if(keySwitch) {
             var code = e.keyCode ? e.keyCode : e.which;
@@ -69,13 +70,13 @@ function MovementSystem(_canvas, _context, _trump) {
                 trump.move("down");
             }
         }
-    };
+    };*/
 
     /**
      * Moves trump in the specified direction. (called by the mouse listener)
      * 
      * @param {event} event  :  
-     */
+     *//*
     function moveMe(event) {
         var x = event.pageX - canvas.offsetLeft;
         var y = event.pageY - canvas.offsetTop;
@@ -93,7 +94,7 @@ function MovementSystem(_canvas, _context, _trump) {
     }
 
 
-
+*/
     /**
      * checks whether point P(x, y) lies inside the triangle formed
      * by A(x1, y1), B(x2, y2) and C(x3, y3)
@@ -107,7 +108,7 @@ function MovementSystem(_canvas, _context, _trump) {
      * @param x   :  x coordinate of the clicked point
      * @param y   :  y coordinate of the clicked point
      * @returns {boolean}  :  whether the clicked point is inside the triangle
-     */
+     *//*
     var isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
         // Calculate area of triangle ABC
         var A = area(x1, y1, x2, y2, x3, y3);
@@ -124,7 +125,7 @@ function MovementSystem(_canvas, _context, _trump) {
         // Check if sum of A1, A2 and A3 is same as A 
         return (A < (A1 + A2 + A3 + 1) && A > (A1 + A2 + A3 - 1));
     };
-
+/*
     /**
      * Calculates the area of a triangle specified by 3 points.
      * 
@@ -135,9 +136,10 @@ function MovementSystem(_canvas, _context, _trump) {
      * @param x3  :  x coordinate of the third triangle point
      * @param y3  :  y coordinate of the third triangle point
      * @returns {number}  :  the area of the triangle
-     */
+     *//*
     var area = function (x1, y1, x2, y2, x3, y3) {
         return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
     };
 
 }
+*/

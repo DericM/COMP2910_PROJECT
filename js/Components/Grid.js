@@ -60,6 +60,7 @@ function Grid(canvas) {
      * @param oldRow Donald Trumps' previous row.
      */
 	this.moveTrump = function(oldCol, oldRow) {
+		console.log("SHITTY DICK");
 		trumpCol = trump.getColumn();
 		trumpRow = trump.getRow();
 		entities[trumpRow][trumpCol] = trump;
@@ -134,8 +135,8 @@ function Grid(canvas) {
 	this.draw = function() {
 		var xOffset = xCoord;
 		var yOffset = yCoord;
-		for(i = 0; i < rows; i++) {
-			for(j = 0; j < columns; j++) {
+		for(var i = 0; i < rows; i++) {
+			for(var j = 0; j < columns; j++) {
                 context.beginPath();
 				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
                 context.closePath();
