@@ -139,7 +139,7 @@ function Trump(grid, column, row, image, game) {
 			if (lives == 0) {
 				game.logScore();
 				this.resetLives();
-				game.newGame();
+				POPUPS.drawPopup("death");
 			} else {
 				lives--;
 				game.setupLevel(false);

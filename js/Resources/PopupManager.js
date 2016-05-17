@@ -4,16 +4,16 @@ function PopupManager(_canvas) {
     var context = canvas.getContext();
     var popups = {};
 
-    popups["nextlevel"] = new Popup(
+    popups["death"] = new Popup(
         canvas,
         new Contents(100, 100),
         new Button(function() {
-            //ADD METHOD CALL FOR HOME HERE
+
         }),
         new Button(function() {
-            //ADD METHOD CALL FOR NEXT LEVEL HERE
+            GAME.newGame();
         }),
-        "nextlevel");
+        "death");
 
     this.drawPopup = function(name) {
         canvas.setVisible(true);
