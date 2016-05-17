@@ -29,10 +29,11 @@ function Game() {
         this.setupLevel(null);
     };
     
+    /*
     this.logScore = function() {
         var finalScore = scoreTracker.getScore();
         $.post("php/database.php", {score: finalScore});
-    };
+    };*/
 
     /**
      * Sets up the next level to be played
