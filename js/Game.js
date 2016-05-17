@@ -28,6 +28,7 @@ function Game() {
         scoreTracker.clearFail();
         this.setupLevel(null);
     };
+
     /*
     this.logScore = function() {
         var finalScore = scoreTracker.getScore();
