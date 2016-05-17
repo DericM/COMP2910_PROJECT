@@ -47,7 +47,7 @@ function Game() {
             scoreTracker.clearFail();
             level++;
             if (level == 11) {
-                this.logScore();
+                // this.logScore();
                 alert("YOU WIN");
                 trump.resetLives();
                 this.newGame();
