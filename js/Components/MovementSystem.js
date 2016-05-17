@@ -6,45 +6,34 @@
  * @param {Trump}   _trump     : The trump object that is moved
  */
 function MovementSystem(_canvas, _context, _trump) {
-
-    var canvas = _canvas;
-    var context = _context;
-    var trump = _trump;
     var centerWidth = WIDTH / 2;
     var centerHeight = HEIGHT / 2;
     var rightMost = WIDTH;
     var bottomMost = HEIGHT;
+    var keySwitch = true;
+    
+    this.drawMoveThingy = function() {
+        var context = CANVAs_MANAGER.uiCanvas.getContext();
+        context.beginPath();
+        context.fillStyle = "#FFF";
+        context.moveTo(xCoord, yCoord);
+        context.lineTo(centerWidth, centerHeight);
+        context.lineTo(xCoord + width, yCoord);
+        context.closePath();
+        context.stroke();
 
-    var perc = 0.7;
-    var width = WIDTH * perc;
-    var height = width * 7 / 5;
-    if(height > HEIGHT * perc) {
-        height = HEIGHT * perc;
-        width = height * 5 / 7;
+        context.beginPath();
+        context.moveTo(centerWidth, centerHeight);
+        context.lineTo(xCoord + width, yCoord + height);
+        context.closePath();
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(centerWidth, centerHeight);
+        context.lineTo(xCoord, yCoord + height);
+        context.closePath();
+        context.stroke();
     }
-    var xCoord = (WIDTH / 2) - (width / 2);
-    var yCoord = (HEIGHT / 2) - (height / 2);
-
-    context.beginPath();
-    context.fillStyle = "#FFF";
-    context.moveTo(xCoord, yCoord);
-    context.lineTo(centerWidth, centerHeight);
-    context.lineTo(xCoord + width, yCoord);
-    context.closePath();
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(centerWidth, centerHeight);
-    context.lineTo(xCoord + width, yCoord + height);
-    context.closePath();
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(centerWidth, centerHeight);
-    context.lineTo(xCoord, yCoord + height);
-    context.closePath();
-    context.stroke();
-
     /**
      * Toggles the listener to on or off.
      * 
@@ -54,8 +43,10 @@ function MovementSystem(_canvas, _context, _trump) {
     this.toggleListener = function (switcher) {
         if (switcher) {
             canvas.addEventListener("click", moveMe, false);
+            keySwitch = true;
         } else {
             canvas.removeEventListener("click", moveMe, false);
+            keySwitch = false;
         }
 
     };
@@ -66,15 +57,17 @@ function MovementSystem(_canvas, _context, _trump) {
      * @param {event} e  :  the event
      */
     window.onkeydown = function (e) {
-        var code = e.keyCode ? e.keyCode : e.which;
-        if (code === 37) {
-            trump.move("left");
-        } else if (code === 38) {
-            trump.move("up");
-        } else if (code === 39) {
-            trump.move("right");
-        } else if (code === 40) {
-            trump.move("down");
+        if(keySwitch) {
+            var code = e.keyCode ? e.keyCode : e.which;
+            if (code === 37) {
+                trump.move("left");
+            } else if (code === 38) {
+                trump.move("up");
+            } else if (code === 39) {
+                trump.move("right");
+            } else if (code === 40) {
+                trump.move("down");
+            }
         }
     };
 

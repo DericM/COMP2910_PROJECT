@@ -26,6 +26,23 @@ function Grid(canvas) {
 	var trumpRow;
 	var trumpCol;
 
+	this.getWidth = function() {
+		return width;
+	};
+
+
+	this.getHeight = function() {
+		return height;
+	};
+
+	this.getXCoord = function() {
+		return xCoord;
+	};
+
+	this.getYCoord = function() {
+		return yCoord;
+	};
+
     /**
      * Adds Donald Trump entity to the grid.
      *

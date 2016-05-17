@@ -12,13 +12,14 @@ function Game() {
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.insertDrawable(scoreTracker);
     
-    var trump = new Trump(grid, 0, 0, RESOURCES.getImage("trump"), this);
+    var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trump"), this);
+    trump.drawMoveThingy();
     
     grid.addTrump(trump);
-    
-    var MOVE_MANAGER = new MovementSystem(CANVAS_MANAGER.uiCanvas.getCanvas()
-        , CANVAS_MANAGER.uiCanvas.getContext(), trump);
 
+    this.getTrump = function() {
+        return trump;
+    };
     /**
      * Sets up a new game starting at level 0.
      */
@@ -64,43 +65,17 @@ function Game() {
         grid.populate(levels.readLevel(grid, level));
         CANVAS_MANAGER.gameCanvas.draw();
 
-        MOVE_MANAGER.toggleListener(false);
+        trump.toggleListener(false);
 
         trump.setVisible(false);
 
         window.setTimeout(function() {
-            MOVE_MANAGER.toggleListener(true);
+            trump.toggleListener(true);
         }, 2000);
 
         window.setTimeout(function () {
             grid.setFade(false)
         }, 2000);
-        
-        /*
-        if(level == 11) {
-            alert("YOU WIN");
-        } else {
-            if (!repeat) {
-                level++;
-                scoreTracker.addToScore(1000);
-                scoreTracker.setFactor(1);
-            }
-            grid.populate(levels.readLevel(grid, level));
-            CANVAS_MANAGER.gameCanvas.draw();
-            
-            MOVE_MANAGER.toggleListener(false);
-            
-            trump.setVisible(false);
-            
-            window.setTimeout(function() {
-                MOVE_MANAGER.toggleListener(true);
-            }, 2000);
-            
-            window.setTimeout(function () {
-                grid.setFade(false)
-            }, 2000);
-        }
-        */
     };
 
     /**

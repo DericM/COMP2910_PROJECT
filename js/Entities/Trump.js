@@ -7,11 +7,27 @@
  * @param {Image} image: Image that represents Trump.
  * @param {Game} game: The game.
  */
-function Trump(grid, column, row, image, game) {
+function Trump(_canvas, grid, column, row, image, _game) {
 	Entity.call(this, grid, column, row, image, false);
-	var game = game;
+	var canvas = _canvas;
+	var game = _game;
 	var lives = 3;
+	var centerWidth = WIDTH / 2;
+	var centerHeight = HEIGHT / 2;
+	var rightMost = WIDTH;
+	var bottomMost = HEIGHT;
+	var keySwitch = true;
 
+	var perc = 0.7;
+	var width = WIDTH * perc;
+	var height = width * 7 / 5;
+	if(height > HEIGHT * perc) {
+		height = HEIGHT * perc;
+		width = height * 5 / 7;
+	}
+	var xCoord = (WIDTH / 2) - (width / 2);
+	var yCoord = (HEIGHT / 2) - (height / 2);
+    canvas.getCanvas().addEventListener("click", moveMe, false);
 
 	/**
 	 * Sets Trump's location.
@@ -62,7 +78,7 @@ function Trump(grid, column, row, image, game) {
      *
      * @param {String} direction: Direction to move Trump in.
      */
-	this.move = function(direction){
+	 this.move = function(direction){
 		var oldX, oldY;
 		oldX = column;
 		oldY = row;
@@ -105,34 +121,13 @@ function Trump(grid, column, row, image, game) {
      */
 	this.checkState = function() {
 		if (grid.getSectionAt(column, row) instanceof Fadable) {
-			
 			if (game.getLevel() === 0) {
-				laugher = document.createElement("audio");
-				laugher.setAttribute("src", "sound_test/snake_woman.ogg");
-				laugher.setAttribute("type", "audio/ogg");
-				laugher.play();
-
-				var witch = document.createElement("img");
-				witch.setAttribute("src", "sound_test/snake_woman.jpg");
-				witch.setAttribute("width", "345");
-				witch.setAttribute("height", "470");
-				witch.setAttribute("id", "snake_woman");
-				//witch.style.marginLeft = "162px";
-				witch.style.visibility = "visible";
-				witch.style.display = "block";
-				witch.style.margin = "auto";
-				witch.style.paddingTop = "90px";
-				var container = document.getElementById("container");
-				container.appendChild(witch);
-
-				window.setTimeout(function() {
-					laugher.pause();
-					laugher.currentTime = 0;
-
-					witch = document.getElementById("snake_woman");
-					witch.style.display="none";
-					container.removeChild(witch);
-					
+				RESOURCES.playSound("snake_woman");
+				canvas.getContext().drawImage(RESOURCES.getImage("snake"), grid.getXCoord(), grid.getYCoord(), grid.getWidth(), grid.getHeight());
+                window.setTimeout(function() {
+                    RESOURCES.pauseSound("snake_woman");
+					CANVAS_MANAGER.uiCanvas.clear();
+					GAME.getTrump().drawMoveThingy();
 				}, 3000);
 			}
 			
@@ -151,6 +146,106 @@ function Trump(grid, column, row, image, game) {
 			return false;
 		}
 		return true;
+	};
+
+	this.drawMoveThingy = function() {
+		var context = CANVAS_MANAGER.uiCanvas.getContext();
+		context.beginPath();
+		context.fillStyle = "#FFF";
+		context.moveTo(xCoord, yCoord);
+		context.lineTo(centerWidth, centerHeight);
+		context.lineTo(xCoord + width, yCoord);
+		context.closePath();
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(centerWidth, centerHeight);
+		context.lineTo(xCoord + width, yCoord + height);
+		context.closePath();
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(centerWidth, centerHeight);
+		context.lineTo(xCoord, yCoord + height);
+		context.closePath();
+		context.stroke();
+	};
+
+    this.toggleListener = function (switcher) {
+        keySwitch = switcher;
+    };
+	window.onkeydown = moveMe;
+
+
+	/**
+	 * Moves trump in the specified direction. (called by the mouse listener)
+	 *
+	 * @param {event} event  :
+	 */
+    function moveMe(event) {
+        if(keySwitch) {
+            var trump = GAME.getTrump();
+            var code = event.keyCode ? event.keyCode : event.which;
+            var x = event.pageX - canvas.getCanvas().offsetLeft;
+            var y = event.pageY - canvas.getCanvas().offsetTop;
+            if (code == 38 || isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
+                trump.move("up");
+            } else if (code == 39 || isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
+                trump.move("right");
+            } else if (code == 40 || isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+                trump.move("down");
+            } else if (code == 37 || isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+                trump.move("left");
+            }
+        }
+    }
+
+
+
+	/**
+	 * checks whether point P(x, y) lies inside the triangle formed
+	 * by A(x1, y1), B(x2, y2) and C(x3, y3)
+	 *
+	 * @param x1  :  x coordinate of the first triangle point
+	 * @param y1  :  y coordinate of the first triangle point
+	 * @param x2  :  x coordinate of the second triangle point
+	 * @param y2  :  y coordinate of the second triangle point
+	 * @param x3  :  x coordinate of the third triangle point
+	 * @param y3  :  y coordinate of the third triangle point
+	 * @param x   :  x coordinate of the clicked point
+	 * @param y   :  y coordinate of the clicked point
+	 * @returns {boolean}  :  whether the clicked point is inside the triangle
+	 */
+	var isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
+		// Calculate area of triangle ABC
+		var A = area(x1, y1, x2, y2, x3, y3);
+
+		// Calculate area of triangle PBC
+		var A1 = area(x, y, x2, y2, x3, y3);
+
+		// Calculate area of triangle PAC
+		var A2 = area(x1, y1, x, y, x3, y3);
+
+		// Calculate area of triangle PAB
+		var A3 = area(x1, y1, x2, y2, x, y);
+
+		// Check if sum of A1, A2 and A3 is same as A
+		return (A < (A1 + A2 + A3 + 1) && A > (A1 + A2 + A3 - 1));
+	};
+
+	/**
+	 * Calculates the area of a triangle specified by 3 points.
+	 *
+	 * @param x1  :  x coordinate of the first triangle point
+	 * @param y1  :  y coordinate of the first triangle point
+	 * @param x2  :  x coordinate of the second triangle point
+	 * @param y2  :  y coordinate of the second triangle point
+	 * @param x3  :  x coordinate of the third triangle point
+	 * @param y3  :  y coordinate of the third triangle point
+	 * @returns {number}  :  the area of the triangle
+	 */
+	var area = function (x1, y1, x2, y2, x3, y3) {
+		return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
 	};
 }
 

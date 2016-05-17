@@ -22,7 +22,9 @@ function Canvas(width, height) {
 
 
 Canvas.prototype = {
-
+    clear: function() {
+        this.context.clearRect(0, 0, this.width, this.height);
+    },
     /**
      * Return context.
      * @returns {CanvasRenderingContext2D}
