@@ -79,7 +79,6 @@ function Trump(_canvas, grid, column, row, image, _game) {
      * @param {String} direction: Direction to move Trump in.
      */
 	 this.move = function(direction){
-         console.log("TRUMP MOVES");
 		var oldX, oldY;
 		oldX = column;
 		oldY = row;
@@ -134,8 +133,10 @@ function Trump(_canvas, grid, column, row, image, _game) {
 			
 			if (lives == 0) {
 				// game.logScore();
+				RESOURCES.playSound("neverbegreat");
 				this.resetLives();
-				POPUPS.drawPopup("death");
+				game.newGame();
+				//POPUPS.drawPopup("death");
 			} else {
 				lives--;
 				game.setupLevel(false);
@@ -224,12 +225,6 @@ function Trump(_canvas, grid, column, row, image, _game) {
         x2 += WIDTH2;
         x3 += WIDTH2;
         var context = CANVAS_MANAGER.uiCanvas.getContext();
-        context.beginPath();
-        context.fillStyle = "#FF0000";
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.stroke();
 		// Calculate area of triangle ABC
 		var A = area(x1, y1, x2, y2, x3, y3);
 

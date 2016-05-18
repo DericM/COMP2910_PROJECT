@@ -49,6 +49,7 @@ function Game() {
      */
     this.setupLevel = function(passed) {
         if(passed) {
+            RESOURCES.playSound(RESOURCES.getNextWinSound());
             scoreTracker.addToScore(level);
             scoreTracker.clearFail();
             level++;
@@ -61,9 +62,12 @@ function Game() {
 
             //failed level
         } else if (passed === false) {
+            RESOURCES.playSound("low_energy");
             scoreTracker.incrementFail();
+            
             //initial level
         } else {
+            RESOURCES.playSound("make_america_great");
             
         }
         

@@ -13,10 +13,33 @@ function ResourceManager() {
     var loadedImages = 0;
     var numImages = 0;
 
+    
     var sounds = {};
+    
     var soundSources = {
-        snake_woman : "Sounds/snake_woman.ogg"
+        snake_woman : "Sounds/snake_woman.mp3",
+        low_energy : "Sounds/low_energy.mp3",
+        neverbegreat : "Sounds/neverbegreat.mp3",
+        make_america_great : "Sounds/make_america_great.mp3",
+
+        build_wall : "Sounds/build_wall.mp3",
+        im_rich : "Sounds/im_rich.mp3",
+        nobody_builds : "Sounds/nobody_builds.mp3",
+        mexico_pay : "Sounds/mexico_pay.mp3",
+        im_smart : "Sounds/im_smart.mp3"
+
     };
+    
+    var winSounds = ["build_wall", "im_rich", "nobody_builds", "mexico_pay", "im_smart"];
+    var chooser = 0;
+    
+    this.getNextWinSound = function() {
+        if (chooser === winSounds.length) {
+            chooser = 0;
+        }
+        return winSounds[chooser++];
+    };
+    
 
     this.loadImages = function(main) {
         for(var src in imageSources) {
@@ -40,18 +63,12 @@ function ResourceManager() {
     this.getImage = function(name) {
         return images[name];
     };
-
-    this.loadSounds = function() {
-        laugher = document.createElement("audio");
-        laugher.setAttribute("src", "sound_test/snake_woman.ogg");
-        laugher.setAttribute("type", "audio/ogg");
-    };
-
+    
     this.loadSounds = function() {
         for(var src in soundSources) {
             sounds[src] = document.createElement("audio");
             sounds[src].setAttribute("src", soundSources[src]);
-            sounds[src].setAttribute("type", "audio/ogg");
+            sounds[src].setAttribute("type", "audio/mp3");
         }
     };
 
