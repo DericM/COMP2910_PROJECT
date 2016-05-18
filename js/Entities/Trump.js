@@ -66,7 +66,16 @@ function Trump(_canvas, grid, column, row, image, _game) {
 		} else if(grid.getSectionAt(column, row) instanceof WhiteHouse) {
 			game.setupLevel(true);
 			return false;
-		}
+		} else if (grid.getSectionAt(column, row) instanceof Star) {
+            console.log("star");
+            return true;
+        } else if (grid.getSectionAt(column, row) instanceof Certificate) {
+            console.log("star");
+            return true;
+        } else if (grid.getSectionAt(column, row) instanceof SprayTan) {
+            console.log("star");
+            return true;
+        }
 		return true;
 	};
 
@@ -94,7 +103,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
             } else if (code == 39 || trump.isInside(rightX, yCoord, centerX, centerY, rightX, bottomY, x, y)) {
                 //right
                 if (column != grid.getColumns() - 1) {
-                    column++;
+                    column++;           
                     moved = true;
                 }
             } else if (code == 40 || trump.isInside(rightX, bottomY, centerX, centerY, xCoord, bottomY, x, y)) {
@@ -213,7 +222,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 
     /**
      * @returns {number} row: Trump's row.
-     */
+     */           
     this.getRow = function() {
         return row;
     };

@@ -1,5 +1,7 @@
 /*///////////////////////////////////GENERAL//////////////////////////////////////*/
 
+
+
 body {
     margin: 0;
     font-family: "Century Gothic", sans-serif;
@@ -19,18 +21,20 @@ body {
     height: 100%;
     background: white url("../Images/menu_background.png") no-repeat;
     background-size: 100%;
+
+
 }
 
 
 /*///////////////////////////////////MENU//////////////////////////////////////*/
 
 
-#menu button, div, h1, form {
+button, div, h1, form {
     position:relative;
     margin: 0;
 }
 
-button, #login-button-login {
+button {
     width: 60%;
     height: 50px;
     left: 20%;
@@ -42,7 +46,7 @@ button, #login-button-login {
     color: white;
 }
 
-button:hover{
+button:hover {
     background-color: #4960a7;
     border-color: #fc9821;
 }
@@ -56,9 +60,6 @@ h1 {
     text-shadow: -1px -1px #122b48, 1px 1px #fa6c05;
 }
 
-#menu-title {
-
-}
 
 #menu-button-play {
     top: 150px;
@@ -97,12 +98,8 @@ form input {
     font-size: larger;
 }
 
+.wrapper {
 
 
-.form{
-    top: 190px;
-}
-
-#form{
-    top: 190px;
+    background-color: #4960a7;
 }

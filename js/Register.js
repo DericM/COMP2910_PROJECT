@@ -15,33 +15,45 @@ function Register() {
 
 
     var form = document.createElement("form");
-    form.id = "form";
+    form.className  = "form";
+    form.id = "form-register";
     form.name = "register";
 
     var username = document.createElement("input");
-    username.id = "register-input-username";
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
 
     var password = document.createElement("input");
-    password.id = "register-input-password";
     password.type = "password";
     password.name = "password";
     password.placeholder = "Password";
 
     var confirm_password = document.createElement("input");
-    confirm_password.id = "register-input-password";
     confirm_password.type = "password";
     confirm_password.name = "password";
     confirm_password.placeholder = "Confirm";
 
     var submit = document.createElement("input");
-    submit.id = "register-button-register";
     submit.type = "button";
     submit.value = "Register";
     submit.addEventListener('click', function(){
+        var url = "php/create_account.php"; // the script where you handle the form input.
 
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#form-register").serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                //data is the echo from create_account.php
+                // data == 'success' || data=='failure'
+                //if(data ==) // show response from the php script.
+                alert(data);
+            }
+
+        });
+        return false; // avoid to execute the actual submit of the form.
     });
 
 

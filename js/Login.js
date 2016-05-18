@@ -13,33 +13,49 @@ function Login() {
     title.id = "login-title";
     title.innerHTML = "Login";
 
+    var wrapper = document.createElement("div");
+    wrapper.className  = "wrapper";
+    wrapper.name = "login";
 
     var form = document.createElement("form");
-    form.id = "form";
+    form.className  = "form";
+    form.id = "form-login";
     form.name = "login";
 
     var username = document.createElement("input");
-    username.id = "login-input-username";
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
 
     var password = document.createElement("input");
-    password.id = "login-input-password";
     password.type = "password";
     password.name = "password";
     password.placeholder = "Password";
 
-    var submit = document.createElement("input");
-    submit.id = "login-button-login";
-    submit.type = "button";
-    submit.value = "Login";
+    var submit = document.createElement("button");
+    submit.appendChild(document.createTextNode("Login"));
     submit.addEventListener('click', function(){
-
+        var url = "php/authenticate.php"; // the script where you handle the form input.
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#form-login").serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                //data is the JSON object from authenticate.php
+                //"username" => "null",
+                //"password" => "null",
+                //"logged_in" => "false"
+                var json = data,
+                    obj = JSON.parse(json);
+                alert(obj.username);
+                alert(obj.logged_in); // show response from the php script.
+            }
+        });
+        return false; // avoid to execute the actual submit of the form.
     });
 
     var register = document.createElement("div");
-    register.id = "login-button-register";
     register.innerHTML = "Register";
     register.addEventListener('click', function(){
         LOGIN.setVisibility(false);
@@ -53,8 +69,11 @@ function Login() {
     form.appendChild(password);
     form.appendChild(submit);
 
-    this.login.appendChild(form);
-    this.login.appendChild(register);
+    wrapper.appendChild(form);
+    wrapper.appendChild(register);
+
+    this.login.appendChild(wrapper);
+
 
 
 

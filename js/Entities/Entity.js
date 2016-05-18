@@ -21,7 +21,8 @@ function Entity(_grid, _column, _row, _image, _visible) {
      */
 	this.draw = function(xCoord, yCoord) {
 		if(visible) {
-			CANVAS_MANAGER.gameCanvas.getContext().drawImage(image, xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+			CANVAS_MANAGER.gameCanvas.getContext().drawImage(image
+				, xCoord, yCoord, grid.getSectionWidth(), grid.getSectionHeight());
 		}
 	};
 
