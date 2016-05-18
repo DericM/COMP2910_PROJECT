@@ -3,7 +3,7 @@
 function ResourceManager() {
     var images = {};
     var imageSources = {
-        mine: "Images/mine.png",
+        mine: "Images/land_mine.png",
         trump: "Images/trump.png",
         whitehouse: "Images/whitehouse.png",
         nextlevel: "Images/nextLevel.png",

@@ -44,8 +44,8 @@ function Game() {
     /**
      * Sets up the next level to be played
      * 
-     * @param {boolean} repeat  :  whether or not the previous
-     *                             level should be repeated.
+     * @param {boolean} passed  :  whether or not the previous
+     *                             level should was passed.
      */
     this.setupLevel = function(passed) {
         if(passed) {
@@ -53,7 +53,7 @@ function Game() {
             scoreTracker.addToScore(level);
             scoreTracker.clearFail();
             level++;
-            if (level == 11) {
+            if (level == 9000) {
                 // this.logScore();
                 alert("YOU WIN");
                 trump.resetLives();
