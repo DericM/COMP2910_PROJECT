@@ -11,7 +11,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	Entity.call(this, grid, column, row, image, false);
 	var canvas = _canvas;
 	var game = _game;
-	var lives = 3;
+	var lives = 0;
 	var centerWidth = WIDTH / 2;
 	var centerHeight = HEIGHT / 2;
 	var rightMost = WIDTH;
@@ -29,92 +29,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	var yCoord = (HEIGHT / 2) - (height / 2);
     canvas.getCanvas().addEventListener("click", moveMe, false);
 
-	/**
-	 * Sets Trump's location.
-	 *
-	 * @param {number} _column: New column to set Trump to.
-	 * @param {number} _row: New row to set Trump to.
-	 */
-	this.setLocation = function(_column, _row) {
-		column = _column;
-		row = _row;
-	};
 
-    /**
-     * Sets Trump's location.
-     *
-     * @param {number} _column: New column to set Trump to.
-     * @param {number} _row: New row to set Trump to.
-     */
-	this.setLocation = function(_column, _row) {
-		column = _column;
-		row = _row;
-	};
-
-    /**
-     * @returns {number} row: Trump's row.
-     */
-	this.getRow = function() {
-		return row;
-	};
-
-    /**
-     * @returns {number} column: Trump's column.
-     */
-	this.getColumn = function() {
-		return column;
-	};
-
-    /**
-     * Sets Trump's lives to the maximum amount of lives.
-     */
-	this.resetLives = function() {
-		lives = 3;
-	};
-
-    /**
-     * Moves Trump one column and calls to check what was is in the
-     * location he moved to.
-     *
-     * @param {String} direction: Direction to move Trump in.
-     */
-	 this.move = function(direction){
-         console.log("TRUMP MOVES");
-		var oldX, oldY;
-		oldX = column;
-		oldY = row;
-		if(direction == 'left') {
-			if (column > 0) {
-				column--;
-				if(this.checkState()) {
-					grid.moveTrump(oldX, oldY);
-				}
-
-			}
-		} else if(direction == 'right') {
-			if (column < 4) {
-				column++;
-				if(this.checkState()) {
-					grid.moveTrump(oldX, oldY);
-				}
-			}
-		} else if(direction == 'up') {
-			if (row > 0) {
-				row--;
-				if(this.checkState()) {
-					grid.moveTrump(oldX, oldY);
-				}
-			}
-		} else if(direction == 'down') {
-			if (row < 6) {
-				row++;
-				if(this.checkState()) {
-					grid.moveTrump(oldX, oldY);
-				}
-			}
-		}
-		CANVAS_MANAGER.gameCanvas.draw();
-	};
 
     /**
      * @returns {boolean} : If Trump is on a mine or the WhiteHouse it returns false,
@@ -135,13 +50,14 @@ function Trump(_canvas, grid, column, row, image, _game) {
 			if (lives == 0) {
 				// game.logScore();
 				this.resetLives();
+                grid.clearGrid();
+                console.log("FUCL");
 				POPUPS.drawPopup("death");
 			} else {
 				lives--;
 				game.setupLevel(false);
-				
 			}
-			return false;
+            return false;
 		} else if(grid.getSectionAt(column, row) instanceof WhiteHouse) {
 			game.setupLevel(true);
 			return false;
@@ -149,59 +65,82 @@ function Trump(_canvas, grid, column, row, image, _game) {
 		return true;
 	};
 
-	this.drawMoveThingy = function() {
-		var context = CANVAS_MANAGER.uiCanvas.getContext();
-		context.beginPath();
-		context.fillStyle = "#FFF";
-		context.moveTo(xCoord, yCoord);
-		context.lineTo(centerWidth, centerHeight);
-		context.lineTo(xCoord + width, yCoord);
-		context.closePath();
-		context.stroke();
-
-		context.beginPath();
-		context.moveTo(centerWidth, centerHeight);
-		context.lineTo(xCoord + width, yCoord + height);
-		context.closePath();
-		context.stroke();
-
-		context.beginPath();
-		context.moveTo(centerWidth, centerHeight);
-		context.lineTo(xCoord, yCoord + height);
-		context.closePath();
-		context.stroke();
-	};
-
-    this.toggleListener = function (switcher) {
-        keySwitch = switcher;
-    };
-	window.onkeydown = moveMe;
-
-
 	/**
 	 * Moves trump in the specified direction. (called by the mouse listener)
 	 *
 	 * @param {event} event  :
 	 */
     function moveMe(event) {
-
         if(keySwitch) {
             var trump = GAME.getTrump();
+            var oldX, oldY;
+            oldX = column;
+            oldY = row;
+            var moved = false;
             var code = event.keyCode ? event.keyCode : event.which;
             var x = event.pageX - canvas.getCanvas().offsetLeft;
             var y = event.pageY - canvas.getCanvas().offsetTop;
             if (code == 38 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
-                trump.move("up");
+                //up
+                if (row != 0) {
+                    row--;
+                    moved = true;
+                }
             } else if (code == 39 || trump.isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
-                trump.move("right");
+                //right
+                if (column != grid.getColumns() - 1) {
+                    column++;
+                    moved = true;
+                }
             } else if (code == 40 || trump.isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
                 //down
-                trump.move("down");
+                if (row != grid.getRows() - 1) {
+                    row++;
+                    moved = true;
+                }
             } else if (code == 37 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
-                trump.move("left");
+                //left
+                if (column != 0) {
+                    column--;
+                    moved = true;
+                }
             }
+            if(moved) {
+                if (trump.checkState()) {
+                    grid.moveTrump(oldX, oldY);
+                }
+            }
+            CANVAS_MANAGER.gameCanvas.draw();
         }
     }
+
+    this.drawMoveThingy = function() {
+        var context = CANVAS_MANAGER.uiCanvas.getContext();
+        context.beginPath();
+        context.fillStyle = "#FFF";
+        context.moveTo(xCoord, yCoord);
+        context.lineTo(centerWidth, centerHeight);
+        context.lineTo(xCoord + width, yCoord);
+        context.closePath();
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(centerWidth, centerHeight);
+        context.lineTo(xCoord + width, yCoord + height);
+        context.closePath();
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(centerWidth, centerHeight);
+        context.lineTo(xCoord, yCoord + height);
+        context.closePath();
+        context.stroke();
+    };
+
+    this.toggleListener = function (switcher) {
+        keySwitch = switcher;
+    };
+    window.onkeydown = moveMe;
 
 
 
@@ -223,13 +162,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
         x1 += WIDTH2;
         x2 += WIDTH2;
         x3 += WIDTH2;
-        var context = CANVAS_MANAGER.uiCanvas.getContext();
-        context.beginPath();
-        context.fillStyle = "#FF0000";
-        context.moveTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(x3, y3);
-        context.stroke();
+
 		// Calculate area of triangle ABC
 		var A = area(x1, y1, x2, y2, x3, y3);
 
@@ -260,6 +193,38 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	var area = function (x1, y1, x2, y2, x3, y3) {
 		return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
 	};
+
+    /**
+     * Sets Trump's location.
+     *
+     * @param {number} _column: New column to set Trump to.
+     * @param {number} _row: New row to set Trump to.
+     */
+    this.setLocation = function(_column, _row) {
+        column = _column;
+        row = _row;
+    };
+
+    /**
+     * @returns {number} row: Trump's row.
+     */
+    this.getRow = function() {
+        return row;
+    };
+
+    /**
+     * @returns {number} column: Trump's column.
+     */
+    this.getColumn = function() {
+        return column;
+    };
+
+    /**
+     * Sets Trump's lives to the maximum amount of lives.
+     */
+    this.resetLives = function() {
+        lives = 3;
+    };
 }
 
 //inheritance stuff

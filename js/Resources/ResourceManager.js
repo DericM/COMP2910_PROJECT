@@ -15,7 +15,7 @@ function ResourceManager() {
 
     var sounds = {};
     var soundSources = {
-        snake_woman : "Sounds/snake_woman.ogg"
+        snake_woman: "Sounds/snake_woman.ogg"
     };
 
     this.loadImages = function(main) {

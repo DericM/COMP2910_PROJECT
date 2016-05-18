@@ -16,7 +16,6 @@ function Popup(_canvas, _contents, _btnLeft, _btnRight) {
     btnRight.setWidth(width * 0.35);
     btnRight.setHeight(height * 0.15);
 
-
     this.draw = function() {
         canvas.getCanvas().addEventListener("click", this.buttonPress, false);
         canvas.getContext().fillStyle = "#3C3C3C";
@@ -25,8 +24,6 @@ function Popup(_canvas, _contents, _btnLeft, _btnRight) {
         btnLY = (height - btnLeft.getHeight() + yCoord) * 0.95;
         btnRX = btnLX + btnLeft.getWidth() + ((width - btnLeft.getWidth() - btnRight.getWidth()) / 3);
         btnRY = btnLY;
-        console.log(btnLX + " " + btnLY);
-        console.log(btnRX + " " + btnRY);
         btnLeft.draw(canvas.getContext(), btnLX, btnLY);
         btnRight.draw(canvas.getContext(), btnRX, btnRY);
     };
@@ -34,13 +31,13 @@ function Popup(_canvas, _contents, _btnLeft, _btnRight) {
     this.buttonPress = function(event) {
         var x = event.pageX - canvas.getCanvas().offsetLeft;
         var y = event.pageY - canvas.getCanvas().offsetTop;
-        console.log(x + " " + y);
+        var x1 = btnRX + WIDTH2;
         if(x >= btnLX && x <= btnLX + btnLeft.getWidth()
             && y >= btnLY && y <= btnLY + btnLeft.getHeight()) {
             canvas.getCanvas().removeEventListener("click", this.buttonPress, false);
             POPUPS.removePopup();
             btnLeft.callLink();
-        } else if(x >= btnRX && x <= btnRX + btnRight.getWidth()
+        } else if(x >= x1 && x <= x1 + btnRight.getWidth()
             && y >= btnRY && y <= btnRY + btnRight.getHeight()) {
             canvas.getCanvas().removeEventListener("click", this.buttonPress, false);
             POPUPS.removePopup();

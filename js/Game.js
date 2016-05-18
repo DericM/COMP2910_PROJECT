@@ -14,7 +14,6 @@ function Game() {
     
     var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trump"), this);
     trump.drawMoveThingy();
-    
     grid.addTrump(trump);
 
     this.getTrump = function() {

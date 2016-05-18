@@ -9,9 +9,8 @@ var WIDTH;
 var HEIGHT;
 /** Resource Manager. Use this to get pictures.*/
 var RESOURCES;
-/** Player data*/
-var PLAYER_DATA;
-/** Canvas Manager. Use this to access canvas'.*/
+
+var POPUPS;
 var CANVAS_MANAGER;
 
 var LOADING_SCREEN;
@@ -33,7 +32,7 @@ function Main(){
 
     this.init = function() {
         CANVAS_MANAGER = new CanvasManager();
-        //PLAYER_DATA    = new PlayerData();
+        POPUPS = new PopupManager();
 
         MENU = new Menu();
         LOGIN = new Login();

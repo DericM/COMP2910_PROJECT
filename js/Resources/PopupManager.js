@@ -1,6 +1,6 @@
 
-function PopupManager(_canvas) {
-    var canvas = _canvas;
+function PopupManager() {
+    var canvas = CANVAS_MANAGER.uiCanvas;
     var context = canvas.getContext();
     var popups = {};
 
@@ -12,8 +12,41 @@ function PopupManager(_canvas) {
         }),
         new Button(function() {
             GAME.newGame();
-        }),
+        }, RESOURCES.getImage("nextlevel")),
         "death");
+
+    popups["login"] = new Popup(
+        canvas,
+        new Contents(100, 100),
+        new Button(function() {
+
+        }),
+        new Button(function() {
+            GAME.newGame();
+        }, RESOURCES.getImage("nextlevel")),
+        "death");
+
+    popups["createaccount"] = new Popup(
+        canvas,
+        new Contents(100, 100),
+        new Button(function() {
+
+        }),
+        new Button(function() {
+
+        }, RESOURCES.getImage("nextlevel")),
+        "createaccount");
+
+    popups["areyousure"] = new Popup(
+        canvas,
+        new Contents(100, 100),
+        new Button(function() {
+
+        }),
+        new Button(function() {
+
+        }, RESOURCES.getImage("nextlevel")),
+        "areyousure");
 
     this.drawPopup = function(name) {
         canvas.setVisible(true);
