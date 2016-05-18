@@ -4,14 +4,16 @@
  */
 function CanvasManager() {
     //this.orientCanvas = new Canvas("suckacock");
+    this.backgroundCanvas = new Canvas();
     this.gameCanvas = new Canvas("canvas-game");
     //this.menuCanvas = new Canvas("canvas-menu");
     this.uiCanvas =  new Canvas("canvas-ui");
     this.popupCanvas = new Canvas("canvas-popup");
+    this.backgroundCanvas.setVisible(false);
     this.gameCanvas.setVisible(false);
     this.popupCanvas.setVisible(false);
     this.uiCanvas.setVisible(false);
-
+    
 /*
     this.orientCanvas.setVisible(false);
     this.orientCanvas.setWidth(HEIGHT);

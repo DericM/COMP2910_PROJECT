@@ -14,7 +14,9 @@ function ResourceManager() {
         no: "Images/no.png",
         yes: "Images/yes.png",
         back: "Images/back.png",
-        orient: "Images/orient.png"
+        orient: "Images/orient.png",
+        grass1: "Images/grass1.png",
+        grass2: "Images/grass2.png"
     };
 
     var loadedImages = 0;

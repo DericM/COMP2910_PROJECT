@@ -2,36 +2,23 @@
 function ScoringSystem(canvas) {
     this.score = 0;
     this.factor = 0;
-    
-    
     this.canvas = canvas;
     this.ctx = this.canvas.getContext();
     this.fail = 0;
-    
-    this.fontSize = 40;
-    
-    var perc = 0.7;
-    var width = WIDTH * perc;
-    var height = width * 7 / 5;
-    if(height > HEIGHT * perc) {
-        height = HEIGHT * perc;
-        width = height * 5 / 7;
-    }
-    var xCoord = (WIDTH / 2) - (width / 2);
-    var yCoord = (HEIGHT / 2) + (height / 2) + this.fontSize;
-    
+    this.fontSize = (HEIGHT * 0.5) + "px Arial";
+
+
     var failFactor = new Array();
     failFactor[0] = 1;
     failFactor[1] = 0.6;
     failFactor[2] = 0.4;
 
     this.draw = function() {
-
-        this.ctx.font = this.fontSize + "px Arial";
+        this.ctx.fillStyle = "#CCC";
+        this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
         this.ctx.fillStyle = "#000";
-        this.ctx.fillText("Score: ", xCoord, yCoord);
-        this.ctx.fillText(this.score, WIDTH / 2 , yCoord);
-
+        this.ctx.font = (HEIGHT * 0.05) + "px Arial";
+        this.ctx.fillText("Score: " + this.score, 10, HEIGHT - 10);
     };
     
     this.clearFail = function() {

@@ -10,7 +10,7 @@ function Grid(canvas) {
 	var context = canvas.getContext();
     var columns = 5;
     var rows = 7;
-    var perc = 0.7;
+    var perc = 0.85;
 	var width;
 	var height;
     var xCoord;
@@ -113,6 +113,7 @@ function Grid(canvas) {
         columns = entities[0].length;
         this.setDimensions();
         trump.drawMoveThingy();
+        this.init();
 	};
 
     /**
@@ -166,10 +167,10 @@ function Grid(canvas) {
 		var yOffset = yCoord;
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
-                context.beginPath();
+                /*context.beginPath();
 				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
                 context.closePath();
-				context.stroke();
+				context.stroke();*/
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
 				} 
@@ -184,6 +185,29 @@ function Grid(canvas) {
 			yOffset += sectionHeight;
 		}
 	};
+    
+    this.init = function() {
+        var grass = false;
+        var xOffset = xCoord;
+        var yOffset = yCoord;
+        for(var i = 0; i < rows; i++) {
+            for(var j = 0; j < columns; j++) {
+                if(grass) {
+                    CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+                        RESOURCES.getImage("grass1"), xOffset, yOffset, sectionWidth, sectionHeight);
+                    grass = false;
+                }
+                else {
+                    CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+                        RESOURCES.getImage("grass2"), xOffset, yOffset, sectionWidth, sectionHeight);
+                    grass = true;
+                }
+                xOffset += sectionWidth;
+            }
+            xOffset = xCoord;
+            yOffset += sectionHeight;
+        }
+    };
 
     /**
      * @param {number} column Column of section to return;
