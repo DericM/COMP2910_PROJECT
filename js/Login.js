@@ -15,7 +15,7 @@ function Login() {
 
 
     var form = document.createElement("form");
-    form.id = "login-form";
+    form.id = "form";
     form.name = "login";
 
     var username = document.createElement("input");
@@ -34,17 +34,17 @@ function Login() {
     submit.id = "login-button-login";
     submit.type = "button";
     submit.value = "Login";
-    submit.onclick = function(){
-        //check(this.form);
-    };
+    submit.addEventListener('click', function(){
 
-    var register = document.createElement("a");
+    });
+
+    var register = document.createElement("div");
     register.id = "login-button-register";
     register.innerHTML = "Register";
-    register.onclick = function(){
-
-    };
-
+    register.addEventListener('click', function(){
+        LOGIN.setVisibility(false);
+        REGISTER.setVisibility(true);
+    });
 
 
     this.login.appendChild(title);
@@ -78,7 +78,6 @@ function Login() {
      });
 
      */
-
 }
 
 
