@@ -51,9 +51,6 @@ function Menu() {
     this.menu.appendChild(score);
     this.menu.appendChild(login);
 
-
-
-
 }
 
 

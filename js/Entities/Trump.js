@@ -30,6 +30,51 @@ function Trump(_canvas, grid, column, row, image, _game) {
     canvas.getCanvas().addEventListener("click", moveMe, false);
 
 
+<<<<<<< HEAD
+=======
+    /**
+     * Moves Trump one column and calls to check what was is in the
+     * location he moved to.
+     *
+     * @param {String} direction: Direction to move Trump in.
+     */
+	 this.move = function(direction){
+		var oldX, oldY;
+		oldX = column;
+		oldY = row;
+		if(direction == 'left') {
+			if (column > 0) {
+				column--;
+				if(this.checkState()) {
+					grid.moveTrump(oldX, oldY);
+				}
+
+			}
+		} else if(direction == 'right') {
+			if (column < 4) {
+				column++;
+				if(this.checkState()) {
+					grid.moveTrump(oldX, oldY);
+				}
+			}
+		} else if(direction == 'up') {
+			if (row > 0) {
+				row--;
+				if(this.checkState()) {
+					grid.moveTrump(oldX, oldY);
+				}
+			}
+		} else if(direction == 'down') {
+			if (row < 6) {
+				row++;
+				if(this.checkState()) {
+					grid.moveTrump(oldX, oldY);
+				}
+			}
+		}
+		CANVAS_MANAGER.gameCanvas.draw();
+	};
+>>>>>>> ea47f06935d44c73b6fd2cfe70187278b016709d
 
     /**
      * @returns {boolean} : If Trump is on a mine or the WhiteHouse it returns false,
@@ -49,6 +94,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 			
 			if (lives == 0) {
 				// game.logScore();
+				RESOURCES.playSound("neverbegreat");
 				this.resetLives();
                 grid.clearGrid();
                 console.log("FUCL");
