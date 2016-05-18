@@ -16,7 +16,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	var centerHeight = HEIGHT / 2;
 	var rightMost = WIDTH;
 	var bottomMost = HEIGHT;
-	var keySwitch = true;
+	var keySwitch = false;
 
 	var perc = 0.7;
 	var width = WIDTH * perc;
