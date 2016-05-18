@@ -7,7 +7,14 @@ function ResourceManager() {
         trump: "Images/trump.png",
         whitehouse: "Images/whitehouse.png",
         nextlevel: "Images/nextLevel.png",
-        snake: "Images/snakeWoman.jpg"
+        snake: "Images/snakeWoman.jpg",
+        home: "Images/home.png",
+        login: "Images/login.png",
+        newgame: "Images/newgame.png",
+        no: "Images/no.png",
+        yes: "Images/yes.png",
+        back: "Images/back.png",
+        orient: "Images/orient.png"
     };
 
     var loadedImages = 0;
@@ -27,7 +34,6 @@ function ResourceManager() {
         nobody_builds : "Sounds/nobody_builds.mp3",
         mexico_pay : "Sounds/mexico_pay.mp3",
         im_smart : "Sounds/im_smart.mp3"
-
     };
     
     var winSounds = ["build_wall", "im_rich", "nobody_builds", "mexico_pay", "im_smart"];

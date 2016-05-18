@@ -1,10 +1,16 @@
-function Button(link) {
+function Button(_link, _image) {
+    var link = _link;
+    var image = _image;
     var width;
     var height;
 
     this.draw = function(context, xCoord, yCoord) {
-        context.fillStyle = "#CCCCCC";
-        context.fillRect(xCoord, yCoord, width, height);
+        if(image == null) {
+            context.fillStyle = "#CCCCCC";
+            context.fillRect(xCoord, yCoord, width, height);
+        } else {
+            context.drawImage(image, xCoord, yCoord, width, height);
+        }
     };
 
     this.callLink = function() {

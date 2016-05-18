@@ -26,10 +26,26 @@ function Grid(canvas) {
 	var trumpRow;
 	var trumpCol;
 
+    this.clearGrid = function() {
+        for(var i = 0; i < columns; i++) {
+            for(var j = 0; j < rows; j++) {
+                entities[j][i] = null;
+            }
+        }
+        canvas.clear();
+    };
+
+    this.getColumns = function() {
+        return columns;
+    };
+    
+    this.getRows = function() {
+        return rows;
+    };
+    
 	this.getWidth = function() {
 		return width;
 	};
-
 
 	this.getHeight = function() {
 		return height;
