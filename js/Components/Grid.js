@@ -11,20 +11,30 @@ function Grid(canvas) {
     var columns = 5;
     var rows = 7;
     var perc = 0.7;
-	var width = WIDTH * perc;
-	var height = width * 7 / 5;
-    if(height > HEIGHT * perc) {
-        height = HEIGHT * perc;
-        width = height * 5 / 7;
-    }
-    var xCoord = (WIDTH / 2) - (width / 2);
-    var yCoord = (HEIGHT / 2) - (height / 2);
+	var width;
+	var height;
+    var xCoord;
+    var yCoord;
 	var entities;
-	var sectionWidth = width / columns;
-	var sectionHeight = height / rows;
+	var sectionWidth;
+	var sectionHeight;
 	var trump;
 	var trumpRow;
 	var trumpCol;
+
+    this.setDimensions = function() {
+        width = WIDTH * perc;
+        height = width * rows / columns;
+        if(height > HEIGHT * perc) {
+            height = HEIGHT * perc;
+            width = height * columns / rows;
+        }
+        xCoord = (WIDTH / 2) - (width / 2);
+        yCoord = (HEIGHT / 2) - (height / 2);
+        sectionWidth = width / columns;
+        sectionHeight = height / rows;
+    };
+    //this.setDimensions();
 
     this.clearGrid = function() {
         for(var i = 0; i < columns; i++) {
@@ -99,6 +109,10 @@ function Grid(canvas) {
      */
 	this.populate = function(level2dArr) {
 		entities = level2dArr;
+        rows = entities.length;
+        columns = entities[0].length;
+        this.setDimensions();
+        trump.drawMoveThingy();
 	};
 
     /**

@@ -37,8 +37,8 @@ function LevelManager() {
         ["w*xxx", "xx*xx", "*xxxx", "xxx**", "x*xxx", "*x*xx", "txxx*"],
         ["*xxx*", "xw*xx", "**xxx", "xxxx*", "*x***", "xx*tx", "*xxx*"],
         ["xxx*x", "w*xx*", "*t*xx", "xxx*x", "*xx*x", "x*xxx", "*xx*x"],
-        ["xxxwxx", "*x***x", "xx*xxx", "*xxxx*", "***xxx, ", "xxxxxx", "x***xx" ,"xxtx**"]
-    
+        ["xxxwxx", "*x***x", "xx*xxx", "*xxxx*", "***xxx", "xxxxxx", "x***xx" ,"xxtx**"]
+
     ];
 
     /**
@@ -50,17 +50,11 @@ function LevelManager() {
      * @returns {Array}           :  The array of objects to be displayed.
      */
     this.readLevel = function(grid, level_num) {
-
         var level_array = [];
-
-
         for (var i = 0; i < levels[level_num].length; i++) {
             level_array[i] = [];
-
             for (var j = 0; j < levels[level_num][i].length; j++) {
-
                 var ch = levels[level_num][i].charAt(j);
-
                 if (ch == 'x') {
                     level_array[i][j] = null;
                 } else if (ch == 'w') {
