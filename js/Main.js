@@ -24,6 +24,8 @@ var ORIENTATION_LISTENER;
 
 var LOGIN;
 
+var REGISTER;
+
 /** Used to save width of window if it stops being stored in WIDTH because the device is desktop. */
 var WINDOW_WIDTH;
 
@@ -40,6 +42,7 @@ function Main(){
 
         MENU = new Menu();
         LOGIN = new Login();
+        REGISTER = new Register();
         GAME = new Game();
 
         LOADING_SCREEN.setVisibility(false);

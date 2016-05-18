@@ -15,7 +15,7 @@ function Register() {
 
 
     var form = document.createElement("form");
-    form.id = "register-form";
+    form.id = "form";
     form.name = "register";
 
     var username = document.createElement("input");
@@ -30,17 +30,26 @@ function Register() {
     password.name = "password";
     password.placeholder = "Password";
 
+    var confirm_password = document.createElement("input");
+    confirm_password.id = "register-input-password";
+    confirm_password.type = "password";
+    confirm_password.name = "password";
+    confirm_password.placeholder = "Confirm";
+
     var submit = document.createElement("input");
     submit.id = "register-button-register";
     submit.type = "button";
     submit.value = "Register";
-    submit.onclick = "check(this.form)";
+    submit.addEventListener('click', function(){
+
+    });
 
 
     this.register.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
+    form.appendChild(confirm_password);
     form.appendChild(submit);
 
     this.register.appendChild(form);

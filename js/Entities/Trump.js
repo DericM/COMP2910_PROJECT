@@ -11,23 +11,29 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	Entity.call(this, grid, column, row, image, false);
 	var canvas = _canvas;
 	var game = _game;
-	var lives = 0;
-	var centerWidth = WIDTH / 2;
-	var centerHeight = HEIGHT / 2;
-	var rightMost = WIDTH;
-	var bottomMost = HEIGHT;
+	var lives = 2;
+    var maxLives = 2;
+	var centerX;
+	var centerY;
+    var leftX;
+	var rightX;
+    var topY;
+	var bottomY;
 	var keySwitch = false;
-
-	var perc = 0.7;
-	var width = WIDTH * perc;
-	var height = width * 7 / 5;
-	if(height > HEIGHT * perc) {
-		height = HEIGHT * perc;
-		width = height * 5 / 7;
-	}
-	var xCoord = (WIDTH / 2) - (width / 2);
-	var yCoord = (HEIGHT / 2) - (height / 2);
+	var xCoord;
+	var yCoord;
     canvas.getCanvas().addEventListener("click", moveMe, false);
+
+    this.setDimensions = function() {
+        xCoord = grid.getXCoord();
+        yCoord = grid.getYCoord();
+        centerX = WIDTH / 2;
+        centerY = HEIGHT / 2;
+        leftX = grid.getXCoord();
+        rightX = grid.getXCoord() + grid.getWidth();
+        topY = grid.getYCoord();
+        bottomY = grid.getYCoord() + grid.getHeight();
+    };
 
     /**
      * @returns {boolean} : If Trump is on a mine or the WhiteHouse it returns false,
@@ -88,25 +94,25 @@ function Trump(_canvas, grid, column, row, image, _game) {
             var code = event.keyCode ? event.keyCode : event.which;
             var x = event.pageX - canvas.getCanvas().offsetLeft;
             var y = event.pageY - canvas.getCanvas().offsetTop;
-            if (code == 38 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord + width, yCoord, x, y)) {
+            if (code == 38 || trump.isInside(xCoord, yCoord, centerX, centerY, rightX, yCoord, x, y)) {
                 //up
                 if (row != 0) {
                     row--;
                     moved = true;
                 }
-            } else if (code == 39 || trump.isInside(xCoord + width, yCoord, centerWidth, centerHeight, xCoord + width, yCoord + height, x, y)) {
+            } else if (code == 39 || trump.isInside(rightX, yCoord, centerX, centerY, rightX, bottomY, x, y)) {
                 //right
                 if (column != grid.getColumns() - 1) {
                     column++;           
                     moved = true;
                 }
-            } else if (code == 40 || trump.isInside(xCoord + width, yCoord + height, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+            } else if (code == 40 || trump.isInside(rightX, bottomY, centerX, centerY, xCoord, bottomY, x, y)) {
                 //down
                 if (row != grid.getRows() - 1) {
                     row++;
                     moved = true;
                 }
-            } else if (code == 37 || trump.isInside(xCoord, yCoord, centerWidth, centerHeight, xCoord, yCoord + height, x, y)) {
+            } else if (code == 37 || trump.isInside(xCoord, yCoord, centerX, centerY, xCoord, bottomY, x, y)) {
                 //left
                 if (column != 0) {
                     column--;
@@ -123,24 +129,25 @@ function Trump(_canvas, grid, column, row, image, _game) {
     }
 
     this.drawMoveThingy = function() {
+        this.setDimensions();
         var context = CANVAS_MANAGER.uiCanvas.getContext();
         context.beginPath();
         context.fillStyle = "#FFF";
         context.moveTo(xCoord, yCoord);
-        context.lineTo(centerWidth, centerHeight);
-        context.lineTo(xCoord + width, yCoord);
+        context.lineTo(centerX, centerY);
+        context.lineTo(rightX, yCoord);
         context.closePath();
         context.stroke();
 
         context.beginPath();
-        context.moveTo(centerWidth, centerHeight);
-        context.lineTo(xCoord + width, yCoord + height);
+        context.moveTo(centerX, centerY);
+        context.lineTo(rightX, bottomY);
         context.closePath();
         context.stroke();
 
         context.beginPath();
-        context.moveTo(centerWidth, centerHeight);
-        context.lineTo(xCoord, yCoord + height);
+        context.moveTo(centerX, centerY);
+        context.lineTo(xCoord, bottomY);
         context.closePath();
         context.stroke();
     };
@@ -231,7 +238,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
      * Sets Trump's lives to the maximum amount of lives.
      */
     this.resetLives = function() {
-        lives = 3;
+        lives = maxLives;
     };
 }
 
