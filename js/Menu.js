@@ -15,6 +15,8 @@ function Menu() {
     play.appendChild(document.createTextNode("Play"));
     play.addEventListener('click', function(){
         MENU.setVisibility(false);
+        var container = document.getElementById("container");
+        container.style.backgroundImage = "none";
         GAME.newGame();
     });
 
