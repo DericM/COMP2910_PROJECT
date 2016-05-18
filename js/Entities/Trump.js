@@ -158,9 +158,9 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	 * @returns {boolean}  :  whether the clicked point is inside the triangle
 	 */
 	this.isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
-        x1 += WIDTH2;
-        x2 += WIDTH2;
-        x3 += WIDTH2;
+        x1 += WINDOW_WIDTH;
+        x2 += WINDOW_WIDTH;
+        x3 += WINDOW_WIDTH;
 
 		// Calculate area of triangle ABC
 		var A = area(x1, y1, x2, y2, x3, y3);

@@ -23,6 +23,14 @@ function Canvas(id) {
 
 
 Canvas.prototype = {
+    setWidth: function(_width) {
+
+    },
+
+    setHeight: function(_height) {
+
+    },
+
     clear: function() {
         this.context.clearRect(0, 0, this.width, this.height);
     },

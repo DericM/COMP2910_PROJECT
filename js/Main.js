@@ -9,8 +9,9 @@ var WIDTH;
 var HEIGHT;
 /** Resource Manager. Use this to get pictures.*/
 var RESOURCES;
-
+/** Manager for popups, contains methods for calling and removing them. */
 var POPUPS;
+/** Manager for canvases, instantiates them, all canvases accessed through this. */
 var CANVAS_MANAGER;
 
 var LOADING_SCREEN;
@@ -18,10 +19,13 @@ var LOADING_SCREEN;
 var MENU;
 /** The game. Use this to show and hide the game canvas.*/
 var GAME;
+/** Listens for orientation change */
+var ORIENTATION_LISTENER;
 
 var LOGIN;
 
-var WIDTH2;
+/** Used to save width of window if it stops being stored in WIDTH because the device is desktop. */
+var WINDOW_WIDTH;
 
 
 
@@ -50,7 +54,7 @@ function Main(){
 
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
-    WIDTH2 = WIDTH;
+    WINDOW_WIDTH = WIDTH;
     if(HEIGHT / WIDTH < screenRatio -0.4){
         WIDTH = HEIGHT / screenRatio;
         var container = document.getElementById("container");
@@ -58,7 +62,7 @@ function Main(){
         container.style.height = HEIGHT + "px";
         container.style.left =  ((window.innerWidth / 2) - (WIDTH / 2)) + "px";
     }
-    WIDTH2 = (WIDTH2 - WIDTH) / 2;
+    WINDOW_WIDTH = (WINDOW_WIDTH - WIDTH) / 2;
     window.onresize = function(){
         location.reload();
     };
@@ -70,7 +74,7 @@ function Main(){
     RESOURCES = new ResourceManager();
     RESOURCES.loadImages(this);
     RESOURCES.loadSounds();
-
+    ORIENTATION_LISTENER = new OrientationListener();
 }
 
 

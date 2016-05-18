@@ -17,7 +17,9 @@ function Popup(_canvas, _contents, _btnLeft, _btnRight) {
     btnRight.setHeight(height * 0.15);
 
     this.draw = function() {
+        var canvas = CANVAS_MANAGER.popupCanvas;
         canvas.getCanvas().addEventListener("click", this.buttonPress, false);
+        canvas.clear();
         canvas.getContext().fillStyle = "#3C3C3C";
         canvas.getContext().fillRect(xCoord, yCoord, width, height);
         btnLX = (width - btnLeft.getWidth() - btnRight.getWidth()) / 3 + xCoord;
@@ -28,10 +30,15 @@ function Popup(_canvas, _contents, _btnLeft, _btnRight) {
         btnRight.draw(canvas.getContext(), btnRX, btnRY);
     };
 
+
+    /*
+
+     */
+
     this.buttonPress = function(event) {
         var x = event.pageX - canvas.getCanvas().offsetLeft;
         var y = event.pageY - canvas.getCanvas().offsetTop;
-        var x1 = btnRX + WIDTH2;
+        var x1 = btnRX + WINDOW_WIDTH;
         if(x >= btnLX && x <= btnLX + btnLeft.getWidth()
             && y >= btnLY && y <= btnLY + btnLeft.getHeight()) {
             canvas.getCanvas().removeEventListener("click", this.buttonPress, false);
