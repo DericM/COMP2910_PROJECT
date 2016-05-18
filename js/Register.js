@@ -4,15 +4,16 @@
 
 function Register() {
 
-    this.register = document.createElement("div");
-    this.register.id = "register-page";
-    this.register.class = "page";
+    this.component = document.createElement("div");
+    this.component.id = "register-page";
+    this.component.className = "page";
 
     //build
     var title = document.createElement("h1");
-    title.id = "register-title";
     title.innerHTML = "Register";
 
+    var wrapper = document.createElement("div");
+    wrapper.className  = "wrapper";
 
     var form = document.createElement("form");
     form.className  = "form";
@@ -31,15 +32,13 @@ function Register() {
 
     var confirm_password = document.createElement("input");
     confirm_password.type = "password";
-    confirm_password.name = "password";
+    confirm_password.name = "confirm";
     confirm_password.placeholder = "Confirm";
 
-    var submit = document.createElement("input");
-    submit.type = "button";
-    submit.value = "Register";
+    var submit = document.createElement("button");
+    submit.appendChild(document.createTextNode("Register"));
     submit.addEventListener('click', function(){
         var url = "php/create_account.php"; // the script where you handle the form input.
-
         $.ajax({
             type: "POST",
             url: url,
@@ -57,14 +56,16 @@ function Register() {
     });
 
 
-    this.register.appendChild(title);
+    this.component.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
     form.appendChild(confirm_password);
     form.appendChild(submit);
 
-    this.register.appendChild(form);
+    wrapper.appendChild(form);
+
+    this.component.appendChild(wrapper);
 
 
 
@@ -98,10 +99,10 @@ Register.prototype = {
     setVisibility: function(visibility){
         var container = document.getElementById("container");
         if(visibility == true){
-            container.appendChild(this.register);
+            container.appendChild(this.component);
         }
         else {
-            container.removeChild(this.register);
+            container.removeChild(this.component);
         }
     }
 };

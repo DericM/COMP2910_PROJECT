@@ -1,17 +1,18 @@
 
 function Menu() {
 
-    this.menu = document.createElement("div");
-    this.menu.id = "menu";
-    this.menu.class = "page";
+    this.component = document.createElement("div");
+    this.component.id = "menu";
+    this.component.className = "page";
 
     //build
     var title = document.createElement("h1");
-    title.id = "menu-title";
     title.innerHTML = "Trump Runner";
 
+    var wrapper = document.createElement("div");
+    wrapper.className  = "wrapper";
+
     var play = document.createElement("button");
-    play.id = "menu-button-play";
     play.appendChild(document.createTextNode("Play"));
     play.addEventListener('click', function(){
         MENU.setVisibility(false);
@@ -21,7 +22,6 @@ function Menu() {
     });
 
     var score = document.createElement("button");
-    score.id = "menu-button-score";
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
         MENU.setVisibility(false);
@@ -40,7 +40,6 @@ function Menu() {
     */
 
     var login = document.createElement("button");
-    login.id = "menu-button-login";
     login.appendChild(document.createTextNode("Login"));
     login.addEventListener('click', function(){
         MENU.setVisibility(false);
@@ -48,10 +47,13 @@ function Menu() {
     });
 
 
-    this.menu.appendChild(title);
-    this.menu.appendChild(play);
-    this.menu.appendChild(score);
-    this.menu.appendChild(login);
+    this.component.appendChild(title);
+
+    wrapper.appendChild(play);
+    wrapper.appendChild(score);
+    wrapper.appendChild(login);
+
+    this.component.appendChild(wrapper);
 
 }
 
@@ -61,10 +63,10 @@ Menu.prototype = {
     setVisibility: function(visibility){
         var container = document.getElementById("container");
         if(visibility == true){
-            container.appendChild(this.menu);
+            container.appendChild(this.component);
         }
         else {
-            container.removeChild(this.menu);
+            container.removeChild(this.component);
         }
     }
 

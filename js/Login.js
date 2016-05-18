@@ -4,18 +4,16 @@
 
 function Login() {
 
-    this.login = document.createElement("div");
-    this.login.id = "login-page";
-    this.login.class = "page";
+    this.component = document.createElement("div");
+    this.component.id = "login-page";
+    this.component.className = "page";
 
     //build
     var title = document.createElement("h1");
-    title.id = "login-title";
     title.innerHTML = "Login";
 
     var wrapper = document.createElement("div");
     wrapper.className  = "wrapper";
-    wrapper.name = "login";
 
     var form = document.createElement("form");
     form.className  = "form";
@@ -55,15 +53,15 @@ function Login() {
         return false; // avoid to execute the actual submit of the form.
     });
 
-    var register = document.createElement("div");
-    register.innerHTML = "Register";
+    var register = document.createElement("a");
+    register.appendChild(document.createTextNode("Register"));
     register.addEventListener('click', function(){
         LOGIN.setVisibility(false);
         REGISTER.setVisibility(true);
     });
 
 
-    this.login.appendChild(title);
+    this.component.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
@@ -72,7 +70,7 @@ function Login() {
     wrapper.appendChild(form);
     wrapper.appendChild(register);
 
-    this.login.appendChild(wrapper);
+    this.component.appendChild(wrapper);
 
 
 
@@ -105,10 +103,10 @@ Login.prototype = {
     setVisibility: function(visibility){
         var container = document.getElementById("container");
         if(visibility == true){
-            container.appendChild(this.login);
+            container.appendChild(this.component);
         }
         else {
-            container.removeChild(this.login);
+            container.removeChild(this.component);
         }
     }
 };

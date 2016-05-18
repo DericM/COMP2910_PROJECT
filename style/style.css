@@ -1,9 +1,15 @@
 /*///////////////////////////////////GENERAL//////////////////////////////////////*/
 
-
+html,body {
+    width: 100%;
+    height:100%;
+}
 
 body {
+    position: relative;
     margin: 0;
+    padding: 0;
+
     font-family: "Century Gothic", sans-serif;
     background-color: rgb(63,63,63);
     overflow: hidden;
@@ -16,13 +22,11 @@ body {
 }
 
 #container {
-    position:absolute;
+    position:relative;
     width: 100%;
     height: 100%;
     background: white url("../Images/menu_background.png") no-repeat;
     background-size: 100%;
-
-
 }
 
 
@@ -34,17 +38,34 @@ button, div, h1, form {
     margin: 0;
 }
 
-button {
+button, input {
+    position: relative;
     width: 60%;
     height: 50px;
     left: 20%;
-    font-size: 20px;
+    font-size: larger;
     font-weight: bold;
     border-width: thick;
     border-color: #fa6c05;
     background-color: #122b48;
     color: white;
+    margin-bottom: 25px;
 }
+
+a {
+    position: relative;
+    width: 20%;
+    height: 20px;
+    left: 55%;
+    font-size: x-large;
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
+input {
+    height: 30px;
+}
+
 
 button:hover {
     background-color: #4960a7;
@@ -60,18 +81,15 @@ h1 {
     text-shadow: -1px -1px #122b48, 1px 1px #fa6c05;
 }
 
-
-#menu-button-play {
-    top: 150px;
+h4 {
+    color: cornflowerblue;
+    position: relative;
+    font-weight: 900;
 }
 
-#menu-button-score {
-    top: 170px;
-}
 
-#menu-button-login {
-    top: 190px;
-}
+
+
 
 
 
@@ -79,7 +97,7 @@ h1 {
 
 
 #loading_screen {
-    position:absolute;
+    position:relative;
     width: 100%;
     height: 100%;
 	background: url("../Images/loading.gif") no-repeat center;
@@ -89,17 +107,18 @@ h1 {
 
 /*///////////////////////////////////LOGIN//////////////////////////////////////// */
 
-form input {
+
+
+
+.page{
     position: relative;
-    width: 60%;
-    left: 20%;
-    height: 30px;
-    margin-bottom: 25px;
-    font-size: larger;
+    width:100%;
+    height: 100%;
 }
 
 .wrapper {
-
-
-    background-color: #4960a7;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
