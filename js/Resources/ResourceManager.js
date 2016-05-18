@@ -14,7 +14,13 @@ function ResourceManager() {
         no: "Images/no.png",
         yes: "Images/yes.png",
         back: "Images/back.png",
-        orient: "Images/orient.png"
+        orient: "Images/orient.png",
+
+        spraytan: "Images/mine.png",
+
+        star: "Images/mine.png",
+    
+        certificate: "Images/mine.png"
     };
 
     var loadedImages = 0;

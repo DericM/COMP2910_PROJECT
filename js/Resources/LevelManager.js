@@ -37,7 +37,15 @@ function LevelManager() {
         ["w*xxx", "xx*xx", "*xxxx", "xxx**", "x*xxx", "*x*xx", "txxx*"],
         ["*xxx*", "xw*xx", "**xxx", "xxxx*", "*x***", "xx*tx", "*xxx*"],
         ["xxx*x", "w*xx*", "*t*xx", "xxx*x", "*xx*x", "x*xxx", "*xx*x"],
-        ["xxxwxx", "*x***x", "xx*xxx", "*xxxx*", "***xxx, ", "xxxxxx", "x***xx" ,"xxtx**"]
+
+        
+        ["pxxwxx", "*x***x", "xx*xxx", "*xxxx*", "***xxx", "xxxxxx", "x***xx", "xxtx**"],
+        ["txxxxx", "xx*xx*", "xxx*xs", "xxxx*x", "x*xxx*", "xx*xxx", "xxx*xx", "*xxp*w"],
+        ["x*xxx*", "xxx*xs", "x*****", "xxxxxx", "x*xx*x", "wxx**t", "x*xx*x", "x**xxx"],
+        ["*xwxxx", "c*xxxx", "xx**xx", "*xx*xx", "x*x*x*", "xxx*xx", "xx*xxx", "xxtxxx"],
+        ["*xxx*s", "xx*xxx", "*xxxx*", "xxt**x", "xx*wxx", "x*xxx*", "xxx*xx", "x*xxx*"],
+        ["xwxx**", "**xxxx", "**x**x", "xxx**x", "**xxxx", "**x**x", "xxx**x", "**xxtx"],
+        ["cx*xxw", "*x*x*x", "xx*xxx", "x*xxx*", "xx**xx", "*x*p*x", "xxxxxx", "txx**x"]
     
     ];
 
@@ -70,6 +78,16 @@ function LevelManager() {
                     grid.getTrump().setLocation(j, i);
                 } else if (ch == '*') {
                     level_array[i][j] = new Fadable(grid, j, i, RESOURCES.getImage("mine"));
+
+                } else if (ch == 'p') {
+                    level_array[i][j] = new SprayTan(grid, j, i, RESOURCES.getImage("spraytan"));
+
+                } else if (ch == 's') {
+                    console.log("dljsaldkf");
+                    level_array[i][j] = new Star(grid, j, i, RESOURCES.getImage("star"));
+
+                } else if (ch == 'c') {
+                    level_array[i][j] = new Certificate(grid, j, i, RESOURCES.getImage("certificate"));
 
                 } else {
                     alert("there was a problem");
