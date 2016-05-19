@@ -16,7 +16,7 @@ function PlayerData(){
  *
  * @param state
  */
-PlayerData.setLoggedInState = function(state){
+PlayerData.prototype.setLoggedInState = function(state){
     this.loggedInState = state;
 };
 
@@ -24,6 +24,7 @@ PlayerData.setLoggedInState = function(state){
  *
  * @returns {boolean|*}
  */
-PlayerData.getLoggedInState = function(){
+PlayerData.prototype.getLoggedInState = function(){
     return this.loggedInState;
 };
+

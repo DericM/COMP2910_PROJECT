@@ -50,7 +50,7 @@ function Login() {
                 var obj = JSON.parse(data);
 
                 console.log(obj);
-                console.log(obj.logged_in);
+                console.log(obj.username);
 
                 if(obj.logged_in == "1"){
                     alert("logged in success");
@@ -61,7 +61,7 @@ function Login() {
                     password.style.border = "none";
                 }
                 else {
-                    alert("logged in failed");
+                    alert("logged in failed cunt");
                     username.style.border = "2px solid red";
                     password.style.border = "2px solid red";
                     username.value = '';
