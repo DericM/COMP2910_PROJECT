@@ -33,6 +33,10 @@ var PLAYER_DATA;
 
 var HIGH_SCORE;
 
+var VICTORY;
+
+var DEFEAT;
+
 /**
  * Entry point.
  */
@@ -48,6 +52,8 @@ function Main(){
         GAME = new Game();
         PLAYER_DATA = new PlayerData();     
         HIGH_SCORE = new HighScore();
+        VICTORY = new Victory();
+        DEFEAT = new Defeat();
 
         LOADING_SCREEN.setVisibility(false);
         MENU.setVisibility(true);

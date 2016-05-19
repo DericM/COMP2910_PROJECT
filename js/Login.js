@@ -51,10 +51,13 @@ function Login() {
 
                 console.log(obj);
                 console.log(obj.username);
+                console.log(obj.id);
 
-                if(obj.logged_in == "1"){
+                if(obj.logged_in == "true"){
                     alert("logged in success");
                     PLAYER_DATA.setLoggedInState(true);
+                    PLAYER_DATA.setUserName(obj.username);
+                    //PLAYER_DATA.mergeScores(obj.);
                     LOGIN.setVisibility(false);
                     MENU.setVisibility(true);
                     username.style.border = "none";
@@ -66,16 +69,9 @@ function Login() {
                     password.style.border = "2px solid red";
                     username.value = '';
                     password.value = '';
-
                 }
-
             }
         });
-
-
-
-
-
         return false; // avoid to execute the actual submit of the form.
     });
 

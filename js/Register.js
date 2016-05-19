@@ -32,25 +32,29 @@ function Register() {
 
     var confirm_password = document.createElement("input");
     confirm_password.type = "password";
-    confirm_password.name = "confirm";
+    confirm_password.name = "confirm_password";
     confirm_password.placeholder = "Confirm";
 
     var submit = document.createElement("button");
     submit.appendChild(document.createTextNode("Register"));
-    submit.addEventListener('click', function(){
+    submit.addEventListener('click', function(event){
+        event.preventDefault();
+
+
+
+
         var url = "php/create_account.php"; // the script where you handle the form input.
         $.ajax({
             type: "POST",
             url: url,
             data: $("#form-register").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
+            success: function(data) {
                 //data is the echo from create_account.php
                 // data == 'success' || data=='failure'
                 //if(data ==) // show response from the php script.
-                
+                alert(data);
                 if(data == "success"){
-                    
+
                 }
                 
                 

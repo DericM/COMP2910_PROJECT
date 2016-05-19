@@ -1,7 +1,7 @@
 <?php 
 require_once("database.php");
 require_once("user.php");
-
+require_once("userscore.php");
 
 if(isset($_POST['username']) && isset($_POST['password'])){
 	
@@ -17,27 +17,31 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 	$found_user = User::authenticate($_POST['username'],$_POST['password']);
 	/*prepare the associative array*/
 	if($found_user){
-	    //$scores_array = UserScore::find_score_from_id($found_user->id);
-		$scores = array();
+		$user_scores = UserScore::find_by_id($found_user->id);
+		//$top_ten = UsernameScore::find_top_ten();
+		// $scores = array();
 
-//		while ($score_row = mysqli_fetch_assoc($scores_array)) {
-//			array_push($scores, $score_row);
-//		}
+		// foreach ($user_scores as $key => $value) {
+		// 	array_push($scores, $value->score);
+		// }
 
 		$user_array = array(
 		"username" => $found_user->username,
 		"password" => $found_user->password,
-		"logged_in" => 1,
-		"scores" => $scores
+        "id" => $found_user->id,    
+		"logged_in" => "true",
+		"scores_array" => $top_ten
 		);
-		echo json_encode($user_array);
+		echo json_encode($user_array); 
+		
 	} else {
-		$user_array = array(
-		"username" => "null",
-		"password" => "null",
-		"logged_in" => 0
-		);
-		echo json_encode($user_array);
+		// $user_array = array(
+		// "username" => "null",
+		// "password" => "null",
+		// "logged_in" => "false"
+		// );
+		// echo json_encode($user_array);
+		echo "bad";
 	}
 		
 } else {

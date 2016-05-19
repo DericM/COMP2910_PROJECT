@@ -4,7 +4,7 @@ require_once('database.php');
 class User{
 	
 	protected static $table_name="user";
-	protected static $db_fields = array('username', 'password');
+	protected static $db_fields = array('id','username', 'password');
 	
 	public $id;
 	public $username;
