@@ -47,6 +47,9 @@ function Menu() {
     });
 
 
+
+
+
     this.component.appendChild(title);
 
     wrapper.appendChild(play);
@@ -54,6 +57,7 @@ function Menu() {
     wrapper.appendChild(login);
 
     this.component.appendChild(wrapper);
+
 
 }
 

@@ -122,3 +122,13 @@ h4 {
     top: 50%;
     transform: translateY(-50%);
 }
+
+.home-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../Images/home-button.png");
+    background-size: 100%;
+}

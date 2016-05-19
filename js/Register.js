@@ -48,11 +48,24 @@ function Register() {
                 //data is the echo from create_account.php
                 // data == 'success' || data=='failure'
                 //if(data ==) // show response from the php script.
-                alert(data);
+                
+                if(data == "success"){
+
+                }
+                
+                
             }
 
         });
         return false; // avoid to execute the actual submit of the form.
+    });
+
+
+    var home = document.createElement("div");
+    home.className = "home-button";
+    home.addEventListener('click', function(){
+        REGISTER.setVisibility(false);
+        MENU.setVisibility(true);
     });
 
 
@@ -66,7 +79,7 @@ function Register() {
     wrapper.appendChild(form);
 
     this.component.appendChild(wrapper);
-
+    this.component.appendChild(home);
 
 
     /*
