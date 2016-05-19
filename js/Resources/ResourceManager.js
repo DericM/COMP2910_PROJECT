@@ -16,11 +16,11 @@ function ResourceManager() {
         back: "Images/back.png",
         orient: "Images/orient.png",
 
-        spraytan: "Images/mine.png",
+        spraytan: "Images/spraytan.png",
 
-        star: "Images/mine.png",
+        star: "Images/star.png",
     
-        certificate: "Images/mine.png"
+        certificate: "Images/certificate.png"
     };
 
     var loadedImages = 0;
