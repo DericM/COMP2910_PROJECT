@@ -50,7 +50,7 @@ function Register() {
                 //if(data ==) // show response from the php script.
                 
                 if(data == "success"){
-
+                    
                 }
                 
                 
@@ -80,29 +80,6 @@ function Register() {
 
     this.component.appendChild(wrapper);
     this.component.appendChild(home);
-
-
-    /*
-
-     $(document).ready(function () {
-     $('#myform').on('submit', function(e) {
-     e.preventDefault();
-     $.ajax({
-     url : $(this).attr('action') || window.location.pathname,
-     type: "GET",
-     data: $(this).serialize(),
-     success: function (data) {
-     $("#form_output").html(data);
-     },
-     error: function (jXHR, textStatus, errorThrown) {
-     alert(errorThrown);
-     }
-     });
-     });
-     });
-
-
-     */
 
 }
 
