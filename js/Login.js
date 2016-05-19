@@ -32,32 +32,50 @@ function Login() {
 
     var submit = document.createElement("button");
     submit.appendChild(document.createTextNode("Login"));
-    submit.addEventListener('click', function(){
+    submit.addEventListener('click', function(event){
+        event.preventDefault();
         var url = "php/authenticate.php"; // the script where you handle the form input.
+
         $.ajax({
             type: "POST",
             url: url,
             data: $("#form-login").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
+            success: function(data) {
+
                 //data is the JSON object from authenticate.php
                 //"username" => "null",
                 //"password" => "null",
                 //"logged_in" => "false"
-                
-                
-                
-                
-                
-                var json = data,
-                    obj = JSON.parse(json);
-                alert(obj.username);
-                alert(obj.logged_in); // show response from the php script.
-                
-                
-                
+
+                var obj = JSON.parse(data);
+
+                console.log(obj);
+                console.log(obj.logged_in);
+
+                if(obj.logged_in == "1"){
+                    alert("logged in success");
+                    PLAYER_DATA.setLoggedInState(true);
+                    LOGIN.setVisibility(false);
+                    MENU.setVisibility(true);
+                    username.style.border = "none";
+                    password.style.border = "none";
+                }
+                else {
+                    alert("logged in failed");
+                    username.style.border = "2px solid red";
+                    password.style.border = "2px solid red";
+                    username.value = '';
+                    password.value = '';
+
+                }
+
             }
         });
+
+
+
+
+
         return false; // avoid to execute the actual submit of the form.
     });
 

@@ -29,7 +29,9 @@ var REGISTER;
 /** Used to save width of window if it stops being stored in WIDTH because the device is desktop. */
 var WINDOW_WIDTH;
 
+var PLAYER_DATA;
 
+var HIGH_SCORE;
 
 /**
  * Entry point.
@@ -44,6 +46,8 @@ function Main(){
         LOGIN = new Login();
         REGISTER = new Register();
         GAME = new Game();
+        PLAYER_DATA = new PlayerData();     
+        HIGH_SCORE = new HighScore();
 
         LOADING_SCREEN.setVisibility(false);
         MENU.setVisibility(true);
@@ -67,7 +71,7 @@ function Main(){
     }
     WINDOW_WIDTH = (WINDOW_WIDTH - WIDTH) / 2;
     window.onresize = function(){
-        location.reload();
+        //location.reload();
     };
 
 

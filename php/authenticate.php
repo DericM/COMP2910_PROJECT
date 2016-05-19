@@ -20,15 +20,14 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 		$user_array = array(
 		"username" => $found_user->username,
 		"password" => $found_user->password,
-		"logged_in" => "true",
-		"scores"    => $found_user->scores
+		"logged_in" => 1
 		);
 		echo json_encode($user_array);
 	} else {
 		$user_array = array(
 		"username" => "null",
 		"password" => "null",
-		"logged_in" => "false"
+		"logged_in" => 0
 		);
 		echo json_encode($user_array);
 	}

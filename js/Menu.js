@@ -25,7 +25,7 @@ function Menu() {
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
         MENU.setVisibility(false);
-        //future call to high scores
+        HIGH_SCORE.setVisibility(true);
     });
 
     /* CODE FOR FACEBOOK LOGIN BUTTON*/
