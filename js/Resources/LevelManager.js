@@ -84,17 +84,12 @@ function LevelManager() {
                     grid.getTrump().setLocation(j, i);
                 } else if (ch == '*') {
                     level_array[i][j] = new Fadable(grid, j, i, RESOURCES.getImage("mine"));
-
                 } else if (ch == 'p') {
                     level_array[i][j] = new SprayTan(grid, j, i, RESOURCES.getImage("spraytan"));
-
                 } else if (ch == 's') {
-                    console.log("dljsaldkf");
                     level_array[i][j] = new Star(grid, j, i, RESOURCES.getImage("star"));
-
                 } else if (ch == 'c') {
                     level_array[i][j] = new Certificate(grid, j, i, RESOURCES.getImage("certificate"));
-
                 } else {
                     alert("there was a problem");
                 }

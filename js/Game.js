@@ -24,7 +24,7 @@ function Game() {
         CANVAS_MANAGER.gameCanvas.setVisible(true);
         CANVAS_MANAGER.popupCanvas.setVisible(true);
         CANVAS_MANAGER.uiCanvas.setVisible(true);
-        level = 15;
+        level = 0;
         scoreTracker.resetScore();
         scoreTracker.clearFail();
         this.setupLevel(null);
