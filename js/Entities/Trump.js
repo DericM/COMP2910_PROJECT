@@ -64,6 +64,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
                 console.log("FUCK");
 				//POPUPS.drawPopup("death");
                 DEFEAT.setVisibility(true);
+                
 			} else {
 				lives--;
 				game.setupLevel(false);

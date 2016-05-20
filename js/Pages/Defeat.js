@@ -6,10 +6,10 @@
  */
 
 function Defeat() {
+    Page.call(this);
 
-    this.component = document.createElement("div");
-    this.component.id = "menu";
-    this.component.className = "popup";
+    this.page.id = "menu";
+    this.page.className = "popup";
 
     //build
     var title = document.createElement("h1");
@@ -28,10 +28,12 @@ function Defeat() {
     var score = document.createElement("button");
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
-        GAME.setVisibility(false);
+        CANVAS_MANAGER.gameCanvas.setVisible(false);
+        CANVAS_MANAGER.uiCanvas.setVisible(false);
         DEFEAT.setVisibility(false);
         HIGH_SCORE.pullHighScores();
         HIGH_SCORE.setVisibility(true);
+
         //future call to high scores
     });
 
@@ -39,7 +41,9 @@ function Defeat() {
     var home = document.createElement("div");
     home.className = "home-button";
     home.addEventListener('click', function(){
-        GAME.setVisibility(false);
+        CANVAS_MANAGER.gameCanvas.setVisible(false);
+        CANVAS_MANAGER.uiCanvas.setVisible(false);
+        DEFEAT.setVisibility(false);
         MENU.setVisibility(true);
     });
 
@@ -49,21 +53,10 @@ function Defeat() {
     wrapper.appendChild(score);
     wrapper.appendChild(home);
 
-    this.component.appendChild(wrapper);
+    this.page.appendChild(wrapper);
 
 }
 
-
-Defeat.prototype = {
-
-    setVisibility: function(visibility){
-        var container = document.getElementById("container");
-        if(visibility == true){
-            container.appendChild(this.component);
-        }
-        else {
-            container.removeChild(this.component);
-        }
-    }
-
-};
+//inheritance stuff
+Defeat.prototype = Object.create(Page.prototype);
+Defeat.prototype.constructor = Defeat;

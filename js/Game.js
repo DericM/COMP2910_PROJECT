@@ -22,7 +22,7 @@ function Game() {
      */
     this.newGame = function() {
         CANVAS_MANAGER.gameCanvas.setVisible(true);
-        CANVAS_MANAGER.popupCanvas.setVisible(true);
+        //CANVAS_MANAGER.popupCanvas.setVisible(true);
         CANVAS_MANAGER.uiCanvas.setVisible(true);
         level = 16;
         scoreTracker.resetScore();

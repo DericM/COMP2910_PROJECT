@@ -1,9 +1,9 @@
 
 function Menu() {
-
-    this.component = document.createElement("div");
-    this.component.id = "menu";
-    this.component.className = "page";
+    Page.call(this);
+    
+    this.page.id = "menu";
+    this.page.className = "page";
 
     //build
     var title = document.createElement("h1");
@@ -47,32 +47,25 @@ function Menu() {
         LOGIN.setVisibility(true);
     });
 
-
-
-
-
-    this.component.appendChild(title);
+    this.page.appendChild(title);
 
     wrapper.appendChild(play);
     wrapper.appendChild(score);
     wrapper.appendChild(login);
 
-    this.component.appendChild(wrapper);
-
-
+    this.page.appendChild(wrapper);
 }
 
+//inheritance stuff
+Menu.prototype = Object.create(Page.prototype);
+Menu.prototype.constructor = Menu;
 
-Menu.prototype = {
 
-    setVisibility: function(visibility){
-        var container = document.getElementById("container");
-        if(visibility == true){
-            container.appendChild(this.component);
-        }
-        else {
-            container.removeChild(this.component);
-        }
-    }
 
-};
+
+
+
+
+
+
+
