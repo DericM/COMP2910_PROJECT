@@ -1,9 +1,6 @@
 
 /**
  Creates a canvas and inserts it into the container div in index.html.
-
- Author: Brody
- Date: Sat, 7
  */
 function Canvas(id) {
     this.width = WIDTH;
@@ -23,16 +20,29 @@ function Canvas(id) {
 
 
 Canvas.prototype = {
+    /**
+     * Sets the width of canvas.
+     *
+     * @param _width The new width to set the canvas to.
+     */
     setWidth: function(_width) {
         this.width = _width;
         this.canvas.setAttribute('width', this.width);
     },
 
+    /**
+     * Sets the height of the canvas.
+     *
+     * @param _height The new height to set the canvas to.
+     */
     setHeight: function(_height) {
         this.height = _height;
         this.canvas.setAttribute('height', this.height);
     },
 
+    /**
+     * Clears the canvas of all of its drawings.
+     */
     clear: function() {
         this.context.clearRect(0, 0, this.width, this.height);
     },

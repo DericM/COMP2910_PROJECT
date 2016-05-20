@@ -2,28 +2,23 @@
  * The main game object that sets up and plays the game.
  */
 function Game() {
-  //commnet
     var level = 0;
     var levels = new LevelManager();
     var scoreTracker = new ScoringSystem(CANVAS_MANAGER.gameCanvas);
-    
     var grid = new Grid(CANVAS_MANAGER.gameCanvas);
-    
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.insertDrawable(scoreTracker);
-    
     var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trump"), this);
     grid.addTrump(trump);
     this.getTrump = function() {
         return trump;
     };
     /**
-     * Sets up a new game starting at level 0.
+     * Initializes a new game.
      */
     this.newGame = function() {
         CANVAS_MANAGER.backgroundCanvas.setVisible(true);
         CANVAS_MANAGER.gameCanvas.setVisible(true);
-        //CANVAS_MANAGER.popupCanvas.setVisible(true);
         CANVAS_MANAGER.uiCanvas.setVisible(true);
         level = 0;
         scoreTracker.resetScore();
@@ -31,6 +26,9 @@ function Game() {
         this.setupLevel(null);
     };
 
+    /**
+     * Adds the user's score to the database.
+     */
     this.logScore = function() {
         console.log("calling");
         var finalScore = scoreTracker.getScore();

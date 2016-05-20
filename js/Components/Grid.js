@@ -22,6 +22,9 @@ function Grid(canvas) {
 	var trumpRow;
 	var trumpCol;
 
+	/**
+	 * Determines the coordinates needed to draw the grid.
+	 */
 	this.setDimensions = function() {
 		width = WIDTH * perc;
 		height = width * rows / columns;
@@ -34,8 +37,10 @@ function Grid(canvas) {
 		sectionWidth = width / columns;
 		sectionHeight = height / rows;
 	};
-	//this.setDimensions();
 
+	/**
+	 * Removes all entities from the grid.
+	 */
 	this.clearGrid = function() {
 		for(var i = 0; i < columns; i++) {
 			for(var j = 0; j < rows; j++) {
@@ -45,26 +50,56 @@ function Grid(canvas) {
 		canvas.clear();
 	};
 
+	/**
+	 * Returns the number of columns.
+	 *
+	 * @returns {number} number of columns.
+     */
 	this.getColumns = function() {
 		return columns;
 	};
 
+	/**
+	 * Returns the number of rows.
+	 *
+	 * @returns {number} number of rows.
+	 */
 	this.getRows = function() {
 		return rows;
 	};
 
+	/**
+	 * Returns the width of the grid.
+	 *
+	 * @returns {number} The width of the grid.
+     */
 	this.getWidth = function() {
 		return width;
 	};
 
+	/**
+	 * Returns the height of the grid.
+	 *
+	 * @returns {number} The height of the grid.
+	 */
 	this.getHeight = function() {
 		return height;
 	};
 
+	/**
+	 * Returns the x coordinate of the grid.
+	 *
+	 * @returns {number} The x coordinate of the grid.
+     */
 	this.getXCoord = function() {
 		return xCoord;
 	};
 
+	/**
+	 * Returns the y coordinate of the grid.
+	 *
+	 * @returns {number} The y coordinate of the grid.
+	 */
 	this.getYCoord = function() {
 		return yCoord;
 	};
@@ -112,7 +147,7 @@ function Grid(canvas) {
 		rows = entities.length;
 		columns = entities[0].length;
 		this.setDimensions();
-		trump.drawMoveThingy();
+		trump.drawMovementX();
 		this.init();
 	};
 
@@ -186,6 +221,9 @@ function Grid(canvas) {
 		}
 	};
 
+	/**
+	 * Draws the grass.
+	 */
 	this.init = function() {
 		var grass = false;
 		var xOffset = xCoord;

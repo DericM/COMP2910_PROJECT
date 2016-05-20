@@ -24,6 +24,10 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	var yCoord;
     canvas.getCanvas().addEventListener("click", moveMe, false);
 
+    /**
+     * Determines the coordinates needed to draw the X over
+     * the grid.
+     */
     this.setDimensions = function() {
         xCoord = grid.getXCoord();
         yCoord = grid.getYCoord();
@@ -47,7 +51,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
                 window.setTimeout(function() {
                     RESOURCES.pauseSound("snake_woman");
 					CANVAS_MANAGER.uiCanvas.clear();
-					GAME.getTrump().drawMoveThingy();
+					GAME.getTrump().drawMovementX();
 				}, 3000);
 			} else if (lives != 0) {
 				RESOURCES.playSound("explosion");
@@ -136,7 +140,10 @@ function Trump(_canvas, grid, column, row, image, _game) {
         }
     }
 
-    this.drawMoveThingy = function() {
+    /**
+     * Draws the movement X.
+     */
+    this.drawMovementX = function() {
         this.setDimensions();
 
         /*
@@ -164,6 +171,12 @@ function Trump(_canvas, grid, column, row, image, _game) {
         */
     };
 
+    /**
+     * Turns the listeners for arrow keys presses and movement X
+     * off so the user canot move trump.
+     * 
+     * @param switcher
+     */
     this.toggleListener = function (switcher) {
         keySwitch = switcher;
     };
