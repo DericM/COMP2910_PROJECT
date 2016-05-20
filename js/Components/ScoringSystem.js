@@ -26,11 +26,11 @@ function ScoringSystem(canvas) {
     failFactor[2] = 0.4;
 
     this.draw = function() {
-
-        this.ctx.font = this.fontSize + "px Arial";
+        this.ctx.fillStyle = "#CCC";
+        this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
         this.ctx.fillStyle = "#000";
-        this.ctx.fillText("Score: ", xCoord, yCoord);
-        this.ctx.fillText(this.score, WIDTH / 2 , yCoord);
+        this.ctx.font = (HEIGHT * 0.05) + "px Arial";
+        this.ctx.fillText("Score: " + this.score, 10, HEIGHT - 10);
 
     };
     

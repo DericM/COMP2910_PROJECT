@@ -24,11 +24,13 @@ function Canvas(id) {
 
 Canvas.prototype = {
     setWidth: function(_width) {
-
+        this.width = _width;
+        this.canvas.setAttribute('width', this.width);
     },
 
     setHeight: function(_height) {
-
+        this.height = _height;
+        this.canvas.setAttribute('height', this.height);
     },
 
     clear: function() {

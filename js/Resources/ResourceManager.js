@@ -7,11 +7,12 @@ function ResourceManager() {
         trump: "Images/trump.png",
         whitehouse: "Images/whitehouse.png",
         snake: "Images/snakeWoman.jpg",
-
+        orientlistener: "Images/orientlistener.png",
         spraytan: "Images/spraytan.png",
 
         star: "Images/star.png",
-    
+        grass1: "Images/grass1.png",
+        grass2: "Images/grass2.png",
         certificate: "Images/certificate.png"
     };
 

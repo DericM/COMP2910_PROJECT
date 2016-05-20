@@ -138,6 +138,8 @@ function Trump(_canvas, grid, column, row, image, _game) {
 
     this.drawMoveThingy = function() {
         this.setDimensions();
+
+        /*
         var context = CANVAS_MANAGER.uiCanvas.getContext();
         context.beginPath();
         context.fillStyle = "#FFF";
@@ -158,6 +160,8 @@ function Trump(_canvas, grid, column, row, image, _game) {
         context.lineTo(xCoord, bottomY);
         context.closePath();
         context.stroke();
+
+        */
     };
 
     this.toggleListener = function (switcher) {
