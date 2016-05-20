@@ -1,14 +1,15 @@
 /**
  * Created by Deric on 16/05/19.
  */
-/**
- * Created by Deric on 16/05/19.
- */
 
+/**
+ * Defeat popup screen when you die.
+ * @constructor
+ */
 function Defeat() {
     Page.call(this);
 
-    this.page.id = "menu";
+    this.page.id = "defeat";
     this.page.className = "popup";
 
     //build

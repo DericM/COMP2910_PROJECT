@@ -3,10 +3,10 @@
  */
 
 function Login() {
+    Page.call(this);
 
-    this.component = document.createElement("div");
-    this.component.id = "login-page";
-    this.component.className = "page";
+    this.page.id = "login-page";
+    this.page.className = "page";
 
     //build
     var title = document.createElement("h1");
@@ -93,7 +93,7 @@ function Login() {
 
 
 
-    this.component.appendChild(title);
+    this.page.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
@@ -102,21 +102,11 @@ function Login() {
     wrapper.appendChild(form);
     wrapper.appendChild(register);
 
-    this.component.appendChild(wrapper);
-    this.component.appendChild(home);
+    this.page.appendChild(wrapper);
+    this.page.appendChild(home);
 
 }
 
-
-Login.prototype = {
-
-    setVisibility: function(visibility){
-        var container = document.getElementById("container");
-        if(visibility == true){
-            container.appendChild(this.component);
-        }
-        else {
-            container.removeChild(this.component);
-        }
-    }
-};
+//inheritance stuff
+Login.prototype = Object.create(Page.prototype);
+Login.prototype.constructor = Login;

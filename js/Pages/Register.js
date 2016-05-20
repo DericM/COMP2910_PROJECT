@@ -3,10 +3,10 @@
  */
 
 function Register() {
+    Page.call(this);
 
-    this.component = document.createElement("div");
-    this.component.id = "register-page";
-    this.component.className = "page";
+    this.page.id = "register-page";
+    this.page.className = "page";
 
     //build
     var title = document.createElement("h1");
@@ -49,17 +49,14 @@ function Register() {
             username.className = "formInvalid";
             valid = false;
         }
-
         if(password.value == "" || username.value.length > 30 || username.value.length < 5){
             password.className = "formInvalid";
             valid = false;
         }
-
         if(password.value != confirm_password.value){
             confirm_password.className = "formInvalid";
             valid = false;
         }
-
         if(!valid){
             return false;
         }
@@ -94,7 +91,7 @@ function Register() {
     });
 
 
-    this.component.appendChild(title);
+    this.page.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
@@ -103,26 +100,12 @@ function Register() {
 
     wrapper.appendChild(form);
 
-    this.component.appendChild(wrapper);
-    this.component.appendChild(home);
-
+    this.page.appendChild(wrapper);
+    this.page.appendChild(home);
 }
 
-
-Register.prototype = {
-
-    setVisibility: function(visibility){
-        var container = document.getElementById("container");
-        if(visibility == true){
-            container.appendChild(this.component);
-        }
-        else {
-            container.removeChild(this.component);
-        }
-    }
-};
+//inheritance stuff
+Register.prototype = Object.create(Page.prototype);
+Register.prototype.constructor = Register;
 
 
-Register.prototype = function(){
-    
-}

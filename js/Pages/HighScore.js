@@ -2,6 +2,10 @@
  * Created by Deric on 2016-05-18.
  */
 
+/**
+ * High score page.
+ * @constructor
+ */
 function HighScore() {
     Page.call(this);
 
