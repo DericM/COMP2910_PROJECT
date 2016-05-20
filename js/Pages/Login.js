@@ -55,7 +55,6 @@ function Login() {
                 //console.log(obj);
 
                 if(obj.logged_in == "true"){
-                    alert("logged in success");
                     PLAYER_DATA.setLoggedInState(true);
                     PLAYER_DATA.setUserName(obj.username);
                     PLAYER_DATA.setId(obj.id);
@@ -67,7 +66,6 @@ function Login() {
                     password.className = "formInvalid";
                 }
                 else {
-                    alert("logged in failed");
                     username.className = "";
                     password.className = "";
                     username.value = '';
