@@ -3,6 +3,7 @@
 var WIDTH;
 var HEIGHT;
 var WINDOW_WIDTH;
+var PIXEL_RATIO;
 
 /* COMPONENTS */
 var CANVAS_MANAGER;
@@ -24,19 +25,21 @@ var DEFEAT;
  * Entry point for the program.
  */
 function Main(){
-    var screenRatio = 640 / 360;
-
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
+    PIXEL_RATIO = 16 / 9;
     WINDOW_WIDTH = WIDTH;
-    if(HEIGHT / WIDTH < screenRatio -0.4){
-        WIDTH = HEIGHT / screenRatio;
+
+    if(HEIGHT / WIDTH < PIXEL_RATIO -0.4){
+        WIDTH = HEIGHT / PIXEL_RATIO;
         var container = document.getElementById("container");
         container.style.width = WIDTH + "px";
         container.style.height = HEIGHT + "px";
         container.style.left =  ((window.innerWidth / 2) - (WIDTH / 2)) + "px";
     }
+
     WINDOW_WIDTH = (WINDOW_WIDTH - WIDTH) / 2;
+
     window.onresize = function(){
         //location.reload();
     };
@@ -47,11 +50,10 @@ function Main(){
     RESOURCES = new ResourceManager();
     RESOURCES.loadImages(this);
     RESOURCES.loadSounds();
-
 }
 
 /**
- *  Initialize the components after resource manager has been loaded.
+ *  Initialize the components that are dependent on resource manager.
  *      -This is called from ResourceManager.loadImages.
  */
 Main.prototype.init = function() {

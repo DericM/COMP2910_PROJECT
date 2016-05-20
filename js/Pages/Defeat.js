@@ -11,8 +11,7 @@ function Defeat() {
 
     this.page.id = "defeat";
     this.page.className = "popup";
-
-    //build
+    
     var title = document.createElement("h1");
     title.innerHTML = "Defeat";
 
@@ -34,8 +33,6 @@ function Defeat() {
         DEFEAT.setVisibility(false);
         HIGH_SCORE.pullHighScores();
         HIGH_SCORE.setVisibility(true);
-
-        //future call to high scores
     });
 
 
