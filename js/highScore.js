@@ -27,6 +27,7 @@ function HighScore() {
 
     this.table = document.createElement("table");
     this.id = "highscores";
+    this.table.className = "highscores";
 
     var row = document.createElement("tr");
 
@@ -75,7 +76,7 @@ HighScore.prototype = {
  */
 HighScore.prototype.pullHighScores = function(){
 
-    var url = "php/highscore.php"; // the script where you handle the form input.
+    var url = "php/Highscore.php"; // the script where you handle the form input.
 
     var bindThis = this;
 

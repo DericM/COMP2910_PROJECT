@@ -19,6 +19,7 @@ PlayerData.prototype.setId = function(id) {
 PlayerData.prototype.getId = function() {
     return this.id;
 };
+
 /**
  *
  * @param state

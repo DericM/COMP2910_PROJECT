@@ -57,7 +57,6 @@ function Game() {
 
             //failed level
         } else if (passed === false) {
-            RESOURCES.playSound("low_energy");
             scoreTracker.incrementFail();
             
             //initial level

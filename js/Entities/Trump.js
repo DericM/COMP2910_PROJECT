@@ -49,6 +49,11 @@ function Trump(_canvas, grid, column, row, image, _game) {
 					CANVAS_MANAGER.uiCanvas.clear();
 					GAME.getTrump().drawMoveThingy();
 				}, 3000);
+			} else if (lives != 0) {
+				RESOURCES.playSound("explosion");
+				window.setTimeout(function() {
+					RESOURCES.playSound("low_energy");
+				}, 550);
 			}
 			
 			if (lives == 0) {
@@ -56,7 +61,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 				RESOURCES.playSound("neverbegreat");
 				this.resetLives();
                 grid.clearGrid();
-                console.log("FUCL");
+                console.log("FUCK");
 				POPUPS.drawPopup("death");
 			} else {
 				lives--;
