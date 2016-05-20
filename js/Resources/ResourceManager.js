@@ -6,15 +6,7 @@ function ResourceManager() {
         mine: "Images/land_mine.png",
         trump: "Images/trump.png",
         whitehouse: "Images/whitehouse.png",
-        nextlevel: "Images/nextLevel.png",
         snake: "Images/snakeWoman.jpg",
-        home: "Images/home.png",
-        login: "Images/login.png",
-        newgame: "Images/newgame.png",
-        no: "Images/no.png",
-        yes: "Images/yes.png",
-        back: "Images/back.png",
-        orient: "Images/orient.png",
 
         spraytan: "Images/spraytan.png",
 
