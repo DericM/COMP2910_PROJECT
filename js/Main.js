@@ -36,7 +36,7 @@ var WINDOW_WIDTH;
  */
 function Main(){
 
-    this.init = function() {
+    this.setGrass = function() {
         CANVAS_MANAGER = new CanvasManager();
         POPUPS = new PopupManager();
 

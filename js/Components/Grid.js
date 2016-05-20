@@ -19,8 +19,6 @@ function Grid(canvas) {
 	var sectionWidth;
 	var sectionHeight;
 	var trump;
-	var trumpRow;
-	var trumpCol;
 
     this.setDimensions = function() {
         width = WIDTH * perc;
@@ -86,9 +84,7 @@ function Grid(canvas) {
      * @param oldRow Donald Trumps' previous row.
      */
 	this.moveTrump = function(oldCol, oldRow) {
-		trumpCol = trump.getColumn();
-		trumpRow = trump.getRow();
-		entities[trumpRow][trumpCol] = trump;
+		entities[trump.getRow()][trump.getColumn()] = trump;
 		entities[oldRow][oldCol] = null;
 	};
 
@@ -113,7 +109,7 @@ function Grid(canvas) {
         columns = entities[0].length;
         this.setDimensions();
         trump.drawMoveThingy();
-        this.init();
+        this.setGrass();
 	};
 
     /**
@@ -167,17 +163,8 @@ function Grid(canvas) {
 		var yOffset = yCoord;
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
-                /*context.beginPath();
-				context.rect(xOffset, yOffset, sectionWidth, sectionHeight);
-                context.closePath();
-				context.stroke();*/
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
-				} 
-				if(entities[i][j] instanceof Trump) {
-					trump = entities[i][j];
-					trumpRow = i;
-					trumpCol = j;
 				}
 				xOffset += sectionWidth;
 			}
@@ -186,7 +173,7 @@ function Grid(canvas) {
 		}
 	};
     
-    this.init = function() {
+    this.setGrass = function() {
         var grass = false;
         var xOffset = xCoord;
         var yOffset = yCoord;
@@ -194,12 +181,12 @@ function Grid(canvas) {
             for(var j = 0; j < columns; j++) {
                 if(grass) {
                     CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-                        RESOURCES.getImage("grass1"), xOffset, yOffset, sectionWidth, sectionHeight);
+                        RESOURCES.getImage("grass1"), xOffset, yOffset - 10, sectionWidth, sectionHeight + 10);
                     grass = false;
                 }
                 else {
                     CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-                        RESOURCES.getImage("grass2"), xOffset, yOffset, sectionWidth, sectionHeight);
+                        RESOURCES.getImage("grass2"), xOffset, yOffset - 10, sectionWidth, sectionHeight + 10);
                     grass = true;
                 }
                 xOffset += sectionWidth;

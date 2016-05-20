@@ -19,7 +19,8 @@ function ResourceManager() {
         grass2: "Images/grass2.png",
         spraytan: "Images/mine.png",
         star: "Images/mine.png",
-        certificate: "Images/mine.png"
+        certificate: "Images/mine.png",
+        trumpjump: "Images/trumpjump.png"
     };
 
     var loadedImages = 0;
@@ -63,7 +64,7 @@ function ResourceManager() {
                 if(++loadedImages >= numImages) {
                     //proved images loaded here.
                     
-                    main.init();
+                    main.setGrass();
 
                 }
             };

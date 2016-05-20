@@ -89,5 +89,4 @@ function LevelManager() {
         }
         return level_array;
     };
-
 }

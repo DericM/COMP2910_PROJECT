@@ -12,11 +12,12 @@ function Game() {
     CANVAS_MANAGER.gameCanvas.insertDrawable(grid);
     CANVAS_MANAGER.gameCanvas.insertDrawable(scoreTracker);
     
-    var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trump"), this);
+    var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trumpjump"), this);
     grid.addTrump(trump);
     this.getTrump = function() {
         return trump;
     };
+
     /**
      * Sets up a new game starting at level 0.
      */
@@ -89,5 +90,5 @@ function Game() {
      */
     this.getLevel = function(){
         return level;
-    }
+    };
 }
