@@ -76,7 +76,8 @@ function Register() {
                 //if(data ==) // show response from the php script.
                 alert(data);
                 if(data == "success"){
-
+                    REGISTER.setVisibility(false);
+                    LOGIN.setVisibility(true);
                 }
             }
 

@@ -21,6 +21,7 @@ function Defeat() {
     var newGame = document.createElement("button");
     newGame.appendChild(document.createTextNode("Play"));
     newGame.addEventListener('click', function(){
+        DEFEAT.setVisibility(false);
         GAME.newGame();
     });
 
@@ -28,7 +29,9 @@ function Defeat() {
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
         GAME.setVisibility(false);
-
+        DEFEAT.setVisibility(false);
+        HIGH_SCORE.pullHighScores();
+        HIGH_SCORE.setVisibility(true);
         //future call to high scores
     });
 
@@ -36,7 +39,7 @@ function Defeat() {
     var home = document.createElement("div");
     home.className = "home-button";
     home.addEventListener('click', function(){
-        REGISTER.setVisibility(false);
+        GAME.setVisibility(false);
         MENU.setVisibility(true);
     });
 

@@ -25,8 +25,7 @@ function Victory() {
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
         GAME.setVisibility(false);
-        
-        //future call to high scores
+        HIGH_SCORE.setVisibility()
     });
 
 
