@@ -4,15 +4,16 @@
 
 function Register() {
 
-    this.register = document.createElement("div");
-    this.register.id = "register-page";
-    this.register.class = "page";
+    this.component = document.createElement("div");
+    this.component.id = "register-page";
+    this.component.className = "page";
 
     //build
     var title = document.createElement("h1");
-    title.id = "register-title";
     title.innerHTML = "Register";
 
+    var wrapper = document.createElement("div");
+    wrapper.className  = "wrapper";
 
     var form = document.createElement("form");
     form.className  = "form";
@@ -20,36 +21,63 @@ function Register() {
     form.name = "register";
 
     var username = document.createElement("input");
+    username.className = "";
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
 
     var password = document.createElement("input");
+    password.className = "";
     password.type = "password";
     password.name = "password";
     password.placeholder = "Password";
 
     var confirm_password = document.createElement("input");
+    confirm_password.className = "";
     confirm_password.type = "password";
-    confirm_password.name = "password";
+    confirm_password.name = "confirm_password";
     confirm_password.placeholder = "Confirm";
 
-    var submit = document.createElement("input");
-    submit.type = "button";
-    submit.value = "Register";
-    submit.addEventListener('click', function(){
-        var url = "php/create_account.php"; // the script where you handle the form input.
+    var submit = document.createElement("button");
+    submit.appendChild(document.createTextNode("Register"));
+    submit.addEventListener('click', function(event){
+        event.preventDefault();
 
+        //form validation
+        var valid = true;
+        if(username.value == "" || username.value.length > 30 || username.value.length < 5){
+            username.className = "formInvalid";
+            valid = false;
+        }
+
+        if(password.value == "" || username.value.length > 30 || username.value.length < 5){
+            password.className = "formInvalid";
+            valid = false;
+        }
+
+        if(password.value != confirm_password.value){
+            confirm_password.className = "formInvalid";
+            valid = false;
+        }
+
+        if(!valid){
+            return false;
+        }
+
+
+        var url = "php/create_account.php"; // the script where you handle the form input.
         $.ajax({
             type: "POST",
             url: url,
             data: $("#form-register").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
+            success: function(data) {
                 //data is the echo from create_account.php
                 // data == 'success' || data=='failure'
                 //if(data ==) // show response from the php script.
                 alert(data);
+                if(data == "success"){
+
+                }
             }
 
         });
@@ -57,38 +85,25 @@ function Register() {
     });
 
 
-    this.register.appendChild(title);
+    var home = document.createElement("div");
+    home.className = "home-button";
+    home.addEventListener('click', function(){
+        REGISTER.setVisibility(false);
+        MENU.setVisibility(true);
+    });
+
+
+    this.component.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
     form.appendChild(confirm_password);
     form.appendChild(submit);
 
-    this.register.appendChild(form);
+    wrapper.appendChild(form);
 
-
-
-    /*
-
-     $(document).ready(function () {
-     $('#myform').on('submit', function(e) {
-     e.preventDefault();
-     $.ajax({
-     url : $(this).attr('action') || window.location.pathname,
-     type: "GET",
-     data: $(this).serialize(),
-     success: function (data) {
-     $("#form_output").html(data);
-     },
-     error: function (jXHR, textStatus, errorThrown) {
-     alert(errorThrown);
-     }
-     });
-     });
-     });
-
-
-     */
+    this.component.appendChild(wrapper);
+    this.component.appendChild(home);
 
 }
 
@@ -98,10 +113,15 @@ Register.prototype = {
     setVisibility: function(visibility){
         var container = document.getElementById("container");
         if(visibility == true){
-            container.appendChild(this.register);
+            container.appendChild(this.component);
         }
         else {
-            container.removeChild(this.register);
+            container.removeChild(this.component);
         }
     }
 };
+
+
+Register.prototype = function(){
+    
+}

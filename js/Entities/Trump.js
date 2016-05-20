@@ -52,7 +52,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 			}
 			
 			if (lives == 0) {
-				// game.logScore();
+				game.logScore();
 				RESOURCES.playSound("neverbegreat");
 				this.resetLives();
                 grid.clearGrid();

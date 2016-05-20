@@ -24,16 +24,29 @@ function LevelManager() {
         ["*xxxw", "xx**x", "*xxx*", "x*x*x", "xxxx*", "*x*xx", "xxxxt"],
         ["*xxx*", "xx*xx", "xxw*x", "x**xx", "x*t*x", "*xx*x", "xxxxx"],
         
+        ["xxtxx", "xxxxx", "xx*xx", "*x*x*", "xx*xx", "x*x*x", "px*xw"],
+        ["*xxxx", "xxx*x", "x**wx", "xxt**", "xxx*p", "x*xxx", "xxxx*"],
         ["xx*wx", "xxxx*", "xxx*x", "**xxx", "xxxxx", "x***x", "xtxxx"],
+        ["*xxw*", "s*xxx", "xx*xx", "*x*x*", "xx*xx", "x*xxx", "xxxxt"],
+        ["**xwx", "cxx*x", "x*xxx", "xxxxx", "*x*xx", "xxxxx", "txx*x"],
         ["wx*xx", "*x*x*", "xxxxx", "xx*xx", "**t*x", "xxxxx", "x*x*x"],
+        ["xxtxx", "x***x", "*xxxx", "xxxxx", "x**xx", "xx*xx", "*xw*p"],
+        ["sx*xw", "xx*xx", "*xxx*", "x*xxx", "xx*xx", "xxx*x", "t*xxx"],
+        ["*x*x*", "xxxxx", "x*x*x", "x*x*x", "x*c*x", "xx*wx", "*xt*x"],
         ["xtx*x", "x*xxx", "xxx*x", "*xxx*", "xx*xx", "x***x", "xxwxx"],
         ["x*xxx", "x*x*w", "xxx*x", "*xxx*", "t*xxx", "x*x*x", "xxx*x"],
+        ["wx**p", "xxx*x", "*xxxx", "*x*x*", "xxxxx", "xxx*x", "x*xxt"],
+        ["xxxx*", "*x*xx", "xx*xw", "x****", "xxx*t", "**xxx", "sxxx*"],
+        ["t*xxx", "x*x*x", "xxx*p", "*xxx*", "c*xxx", "x*x*x", "xxx*w"],
         ["*xw*x", "xx*xx", "x**xx", "xx**t", "*x*xx", "xx*xx", "*xxx*"],
         ["txxxx", "*xx*x", "xxxxx", "x**x*", "xxxxx", "xxx*x", "*xxxw"],
         ["xxxxx", "*x*x*", "xxxxx", "x*w*x", "xx*xx", "*xxx*", "txxxx"],
         ["*xwx*", "*x*x*", "xxxxx", "x***x", "xx*xx", "*x*x*", "*xtx*"],
+        ["xtxx*", "***xx", "s*xx*", "xxxxx", "x*x*x", "xx***", "*xxwx"],
+        ["w*xxx", "xxx*x", "x***x", "xx*xx", "*x*x*", "xx*xx", "c*xxt"],
         ["wxx**", "x*xxx", "***xx", "xxxx*", "x***x", "x***x", "xxtxx"],
         ["x*xtx", "xxxx*", "*x*xx", "*xxxx", "xx*xx", "x*w*x", "xxxx*"],
+        ["xxxxw", "p*xx*", "*t*xx", "xxx*x", "x*x*x", "c*x*x", "*xxxx"],
         ["w*xxx", "xx*xx", "*xxxx", "xxx**", "x*xxx", "*x*xx", "txxx*"],
         ["*xxx*", "xw*xx", "**xxx", "xxxx*", "*x***", "xx*tx", "*xxx*"],
         ["xxx*x", "w*xx*", "*t*xx", "xxx*x", "*xx*x", "x*xxx", "*xx*x"],
@@ -71,17 +84,12 @@ function LevelManager() {
                     grid.getTrump().setLocation(j, i);
                 } else if (ch == '*') {
                     level_array[i][j] = new Fadable(grid, j, i, RESOURCES.getImage("mine"));
-
                 } else if (ch == 'p') {
                     level_array[i][j] = new SprayTan(grid, j, i, RESOURCES.getImage("spraytan"));
-
                 } else if (ch == 's') {
-                    console.log("dljsaldkf");
                     level_array[i][j] = new Star(grid, j, i, RESOURCES.getImage("star"));
-
                 } else if (ch == 'c') {
                     level_array[i][j] = new Certificate(grid, j, i, RESOURCES.getImage("certificate"));
-
                 } else {
                     alert("there was a problem");
                 }

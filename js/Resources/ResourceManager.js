@@ -16,11 +16,11 @@ function ResourceManager() {
         back: "Images/back.png",
         orient: "Images/orient.png",
 
-        spraytan: "Images/mine.png",
+        spraytan: "Images/spraytan.png",
 
-        star: "Images/mine.png",
+        star: "Images/star.png",
     
-        certificate: "Images/mine.png"
+        certificate: "Images/certificate.png"
     };
 
     var loadedImages = 0;
@@ -30,6 +30,9 @@ function ResourceManager() {
     var sounds = {};
     
     var soundSources = {
+		chime : "Sounds/chime.mp3",
+        explosion : "Sounds/explosion.mp3",
+		
         snake_woman : "Sounds/snake_woman.mp3",
         low_energy : "Sounds/low_energy.mp3",
         neverbegreat : "Sounds/neverbegreat.mp3",

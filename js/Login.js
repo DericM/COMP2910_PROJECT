@@ -4,18 +4,16 @@
 
 function Login() {
 
-    this.login = document.createElement("div");
-    this.login.id = "login-page";
-    this.login.class = "page";
+    this.component = document.createElement("div");
+    this.component.id = "login-page";
+    this.component.className = "page";
 
     //build
     var title = document.createElement("h1");
-    title.id = "login-title";
     title.innerHTML = "Login";
 
     var wrapper = document.createElement("div");
     wrapper.className  = "wrapper";
-    wrapper.name = "login";
 
     var form = document.createElement("form");
     form.className  = "form";
@@ -34,36 +32,68 @@ function Login() {
 
     var submit = document.createElement("button");
     submit.appendChild(document.createTextNode("Login"));
-    submit.addEventListener('click', function(){
+    submit.addEventListener('click', function(event){
+        event.preventDefault();
         var url = "php/authenticate.php"; // the script where you handle the form input.
+
         $.ajax({
             type: "POST",
             url: url,
             data: $("#form-login").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
+            success: function(data) {
+
                 //data is the JSON object from authenticate.php
                 //"username" => "null",
                 //"password" => "null",
                 //"logged_in" => "false"
-                var json = data,
-                    obj = JSON.parse(json);
-                alert(obj.username);
-                alert(obj.logged_in); // show response from the php script.
+
+                var obj = JSON.parse(data);
+
+                console.log(obj);
+                console.log(obj.username);
+                console.log(obj.id);
+
+                if(obj.logged_in == "true"){
+                    alert("logged in success");
+                    PLAYER_DATA.setLoggedInState(true);
+                    PLAYER_DATA.setUserName(obj.username);
+                    PLAYER_DATA.setId(obj.id);
+                    
+                    //PLAYER_DATA.mergeScores(obj.);
+                    LOGIN.setVisibility(false);
+                    MENU.setVisibility(true);
+                    username.style.border = "none";
+                    password.style.border = "none";
+                }
+                else {
+                    alert("logged in failed cunt");
+                    username.style.border = "2px solid red";
+                    password.style.border = "2px solid red";
+                    username.value = '';
+                    password.value = '';
+                }
             }
         });
         return false; // avoid to execute the actual submit of the form.
     });
 
-    var register = document.createElement("div");
-    register.innerHTML = "Register";
+    var register = document.createElement("a");
+    register.appendChild(document.createTextNode("Register"));
     register.addEventListener('click', function(){
         LOGIN.setVisibility(false);
         REGISTER.setVisibility(true);
     });
 
+    var home = document.createElement("div");
+    home.className = "home-button";
+    home.addEventListener('click', function(){
+        LOGIN.setVisibility(false);
+        MENU.setVisibility(true);
+    });
 
-    this.login.appendChild(title);
+
+
+    this.component.appendChild(title);
 
     form.appendChild(username);
     form.appendChild(password);
@@ -72,31 +102,9 @@ function Login() {
     wrapper.appendChild(form);
     wrapper.appendChild(register);
 
-    this.login.appendChild(wrapper);
+    this.component.appendChild(wrapper);
+    this.component.appendChild(home);
 
-
-
-
-    /*
-
-     $(document).ready(function () {
-     $('#myform').on('submit', function(e) {
-     e.preventDefault();
-     $.ajax({
-     url : $(this).attr('action') || window.location.pathname,
-     type: "GET",
-     data: $(this).serialize(),
-     success: function (data) {
-     $("#form_output").html(data);
-     },
-     error: function (jXHR, textStatus, errorThrown) {
-     alert(errorThrown);
-     }
-     });
-     });
-     });
-
-     */
 }
 
 
@@ -105,10 +113,10 @@ Login.prototype = {
     setVisibility: function(visibility){
         var container = document.getElementById("container");
         if(visibility == true){
-            container.appendChild(this.login);
+            container.appendChild(this.component);
         }
         else {
-            container.removeChild(this.login);
+            container.removeChild(this.component);
         }
     }
 };

@@ -30,11 +30,11 @@ function Game() {
         this.setupLevel(null);
     };
 
-    /*
     this.logScore = function() {
+        console.log("calling");
         var finalScore = scoreTracker.getScore();
-        $.post("php/database.php", {score: finalScore});
-    };*/
+        $.post("php/logscore.php", {score: finalScore, id: PLAYER_DATA.getId()});
+    };
 
     /**
      * Sets up the next level to be played
@@ -49,7 +49,7 @@ function Game() {
             scoreTracker.clearFail();
             level++;
             if (level == 9000) {
-                // this.logScore();
+                this.logScore();
                 alert("YOU WIN");
                 trump.resetLives();
                 this.newGame();
