@@ -1,6 +1,12 @@
 <?php 
 require_once('database.php');
 
+/**
+ * Class User
+ * Defines a User of the game
+ * and contains methods for creating, deleting, and updating user-data
+ * into the database.
+ */
 class User{
 	
 	protected static $table_name="user";
@@ -106,9 +112,6 @@ class User{
 	
 	public function create() {
 		global $database;
-		// - INSERT INTO table (key, key) VALUES ('value', 'value')
-		// - single-quotes around all values
-		// - escape all values to prevent SQL injection
 		$attributes = $this->sanitized_attributes();
 	  	$sql = "INSERT INTO " .self::$table_name." (";
 		$sql .= join(", ", array_keys($attributes));
@@ -125,9 +128,6 @@ class User{
 
 	public function update() {
 	  global $database;
-		// - UPDATE table SET key='value', key='value' WHERE condition
-		// - single-quotes around all values
-		// - escape all values to prevent SQL injection
 		$attributes = $this->sanitized_attributes();
 		$attribute_pairs = array();
 		foreach($attributes as $key => $value) {
@@ -142,22 +142,11 @@ class User{
 
 	public function delete() {
 		global $database;
-		// Don't forget your SQL syntax and good habits:
-		// - DELETE FROM table WHERE condition LIMIT 1
-		// - escape all values to prevent SQL injection
-		// - use LIMIT 1
-	  $sql = "DELETE FROM ".self::$table_name;
-	  $sql .= " WHERE id=". $database->escape_value($this->id);
-	  $sql .= " LIMIT 1";
-	  $database->query($sql);
-	  return ($database->affected_rows() == 1) ? true : false;
-	
-		// NB: After deleting, the instance of User still 
-		// exists, even though the database entry does not.
-		// This can be useful, as in:
-		//   echo $user->first_name . " was deleted";
-		// but, for example, we can't call $user->update() 
-		// after calling $user->delete().
+		$sql = "DELETE FROM ".self::$table_name;
+	  	$sql .= " WHERE id=". $database->escape_value($this->id);
+	  	$sql .= " LIMIT 1";
+	  	$database->query($sql);
+	  	return ($database->affected_rows() == 1) ? true : false;
 	}
 
 }

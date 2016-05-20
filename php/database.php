@@ -1,12 +1,15 @@
 <?php 
 
 require_once("config.php");
-require_once("session.php");
 
+/**
+ * The following class was originally written for a lynda.com tutorial course
+ * Class MySQLDatabase
+ * Sets up a new database connection to the server
+ * Contains methods for Database queries
+ */
 class MySQLDatabase {
-
 	private $connection;
-
 	function __construct() {
 		$this->open_connection();
 	}
@@ -70,10 +73,15 @@ class MySQLDatabase {
 
 }
 
-	
-
+/*
+ * a MySQLDatabase object created to be used GLOBALLY
+ * */
 $database = new MySQLDatabase();
 
+/*
+ * pointer to the database object
+ *
+ * */
 $db =& $database;
 
 ?>

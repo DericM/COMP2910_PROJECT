@@ -1,6 +1,11 @@
-<?php 
-require_once('database.php');
 
+<?php
+require_once('database.php');
+/**
+ * Class UserScore
+ * Defines an object containing user id and user score
+ * Contains methods to Create, Record, Delete and Update the database
+ */
 class UserScore{
 	
 	protected static $table_name="userscore";
@@ -168,10 +173,16 @@ class UserScore{
 	// } 
 }
 
+/**
+ * Class UsernameScore
+ * Defines an Object containing username and score
+ * Has methods for creating, and updating scores of the individual User
+ */
 Class UsernameScore {
 
 	public $username;
 	public $score;
+
 	protected static $db_fields = array('username','score');
 
 	protected function attributes() { 
@@ -186,22 +197,11 @@ Class UsernameScore {
 	}
 
 	private function has_attribute($attribute) {
-	  // We don't care about the value, we just want to know if the key exists
-	  // Will return true or false
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
 	private static function instantiate($record) {
-		// Could check that $record exists and is an array
-    	$object = new self;
-		// Simple, long-form approach:
-		// $object->id 				= $record['id'];
-		// $object->username 	= $record['username'];
-		// $object->password 	= $record['password'];
-		// $object->first_name = $record['first_name'];
-		// $object->last_name 	= $record['last_name'];
-		
-		// More dynamic, short-form approach:
+		$object = new self;
 		foreach($record as $attribute=>$value){
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
@@ -221,7 +221,6 @@ Class UsernameScore {
   	}
 
 	public static function find_top_ten() {
-		
 		$sql  = "SELECT t1.username, t2.score ";
 		$sql .= "FROM user AS t1 INNER JOIN userscore AS t2 ";
 		$sql .= "ON t1.id = t2.id ";

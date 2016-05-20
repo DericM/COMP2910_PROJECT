@@ -1,4 +1,11 @@
 <?php 
+/**
+ * Processes request for creating an account
+ * Takes in Potential username and password
+ * If the username and password pass the validation functions:
+ * Username and Password is saved into the database and user is 'registered'
+ * On failure: Return an appropriate message
+ */
 require_once("database.php");
 require_once("user.php");
 
