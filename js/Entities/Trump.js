@@ -73,12 +73,15 @@ function Trump(_canvas, grid, column, row, image, _game) {
 			return false;
 		} else if (grid.getSectionAt(column, row) instanceof Star) {
             console.log("star");
+			RESOURCES.playSound("star");
             return true;
         } else if (grid.getSectionAt(column, row) instanceof Certificate) {
-            console.log("star");
+            console.log("certificate");
+			RESOURCES.playSound("certificate");
             return true;
         } else if (grid.getSectionAt(column, row) instanceof SprayTan) {
-            console.log("star");
+            console.log("spraytan");
+			RESOURCES.playSound("spraytan");
             return true;
         }
 		return true;

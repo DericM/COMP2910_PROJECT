@@ -32,6 +32,9 @@ function ResourceManager() {
     var soundSources = {
 		chime : "Sounds/chime.mp3",
         explosion : "Sounds/explosion.mp3",
+		spraytan : "Sounds/spraytan.mp3",
+		star : "Sounds/star.mp3",
+		certificate : "Sounds/certificate.mp3",
 		
         snake_woman : "Sounds/snake_woman.mp3",
         low_energy : "Sounds/low_energy.mp3",
