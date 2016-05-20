@@ -2,13 +2,16 @@
  * Created by Deric on 2016-05-16.
  */
 
+/**
+ * Login page.
+ * @constructor
+ */
 function Login() {
     Page.call(this);
 
     this.page.id = "login-page";
     this.page.className = "page";
 
-    //build
     var title = document.createElement("h1");
     title.innerHTML = "Login";
 
@@ -34,6 +37,7 @@ function Login() {
     submit.appendChild(document.createTextNode("Login"));
     submit.addEventListener('click', function(event){
         event.preventDefault();
+
         var url = "php/authenticate.php"; // the script where you handle the form input.
 
         $.ajax({
@@ -48,10 +52,7 @@ function Login() {
                 //"logged_in" => "false"
 
                 var obj = JSON.parse(data);
-
-                console.log(obj);
-                console.log(obj.username);
-                console.log(obj.id);
+                //console.log(obj);
 
                 if(obj.logged_in == "true"){
                     alert("logged in success");
@@ -62,13 +63,13 @@ function Login() {
                     //PLAYER_DATA.mergeScores(obj.);
                     LOGIN.setVisibility(false);
                     MENU.setVisibility(true);
-                    username.style.border = "none";
-                    password.style.border = "none";
+                    username.className = "formInvalid";
+                    password.className = "formInvalid";
                 }
                 else {
-                    alert("logged in failed cunt");
-                    username.style.border = "2px solid red";
-                    password.style.border = "2px solid red";
+                    alert("logged in failed");
+                    username.className = "";
+                    password.className = "";
                     username.value = '';
                     password.value = '';
                 }
