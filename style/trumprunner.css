@@ -99,13 +99,15 @@ h4 {
     border-width: thick;
     border-style: solid;
     border-color: #122b48;
-
 }
 
 .wrapper tr td {
     border-bottom:1pt solid #122b48;
 }
 
+.wrapper th {
+    text-align: left;
+}
 
 
 /*///////////////////////////////////LOADING//////////////////////////////////////*/
