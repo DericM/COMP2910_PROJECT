@@ -12,8 +12,8 @@ function Menu() {
     var title = document.createElement("h1");
     title.innerHTML = "Trump Runner";
 
-    var wrapper = document.createElement("div");
-    wrapper.className  = "wrapper";
+    this.wrapper = document.createElement("div");
+    this.wrapper.className  = "wrapper";
 
     var play = document.createElement("button");
     play.appendChild(document.createTextNode("Play"));
@@ -41,20 +41,28 @@ function Menu() {
     login.setAttribute("data-auto-logout-link", "false");
     */
 
-    var login = document.createElement("button");
-    login.appendChild(document.createTextNode("Login"));
-    login.addEventListener('click', function(){
+    this.login = document.createElement("button");
+    this.login.appendChild(document.createTextNode("Login"));
+    this.login.addEventListener('click', function(){
         MENU.setVisibility(false);
         LOGIN.setVisibility(true);
     });
 
+
+    this.logout = document.createElement("button");
+    this.logout.appendChild(document.createTextNode("logout"));
+    this.logout.addEventListener('click', function(){
+        PLAYER_DATA = new PlayerData();
+        MENU.togleLoginButton(false);
+    });
+
     this.page.appendChild(title);
 
-    wrapper.appendChild(play);
-    wrapper.appendChild(score);
-    wrapper.appendChild(login);
+    this.wrapper.appendChild(play);
+    this.wrapper.appendChild(score);
+    this.wrapper.appendChild(this.login);
 
-    this.page.appendChild(wrapper);
+    this.page.appendChild(this.wrapper);
 }
 
 //inheritance stuff
@@ -63,7 +71,16 @@ Menu.prototype.constructor = Menu;
 
 
 
-
+Menu.prototype.togleLoginButton = function(state){
+    if(state){
+        this.wrapper.removeChild(this.login);
+        this.wrapper.appendChild(this.logout);
+    }
+    else {
+        this.wrapper.removeChild(this.logout);
+        this.wrapper.appendChild(this.login);
+    }
+};
 
 
 

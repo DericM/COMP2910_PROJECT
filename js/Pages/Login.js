@@ -61,13 +61,14 @@ function Login() {
                     
                     //PLAYER_DATA.mergeScores(obj.);
                     LOGIN.setVisibility(false);
+                    MENU.togleLoginButton(true);
                     MENU.setVisibility(true);
-                    username.className = "formInvalid";
-                    password.className = "formInvalid";
-                }
-                else {
                     username.className = "";
                     password.className = "";
+                }
+                else {
+                    username.className = "formInvalid";
+                    password.className = "formInvalid";
                     username.value = '';
                     password.value = '';
                 }

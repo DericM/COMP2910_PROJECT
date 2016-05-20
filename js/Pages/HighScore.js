@@ -34,7 +34,7 @@ function HighScore() {
     this.id = "highscores";
     this.table.className = "highscores";
 
-    var row = document.createElement("tr");
+    this.header = document.createElement("tr");
 
     var place = document.createElement("th");
     place.appendChild(document.createTextNode("Place"));
@@ -48,11 +48,11 @@ function HighScore() {
 
     this.page.appendChild(title);
 
-    row.appendChild(place);
-    row.appendChild(name);
-    row.appendChild(score);
+    this.header.appendChild(place);
+    this.header.appendChild(name);
+    this.header.appendChild(score);
 
-    this.table.appendChild(row);
+
 
     wrapper.appendChild(this.table);
 
@@ -92,6 +92,11 @@ HighScore.prototype.pullHighScores = function(){
  * @param obj
  */
 HighScore.prototype.buildScores = function(obj) {
+
+    while (this.table.firstChild) {
+        this.table.removeChild(this.table.firstChild);
+    }
+    this.table.appendChild(this.header);
 
     for(var i = 0; i < obj.length; i++){
         console.log(obj[i].username + " " + obj[i].score);
