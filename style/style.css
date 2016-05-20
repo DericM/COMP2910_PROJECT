@@ -57,8 +57,6 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 
-
-
 a {
     position: relative;
     width: 20%;
@@ -94,17 +92,11 @@ h4 {
     font-weight: 900;
 }
 
-<<<<<<< HEAD
-
-
-
-=======
 
 .wrapper table {
     width: 80%;
     margin: 10%;
     background-color: rgba(255,255,255, 0.7);
-
     border-width: thick;
     border-style: solid;
     border-color: #122b48;
@@ -114,8 +106,6 @@ h4 {
 .wrapper tr td {
     border-bottom:1pt solid #122b48;
 }
->>>>>>> 55cbef35cbd50196736b2d0ac4520629f0142fad
-
 
 
 
