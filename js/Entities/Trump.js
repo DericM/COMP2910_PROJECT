@@ -61,8 +61,6 @@ function Trump(_canvas, grid, column, row, image, _game) {
 				RESOURCES.playSound("neverbegreat");
 				this.resetLives();
                 grid.clearGrid();
-                console.log("FUCK");
-				//POPUPS.drawPopup("death");
                 DEFEAT.setVisibility(true);
                 
 			} else {
