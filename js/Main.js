@@ -2,7 +2,6 @@
 /* GLOBAL VARIABLES */
 var WIDTH;
 var HEIGHT;
-/** Used to save width of window if it stops being stored in WIDTH because the device is desktop. */
 var WINDOW_WIDTH;
 
 /* COMPONENTS */
@@ -22,26 +21,9 @@ var VICTORY;
 var DEFEAT;
 
 /**
- * Entry point.
+ * Entry point for the program.
  */
 function Main(){
-
-    this.init = function() {
-        CANVAS_MANAGER = new CanvasManager();
-
-        MENU = new Menu();
-        LOGIN = new Login();
-        REGISTER = new Register();
-        GAME = new Game();
-        PLAYER_DATA = new PlayerData();     
-        HIGH_SCORE = new HighScore();
-        VICTORY = new Victory();
-        DEFEAT = new Defeat();
-
-        LOADING_SCREEN.setVisibility(false);
-        MENU.setVisibility(true);
-    };
-
     var screenRatio = 640 / 360;
 
     WIDTH = window.innerWidth;
@@ -59,15 +41,35 @@ function Main(){
         //location.reload();
     };
 
-
     LOADING_SCREEN = new LoadingScreen();
     LOADING_SCREEN.setVisibility(true);
 
     RESOURCES = new ResourceManager();
     RESOURCES.loadImages(this);
     RESOURCES.loadSounds();
-    ORIENTATION_LISTENER = new OrientationListener();
+
 }
+
+/**
+ *  Initialize the components after resource manager has been loaded.
+ *      -This is called from ResourceManager.loadImages.
+ */
+Main.prototype.init = function() {
+    CANVAS_MANAGER = new CanvasManager();
+    ORIENTATION_LISTENER = new OrientationListener();
+    PLAYER_DATA = new PlayerData();
+
+    MENU = new Menu();
+    LOGIN = new Login();
+    REGISTER = new Register();
+    GAME = new Game();
+    HIGH_SCORE = new HighScore();
+    VICTORY = new Victory();
+    DEFEAT = new Defeat();
+
+    LOADING_SCREEN.setVisibility(false);
+    MENU.setVisibility(true);
+};
 
 
 
