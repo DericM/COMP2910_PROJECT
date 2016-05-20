@@ -1,40 +1,24 @@
 
 /* GLOBAL VARIABLES */
-
-/** Tile Size.*/
-var TILE_SIZE;
-/** Game Width.*/
 var WIDTH;
-/** Game Height.*/
 var HEIGHT;
-/** Resource Manager. Use this to get pictures.*/
-var RESOURCES;
-/** Manager for popups, contains methods for calling and removing them. */
-var POPUPS;
-/** Manager for canvases, instantiates them, all canvases accessed through this. */
-var CANVAS_MANAGER;
-
-var LOADING_SCREEN;
-/** THe menu. Use this to show and hide the menu. */
-var MENU;
-/** The game. Use this to show and hide the game canvas.*/
-var GAME;
-/** Listens for orientation change */
-var ORIENTATION_LISTENER;
-
-var LOGIN;
-
-var REGISTER;
-
 /** Used to save width of window if it stops being stored in WIDTH because the device is desktop. */
 var WINDOW_WIDTH;
 
+/* COMPONENTS */
+var CANVAS_MANAGER;
+var RESOURCES;
+var ORIENTATION_LISTENER;
 var PLAYER_DATA;
 
+/* PAGES */
+var LOADING_SCREEN;
+var MENU;
+var GAME;
+var LOGIN;
+var REGISTER;
 var HIGH_SCORE;
-
 var VICTORY;
-
 var DEFEAT;
 
 /**
@@ -44,7 +28,6 @@ function Main(){
 
     this.init = function() {
         CANVAS_MANAGER = new CanvasManager();
-        POPUPS = new PopupManager();
 
         MENU = new Menu();
         LOGIN = new Login();
@@ -58,10 +41,6 @@ function Main(){
         LOADING_SCREEN.setVisibility(false);
         MENU.setVisibility(true);
     };
-
-
-
-    TILE_SIZE = 50;
 
     var screenRatio = 640 / 360;
 

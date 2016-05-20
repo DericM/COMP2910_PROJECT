@@ -1,4 +1,7 @@
-
+/**
+ * Menu page.
+ * @constructor
+ */
 function Menu() {
     Page.call(this);
     
