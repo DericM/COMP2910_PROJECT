@@ -103,7 +103,7 @@ HighScore.prototype.buildScores = function(obj) {
         var row = document.createElement("tr");
 
         var place = document.createElement("td");
-        place.appendChild(document.createTextNode("" + i + 1));
+        place.appendChild(document.createTextNode("" + (i + 1)));
 
         var name = document.createElement("td");
         name.appendChild(document.createTextNode(obj[i].username));

@@ -52,6 +52,13 @@ button, input {
     margin-bottom: 25px;
 }
 
+input.formInvalid::-webkit-input-placeholder {
+    color: lightcoral;
+}
+
+
+
+
 a {
     position: relative;
     width: 20%;

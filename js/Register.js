@@ -21,16 +21,19 @@ function Register() {
     form.name = "register";
 
     var username = document.createElement("input");
+    username.className = "";
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
 
     var password = document.createElement("input");
+    password.className = "";
     password.type = "password";
     password.name = "password";
     password.placeholder = "Password";
 
     var confirm_password = document.createElement("input");
+    confirm_password.className = "";
     confirm_password.type = "password";
     confirm_password.name = "confirm_password";
     confirm_password.placeholder = "Confirm";
@@ -40,7 +43,26 @@ function Register() {
     submit.addEventListener('click', function(event){
         event.preventDefault();
 
+        //form validation
+        var valid = true;
+        if(username.value == "" || username.value.length > 30 || username.value.length < 5){
+            username.className = "formInvalid";
+            valid = false;
+        }
 
+        if(password.value == "" || username.value.length > 30 || username.value.length < 5){
+            password.className = "formInvalid";
+            valid = false;
+        }
+
+        if(password.value != confirm_password.value){
+            confirm_password.className = "formInvalid";
+            valid = false;
+        }
+
+        if(!valid){
+            return false;
+        }
 
 
         var url = "php/create_account.php"; // the script where you handle the form input.
@@ -56,8 +78,6 @@ function Register() {
                 if(data == "success"){
 
                 }
-                
-                
             }
 
         });
@@ -100,3 +120,8 @@ Register.prototype = {
         }
     }
 };
+
+
+Register.prototype = function(){
+    
+}
