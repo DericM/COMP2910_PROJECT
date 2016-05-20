@@ -76,7 +76,7 @@ HighScore.prototype = {
  */
 HighScore.prototype.pullHighScores = function(){
 
-    var url = "php/Highscore.php"; // the script where you handle the form input.
+    var url = "php/highscore.php"; // the script where you handle the form input.
 
     var bindThis = this;
 
