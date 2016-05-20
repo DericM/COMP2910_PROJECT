@@ -53,9 +53,7 @@ function Main(){
         PLAYER_DATA = new PlayerData();     
         HIGH_SCORE = new HighScore();
         // VICTORY = new Victory();
-        // DEFEAT = new Defeat();
-        // VICTORY = new Victory();
-        // DEFEAT = new Defeat();
+        DEFEAT = new Defeat();
 
         LOADING_SCREEN.setVisibility(false);
         MENU.setVisibility(true);
