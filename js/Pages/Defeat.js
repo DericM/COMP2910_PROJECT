@@ -11,7 +11,7 @@ function Defeat() {
 
     this.page.id = "defeat";
     this.page.className = "popup";
-    
+
     var title = document.createElement("h1");
     title.innerHTML = "Defeat";
 
@@ -19,7 +19,7 @@ function Defeat() {
     wrapper.className  = "wrapper";
 
     var newGame = document.createElement("button");
-    newGame.appendChild(document.createTextNode("Play"));
+    newGame.appendChild(document.createTextNode("New Game"));
     newGame.addEventListener('click', function(){
         DEFEAT.setVisibility(false);
         GAME.newGame();
