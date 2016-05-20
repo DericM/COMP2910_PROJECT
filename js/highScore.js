@@ -26,7 +26,7 @@ function HighScore() {
 
 
     this.table = document.createElement("table");
-    this.id = "highscores";
+    this.table.className = "highscores";
 
     var row = document.createElement("tr");
 

@@ -21,7 +21,6 @@ function Register() {
     form.name = "register";
 
     var username = document.createElement("input");
-    username.className = "";
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
@@ -121,7 +120,3 @@ Register.prototype = {
     }
 };
 
-
-Register.prototype = function(){
-    
-}
