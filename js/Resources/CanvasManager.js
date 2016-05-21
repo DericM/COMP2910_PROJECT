@@ -7,15 +7,18 @@ function CanvasManager() {
     this.backgroundCanvas = new Canvas();
     this.gameCanvas = new Canvas("canvas-game");
     this.uiCanvas =  new Canvas("canvas-ui");
-    //this.popupCanvas = new Canvas("canvas-popup");
-    this.backgroundCanvas.setVisible(false);
-    this.gameCanvas.setVisible(false);
- //   this.popupCanvas.setVisible(false);
-    this.uiCanvas.setVisible(false);
-    this.orientCanvas.setVisible(false);
-    this.orientCanvas.setWidth(HEIGHT);
-    this.orientCanvas.setHeight(WINDOW_WIDTH);
-    this.orientCanvas.getContext().fillStyle = "#CCC000";
-    this.orientCanvas.getContext().fillRect(0, 0, this.orientCanvas.getWidth, this.orientCanvas.getHeight());
-    this.orientCanvas.getContext().drawImage(RESOURCES.getImage("orientlistener"), 0, 0, HEIGHT, WINDOW_WIDTH);
+
+    /**
+     * Sets the visibility of all canvases except for the orientCanvas to
+     * visible or invisible.
+     *
+     * @param {boolean} visibility
+     */
+    this.setCanvasesVisibility = function(visibility) {
+        for(var object in this) {
+            if(this[object] instanceof Canvas && object != this.orientCanvas) {
+                this[object].setVisible(visibility);
+            }
+        }
+    };
 }

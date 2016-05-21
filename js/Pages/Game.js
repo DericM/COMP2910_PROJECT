@@ -17,9 +17,7 @@ function Game() {
      * Initializes a new game.
      */
     this.newGame = function() {
-        CANVAS_MANAGER.backgroundCanvas.setVisible(true);
-        CANVAS_MANAGER.gameCanvas.setVisible(true);
-        CANVAS_MANAGER.uiCanvas.setVisible(true);
+        CANVAS_MANAGER.setCanvasesVisibility(true);
         level = 0;
         scoreTracker.resetScore();
         scoreTracker.clearFail();

@@ -59,6 +59,7 @@ function ResourceManager() {
 
         for(var src in imageSources) {
             images[src] = new Image();
+            images[src].id = src;
             images[src].onload = function() {
                 if(++loadedImages >= numImages) {
                     //proved images loaded here.

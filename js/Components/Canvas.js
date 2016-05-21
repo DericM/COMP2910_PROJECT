@@ -6,16 +6,13 @@ function Canvas(id) {
     this.width = WIDTH;
     this.height = HEIGHT;
     this.drawables = [];
-
     this.canvas = document.createElement("canvas");
-    this.canvas.style.border = "1px solid black";
     this.canvas.style.position = "absolute";
     this.canvas.setAttribute('width', this.width);
     this.canvas.setAttribute('height', this.height);
     this.canvas.id = id;
-
     this.context = this.canvas.getContext("2d");
-    document.getElementById("container").appendChild(this.canvas);
+    this.visiblility = false;
 }
 
 
@@ -108,11 +105,11 @@ Canvas.prototype = {
      * @param {boolean} visibility: True to add to dom tree, false to remove from.
      */
     setVisible: function(visibility) {
-        if(visibility == false) {
-            document.getElementById("container").removeChild(this.canvas);
-        } else {
-            document.getElementById("container").appendChild(this.canvas);
-        }
+            if(this.visibility == false) {
+                document.getElementById("container").removeChild(this.canvas);
+            } else {
+                document.getElementById("container").appendChild(this.canvas);
+            }
     }
 
 };
