@@ -19,8 +19,6 @@ function Grid(canvas) {
 	var sectionWidth;
 	var sectionHeight;
 	var trump;
-	var trumpRow;
-	var trumpCol;
 
 	/**
 	 * Determines the coordinates needed to draw the grid.
@@ -121,10 +119,11 @@ function Grid(canvas) {
 	 * @param oldRow Donald Trumps' previous row.
 	 */
 	this.moveTrump = function(oldCol, oldRow) {
-		trumpCol = trump.getColumn();
-		trumpRow = trump.getRow();
-		entities[trumpRow][trumpCol] = trump;
+		entities[trump.getRow()][trump.getColumn()] = trump;
 		entities[oldRow][oldCol] = null;
+		setInterval(function() {
+			trump.draw()
+		}, 20);
 	};
 
 	/**
@@ -208,11 +207,6 @@ function Grid(canvas) {
 				 context.stroke();*/
 				if(entities[i][j] != null) {
 					entities[i][j].draw(xOffset, yOffset);
-				}
-				if(entities[i][j] instanceof Trump) {
-					trump = entities[i][j];
-					trumpRow = i;
-					trumpCol = j;
 				}
 				xOffset += sectionWidth;
 			}

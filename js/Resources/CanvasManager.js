@@ -6,6 +6,7 @@ function CanvasManager() {
     this.orientCanvas = new Canvas();
     this.backgroundCanvas = new Canvas();
     this.gameCanvas = new Canvas("canvas-game");
+    this.trumpCanvas = new Canvas();
     this.uiCanvas =  new Canvas("canvas-ui");
 
     /**

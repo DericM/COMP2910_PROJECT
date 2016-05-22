@@ -45,7 +45,10 @@ function Trump(_canvas, grid, column, row, image, _game) {
      */
 	this.checkState = function() {
 		if (grid.getSectionAt(column, row) instanceof Fadable) {
+
 			if (game.getLevel() === 0) {
+                //easter egg
+                /*
 				RESOURCES.playSound("snake_woman");
 				canvas.getContext().drawImage(RESOURCES.getImage("snake"), grid.getXCoord(), grid.getYCoord(), grid.getWidth(), grid.getHeight());
                 window.setTimeout(function() {
@@ -53,6 +56,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 					CANVAS_MANAGER.uiCanvas.clear();
 					GAME.getTrump().drawMovementX();
 				}, 3000);
+				*/
 			} else if (lives != 0) {
 				RESOURCES.playSound("explosion");
 				window.setTimeout(function() {
@@ -115,7 +119,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
             } else if (code == 39 || trump.isInside(rightX, yCoord, centerX, centerY, rightX, bottomY, x, y)) {
                 //right
                 if (column != grid.getColumns() - 1) {
-                    column++;           
+                    column++;
                     moved = true;
                 }
             } else if (code == 40 || trump.isInside(rightX, bottomY, centerX, centerY, xCoord, bottomY, x, y)) {
@@ -139,6 +143,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
             CANVAS_MANAGER.gameCanvas.draw();
         }
     }
+
 
     /**
      * Draws the movement X.

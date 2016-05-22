@@ -12,7 +12,6 @@ function Canvas(id) {
     this.canvas.setAttribute('height', this.height);
     this.canvas.id = id;
     this.context = this.canvas.getContext("2d");
-    this.visiblility = false;
 }
 
 
