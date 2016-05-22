@@ -121,9 +121,6 @@ function Grid(canvas) {
 	this.moveTrump = function(oldCol, oldRow) {
 		entities[trump.getRow()][trump.getColumn()] = trump;
 		entities[oldRow][oldCol] = null;
-		setInterval(function() {
-			trump.draw()
-		}, 20);
 	};
 
 	/**
