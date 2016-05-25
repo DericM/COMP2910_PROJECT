@@ -78,6 +78,7 @@ function Game() {
 		if (level == 0 && TUTORIAL.readCookie() == false) {
 			trump.setVisible(true);
 			TUTORIAL.run(grid);
+			console.log("Cookie setting in Game.js is commented out.");
 			//TUTORIAL.setCookie(true, 365);
 		} else {
 			window.setTimeout(function() {
