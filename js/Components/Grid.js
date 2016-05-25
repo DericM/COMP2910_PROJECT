@@ -169,6 +169,17 @@ function Grid(canvas) {
 		CANVAS_MANAGER.gameCanvas.draw();
 	};
 
+	this.showWhiteHouse = function() {
+		for (i = 0; i < rows; i++) {
+			for (j = 0; j < columns; j++) {
+				if (entities[i][j] instanceof WhiteHouse) {
+					entities[i][j].setVisible(true);
+					return true;
+				}
+			}
+		}
+	}
+	
 	/**
 	 * @returns {Context} context: The context the grid is painted to.
 	 */

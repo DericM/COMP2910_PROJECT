@@ -1,6 +1,7 @@
 function Tutorial() {
 	//this.tutorialDone = false;
 	//this.exDays = 365;
+	
 }
 
 /*
@@ -31,12 +32,15 @@ Tutorial.prototype.run = function(grid) {
 	var height = canvas.getHeight();
 	var ctx = canvas.getContext();
 	
+	grid.showWhiteHouse();
 	canvas.draw();
 	
 	this.drawArrow(ctx, width, height);
 	
 	document.getElementById("container").onmousedown = function () {
+		
 		canvas.draw();
+		
 		window.setTimeout(function() {
 			grid.setFade(false);
 		}, 2000);
