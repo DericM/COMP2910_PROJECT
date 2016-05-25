@@ -75,17 +75,10 @@ function Game() {
             trump.toggleListener(true);
         }, 2000);
 
-		
-		
-        
-		
-		//console.log("is there a cookie? : " + TUTORIAL.readCookie());
 		if (level == 0 && TUTORIAL.readCookie() == false) {
 			trump.setVisible(true);
-			alert("run tutorial");
 			TUTORIAL.run(grid);
 			//TUTORIAL.setCookie(true, 365);
-			
 		} else {
 			window.setTimeout(function() {
 				grid.setFade(false);
