@@ -61,26 +61,21 @@ input.formInvalid::-webkit-input-placeholder {
     color: lightcoral;
 }
 
-#container {
-    position:relative;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-}
-
-.page{
+#container, .page, .game, .popup{
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+#container {
+    background-color: white;
+}
+
+.page {
     background: white url("../Images/menu_background.png") no-repeat;
     background-size: 100%;
 }
 
-.popup {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
 
 .popup h1{
     margin-bottom: 50px;

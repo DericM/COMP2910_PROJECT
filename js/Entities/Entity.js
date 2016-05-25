@@ -29,7 +29,7 @@ function Entity(_grid, _column, _row, _image, _visible) {
 	/**
 	 * Sets the visibility property of this Fadable.
 	 *
-	 * @param visible
+	 * @param _visible
 	 */
 	this.setVisible = function(_visible) {
 		visible = _visible;

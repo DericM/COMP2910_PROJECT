@@ -19,6 +19,7 @@ function Menu() {
     play.appendChild(document.createTextNode("Play"));
     play.addEventListener('click', function(){
         MENU.setVisibility(false);
+        GAME.setVisibility(true);
         GAME.newGame();
     });
 

@@ -28,8 +28,7 @@ function Defeat() {
     var score = document.createElement("button");
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
-        CANVAS_MANAGER.gameCanvas.setVisible(false);
-        CANVAS_MANAGER.uiCanvas.setVisible(false);
+        GAME.setVisibility(false);
         DEFEAT.setVisibility(false);
         HIGH_SCORE.pullHighScores();
         HIGH_SCORE.setVisibility(true);
@@ -39,8 +38,7 @@ function Defeat() {
     var home = document.createElement("div");
     home.className = "home-button";
     home.addEventListener('click', function(){
-        CANVAS_MANAGER.gameCanvas.setVisible(false);
-        CANVAS_MANAGER.uiCanvas.setVisible(false);
+        GAME.setVisibility(false);
         DEFEAT.setVisibility(false);
         MENU.setVisibility(true);
     });
