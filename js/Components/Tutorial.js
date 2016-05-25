@@ -55,7 +55,6 @@ Tutorial.prototype.run = function(grid) {
 			}, 2000);
 		}
 	}
-	
 };
 
 /**
