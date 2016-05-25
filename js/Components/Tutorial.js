@@ -9,8 +9,6 @@ function Tutorial() {}
  * @param exdays the number of days until the cookie expires
  */
 Tutorial.prototype.setCookie = function(done, exdays) {
-    //this.tutorialDone = done;
-    //this.exDays = exdays;
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
