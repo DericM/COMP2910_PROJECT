@@ -10,9 +10,11 @@ function Game() {
     CANVAS_MANAGER.gameCanvas.insertDrawable(scoreTracker);
     var trump = new Trump(CANVAS_MANAGER.uiCanvas, grid, 0, 0, RESOURCES.getImage("trump"), this);
     grid.addTrump(trump);
+	
     this.getTrump = function() {
         return trump;
     };
+	
     /**
      * Initializes a new game.
      */
@@ -73,9 +75,22 @@ function Game() {
             trump.toggleListener(true);
         }, 2000);
 
-        window.setTimeout(function () {
-            grid.setFade(false)
-        }, 2000);
+		
+		
+        
+		
+		//console.log("is there a cookie? : " + TUTORIAL.readCookie());
+		if (level == 0 && TUTORIAL.readCookie() == false) {
+			trump.setVisible(true);
+			alert("run tutorial");
+			TUTORIAL.run(grid);
+			//TUTORIAL.setCookie(true, 365);
+			
+		} else {
+			window.setTimeout(function() {
+				grid.setFade(false);
+			}, 2000);
+		}
     };
 
     /**
