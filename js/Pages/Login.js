@@ -2,6 +2,7 @@
  * Created by Deric on 2016-05-16.
  */
 
+
 /**
  * Login page.
  * @constructor
@@ -55,13 +56,10 @@ function Login() {
                 //console.log(obj);
 
                 if(obj.logged_in == "true"){
-                    PLAYER_DATA.setLoggedInState(true);
-                    PLAYER_DATA.setUserName(obj.username);
-                    PLAYER_DATA.setId(obj.id);
-                    
-                    //PLAYER_DATA.mergeScores(obj.);
+                    PLAYER_DATA.login(obj);
+
                     LOGIN.setVisibility(false);
-                    MENU.togleLoginButton(true);
+                    MENU.toggleLoginButton(true);
                     MENU.setVisibility(true);
                     username.className = "";
                     password.className = "";

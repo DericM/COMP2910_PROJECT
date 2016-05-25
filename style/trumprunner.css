@@ -21,16 +21,14 @@ body {
     user-select: none;
 }
 
-#container {
-    position:relative;
+h1 {
     width: 100%;
-    height: 100%;
-    background-color: white;
+    text-align: center;
+    top: 10px;
+    color: #122b48;
+    font-size: 2.8em;
+    text-shadow: -1px -1px #122b48, 1px 1px #fa6c05;
 }
-
-
-/*///////////////////////////////////MENU//////////////////////////////////////*/
-
 
 button, div, h1, form {
     position:relative;
@@ -51,12 +49,78 @@ button, input {
     margin-bottom: 25px;
 }
 
+button:hover {
+    background-color: #4960a7;
+    border-color: #fc9821;
+}
+
+input {
+    height: 30px;
+}
 input.formInvalid::-webkit-input-placeholder {
     color: lightcoral;
 }
 
+#container {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
 
-a {
+.page{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: white url("../Images/menu_background.png") no-repeat;
+    background-size: 100%;
+}
+
+.popup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popup h1{
+    margin-bottom: 50px;
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.popup .wrapper {
+    width: 80%;
+    height: 50%;
+    left: 10%;
+    background-color: rgba(255,255,255, 0.7);
+    border: thick solid #122b48;
+}
+
+
+.home-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../Images/home-button.png");
+    background-size: 100%;
+}
+
+
+
+
+
+
+
+/*///////////////////////////////////MENU//////////////////////////////////////*/
+
+
+#register-page a {
     position: relative;
     width: 20%;
     height: 20px;
@@ -66,48 +130,71 @@ a {
     color: cornflowerblue;
 }
 
-input {
-    height: 30px;
-}
-
-
-button:hover {
-    background-color: #4960a7;
-    border-color: #fc9821;
-}
-
-h1 {
-    width: 100%;
-    text-align: center;
-    top: 10px;
-    color: #122b48;
-    font-size: 2.8em;
-    text-shadow: -1px -1px #122b48, 1px 1px #fa6c05;
-}
 
 h4 {
-    color: cornflowerblue;
     position: relative;
+    color: cornflowerblue;
     font-weight: 900;
 }
 
 
-.wrapper table {
+/*//////////////////////////////////////////HIGH SCORE////////////////////////////////////*/
+
+#high-score .wrapper {
     width: 80%;
-    margin: 10%;
+    left: 10%;
     background-color: rgba(255,255,255, 0.7);
     border-width: thick;
     border-style: solid;
     border-color: #122b48;
+    text-align:center;
 }
 
-.wrapper tr td {
+#high-score table {
+    width: 100%;
+}
+
+#high-score tr td {
     border-bottom:1pt solid #122b48;
 }
 
-.wrapper th {
+#high-score th {
     text-align: left;
 }
+
+#high-score a {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#high-score .trophy {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#high-score .inactive {
+    background-image: url("../Images/trophy-black.png");
+    background-size: 100%;
+}
+#high-score .active {
+    background-image: url("../Images/trophy-gold.png");
+    background-size: 100%;
+}
+#high-score .left {
+    float: left;
+    left: 10%;
+}
+#high-score .right {
+    float: right;
+    left: -10%;
+}
+#high-score .center {
+    display: inline-block;
+    margin:0 auto;
+}
+
 
 
 /*///////////////////////////////////LOADING//////////////////////////////////////*/
@@ -127,54 +214,11 @@ h4 {
 
 
 
-.page{
-    position: relative;
-    width:100%;
-    height: 100%;
-    background: white url("../Images/menu_background.png") no-repeat;
-    background-size: 100%;
-}
-
-.popup {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-.popup .wrapper {
-    width: 80%;
-    height: 50%;
-    left: 10%;
-
-    background-color: rgba(255,255,255, 0.7);
-    border-width: thick;
-    border-style: solid;
-    border-color: #122b48;
-}
-.popup h1{
-    margin-bottom: 50px;
-}
 
 
 
 
-.wrapper {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-}
 
-.home-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background-image: url("../Images/home-button.png");
-    background-size: 100%;
-}
+
 
 

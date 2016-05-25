@@ -13,6 +13,7 @@ function Game() {
     this.getTrump = function() {
         return trump;
     };
+
     /**
      * Initializes a new game.
      */
@@ -86,3 +87,18 @@ function Game() {
         return level;
     }
 }
+
+
+
+Game.prototype.addHomeButton = function(){
+
+    var home = document.createElement("div");
+    home.className = "home-button";
+    home.addEventListener('click', function(){
+        GAME.setVisibility(false);
+        MENU.setVisibility(true);
+    });
+
+
+
+};

@@ -8,6 +8,7 @@
  */
 require_once("database.php");
 require_once("user.php");
+require_once("achievement.php");
 
 if(isset($_POST['username']) 
 	&& isset($_POST['password']) 
@@ -25,6 +26,15 @@ if(isset($_POST['username'])
 
 	//inject the user into the database
 	if($user->create()) {
+		//create a row in the achievement table for this user
+		$achievement = new Achievement();
+		$achievement->id = $user->id;
+		//set all the achievement status to zero == false 
+		$achievement->a1 = 0;
+		$achievement->a2 = 0;
+		$achievement->a3 = 0;
+		$achievement->create();
+		//$achievement->update_achievement(2,1);
 		//send this back to JS
 		echo "success";
 	} else {

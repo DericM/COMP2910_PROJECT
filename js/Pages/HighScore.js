@@ -46,6 +46,10 @@ function HighScore() {
     score.appendChild(document.createTextNode("Score"));
 
 
+    this.achievements = document.createElement("div");
+
+
+
     this.page.appendChild(title);
 
     this.header.appendChild(place);
@@ -55,6 +59,7 @@ function HighScore() {
 
 
     wrapper.appendChild(this.table);
+    wrapper.appendChild(this.achievements);
 
     this.page.appendChild(wrapper);
     this.page.appendChild(home);
@@ -79,10 +84,8 @@ HighScore.prototype.pullHighScores = function(){
         type: "POST",
         url: url,
         success: function(data) {
-
             var obj = JSON.parse(data);
             bindThis.buildScores(obj);
-
         }
     });
 };
@@ -117,6 +120,61 @@ HighScore.prototype.buildScores = function(obj) {
         row.appendChild(score);
 
         this.table.appendChild(row);
-
     }
+
+    //////////////////////////////////////////
+    //temporary until I reorganize things.
+    this.buildAchievements();
+    /////////////////////////////////////
 };
+
+/**
+ * Build the trophies
+ */
+HighScore.prototype.buildAchievements = function(){
+
+    //don't build achievements if no one is logged in.
+    if(!PLAYER_DATA.loggedInState){
+        return;
+    }
+
+    //remove
+    while (this.achievements.firstChild) {
+        this.achievements.removeChild(this.achievements.firstChild);
+    }
+
+    for(var i = 0; i < PLAYER_DATA.achievements.length;i++){
+        var trophy = document.createElement("a");
+        trophy.className = "trophy";
+        trophy.href = "trophy" + i;
+        trophy.setAttribute("data-rel", "popup");
+
+
+        var dialog = document.createElement("div");
+        dialog.appendChild(document.createTextNode(PLAYER_DATA.achievName[i]));
+        dialog.setAttribute("data-role", "popup");
+        dialog.id = "trophy" + i;
+
+        if(i + 1 % 3 == 1){
+            trophy.className += " left";
+        }
+        else if(i + 1 % 3 == 2){
+            trophy.className += " center";
+        }
+        else {
+            trophy.className += " right";
+        }
+
+        if(PLAYER_DATA.achievements[i]){
+            trophy.className += " active";
+        }
+        trophy.className += " inactive";
+        this.achievements.appendChild(trophy);
+    }
+
+};
+
+
+
+
+

@@ -7,51 +7,70 @@
  * @constructor
  */
 function PlayerData(){
-    this.loggedInState = false;
-    this.userName = "default";
-    this.highScores = new Array(10);
+
+    this.loggedInState =  false;
+    this.userName =  "";
+    this.highScores =  new Array(10);
     this.id = null;
+
+    this.achievements =  new Array(3);
+    this.achievements[0] = false;
+    this.achievements[1] = false;
+    this.achievements[2] = false;
+
+    this.achievName = new Array(3);
+    this.achievName[0] = "Make America Great Again!";
+    this.achievName[1] = "Meet the Witch!";
+    this.achievName[2] = "High Energy!";
 }
-PlayerData.prototype.setId = function(id) {
-    this.id = id;
-};
 
-PlayerData.prototype.getId = function() {
-    return this.id;
-};
 
 /**
- *
- * @param state
+ * Sets the player data on login.
+ * @param obj
  */
-PlayerData.prototype.setLoggedInState = function(state){
-    this.loggedInState = state;
-};
-
-/**
- *
- * @returns {boolean|*}
- */
-PlayerData.prototype.getLoggedInState = function(){
-    return this.loggedInState;
+PlayerData.prototype.login = function(obj){
+    this.loggedInState = true;
+    this.userName = obj.username;
+    this.id = obj.id;
+    if(obj.achievement_array[0].a1 == 1){
+        this.achievements[0] = true;
+    }
+    if(obj.achievement_array[0].a2 == 1){
+        this.achievements[1] = true;
+    }
+    if(obj.achievement_array[0].a3 == 1){
+        this.achievements[2] = true;
+    }
 };
 
 
 /**
  *
- * @param user
+ * @param number
+ * @returns {boolean}
  */
-PlayerData.prototype.setUserName = function(user){
-    this.userName = user;
+PlayerData.giveAchievement = function(number){
+
+    if(!this.loggedInState){
+        return false;
+    }
+
+    if(this.achievements[number]){
+        return false;
+    }
+
+    this.achievements[number] = true;
+
+    $.post("php/update_achievement.php", {
+        id: this.id,
+        achNo: number + 1
+    });
+
+    return true;
 };
 
-/**
- *
- * @returns {*|string}
- */
-PlayerData.prototype.getUserName = function(){
-    return this.userName;
-};
+
 
 /**
  * Adds a score to the users high score history.
@@ -80,6 +99,61 @@ PlayerData.prototype.mergeScores = function(scoreHistory){
         this.addToHighScores(currentScores);
     }
 };
+
+
+
+
+
+
+/**
+ *
+ * @param id
+ */
+PlayerData.prototype.setId = function(id) {
+    this.id = id;
+};
+
+/**
+ *
+ * @returns {*|null}
+ */
+PlayerData.prototype.getId = function() {
+    return this.id;
+};
+
+/**
+ *
+ * @param state
+ */
+PlayerData.prototype.setLoggedInState = function(state){
+    this.loggedInState = state;
+};
+
+/**
+ *
+ * @returns {boolean|*}
+ */
+PlayerData.prototype.getLoggedInState = function(){
+    return this.loggedInState;
+};
+
+/**
+ *
+ * @param user
+ */
+PlayerData.prototype.setUserName = function(user){
+    this.userName = user;
+};
+
+/**
+ *
+ * @returns {*|string}
+ */
+PlayerData.prototype.getUserName = function(){
+    return this.userName;
+};
+
+
 
 
 

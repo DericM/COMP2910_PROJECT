@@ -53,7 +53,7 @@ function Menu() {
     this.logout.appendChild(document.createTextNode("logout"));
     this.logout.addEventListener('click', function(){
         PLAYER_DATA = new PlayerData();
-        MENU.togleLoginButton(false);
+        MENU.toggleLoginButton(false);
     });
 
     this.page.appendChild(title);
@@ -71,7 +71,7 @@ Menu.prototype.constructor = Menu;
 
 
 
-Menu.prototype.togleLoginButton = function(state){
+Menu.prototype.toggleLoginButton = function(state){
     if(state){
         this.wrapper.removeChild(this.login);
         this.wrapper.appendChild(this.logout);

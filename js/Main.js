@@ -25,6 +25,7 @@ var DEFEAT;
  * Entry point for the program.
  */
 function Main(){
+    
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
     PIXEL_RATIO = 16 / 9;
@@ -71,6 +72,7 @@ Main.prototype.init = function() {
 
     LOADING_SCREEN.setVisibility(false);
     MENU.setVisibility(true);
+
 };
 
 
