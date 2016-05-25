@@ -38,10 +38,21 @@ function ResourceManager() {
         im_rich : "Sounds/im_rich.mp3",
         nobody_builds : "Sounds/nobody_builds.mp3",
         mexico_pay : "Sounds/mexico_pay.mp3",
-        im_smart : "Sounds/im_smart.mp3"
+        im_smart : "Sounds/im_smart.mp3",
+		
+		art_of_the_deal : "Sounds/art_of_the_deal.mp3",
+		country_to_hell : "Sounds/country_to_hell.mp3",
+		handsome : "Sounds/handsome.mp3",
+		having_fun : "Sounds/having_fun.mp3",
+		insane : "Sounds/insane.mp3",
+		lets_go_on : "Sounds/lets_go_on.mp3",
+		like_in_a_war : "Sounds/like_in_a_war.mp3",
+		more_energy_tonight : "Sounds/more_energy_tonight.mp3",
+		proud : "Sounds/proud.mp3",
+		wonderful_guy : "Sounds/wonderful_guy.mp3"
     };
     
-    var winSounds = ["build_wall", "im_rich", "nobody_builds", "mexico_pay", "im_smart"];
+    var winSounds = ["build_wall", "im_rich", "nobody_builds", "mexico_pay", "im_smart", "proud", "wonderful_guy", "country_to_hell", "handsome", "having_fun", "insane", "lets_go_on", "like_in_a_war", "more_energy_tonight", "art_of_the_deal"];
     var chooser = 0;
     
     this.getNextWinSound = function() {
