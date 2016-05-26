@@ -9,7 +9,12 @@
  */
 function Trump(grid, column, row, image) {
     Entity.call(this, grid, column, row, image, false);
+<<<<<<< HEAD
     var maxLives = 3;
+=======
+
+    var maxLives = 2;
+>>>>>>> 307a91b9b68582bb2f5679c8c3680531029f2075
     var lives = maxLives;
     var centerX;
     var centerY;
@@ -75,6 +80,10 @@ function Trump(grid, column, row, image) {
             }
         }
     };
+    
+    this.getLives = function() {
+        return lives;
+    };
 
     var distanceBetween = function (x1, y1, x2, y2) {
         return (Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
@@ -90,13 +99,14 @@ function Trump(grid, column, row, image) {
             if (lives != 0) {
                 GAME.setupLevel(false);
             } else {
-                GAME.logScore();
+                if (PLAYER_DATA.getLoggedInState()) {
+                    GAME.logScore();
+                }
                 this.resetLives();
                 RESOURCES.playSound("neverbegreat");
                 DEFEAT.setVisibility(true);
             }
         }.bind(this), RESOURCES.getAnimation("explosion").length * 15);
-
     };
 
     this.hitTheWhiteHouse = function () {
@@ -299,7 +309,7 @@ function Trump(grid, column, row, image) {
     };
 
     window.onkeydown = this.moveMe;
-    CANVAS_MANAGER.uiCanvas.getCanvas().addEventListener("mousedown", this.moveMe, false);
+    CANVAS_MANAGER.uiCanvas.getCanvas().addEventListener("click", this.moveMe, false);
 }
 
 //inheritance stuff

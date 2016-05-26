@@ -63,8 +63,15 @@ function Grid() {
 		["*xwxxx", "c*xxxx", "xx**xx", "*xx*xx", "x*x*x*", "xxx*xx", "xx*xxx", "xxtxxx"],
 		["*xxx*s", "xx*xxx", "*xxxx*", "xxt**x", "xx*wxx", "x*xxx*", "xxx*xx", "x*xxx*"],
 		["xwxx**", "**xxxx", "**x**x", "xxx**x", "**xxxx", "**x**x", "xxx**x", "**xxtx"],
-		["cx*xxw", "*x*x*x", "xx*xxx", "x*xxx*", "xx**xx", "*x*p*x", "xxxxxx", "txx**x"]
+		["cx*xxw", "*x*x*x", "xx*xxx", "x*xxx*", "xx**xx", "*x*p*x", "xxxxxx", "txx**x"],
 
+		["px*xxx", "*x*x*w", "xxxx**", "xxxxxx", "****xx", "***xx*", "**xx**", "*txxxx"],
+		["x*x*s*", "x*x*xx", "x*xx*x", "xxtxxx", "x***xx", "xxxxxx", "**x***", "xxxxwx"],
+		["w**xxc", "x*xx*x", "xxx*xx", "*xxxx*", "*x**x*", "xxxxxx", "x*xx*x", "x*tx*p"],
+		["sx*xxx", "*xxx*x", "xxx*wx", "xt*xxx", "x*xxx*", "xxxx*x", "xxx*xx", "xx*xxx"],
+		["*xs*tx", "*x*x*x", "xxx*xx", "xx*xxx", "x*xxx*", "xxxx*x", "xxw*xx", "xx*xxx"],
+		["xxxtx*", "*x***c", "xxx**x", "*xxx*x", "**xxxx", "xxx**x", "xxx**x", "*wxxxx"],
+		["xxxw**", "xxx***", "**xxx*", "xxxxx*", "xx****", "xxxxx*", "***xxx", "txxxxx"]
 	];
 	var trump = new Trump(this, 0, 0, RESOURCES.getImage("trump"));
 	var whitehouse = new WhiteHouse(this, 0, 0, RESOURCES.getImage("whitehouse"));
@@ -118,6 +125,10 @@ function Grid() {
 
 	var getStar = function(column, row) {
 		return stars[starCount++];
+	};
+	
+	this.getTrump = function() {
+		return trump;
 	};
 
 	/**
@@ -203,7 +214,7 @@ function Grid() {
 	this.initializeLevel = function(level) {
 		trump.toggleListener(false);
         initialVisibility();
-		if(level == 0){
+		if(level == 0 && TUTORIAL.firstRun == true){
             trump.setVisibility(true);
             whitehouse.setVisibility(true);
 		    TUTORIAL.setVisibility(true);
@@ -211,8 +222,6 @@ function Grid() {
 		else {
 			this.levelFadeIn();
 		}
-
-
 	};
 
 	this.levelFadeIn = function(){
@@ -411,6 +420,8 @@ function Grid() {
 				}
 			}
 		}
+		
+		GAME.scoreTracker.draw();
 	};
 
 	/**
@@ -508,13 +519,13 @@ function Grid() {
 		}
 		mineCount = sprayCount = certCount = starCount = 0;
 
-		for(var i = 0; i < mostMines; i++)
+		for(i = 0; i < mostMines; i++)
 			mines[i] = new Mine(this, 0, 0, RESOURCES.getImage("mine"));
-		for(var i = 0; i < mostSprays; i++)
+		for(i = 0; i < mostSprays; i++)
 			sprays[i] = new SprayTan(this, 0, 0, RESOURCES.getImage("spraytan"));
-		for(var i = 0; i < mostCerts; i++)
+		for(i = 0; i < mostCerts; i++)
 			certs[i] = new Certificate(this, 0, 0, RESOURCES.getImage("certificate"));
-		for(var i = 0; i < mostStars; i++)
+		for(i = 0; i < mostStars; i++)
 			stars[i] = new Star(this, 0, 0, RESOURCES.getImage("star"));
 	};
 	this.createEntityPool();
