@@ -170,6 +170,22 @@ function Grid(canvas) {
 	};
 
 	/**
+	 * Sets the visibility of the White House to true.
+	 *
+	 * (Called from Tutorial.js.)
+	 */
+	this.showWhiteHouse = function() {
+		for (i = 0; i < rows; i++) {
+			for (j = 0; j < columns; j++) {
+				if (entities[i][j] instanceof WhiteHouse) {
+					entities[i][j].setVisible(true);
+					return true;
+				}
+			}
+		}
+	}
+	
+	/**
 	 * @returns {Context} context: The context the grid is painted to.
 	 */
 	this.getContext = function() {

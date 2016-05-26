@@ -21,6 +21,8 @@ var HIGH_SCORE;
 var VICTORY;
 var DEFEAT;
 
+var TUTORIAL;
+
 /**
  * Entry point for the program.
  */
@@ -70,6 +72,8 @@ Main.prototype.init = function() {
     VICTORY = new Victory();
     DEFEAT = new Defeat();
 
+	TUTORIAL = new Tutorial();
+	
     LOADING_SCREEN.setVisibility(false);
     MENU.setVisibility(true);
 

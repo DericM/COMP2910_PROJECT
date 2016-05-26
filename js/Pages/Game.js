@@ -113,9 +113,36 @@ Game.prototype.setupLevel = function(passed) {
         myThis.trump.toggleListener(true);
     }, 2000);
 
+	if (this.level == 0 && TUTORIAL.readCookie() == false) {
+		myThis.trump.setVisible(true);
+		TUTORIAL.run(myThis.grid);
+		console.log("Cookie setting in Game.js is commented out.");
+		//TUTORIAL.setCookie(true, 365);
+	} else {
+		window.setTimeout(function() {
+			myThis.grid.setFade(false);
+		}, 2000);
+	}
+	
+	/*
     window.setTimeout(function () {
         myThis.grid.setFade(false)
     }, 2000);
+	*/
+	
+	/*
+	if (level == 0 && TUTORIAL.readCookie() == false) {
+		trump.setVisible(true);
+		TUTORIAL.run(grid);
+		console.log("Cookie setting in Game.js is commented out.");
+		//TUTORIAL.setCookie(true, 365);
+	} else {
+		window.setTimeout(function() {
+			grid.setFade(false);
+		}, 2000);
+	}
+	*/
+	
 };
 
 /**

@@ -26,6 +26,23 @@ Canvas.prototype = {
     clear: function() {
         this.context.clearRect(0, 0, this.width, this.height);
     },
+	
+	/**
+	* Returns width.
+	* @returns {*}
+	*/
+	getWidth: function() {
+		return this.width;
+	},
+
+    /**
+    * Returns height.
+    * @returns {*}
+    */
+    getHeight: function() {
+        return this.height;
+    },
+	
     /**
      * Return context.
      * @returns {CanvasRenderingContext2D}
