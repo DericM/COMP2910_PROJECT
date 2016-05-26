@@ -26,8 +26,8 @@ function ScoringSystem(canvas) {
     failFactor[2] = 0.4;
 
     this.draw = function() {
-        this.ctx.fillStyle = "#CCC";
-        this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
+        // this.ctx.fillStyle = "#CCC";
+        // this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
         this.ctx.fillStyle = "#000";
         this.ctx.font = (HEIGHT * 0.05) + "px Arial";
         this.ctx.fillText("Score: " + this.score, 10, HEIGHT - 10);

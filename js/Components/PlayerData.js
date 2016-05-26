@@ -22,6 +22,8 @@ function PlayerData(){
     this.achievName[0] = "Make America Great Again!";
     this.achievName[1] = "Meet the Witch!";
     this.achievName[2] = "High Energy!";
+    
+    this.soundStatus = true;
 }
 
 

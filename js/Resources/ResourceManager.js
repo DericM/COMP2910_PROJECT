@@ -154,7 +154,9 @@ function ResourceManager() {
     };
 
     this.playSound = function(name) {
-        sounds[name].play();
+        if (PLAYER_DATA.soundStatus) {
+            sounds[name].play();
+        }
     };
 
     this.pauseSound = function(name) {

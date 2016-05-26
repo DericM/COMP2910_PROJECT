@@ -25,9 +25,9 @@ h1 {
     width: 100%;
     text-align: center;
     top: 10px;
-    color: #122b48;
+    color: #ffcc99;
     font-size: 2.8em;
-    text-shadow: -1px -1px #122b48, 1px 1px #fa6c05;
+    text-shadow: -1px -1px #000, 2px 2px #000;
 }
 
 button, div, h1, form {
@@ -68,7 +68,7 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 #container {
-    background-color: white;
+    /* background-color: white; */
 }
 
 .page {
@@ -207,6 +207,38 @@ h4 {
 /*///////////////////////////////////LOGIN//////////////////////////////////////// */
 
 
+#container {
+    /*
+    background: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Vertical_United_States_Flag.svg) no-repeat ;
+    background-size: 100%;
+    */
+}
+
+#game-page {
+    background-color: #188518;
+
+}
+
+#game-page #tree1 {
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../Images/menu/tree1.jpg");
+    background-size: 100%;
+}
+
+.mute-button {
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../Images/full_volume.png");
+    background-size: 100%;
+
+}
 
 
 

@@ -22,12 +22,29 @@ function Game() {
         MENU.setVisibility(true);
     });
 
+    var mute = document.createElement("div");
+    mute.className = "mute-button";
+    mute.addEventListener('click', function() {
+        
+        if (PLAYER_DATA.soundStatus) {
+            //mute
+            $(".mute-button").css("background-image", "url(Images/mute_volume.png)");
+            PLAYER_DATA.soundStatus = false;
+            
+        } else {
+            //turn it on
+            $(".mute-button").css("background-image", "url(Images/full_volume.png)");
+            PLAYER_DATA.soundStatus = true;
+        }
+    });
+    
 
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.backgroundCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.uiCanvas.canvas);
     this.page.appendChild(home);
+    this.page.appendChild(mute);
     
     
 }
