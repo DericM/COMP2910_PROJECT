@@ -119,6 +119,10 @@ function Grid() {
 	var getStar = function(column, row) {
 		return stars[starCount++];
 	};
+	
+	this.getTrump = function() {
+		return trump;
+	};
 
 	/**
 	 * Read the specified level string and returns
@@ -408,6 +412,8 @@ function Grid() {
 				}
 			}
 		}
+		
+		GAME.scoreTracker.draw();
 	};
 
 	/**

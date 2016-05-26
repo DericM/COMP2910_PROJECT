@@ -65,6 +65,7 @@ function Login() {
                     password.className = "";
                 }
                 else {
+                    alert("incorrect username/password");
                     username.className = "formInvalid";
                     password.className = "formInvalid";
                     username.value = '';

@@ -32,6 +32,21 @@ function ScoringSystem(canvas) {
         this.ctx.font = (HEIGHT * 0.05) + "px Arial";
         this.ctx.fillText("Score: " + this.score, 10, HEIGHT - 10);
 
+        if (PLAYER_DATA.getLoggedInState()) {
+            this.ctx.fillText("Logged in as: " + PLAYER_DATA.getUserName(), 10, 30);
+        }
+
+        var place = WIDTH / 2;
+
+        //this.ctx.font = (13) + "px Arial";
+        //this.ctx.fillText("Lives: ", place - 55, 73);
+
+        for (var i = GAME.grid.getTrump().getLives(); i >= 0; i--) {
+            this.ctx.fillStyle = "#CCC";
+            this.ctx.fillRect((place += 35), 50, 30, 30);
+        }
+
+
     };
     
     this.clearFail = function() {

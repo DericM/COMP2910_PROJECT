@@ -48,6 +48,7 @@ Game.prototype.newGame = function() {
     this.level = 0;
     this.scoreTracker.resetScore();
     this.scoreTracker.clearFail();
+    // this.grid.trump.resetLives();
     this.setupLevel(false);
     this.grid.start();
 };
