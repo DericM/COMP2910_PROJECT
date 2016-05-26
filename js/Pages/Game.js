@@ -10,6 +10,7 @@ function Game() {
     this.level = 0;
     this.levels = new LevelManager();
     this.scoreTracker = new ScoringSystem(CANVAS_MANAGER.gameCanvas);
+    
     this.grid = new Grid(CANVAS_MANAGER.gameCanvas);
 
     CANVAS_MANAGER.gameCanvas.insertDrawable(this.grid);
@@ -105,7 +106,6 @@ Game.prototype.setupLevel = function(passed) {
     CANVAS_MANAGER.gameCanvas.draw();
 
     this.trump.toggleListener(false);
-
     this.trump.setVisible(false);
 
     var myThis = this;
@@ -113,9 +113,9 @@ Game.prototype.setupLevel = function(passed) {
         myThis.trump.toggleListener(true);
     }, 2000);
 
-	if (this.level == 0 && TUTORIAL.readCookie() == false) {
+	if (this.level == 0 && TUTORIAL.checkCookie() == false) {
 		myThis.trump.setVisible(true);
-		TUTORIAL.run(myThis.grid);
+		//TUTORIAL.run(myThis.grid);
 		console.log("Cookie setting in Game.js is commented out.");
 		//TUTORIAL.setCookie(true, 365);
 	} else {

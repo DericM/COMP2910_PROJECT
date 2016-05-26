@@ -1,7 +1,13 @@
 /**
  * Creates a tutorial object.
  */
-function Tutorial() {}
+function Tutorial() {
+	Page.call(this);
+
+}
+//inheritance stuff
+Tutorial.prototype = Object.create(Page.prototype);
+Tutorial.prototype.constructor = Tutorial;
 
 /**
  * Sets a cookie once the tutorial on-boarding has been completed.
@@ -19,12 +25,8 @@ Tutorial.prototype.setCookie = function(done, exdays) {
  * Determines whether a cookie exists, to determine whether
  * the tutorial should be run.
  */
-Tutorial.prototype.readCookie = function() {
- 	if (document.cookie) {
- 		return true;
- 	} else {
- 		return false;
- 	}
+Tutorial.prototype.checkCookie = function() {
+ 	return document.cookie;
 };
 
 /**
@@ -78,7 +80,7 @@ Tutorial.prototype.drawArrow = function(ctx, width, height) {
 	ctx.fillText("Guide Trump", width * 0.11, height * 0.45);
 	ctx.fillText("to the White  House", width * 0.11, height * 0.6);
 	ctx.fillText("avoiding the  mines", width * 0.11, height * 0.7);
-}
+};
 
 /**
  * Draws the second step of the tutorial, involving triangles corresponding

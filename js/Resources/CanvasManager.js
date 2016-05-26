@@ -7,5 +7,5 @@ function CanvasManager() {
     this.backgroundCanvas = new Canvas();
     this.gameCanvas = new Canvas("canvas-game");
     this.uiCanvas =  new Canvas("canvas-ui");
-
+    
 }

@@ -71,7 +71,6 @@ Main.prototype.init = function() {
     HIGH_SCORE = new HighScore();
     VICTORY = new Victory();
     DEFEAT = new Defeat();
-
 	TUTORIAL = new Tutorial();
 	
     LOADING_SCREEN.setVisibility(false);
