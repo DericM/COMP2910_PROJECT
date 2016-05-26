@@ -22,7 +22,7 @@ function Trump(_canvas, grid, column, row, image, _game) {
 	var keySwitch = false;
 	var xCoord;
 	var yCoord;
-    canvas.getCanvas().addEventListener("touchstart", moveMe, false);
+    canvas.getCanvas().addEventListener("click", moveMe, false);
 
     /**
      * Determines the coordinates needed to draw the X over
