@@ -14,14 +14,16 @@ function Mine(grid, column, row, image) {
 	var timer;
 
 	this.animate = function() {
-		timer = setInterval(this.animation, 30);
+		timer = setInterval(this.animation, 15);
 	};
 
 	this.animation = function() {
+		this.yCoord -= grid.getSectionHeight() * 0.5;
 		this.image = frames[frame];
 		if(frames[++frame] == undefined) {
 			clearInterval(timer);
 			this.image = RESOURCES.getImage("mine");
+			frame = 0;
 		}
 	}.bind(this);
 }

@@ -9,7 +9,7 @@
  */
 function Trump(grid, column, row, image) {
     Entity.call(this, grid, column, row, image, false);
-    var maxLives = 2;
+    var maxLives = 3;
     var lives = maxLives;
     var centerX;
     var centerY;
@@ -24,8 +24,8 @@ function Trump(grid, column, row, image) {
     var moving = false;
     var collided = false;
 
-    this.checkState = function() {
-        if(moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
+    this.checkState = function () {
+        if (moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
             if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
                 if (distanceBetween(
                         this.xCoord + (grid.getSectionWidth() / 2),
@@ -35,8 +35,8 @@ function Trump(grid, column, row, image) {
                     ) <= grid.getSectionWidth() * 1.4) {
                     this.hitAMine();
                 }
-            } else if(grid.getSectionAt(this.column, this.row) instanceof WhiteHouse) {
-                if(distanceBetween(
+            } else if (grid.getSectionAt(this.column, this.row) instanceof WhiteHouse) {
+                if (distanceBetween(
                         this.xCoord + (grid.getSectionWidth() / 2),
                         this.yCoord + (grid.getSectionHeight() / 2),
                         grid.getSectionAt(this.column, this.row).getXCoord(),
@@ -76,32 +76,35 @@ function Trump(grid, column, row, image) {
         }
     };
 
-    var distanceBetween = function(x1, y1, x2, y2) {
+    var distanceBetween = function (x1, y1, x2, y2) {
         return (Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
     };
 
-    this.hitAMine = function() {
+    this.hitAMine = function () {
         collided = true;
-        lives--;
         grid.getSectionAt(this.column, this.row).animate();
-        if (lives != 0) {
-            //hit a mine
-            GAME.setupLevel(false);
-        } else {
-            //die
-            GAME.logScore();
-            this.resetLives();
-            RESOURCES.playSound("neverbegreat");
-            DEFEAT.setVisibility(true);
-        }
+        xVel = -vel;
+        yVel = vel;
+        setTimeout(function() {
+            lives--;
+            if (lives != 0) {
+                GAME.setupLevel(false);
+            } else {
+                GAME.logScore();
+                this.resetLives();
+                RESOURCES.playSound("neverbegreat");
+                DEFEAT.setVisibility(true);
+            }
+        }.bind(this), RESOURCES.getAnimation("explosion").length * 15);
+
     };
 
-    this.hitTheWhiteHouse = function() {
+    this.hitTheWhiteHouse = function () {
         collided = true;
         GAME.setupLevel(true);
     };
 
-    this.resetLives = function() {
+    this.resetLives = function () {
         lives = maxLives;
     };
 
