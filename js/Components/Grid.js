@@ -207,7 +207,7 @@ function Grid() {
 	this.initializeLevel = function(level) {
 		trump.toggleListener(false);
         initialVisibility();
-		if(level == 0){
+		if(level == 0 && TUTORIAL.firstRun == true){
             trump.setVisibility(true);
             whitehouse.setVisibility(true);
 		    TUTORIAL.setVisibility(true);
@@ -215,8 +215,6 @@ function Grid() {
 		else {
 			this.levelFadeIn();
 		}
-
-
 	};
 
 	this.levelFadeIn = function(){
@@ -514,13 +512,13 @@ function Grid() {
 		}
 		mineCount = sprayCount = certCount = starCount = 0;
 
-		for(var i = 0; i < mostMines; i++)
+		for(i = 0; i < mostMines; i++)
 			mines[i] = new Mine(this, 0, 0, RESOURCES.getImage("mine"));
-		for(var i = 0; i < mostSprays; i++)
+		for(i = 0; i < mostSprays; i++)
 			sprays[i] = new SprayTan(this, 0, 0, RESOURCES.getImage("spraytan"));
-		for(var i = 0; i < mostCerts; i++)
+		for(i = 0; i < mostCerts; i++)
 			certs[i] = new Certificate(this, 0, 0, RESOURCES.getImage("certificate"));
-		for(var i = 0; i < mostStars; i++)
+		for(i = 0; i < mostStars; i++)
 			stars[i] = new Star(this, 0, 0, RESOURCES.getImage("star"));
 	};
 	this.createEntityPool();
