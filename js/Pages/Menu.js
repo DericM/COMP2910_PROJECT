@@ -20,7 +20,6 @@ function Menu() {
     play.addEventListener('click', function(){
         MENU.setVisibility(false);
         GAME.setVisibility(true);
-        console.log(GAME);
         GAME.newGame();
     });
 

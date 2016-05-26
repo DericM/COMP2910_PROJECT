@@ -26,7 +26,6 @@ function Trump(grid, column, row, image) {
 
     this.checkState = function() {
         if(moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
-            collided = true;
             if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
                 if (distanceBetween(
                         this.xCoord + (grid.getSectionWidth() / 2),
@@ -78,20 +77,18 @@ function Trump(grid, column, row, image) {
     };
 
     var distanceBetween = function(x1, y1, x2, y2) {
-        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        return (Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
     };
 
     this.hitAMine = function() {
+        collided = true;
         lives--;
-        console.log(lives);
         if (lives != 0) {
-            console.log("hit mine");
             //hit a mine
             GAME.setupLevel(false);
         } else {
-            console.log("died");
             //die
-            //GAME.logScore();
+            GAME.logScore();
             this.resetLives();
             RESOURCES.playSound("neverbegreat");
             DEFEAT.setVisibility(true);
@@ -99,6 +96,7 @@ function Trump(grid, column, row, image) {
     };
 
     this.hitTheWhiteHouse = function() {
+        collided = true;
         GAME.setupLevel(true);
     };
 

@@ -76,9 +76,11 @@ Game.prototype.setupLevel = function(passed) {
  * Adds the user's score to the database.
  */
 Game.prototype.logScore = function() {
-    console.log("calling");
+    console.log("log score is commented out");
+    /*
     var finalScore = this.scoreTracker.getScore();
     $.post("php/logscore.php", {score: finalScore, id: PLAYER_DATA.getId()});
+    */
 };
 
 
