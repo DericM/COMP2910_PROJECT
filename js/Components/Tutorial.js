@@ -17,8 +17,21 @@ function Tutorial() {
     this.canvas.setAttribute('height', height);
 
     this.ctx = this.canvas.getContext("2d");
-    var end = false;
+    this.firstRun = true;
 
+    this.reset(width, height);
+
+    this.page.appendChild(this.canvas);
+}
+//inheritance stuff
+Tutorial.prototype = Object.create(Page.prototype);
+Tutorial.prototype.constructor = Tutorial;
+
+
+
+Tutorial.prototype.reset = function(width, height){
+    var end = false;
+    this.ctx.clearRect(0,0, width, height);
     this.drawArrow(width, height);
     var myThis = this;
     this.canvas.onmousedown = function() {
@@ -27,16 +40,14 @@ function Tutorial() {
         if(end){
             TUTORIAL.setVisibility(false);
             GAME.grid.levelFadeIn();
+            myThis.firstRun = false;
+
         }
         end = true;
     };
+};
 
-    this.page.appendChild(this.canvas);
 
-}
-//inheritance stuff
-Tutorial.prototype = Object.create(Page.prototype);
-Tutorial.prototype.constructor = Tutorial;
 
 
 
@@ -58,7 +69,7 @@ Tutorial.prototype.setCookie = function(done, exdays) {
  * the tutorial should be run.
  */
 Tutorial.prototype.checkCookie = function() {
- 	return document.cookie;
+ 	return !!document.cookie;
 };
 
 
