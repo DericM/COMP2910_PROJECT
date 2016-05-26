@@ -214,10 +214,11 @@ function Grid() {
 	this.initializeLevel = function(level) {
 		trump.toggleListener(false);
         initialVisibility();
-		if(level == 0 && TUTORIAL.firstRun == true){
+		if(level == 0 && (TUTORIAL.checkCookie() == false && TUTORIAL.firstRun == true)){
             trump.setVisibility(true);
             whitehouse.setVisibility(true);
 		    TUTORIAL.setVisibility(true);
+			TUTORIAL.setCookie(true,365);
 		}
 		else {
 			this.levelFadeIn();
