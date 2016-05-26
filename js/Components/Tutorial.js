@@ -4,6 +4,35 @@
 function Tutorial() {
 	Page.call(this);
 
+    this.page.id = "tutorial-page";
+    this.page.className = "game";
+
+    var width = WIDTH;
+    var height = HEIGHT;
+
+    this.canvas = document.createElement("canvas");
+
+    this.canvas.style.position = "absolute";
+    this.canvas.setAttribute('width', width);
+    this.canvas.setAttribute('height', height);
+
+    this.ctx = this.canvas.getContext("2d");
+    var end = false;
+
+    this.drawArrow(width, height);
+    var myThis = this;
+    this.canvas.onmousedown = function() {
+        myThis.ctx.clearRect(0,0, width, height);
+        myThis.showTriangles(myThis.ctx, width, height);
+        if(end){
+            TUTORIAL.setVisibility(false);
+            GAME.grid.levelFadeIn();
+        }
+        end = true;
+    };
+
+    this.page.appendChild(this.canvas);
+
 }
 //inheritance stuff
 Tutorial.prototype = Object.create(Page.prototype);
@@ -32,57 +61,29 @@ Tutorial.prototype.checkCookie = function() {
  	return document.cookie;
 };
 
-/**
- * Initializes and runs the tutorial.
- */
-Tutorial.prototype.run = function(grid) {
-	var myThis = this;
-	var canvas = CANVAS_MANAGER.gameCanvas;
-	var width = canvas.getWidth();
-	var height = canvas.getHeight();
-	var ctx = canvas.getContext();
-	
-	grid.showWhiteHouse();
-	canvas.draw();
-	
-	myThis.drawArrow(ctx, width, height);
-	
-	document.getElementById("container").onmousedown = function() {
-		canvas.draw();
-		
-		myThis.showTriangles(ctx, width, height);
-		
-		document.getElementById("container").onmousedown = function() {
-			canvas.draw();
-			
-			window.setTimeout(function() {
-				grid.setFade(false);
-			}, 2000);
-		}
-	}
-};
+
 
 /**
  * Draws the first step of the tutorial, involving an arrow from Trump
  * to the White House of the first level, as well as some text.
  */
-Tutorial.prototype.drawArrow = function(ctx, width, height) {
-	ctx.strokeStyle="#FFFFFF";
-	ctx.beginPath();
-	ctx.moveTo(width / 2, height * 0.8);
-	ctx.quadraticCurveTo(width * 0.75, height * 0.8, width / 2, height * 0.3);
-	ctx.stroke();
-	ctx.lineTo(width * 0.4, height * 0.4);
-	ctx.stroke();
-	ctx.moveTo(width / 2, height * 0.3);
-	ctx.lineTo(width * 0.65, height * 0.4);
-	ctx.stroke();
-	
-	ctx.font = (HEIGHT * 0.05) + "px Arial";
-	ctx.fillStyle = "#FFFFFF";
-	ctx.fillText("Guide Trump", width * 0.11, height * 0.45);
-	ctx.fillText("to the White  House", width * 0.11, height * 0.6);
-	ctx.fillText("avoiding the  mines", width * 0.11, height * 0.7);
+Tutorial.prototype.drawArrow = function(width, height) {
+    this.ctx.strokeStyle="#FFFFFF";
+    this.ctx.beginPath();
+    this.ctx.moveTo(width / 2, height * 0.8);
+    this.ctx.quadraticCurveTo(width * 0.75, height * 0.8, width / 2, height * 0.3);
+    this.ctx.stroke();
+    this.ctx.lineTo(width * 0.4, height * 0.4);
+    this.ctx.stroke();
+    this.ctx.moveTo(width / 2, height * 0.3);
+    this.ctx.lineTo(width * 0.65, height * 0.4);
+    this.ctx.stroke();
+
+    this.ctx.font = (HEIGHT * 0.05) + "px Arial";
+    this.ctx.fillStyle = "#FFFFFF";
+    this.ctx.fillText("Guide Trump", width * 0.11, height * 0.45);
+    this.ctx.fillText("to the White  House", width * 0.11, height * 0.6);
+    this.ctx.fillText("avoiding the  mines", width * 0.11, height * 0.7);
 };
 
 /**
