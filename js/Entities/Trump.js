@@ -7,30 +7,147 @@
  * @param {Image} image: Image that represents Trump.
  * @param {Game} game: The game.
  */
-function Trump(_canvas, grid, column, row, image, _game) {
-	Entity.call(this, grid, column, row, image, false);
-	var canvas = _canvas;
-	var game = _game;
-	var lives = 2;
+function Trump(grid, column, row, image) {
+    Entity.call(this, grid, column, row, image, false);
     var maxLives = 2;
-	var centerX;
-	var centerY;
+    var lives = maxLives;
+    var centerX;
+    var centerY;
     var leftX;
-	var rightX;
+    var rightX;
     var topY;
-	var bottomY;
-	var keySwitch = false;
-	var xCoord;
-	var yCoord;
-    canvas.getCanvas().addEventListener("click", moveMe, false);
+    var bottomY;
+    var keySwitch = false;
+    var xVel = 0;
+    var yVel = 0;
+    var vel = 0.6;
+    var moving = false;
+    var collided = false;
+
+    this.checkState = function() {
+        if(moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
+            collided = true;
+            if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
+                if (distanceBetween(
+                        this.xCoord + (grid.getSectionWidth() / 2),
+                        this.yCoord + (grid.getSectionHeight() / 2),
+                        grid.getSectionAt(this.column, this.row).getXCoord() + grid.getSectionHeight(),
+                        grid.getSectionAt(this.column, this.row).getYCoord() + grid.getSectionHeight()
+                    ) <= grid.getSectionWidth() * 1.4) {
+                    this.hitAMine();
+                }
+            } else if(grid.getSectionAt(this.column, this.row) instanceof WhiteHouse) {
+                if(distanceBetween(
+                        this.xCoord + (grid.getSectionWidth() / 2),
+                        this.yCoord + (grid.getSectionHeight() / 2),
+                        grid.getSectionAt(this.column, this.row).getXCoord(),
+                        grid.getSectionAt(this.column, this.row).getYCoord()
+                    ) <= grid.getSectionWidth() * 0.7
+                    ||
+                    distanceBetween(
+                        this.xCoord + (grid.getSectionWidth() / 2),
+                        this.yCoord + (grid.getSectionHeight() / 2),
+                        grid.getSectionAt(this.column, this.row).getXCoord() + grid.getSectionHeight(),
+                        grid.getSectionAt(this.column, this.row).getYCoord() + grid.getSectionHeight()
+                    ) <= grid.getSectionWidth() * 0.7
+                    ||
+                    distanceBetween(
+                        this.xCoord + (grid.getSectionWidth() / 2),
+                        this.yCoord + (grid.getSectionHeight() / 2),
+                        grid.getSectionAt(this.column, this.row).getXCoord() + grid.getSectionWidth(),
+                        grid.getSectionAt(this.column, this.row).getYCoord() + grid.getSectionWidth()
+                    ) <= grid.getSectionWidth() * 0.7
+                    ||
+                    distanceBetween(
+                        this.xCoord + (grid.getSectionWidth() / 2),
+                        this.yCoord + (grid.getSectionHeight() / 2),
+                        grid.getSectionAt(this.column, this.row).getXCoord() + grid.getSectionWidth() + grid.getSectionHeight(),
+                        grid.getSectionAt(this.column, this.row).getYCoord() + grid.getSectionWidth() + grid.getSectionHeight()
+                    ) <= grid.getSectionWidth() * 0.7
+                ) {
+                    this.hitTheWhiteHouse();
+                }
+            } else if (grid.getSectionAt(this.column, this.row) instanceof Star) {
+                RESOURCES.playSound("star");
+            } else if (grid.getSectionAt(this.column, this.row) instanceof Certificate) {
+                RESOURCES.playSound("certificate");
+            } else if (grid.getSectionAt(this.column, this.row) instanceof SprayTan) {
+                RESOURCES.playSound("spraytan");
+            }
+        }
+    };
+
+    var distanceBetween = function(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    };
+
+    this.hitAMine = function() {
+        lives--;
+        console.log(lives);
+        if (lives != 0) {
+            console.log("hit mine");
+            //hit a mine
+            GAME.setupLevel(false);
+        } else {
+            console.log("died");
+            //die
+            //GAME.logScore();
+            this.resetLives();
+            RESOURCES.playSound("neverbegreat");
+            DEFEAT.setVisibility(true);
+        }
+    };
+
+    this.hitTheWhiteHouse = function() {
+        GAME.setupLevel(true);
+    };
+
+    this.resetLives = function() {
+        lives = maxLives;
+    };
+
+    this.updateEntity = function(delta) {
+        this.xCoord += xVel * delta;
+        this.yCoord += yVel * delta;
+        if(moving) {
+            this.checkState();
+            if (xVel == -vel) {
+                if (this.xCoord <= this.column * grid.getSectionWidth() + grid.getXCoord()
+                    && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                    this.settleTrump();
+                }
+            } else if (xVel == vel) {
+                if (this.xCoord >= this.column * grid.getSectionWidth() + grid.getXCoord()
+                    && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                    this.settleTrump();
+                }
+            } else if (yVel == -vel) {
+                if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
+                    && this.yCoord <= this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                    this.settleTrump();
+                }
+            } else if (yVel == vel) {
+                if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
+                    && this.yCoord >= this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                    this.settleTrump();
+                }
+            }
+        }
+    };
+
+    this.settleTrump = function() {
+        moving = false;
+        collided = false;
+        xVel = 0;
+        yVel = 0;
+        this.setCoords();
+    };
 
     /**
      * Determines the coordinates needed to draw the X over
      * the grid.
      */
     this.setDimensions = function() {
-        xCoord = grid.getXCoord();
-        yCoord = grid.getYCoord();
         centerX = WIDTH / 2;
         centerY = HEIGHT / 2;
         leftX = grid.getXCoord();
@@ -40,109 +157,46 @@ function Trump(_canvas, grid, column, row, image, _game) {
     };
 
     /**
-     * @returns {boolean} : If Trump is on a mine or the WhiteHouse it returns false,
-     * if Trump is on an empty section it returns True.
+     * Moves trump in the specified direction. (called by the mouse listener)
+     *
+     * @param {event} event  :
      */
-	this.checkState = function() {
-		if (grid.getSectionAt(column, row) instanceof Fadable) {
-
-			if (game.getLevel() === 0) {
-                //easter egg
-                /*
-				RESOURCES.playSound("snake_woman");
-				canvas.getContext().drawImage(RESOURCES.getImage("snake"), grid.getXCoord(), grid.getYCoord(), grid.getWidth(), grid.getHeight());
-                window.setTimeout(function() {
-                    RESOURCES.pauseSound("snake_woman");
-					CANVAS_MANAGER.uiCanvas.clear();
-					GAME.getTrump().drawMovementX();
-				}, 3000);
-				*/
-			} else if (lives != 0) {
-				RESOURCES.playSound("explosion");
-				window.setTimeout(function() {
-					RESOURCES.playSound("low_energy");
-				}, 550);
-			}
-			
-			if (lives == 0) {
-				game.logScore();
-				RESOURCES.playSound("neverbegreat");
-				this.resetLives();
-                grid.clearGrid();
-                DEFEAT.setVisibility(true);
-                
-			} else {
-				lives--;
-				game.setupLevel(false);
-			}
-            return false;
-		} else if(grid.getSectionAt(column, row) instanceof WhiteHouse) {
-			game.setupLevel(true);
-			return false;
-		} else if (grid.getSectionAt(column, row) instanceof Star) {
-            console.log("star");
-			RESOURCES.playSound("star");
-            return true;
-        } else if (grid.getSectionAt(column, row) instanceof Certificate) {
-            console.log("certificate");
-			RESOURCES.playSound("certificate");
-            return true;
-        } else if (grid.getSectionAt(column, row) instanceof SprayTan) {
-            console.log("spraytan");
-			RESOURCES.playSound("spraytan");
-            return true;
-        }
-		return true;
-	};
-
-	/**
-	 * Moves trump in the specified direction. (called by the mouse listener)
-	 *
-	 * @param {event} event  :
-	 */
-    function moveMe(event) {
-        if(keySwitch) {
-            var trump = GAME.getTrump();
-            var oldX, oldY;
-            oldX = column;
-            oldY = row;
-            var moved = false;
+    this.moveMe = function(event) {
+        if(keySwitch && moving == false) {
             var code = event.keyCode ? event.keyCode : event.which;
-            var x = event.pageX - canvas.getCanvas().offsetLeft;
-            var y = event.pageY - canvas.getCanvas().offsetTop;
-            if (code == 38 || trump.isInside(xCoord, yCoord, centerX, centerY, rightX, yCoord, x, y)) {
+            var x = event.pageX - CANVAS_MANAGER.uiCanvas.getCanvas().offsetLeft;
+            var y = event.pageY - CANVAS_MANAGER.uiCanvas.getCanvas().offsetTop;
+            if (code == 38 || this.isInside(grid.getXCoord(), grid.getYCoord(), centerX, centerY, rightX, grid.getXCoord(), x, y)) {
                 //up
-                if (row != 0) {
-                    row--;
-                    moved = true;
+                if(this.row != 0) {
+                    yVel = -vel;
+                    this.row--;
+                    moving = true;
                 }
-            } else if (code == 39 || trump.isInside(rightX, yCoord, centerX, centerY, rightX, bottomY, x, y)) {
+            } else if (code == 39 || this.isInside(rightX, grid.getYCoord(), centerX, centerY, rightX, bottomY, x, y)) {
                 //right
-                if (column != grid.getColumns() - 1) {
-                    column++;
-                    moved = true;
+                if(this.column != grid.getColumns() - 1) {
+                    xVel = vel;
+                    this.column++;
+                    moving = true;
                 }
-            } else if (code == 40 || trump.isInside(rightX, bottomY, centerX, centerY, xCoord, bottomY, x, y)) {
+            } else if (code == 40 || this.isInside(rightX, bottomY, centerX, centerY, grid.getXCoord(), bottomY, x, y)) {
                 //down
-                if (row != grid.getRows() - 1) {
-                    row++;
-                    moved = true;
+                if(this.row != grid.getRows() - 1) {
+                    yVel = vel;
+                    this.row++;
+                    moving = true;
                 }
-            } else if (code == 37 || trump.isInside(xCoord, yCoord, centerX, centerY, xCoord, bottomY, x, y)) {
+            } else if (code == 37 || this.isInside(grid.getXCoord(), grid.getYCoord(), centerX, centerY, grid.getXCoord(), bottomY, x, y)) {
                 //left
-                if (column != 0) {
-                    column--;
-                    moved = true;
+                if(this.column != 0) {
+                    xVel = -vel;
+                    this.column--;
+                    moving = true;
                 }
             }
-            if(moved) {
-                if (trump.checkState()) {
-                    grid.moveTrump(oldX, oldY);
-                }
-            }
-            CANVAS_MANAGER.gameCanvas.draw();
         }
-    }
+    }.bind(this);
 
 
     /**
@@ -150,118 +204,89 @@ function Trump(_canvas, grid, column, row, image, _game) {
      */
     this.drawMovementX = function() {
         this.setDimensions();
-
         /*
-        var context = CANVAS_MANAGER.uiCanvas.getContext();
-        context.beginPath();
-        context.fillStyle = "#FFF";
-        context.moveTo(xCoord, yCoord);
-        context.lineTo(centerX, centerY);
-        context.lineTo(rightX, yCoord);
-        context.closePath();
-        context.stroke();
+         var context = CANVAS_MANAGER.uiCanvas.getContext();
+         context.beginPath();
+         context.fillStyle = "#FFF";
+         context.moveTo(xCoord, yCoord);
+         context.lineTo(centerX, centerY);
+         context.lineTo(rightX, yCoord);
+         context.closePath();
+         context.stroke();
 
-        context.beginPath();
-        context.moveTo(centerX, centerY);
-        context.lineTo(rightX, bottomY);
-        context.closePath();
-        context.stroke();
+         context.beginPath();
+         context.moveTo(centerX, centerY);
+         context.lineTo(rightX, bottomY);
+         context.closePath();
+         context.stroke();
 
-        context.beginPath();
-        context.moveTo(centerX, centerY);
-        context.lineTo(xCoord, bottomY);
-        context.closePath();
-        context.stroke();
+         context.beginPath();
+         context.moveTo(centerX, centerY);
+         context.lineTo(xCoord, bottomY);
+         context.closePath();
+         context.stroke();
 
-        */
+         */
     };
 
     /**
      * Turns the listeners for arrow keys presses and movement X
      * off so the user canot move trump.
-     * 
+     *
      * @param switcher
      */
     this.toggleListener = function (switcher) {
         keySwitch = switcher;
     };
-    window.onkeydown = moveMe;
 
-
-
-	/**
-	 * checks whether point P(x, y) lies inside the triangle formed
-	 * by A(x1, y1), B(x2, y2) and C(x3, y3)
-	 *
-	 * @param x1  :  x coordinate of the first triangle point
-	 * @param y1  :  y coordinate of the first triangle point
-	 * @param x2  :  x coordinate of the second triangle point
-	 * @param y2  :  y coordinate of the second triangle point
-	 * @param x3  :  x coordinate of the third triangle point
-	 * @param y3  :  y coordinate of the third triangle point
-	 * @param x   :  x coordinate of the clicked point
-	 * @param y   :  y coordinate of the clicked point
-	 * @returns {boolean}  :  whether the clicked point is inside the triangle
-	 */
-	this.isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
+    /**
+     * checks whether point P(x, y) lies inside the triangle formed
+     * by A(x1, y1), B(x2, y2) and C(x3, y3)
+     *
+     * @param x1  :  x coordinate of the first triangle point
+     * @param y1  :  y coordinate of the first triangle point
+     * @param x2  :  x coordinate of the second triangle point
+     * @param y2  :  y coordinate of the second triangle point
+     * @param x3  :  x coordinate of the third triangle point
+     * @param y3  :  y coordinate of the third triangle point
+     * @param x   :  x coordinate of the clicked point
+     * @param y   :  y coordinate of the clicked point
+     * @returns {boolean}  :  whether the clicked point is inside the triangle
+     */
+    this.isInside = function (x1, y1, x2, y2, x3, y3, x, y) {
         x1 += WINDOW_WIDTH;
         x2 += WINDOW_WIDTH;
         x3 += WINDOW_WIDTH;
 
-		// Calculate area of triangle ABC
-		var A = area(x1, y1, x2, y2, x3, y3);
+        // Calculate area of triangle ABC
+        var A = area(x1, y1, x2, y2, x3, y3);
 
-		// Calculate area of triangle PBC
-		var A1 = area(x, y, x2, y2, x3, y3);
+        // Calculate area of triangle PBC
+        var A1 = area(x, y, x2, y2, x3, y3);
 
-		// Calculate area of triangle PAC
-		var A2 = area(x1, y1, x, y, x3, y3);
+        // Calculate area of triangle PAC
+        var A2 = area(x1, y1, x, y, x3, y3);
 
-		// Calculate area of triangle PAB
-		var A3 = area(x1, y1, x2, y2, x, y);
+        // Calculate area of triangle PAB
+        var A3 = area(x1, y1, x2, y2, x, y);
 
-		// Check if sum of A1, A2 and A3 is same as A
-		return (A < (A1 + A2 + A3 + 1) && A > (A1 + A2 + A3 - 1));
-	};
-
-	/**
-	 * Calculates the area of a triangle specified by 3 points.
-	 *
-	 * @param x1  :  x coordinate of the first triangle point
-	 * @param y1  :  y coordinate of the first triangle point
-	 * @param x2  :  x coordinate of the second triangle point
-	 * @param y2  :  y coordinate of the second triangle point
-	 * @param x3  :  x coordinate of the third triangle point
-	 * @param y3  :  y coordinate of the third triangle point
-	 * @returns {number}  :  the area of the triangle
-	 */
-	var area = function (x1, y1, x2, y2, x3, y3) {
-		return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
-	};
+        // Check if sum of A1, A2 and A3 is same as A
+        return (A < (A1 + A2 + A3 + 1) && A > (A1 + A2 + A3 - 1));
+    };
 
     /**
-     * Sets Trump's location.
+     * Calculates the area of a triangle specified by 3 points.
      *
-     * @param {number} _column: New column to set Trump to.
-     * @param {number} _row: New row to set Trump to.
+     * @param x1  :  x coordinate of the first triangle point
+     * @param y1  :  y coordinate of the first triangle point
+     * @param x2  :  x coordinate of the second triangle point
+     * @param y2  :  y coordinate of the second triangle point
+     * @param x3  :  x coordinate of the third triangle point
+     * @param y3  :  y coordinate of the third triangle point
+     * @returns {number}  :  the area of the triangle
      */
-    this.setLocation = function(_column, _row) {
-        column = _column;
-        row = _row;
-    };
-
-    /**
-     * @returns {number} row: Trump's row.
-     */           
-    this.getRow = function() {
-        return row;
-    };
-
-    /**
-     * @returns {number} column: Trump's column.
-     */
-    this.getColumn = function() {
-        return column;
+    var area = function (x1, y1, x2, y2, x3, y3) {
+        return Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
     };
 
     /**
@@ -270,6 +295,9 @@ function Trump(_canvas, grid, column, row, image, _game) {
     this.resetLives = function() {
         lives = maxLives;
     };
+
+    window.onkeydown = this.moveMe;
+    CANVAS_MANAGER.uiCanvas.getCanvas().addEventListener("mousedown", this.moveMe, false);
 }
 
 //inheritance stuff

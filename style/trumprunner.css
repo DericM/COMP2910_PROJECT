@@ -62,7 +62,7 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 #container, .page, .game, .popup{
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
 }

@@ -11,5 +11,5 @@ function SprayTan(grid, column, row, image) {
 }
 
 //inheritance stuff
-Fadable.prototype = Object.create(Entity.prototype);
-Fadable.prototype.constructor = Fadable;
+SprayTan.prototype = Object.create(Entity.prototype);
+SprayTan.prototype.constructor = SprayTan;

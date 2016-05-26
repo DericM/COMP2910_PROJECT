@@ -11,5 +11,5 @@ function Certificate(grid, column, row, image) {
 }
 
 //inheritance stuff
-Fadable.prototype = Object.create(Entity.prototype);
-Fadable.prototype.constructor = Fadable;
+Certificate.prototype = Object.create(Entity.prototype);
+Certificate.prototype.constructor = Certificate;

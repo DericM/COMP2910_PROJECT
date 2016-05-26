@@ -11,5 +11,5 @@ function Star(grid, column, row, image) {
 }
 
 //inheritance stuff
-Fadable.prototype = Object.create(Entity.prototype);
-Fadable.prototype.constructor = Fadable;
+Star.prototype = Object.create(Entity.prototype);
+Star.prototype.constructor = Star;
