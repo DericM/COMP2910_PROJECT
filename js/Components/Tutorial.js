@@ -9,6 +9,9 @@ function Tutorial() {
 Tutorial.prototype = Object.create(Page.prototype);
 Tutorial.prototype.constructor = Tutorial;
 
+
+
+
 /**
  * Sets a cookie once the tutorial on-boarding has been completed.
  * @param done boolean whether the tutorial has been completed
