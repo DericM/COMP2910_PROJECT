@@ -8,25 +8,22 @@
  */
 function Mine(grid, column, row, image) {
 	Entity.call(this, grid, column, row, image, true);
-	/*
-	 var frames = RESOURCES.getAnimation("mine");
-	 var frame = 0;
-	 var timer;
-	 this.animate = function() {
-	 timer = setInterval(this.animation, 30);
-	 };
 
-	 this.animation = function() {
-	 this.image = frames[frame];
-	 if(frames[frame + 1] == undefined) {
-	 clearInterval(timer);
-	 }
-	 }.bind(this);
+	var frames = RESOURCES.getAnimation("explosion");
+	var frame = 0;
+	var timer;
 
-	 this.drawEntity = function() {
+	this.animate = function() {
+		timer = setInterval(this.animation, 30);
+	};
 
-	 };
-	 */
+	this.animation = function() {
+		this.image = frames[frame];
+		if(frames[++frame] == undefined) {
+			clearInterval(timer);
+			this.image = RESOURCES.getImage("mine");
+		}
+	}.bind(this);
 }
 
 //inheritance stuff

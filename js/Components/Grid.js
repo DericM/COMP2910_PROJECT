@@ -183,6 +183,7 @@ function Grid() {
 		yCoord = (HEIGHT / 2) - (height / 2);
 		sectionWidth = width / columns;
 		sectionHeight = height / rows;
+		trump.setDimensions();
 	};
 
 	/**
