@@ -20,7 +20,6 @@ function Game() {
     home.addEventListener('click', function(){
         GAME.setVisibility(false);
         MENU.setVisibility(true);
-        console.log(MENU);
     });
 
 
@@ -29,7 +28,7 @@ function Game() {
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.uiCanvas.canvas);
     this.page.appendChild(home);
-
+    
     
 }
 

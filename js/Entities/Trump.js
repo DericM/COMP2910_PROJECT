@@ -88,6 +88,7 @@ function Trump(grid, column, row, image) {
     this.hitAMine = function() {
         collided = true;
         lives--;
+        grid.getSectionAt(this.column, this.row).animate();
         if (lives != 0) {
             //hit a mine
             GAME.setupLevel(false);

@@ -1,4 +1,3 @@
-//CURRENTLY NOT IN USE.
 
 function ResourceManager() {
     var images = {};
@@ -19,9 +18,7 @@ function ResourceManager() {
     var loadedImages = 0;
     var numImages = 0;
 
-    
     var sounds = {};
-    
     var soundSources = {
 		chime : "Sounds/chime.mp3",
         explosion : "Sounds/explosion.mp3",
@@ -51,6 +48,39 @@ function ResourceManager() {
 		proud : "Sounds/proud.mp3",
 		wonderful_guy : "Sounds/wonderful_guy.mp3"
     };
+
+    var animations = {};
+    var animationSources = {
+        explosion : [
+            "Images/explosion/0.gif",
+            "Images/explosion/1.gif",
+            "Images/explosion/2.gif",
+            "Images/explosion/3.gif",
+            "Images/explosion/4.gif",
+            "Images/explosion/5.gif",
+            "Images/explosion/6.gif",
+            "Images/explosion/7.gif",
+            "Images/explosion/8.gif",
+            "Images/explosion/9.gif",
+            "Images/explosion/10.gif",
+            "Images/explosion/11.gif",
+            "Images/explosion/12.gif",
+            "Images/explosion/13.gif",
+            "Images/explosion/14.gif",
+            "Images/explosion/15.gif",
+            "Images/explosion/16.gif",
+            "Images/explosion/17.gif",
+            "Images/explosion/18.gif",
+            "Images/explosion/19.gif",
+            "Images/explosion/20.gif",
+            "Images/explosion/21.gif",
+            "Images/explosion/22.gif",
+            "Images/explosion/23.gif",
+            "Images/explosion/24.gif"
+        ]
+    };
+
+
     
     var winSounds = ["build_wall", "im_rich", "nobody_builds", "mexico_pay", "im_smart", "proud", "wonderful_guy", "country_to_hell", "handsome", "having_fun", "insane", "lets_go_on", "like_in_a_war", "more_energy_tonight", "art_of_the_deal"];
     var chooser = 0;
@@ -61,7 +91,35 @@ function ResourceManager() {
         }
         return winSounds[chooser++];
     };
-    
+
+
+    var loadAnimations = function(main) {
+        numImages = 0;
+        loadedImages = 0;
+        for(var animation in animationSources) {
+            for(var src in animationSources[animation]) {
+                numImages++;
+            }
+        }
+
+        for(var animation in animationSources) {
+            animations[animation] = [];
+            var idx = 0;
+            for(var i = 0; i < animationSources[animation].length; i++) {
+                animations[animation][i] = new Image();
+                animations[animation][i].onload = function() {
+                    if(++loadedImages == numImages) {
+                        main.init();
+                    }
+                };
+                animations[animation][i].src = animationSources[animation][i];
+            }
+        }
+    };
+
+    this.getAnimation = function(name) {
+        return animations[name];
+    };
 
     this.loadImages = function(main) {
         for(var src in imageSources) {
@@ -74,8 +132,8 @@ function ResourceManager() {
             images[src].onload = function() {
                 if(++loadedImages >= numImages) {
                     //proved images loaded here.
-                    
-                    main.init();
+                    console.log(main);
+                    loadAnimations(main);
 
                 }
             };

@@ -187,6 +187,7 @@ function Grid() {
 		yCoord = (HEIGHT / 2) - (height / 2);
 		sectionWidth = width / columns;
 		sectionHeight = height / rows;
+		trump.setDimensions();
 	};
 
 	/**
@@ -205,19 +206,21 @@ function Grid() {
 
 	this.initializeLevel = function(level) {
 		trump.toggleListener(false);
-
-		//if(level == 1){
-		//  TUTORIAL.setVisibility(true);
-		//}
-		//else {
-		initialVisibility();
-		this.levelFadeIn();
-		//}
+        initialVisibility();
+		if(level == 0){
+            trump.setVisibility(true);
+            whitehouse.setVisibility(true);
+		    TUTORIAL.setVisibility(true);
+		}
+		else {
+			this.levelFadeIn();
+		}
 
 
 	};
 
 	this.levelFadeIn = function(){
+		initialVisibility();
 		setTimeout(function() {
 			trump.toggleListener(true);
 			ingameVisibility();
