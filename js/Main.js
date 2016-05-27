@@ -71,8 +71,8 @@ function Main(){
             RESOURCES.playSound("anthem");
         }
     });
-    
-    container.appendChild(mute);
+
+    $("#container").append(mute);
 }
 
 /**
