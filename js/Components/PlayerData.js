@@ -33,16 +33,23 @@ PlayerData.prototype.login = function(obj){
     this.loggedInState = true;
     this.userName = obj.username;
     this.id = obj.id;
-    if(obj.achievement_array[0].a1 == 1){
+};
+
+
+PlayerData.prototype.setAchievements = function(obj){
+
+    if(obj[0].a1 == 1){
         this.achievements[0] = true;
     }
-    if(obj.achievement_array[0].a2 == 1){
+    if(obj[0].a2 == 1){
         this.achievements[1] = true;
     }
-    if(obj.achievement_array[0].a3 == 1){
+    if(obj[0].a3 == 1){
         this.achievements[2] = true;
     }
 };
+
+
 
 
 /**

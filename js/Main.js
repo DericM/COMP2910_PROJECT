@@ -20,7 +20,7 @@ var REGISTER;
 var HIGH_SCORE;
 var VICTORY;
 var DEFEAT;
-
+var ACHIEVEMENTS;
 var TUTORIAL;
 
 /**
@@ -64,6 +64,7 @@ Main.prototype.init = function() {
     ORIENTATION_LISTENER = new OrientationListener();
     PLAYER_DATA = new PlayerData();
 
+    ACHIEVEMENTS = new Achievements();
     MENU = new Menu();
     LOGIN = new Login();
     REGISTER = new Register();

@@ -23,6 +23,14 @@ function Game() {
     });
 
 
+    var achievement = document.createElement("div");
+    achievement.className = "achievement-popup";
+    achievement.addEventListener('click', function(){
+        GAME.setVisibility(false);
+        MENU.setVisibility(true);
+    });
+
+
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.backgroundCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);

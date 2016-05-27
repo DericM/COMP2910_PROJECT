@@ -75,8 +75,6 @@ class Achievement {
 		$sql .= "a" . $number ." = " . $value;
 		$sql .= " WHERE id= " . $id; 
 		
-		$database->query($sql);
-	  	
+		$database->query($sql);	  	
 	}
-
 }

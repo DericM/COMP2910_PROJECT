@@ -29,10 +29,8 @@ function HighScore() {
     });
 
 
-
     this.table = document.createElement("table");
-    this.id = "highscores";
-    this.table.className = "highscores";
+    this.table.className = "infobox";
 
     this.header = document.createElement("tr");
 
@@ -45,10 +43,13 @@ function HighScore() {
     var score = document.createElement("th");
     score.appendChild(document.createTextNode("Score"));
 
-
-    this.achievements = document.createElement("div");
-
-
+    var achievements = document.createElement("button");
+    achievements.appendChild(document.createTextNode("Achievements"));
+    achievements.addEventListener('click', function(){
+        HIGH_SCORE.setVisibility(false);
+        ACHIEVEMENTS.build();
+        ACHIEVEMENTS.setVisibility(true);
+    });
 
     this.page.appendChild(title);
 
@@ -56,45 +57,46 @@ function HighScore() {
     this.header.appendChild(name);
     this.header.appendChild(score);
 
-
-
     wrapper.appendChild(this.table);
-    wrapper.appendChild(this.achievements);
+    wrapper.appendChild(achievements);
 
     this.page.appendChild(wrapper);
     this.page.appendChild(home);
 
 }
 
+
 //inheritance stuff
 HighScore.prototype = Object.create(Page.prototype);
 HighScore.prototype.constructor = HighScore;
 
 
-/**
- * Pulls the highscores from the server.
- */
-HighScore.prototype.pullHighScores = function(){
 
+
+/**
+ * Pulls the highscores from the server and returns them.
+ * @return JSON object containing the highscores
+ */
+HighScore.prototype.build = function(){
     var url = "php/highscore.php"; // the script where you handle the form input.
 
-    var bindThis = this;
-
+    var myThis = this;
     $.ajax({
         type: "POST",
         url: url,
         success: function(data) {
             var obj = JSON.parse(data);
-            bindThis.buildScores(obj);
+            myThis.buildScore(obj);
         }
     });
 };
 
+
 /**\
  * Builds the score table and appends it to the screen.
- * @param obj
+ *
  */
-HighScore.prototype.buildScores = function(obj) {
+HighScore.prototype.buildScore = function(obj) {
 
     while (this.table.firstChild) {
         this.table.removeChild(this.table.firstChild);
@@ -102,7 +104,6 @@ HighScore.prototype.buildScores = function(obj) {
     this.table.appendChild(this.header);
 
     for(var i = 0; i < obj.length; i++){
-        console.log(obj[i].username + " " + obj[i].score);
 
         var row = document.createElement("tr");
 
@@ -121,58 +122,9 @@ HighScore.prototype.buildScores = function(obj) {
 
         this.table.appendChild(row);
     }
-
-    //////////////////////////////////////////
-    //temporary until I reorganize things.
-    this.buildAchievements();
-    /////////////////////////////////////
 };
 
-/**
- * Build the trophies
- */
-HighScore.prototype.buildAchievements = function(){
 
-    //don't build achievements if no one is logged in.
-    if(!PLAYER_DATA.loggedInState){
-        return;
-    }
-
-    //remove
-    while (this.achievements.firstChild) {
-        this.achievements.removeChild(this.achievements.firstChild);
-    }
-
-    for(var i = 0; i < PLAYER_DATA.achievements.length;i++){
-        var trophy = document.createElement("a");
-        trophy.className = "trophy";
-        trophy.href = "trophy" + i;
-        trophy.setAttribute("data-rel", "popup");
-
-
-        var dialog = document.createElement("div");
-        dialog.appendChild(document.createTextNode(PLAYER_DATA.achievName[i]));
-        dialog.setAttribute("data-role", "popup");
-        dialog.id = "trophy" + i;
-
-        if(i + 1 % 3 == 1){
-            trophy.className += " left";
-        }
-        else if(i + 1 % 3 == 2){
-            trophy.className += " center";
-        }
-        else {
-            trophy.className += " right";
-        }
-
-        if(PLAYER_DATA.achievements[i]){
-            trophy.className += " active";
-        }
-        trophy.className += " inactive";
-        this.achievements.appendChild(trophy);
-    }
-
-};
 
 
 
