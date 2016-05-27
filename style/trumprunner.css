@@ -25,9 +25,9 @@ h1 {
     width: 100%;
     text-align: center;
     top: 10px;
-    color: #ffcc99;
+    color: #122b48;
     font-size: 2.8em;
-    text-shadow: -1px -1px #000, 2px 2px #000;
+    text-shadow: -1px -1px #122b48, 3px 3px #fa6c05;
 }
 
 button, div, h1, form {
@@ -46,7 +46,8 @@ button, input {
     border-color: #fa6c05;
     background-color: #122b48;
     color: white;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
 button:hover {
@@ -67,12 +68,13 @@ input.formInvalid::-webkit-input-placeholder {
     height: 100%;
 }
 
+
 #container {
-    /* background-color: white; */
+    background-color: whitesmoke;
 }
 
 .page {
-    background: url("../Images/menu_background.png") no-repeat;
+    background:  url("../Images/menu_background.png") no-repeat;
     background-size: 100%;
 }
 
@@ -107,7 +109,12 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 
-
+.mini-popup {
+    position: absolute;
+    display: none;
+    background: #ccc;
+    border: 1px solid;
+}
 
 
 
@@ -138,6 +145,10 @@ h4 {
 #high-score .wrapper {
     width: 80%;
     left: 10%;
+}
+
+
+.infobox {
     background-color: rgba(255,255,255, 0.7);
     border-width: thick;
     border-style: solid;
@@ -147,6 +158,7 @@ h4 {
 
 #high-score table {
     width: 100%;
+
 }
 
 #high-score tr td {
@@ -189,6 +201,18 @@ h4 {
     display: inline-block;
     margin:0 auto;
 }
+#high-score #achievement-button {
+    width: 75px;
+    height: 75px;
+    background-image: url("../Images/trophy-gold.png");
+    background-size: 100%;
+    display: inline-block;
+    margin:0 auto;
+}
+
+#achievement-details {
+    height: 20px;
+}
 
 
 
@@ -207,37 +231,6 @@ h4 {
 /*///////////////////////////////////LOGIN//////////////////////////////////////// */
 
 
-#container {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Vertical_United_States_Flag.svg) no-repeat ;
-    background-size: 100%;
-}
-
-#game-page {
-    /*background-color: white; */
-
-}
-
-#game-page #tree1 {
-    position: absolute;
-    bottom: 20px;
-    right: 50px;
-    width: 50px;
-    height: 50px;
-    background-image: url("../Images/menu/tree1.jpg");
-    background-size: 100%;
-}
-
-.mute-button {
-    position: absolute;
-    bottom: 20px;
-    right: 290px;
-    width: 50px;
-    height: 50px;
-    background-image: url("../Images/yessound.png");
-    background-size: 100%;
-    z-index: 1000;
-
-}
 
 
 

@@ -28,6 +28,7 @@ function Login() {
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
+    username.autofocus = "autoFocus";
 
     var password = document.createElement("input");
     password.type = "password";
@@ -46,12 +47,7 @@ function Login() {
             url: url,
             data: $("#form-login").serialize(), // serializes the form's elements.
             success: function(data) {
-
-                //data is the JSON object from authenticate.php
-                //"username" => "null",
-                //"password" => "null",
-                //"logged_in" => "false"
-
+                
                 var obj = JSON.parse(data);
                 //console.log(obj);
 
@@ -76,7 +72,7 @@ function Login() {
         return false; // avoid to execute the actual submit of the form.
     });
 
-    var register = document.createElement("a");
+    var register = document.createElement("button");
     register.appendChild(document.createTextNode("Register"));
     register.addEventListener('click', function(){
         LOGIN.setVisibility(false);

@@ -25,6 +25,7 @@ function Register() {
     username.type = "text";
     username.name = "username";
     username.placeholder = "User Name";
+    username.autofocus = "autoFocus";
 
     var password = document.createElement("input");
     password.className = "";
