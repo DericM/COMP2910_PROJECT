@@ -83,6 +83,10 @@ Game.prototype.setupLevel = function(passed) {
         this.scoreTracker.incrementFail();
     }
     if(this.level == 0 && passed === false) {
+        if (PLAYER_DATA.giveAchievement(0)) {
+            GAME.popup("ACHIEVEMENT UNLOCKED: MEET THE WITCH");
+            
+        }
         this.grid.getTrump().toggleListener(false);
         CANVAS_MANAGER.uiCanvas.getContext().drawImage(RESOURCES.getImage("snake"), this.grid.getXCoord(), this.grid.getYCoord(), this.grid.getWidth(), this.grid.getHeight());
         RESOURCES.playSound("snake_woman");
