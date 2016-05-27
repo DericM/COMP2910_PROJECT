@@ -57,7 +57,6 @@ Game.prototype.newGame = function() {
     this.setupLevel(null);
     RESOURCES.playSound("make_america_great");
     this.grid.start();
-    GAME.popup("HELLO CUNT");
 };
 
 
