@@ -181,12 +181,14 @@ function ResourceManager() {
 
     this.playSound = function(name) {
         if (PLAYER_DATA.soundStatus) {
-            if (sounds[name].pause) {
-                var newSound = sounds[name].cloneNode(true);
-                newSound.play();
-            } else {
-                sounds[name].play();
-            }
+            // if (sounds[name].pause) {
+            //     var newSound = sounds[name].cloneNode(true);
+            //     newSound.play();
+            // } else {
+            //     sounds[name].play();
+            // }
+
+            sounds[name].play();
         }
     };
 
