@@ -97,7 +97,7 @@ function Grid() {
 
 	var columns = 5;
 	var rows = 7;
-	var perc = 0.8;
+	var perc = 0.7;
 	var width;
 	var height;
 	var xCoord;
@@ -211,8 +211,8 @@ function Grid() {
 		fenceHeight = fenceWidth * 2 + fenceDepth + height;
 		width = WIDTH * perc;
 		height = width * rows / columns;
-		if(height > HEIGHT * perc) {
-			height = HEIGHT * perc;
+		if(height > HEIGHT - 125) {
+			height = HEIGHT - 125;
 			width = height * columns / rows;
 		}
 		xCoord = (WIDTH / 2) - (width / 2);

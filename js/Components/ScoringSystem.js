@@ -40,10 +40,10 @@ function ScoringSystem(canvas) {
         this.ctx.fillStyle = "#ffcc99";
         this.ctx.strokeStyle = "#000";*/
         this.ctx.font = (HEIGHT * 0.05) + "px Century Gothic";
-        this.ctx.fillText(this.score,40, 75);
+        this.ctx.fillText(this.score, GAME.grid.getXCoord(), 35);
         //this.ctx.strokeText(this.score, 30, 75);
 
-        var place = WIDTH / 2;
+        var place = GAME.grid.getXCoord() + GAME.grid.getWidth() - 140;
 
         //this.ctx.font = (13) + "px Arial";
         //this.ctx.fillText("Lives: ", place - 55, 73);
@@ -51,7 +51,7 @@ function ScoringSystem(canvas) {
         for (var i = GAME.grid.getTrump().getLives(); i > 0; i--) {
             // this.ctx.fillStyle = "#CCC";
             // this.ctx.fillRect((place += 35), 50, 30, 30);
-            this.ctx.drawImage(RESOURCES.getImage("trump"), (place += 35), 50, 30, 30);
+            this.ctx.drawImage(RESOURCES.getImage("trump"), (place += 35), 10, 30, 30);
         }
 
 

@@ -22,11 +22,11 @@ var VICTORY;
 var DEFEAT;
 var ACHIEVEMENTS;
 var TUTORIAL;
-
 /**
  * Entry point for the program.
  */
 function Main(){
+
 
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;

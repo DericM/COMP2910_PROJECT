@@ -82,7 +82,7 @@ Tutorial.prototype.drawArrow = function(width, height) {
     this.ctx.strokeStyle="#FFFFFF";
     this.ctx.lineWidth = 2;
     this.ctx.beginPath();
-    this.ctx.moveTo(width / 2, height * 0.8);
+    this.ctx.moveTo(width / 2, height * 0.75);
     this.ctx.quadraticCurveTo(width * 0.75, height * 0.8, width / 2, height * 0.3);
     this.ctx.stroke();
     this.ctx.lineTo(width * 0.4, height * 0.4);
