@@ -26,13 +26,21 @@ function ScoringSystem(canvas) {
     failFactor[2] = 0.4;
 
     this.draw = function() {
-        // this.ctx.fillStyle = "#CCC";
-        // this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
+        var totalHeight = GAME.grid.getYCoord() - WIDTH * 0.05 - WIDTH * 0.05 * 0.7;
+        var height = totalHeight * 0.5;
+        var width = GAME.grid.getWidth() + WIDTH * 0.05 * 2;
+        var xCoord = GAME.grid.getXCoord() - WIDTH * 0.05;
+        var yCoord = totalHeight / 2 - height / 2;
+        var textX = GAME.grid.getXCoord();
+        var textHeight = HEIGHT * 0.05;
+        this.ctx.fillStyle = "#FFF";
+        console.log(xCoord, yCoord, width, height);
+        this.ctx.fillRect(xCoord, yCoord, width, height);
         this.ctx.fillStyle = "#ffcc99";
         this.ctx.strokeStyle = "#000";
-        this.ctx.font = (HEIGHT * 0.05) + "px Arial";
-        this.ctx.fillText("Score: " + this.score, 30, 75);
-        this.ctx.strokeText("Score: " + this.score, 30, 75);
+        this.ctx.font = (HEIGHT * 0.05) + "px Century Gothic";
+        this.ctx.fillText(this.score, textX, yCoord + 5);
+        //this.ctx.strokeText(this.score, 30, 75);
 
         var place = WIDTH / 2;
 

@@ -4,11 +4,10 @@ function ResourceManager() {
     var imageSources = {
         mine: "Images/land_mine.png",
         trump: "Images/trump.png",
-        whitehouse: "Images/white.png",
+        whitehouse: "Images/whitehouse.png",
         snake: "Images/snakeWoman.jpg",
         orientlistener: "Images/orientlistener.png",
         spraytan: "Images/spraytan.png",
-
         star: "Images/star.png",
         grass1: "Images/grass1.png",
         grass2: "Images/grass2.png",
@@ -181,13 +180,7 @@ function ResourceManager() {
 
     this.playSound = function(name) {
         if (PLAYER_DATA.soundStatus) {
-            // if (sounds[name].pause) {
-            //     var newSound = sounds[name].cloneNode(true);
-            //     newSound.play();
-            // } else {
-            //     sounds[name].play();
-            // }
-
+            sounds[name].currentTime = 0;
             sounds[name].play();
         }
     };

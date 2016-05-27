@@ -21,7 +21,7 @@ function Trump(grid, column, row, image) {
     var xVel = 0;
     var yVel = 0;
     var vel = 0.6;
-    var flyingVel = 0.001;
+    var flyingVel = 0.02;
     var moving = false;
     var collided = false;
     var dead = false;
@@ -158,17 +158,21 @@ function Trump(grid, column, row, image) {
         if(moving) {
             if (dead) {
                 if(xVel != 0) {
-                    yVel = Math.random() / 5;
-                    if (Math.random() - 0.5 >= 0)
-                        yVel = -yVel;
-                    if (xVel >= 0)
+                    yVel = Math.random() / 10;
+                    if (Math.random() - 0.05 >= 0) {
+                        var vl = -yVel;
+                        yVel = vl;
+                    }
+                    if (xVel > 0)
                         xVel = -flyingVel * delta;
                     else
                         xVel = flyingVel * delta;
                 } else {
-                    xVel = Math.random() / 5;
-                    if (Math.random() - 0.5 >= 0)
-                        xVel = -xVel;
+                    xVel = Math.random() / 10;
+                    if (Math.random() - 0.05 >= 0) {
+                        var vl = -xVel;
+                        xVel = vl;
+                    }
                     if (yVel >= 0)
                         yVel = -flyingVel * delta;
                     else

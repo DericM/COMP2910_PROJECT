@@ -66,28 +66,34 @@ Game.prototype.newGame = function() {
  *                             level should was passed.
  */
 Game.prototype.setupLevel = function(passed) {
-    
-    if(passed) {
+    if (passed) {
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
-        
         if (this.scoreTracker.getScore() > 2500) {
-            
             console.log("giving an achievement");
             PLAYER_DATA.giveAchievement(1);
-            
         } else if (this.scoreTracker.getScore() > 100000) {
-            
             PLAYER_DATA.giveAchievement(2);
-            
         }
-        
+
         this.scoreTracker.clearFail();
         this.level++;
     } else if (passed == false) {
         this.scoreTracker.incrementFail();
-    } 
-        
+    }
+    if(this.level == 0 && passed === false) {
+        this.grid.getTrump().toggleListener(false);
+        CANVAS_MANAGER.uiCanvas.getContext().drawImage(RESOURCES.getImage("snake"), this.grid.getXCoord(), this.grid.getYCoord(), this.grid.getWidth(), this.grid.getHeight());
+        RESOURCES.playSound("snake_woman");
+        setTimeout(function() {
+            CANVAS_MANAGER.uiCanvas.clear();
+            this.setupLevelPartDos();
+        }.bind(this), 3000);
+    } else
+        this.setupLevelPartDos();
+};
+
+Game.prototype.setupLevelPartDos = function() {
     this.grid.populateLevel(this.level);
     this.grid.initializeLevel(this.level);
 //renato added

@@ -246,7 +246,7 @@ function Grid() {
 		setTimeout(function() {
 			trump.toggleListener(true);
 			ingameVisibility();
-		}.bind(this), 500);
+		}.bind(this), 3000);
 	};
 
 	/**
@@ -323,20 +323,17 @@ function Grid() {
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
 				if(grass) {
-
-					//CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-						//RESOURCES.getImage("grass1"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
+					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+						RESOURCES.getImage("grass1"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
 
 					grass = false;
-					CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#3CBF13";
+					//CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#3CBF13";
 				}
 				else {
-
-					//CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-						//RESOURCES.getImage("grass2"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
-
+					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+						RESOURCES.getImage("grass2"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
 					grass = true;
-					CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#2A9708";
+					//CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#2A9708";
 				}
 				//CANVAS_MANAGER.backgroundCanvas.getContext().fillRect(xOffset, yOffset, sectionWidth, sectionHeight);
 				xOffset += sectionWidth;
