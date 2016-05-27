@@ -44,7 +44,7 @@ Game.prototype.constructor = Game;
  * Initializes a new game.
  */
 Game.prototype.newGame = function() {
-    this.level = 0;
+    this.level = 48;
     this.scoreTracker.resetScore();
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
@@ -77,8 +77,20 @@ Game.prototype.setupLevel = function(passed) {
     } else if (passed === false) {
         this.scoreTracker.incrementFail();
     }
-    this.grid.populateLevel(this.level);
-    this.grid.initializeLevel(this.level);
+    if (this.level != 50) {
+		//from 1st level to 50th level
+		this.grid.populateLevel(this.level);
+		this.grid.initializeLevel(this.level);
+	} else {
+		//VICTORY!
+		this.grid.stop();
+		if (PLAYER_DATA.getLoggedInState()) {
+			this.logScore();
+		}
+		this.grid.getTrump().resetLives();
+		RESOURCES.playSound("make_america_great");
+		DEFEAT.setVisibility(true);
+	}
 };
 
 /**
