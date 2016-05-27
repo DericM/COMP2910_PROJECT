@@ -57,7 +57,6 @@ Game.prototype.newGame = function() {
     this.setupLevel(null);
     RESOURCES.playSound("make_america_great");
     this.grid.start();
-    GAME.popup("HELLO CUNT");
 };
 
 
@@ -72,11 +71,10 @@ Game.prototype.setupLevel = function(passed) {
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
 
-        if (this.scoreTracker.getScore() > 2500) {
-            console.log("giving an achievement");
-            PLAYER_DATA.giveAchievement(1);
-        } else if (this.scoreTracker.getScore() > 100000) {
-            PLAYER_DATA.giveAchievement(2);
+        if (this.scoreTracker.getScore() > 1500 && PLAYER_DATA.giveAchievement(1)) {
+            GAME.popup("ACHIEVEMENT UNLOCKED: HIGH ENERGY");
+        } else if (this.scoreTracker.getScore() > 100000 && PLAYER_DATA.giveAchievement(2)) {
+            GAME.popup("ACHIEVEMENT UNLOCKED: MAKE AMERICA GREAT AGAIN");
         }
         
         this.scoreTracker.clearFail();
