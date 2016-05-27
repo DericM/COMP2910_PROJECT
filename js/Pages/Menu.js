@@ -73,7 +73,6 @@ Menu.prototype = Object.create(Page.prototype);
 Menu.prototype.constructor = Menu;
 
 
-
 Menu.prototype.toggleLoginButton = function(state){
     if(state){
         this.wrapper.removeChild(this.login);

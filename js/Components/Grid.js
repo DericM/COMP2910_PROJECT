@@ -186,6 +186,10 @@ function Grid() {
 		entities = level;
 	};
 
+	/**
+	 * Sets all entity references in the grid's array to null
+	 * in order to clear the grid of any entities.
+	 */
 	this.clearGrid = function() {
 		for(var i = 0; i < entities.length; i++) {
 			for(var j = 0; j < entities.length[0]; j++) {
@@ -194,10 +198,23 @@ function Grid() {
 		}
 	};
 
+	/**
+	 * Returns the entity at a certain column and row.
+	 *
+	 * @param {number} column : the column that the entity is in
+	 * @param {number} row    : the column that the entity is in
+	 */
 	this.getSectionAt = function(column, row){
 		return entities[row][column];
 	};
 
+	/**
+	 * Sets an entity in a specific section of the grid.
+	 *
+	 * @param {number} column : the column of the section the entity is to be placed in
+	 * @param {number} row    : the row of the section the entity is to be placed in
+	 * @param {Entity} entity : the entity to be placed on the grid
+	 */
 	this.setSectionAt = function(column, row, entity) {
 		entities[row][column] = entity;
 	};
@@ -225,8 +242,7 @@ function Grid() {
 	/**
 	 * Sets the contents of the grid.
 	 *
-	 * @param level2dArr 2d array containing a level to display
-	 * on the grid.
+	 * @param {number} level : the number of the level to be drawn on the grid
 	 */
 	this.populateLevel = function(level) {
 		this.readLevel(level);
@@ -236,6 +252,12 @@ function Grid() {
 		this.drawGrass();
 	};
 
+	/**
+	 * Initializes the level, calling the tutorial if it's the first level (i.e. level 0)
+	 * and the tutorial hasn't run before.
+	 *
+	 * @param {number} level : the number of the level to be initialized
+	 */
 	this.initializeLevel = function(level) {
 		trump.toggleListener(false);
         initialVisibility();
@@ -250,12 +272,17 @@ function Grid() {
 		}
 	};
 
+	/**
+	 * Carries out the fading of the mines and other elements while showing Trump
+	 * and the White House, by calling the appropriate methods at a certain time
+	 * interval.
+	 */
 	this.levelFadeIn = function(){
 		initialVisibility();
 		setTimeout(function() {
 			trump.toggleListener(true);
 			ingameVisibility();
-		}.bind(this), 3000);
+		}.bind(this), 2000);
 	};
 
 	/**
@@ -265,7 +292,6 @@ function Grid() {
 	 *
 	 * @param {boolean} visible Used to set visibility property of entities.
 	 */
-
 	var initialVisibility = function() {
 		for(var i = 0; i < entities.length; i++) {
 			for(var j = 0; j < entities[0].length; j++) {
@@ -281,6 +307,11 @@ function Grid() {
 		}
 	};
 
+	/**
+	 * Sets the in-game visibility of Trump, the White House, and other elements.
+	 *
+	 * @param {boolean} visibility
+	 */
 	var ingameVisibility = function(visibility) {
 		for(var i = 0; i < entities.length; i++) {
 			for(var j = 0; j < entities[0].length; j++) {
@@ -296,7 +327,9 @@ function Grid() {
 		}
 	};
 
-
+	/**
+	 * Updates the x-y coordinates of each entity on the canvas.
+	 */
 	this.updateGrid = function() {
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
@@ -308,7 +341,7 @@ function Grid() {
 	};
 
 	/**
-	 * Draws the grid.
+	 * Draws the elements of the grid.
 	 */
 	this.draw = function() {
 		for(var i = 0; i < rows; i++) {

@@ -29,7 +29,7 @@ Canvas.prototype = {
 	
 	/**
 	* Returns width.
-	* @returns {*}
+	* @returns {number}
 	*/
 	getWidth: function() {
 		return this.width;
@@ -37,7 +37,7 @@ Canvas.prototype = {
 
     /**
     * Returns height.
-    * @returns {*}
+    * @returns {number}
     */
     getHeight: function() {
         return this.height;
