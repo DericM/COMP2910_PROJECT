@@ -3,10 +3,9 @@
  */
 function Game() {
     Page.call(this);
-
+    
     this.page.id = "game-page";
     this.page.className = "game";
-
 
     this.level = 0;
     this.scoreTracker = new ScoringSystem(CANVAS_MANAGER.gameCanvas);
@@ -48,7 +47,7 @@ Game.prototype.newGame = function() {
     this.scoreTracker.resetScore();
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
-    this.setupLevel(false);
+    this.setupLevel(null);
     RESOURCES.playSound("make_america_great");
     this.grid.start();
 };
@@ -76,7 +75,8 @@ Game.prototype.setupLevel = function(passed) {
         this.level++;
     } else if (passed === false) {
         this.scoreTracker.incrementFail();
-    }
+    } 
+        
     this.grid.populateLevel(this.level);
     this.grid.initializeLevel(this.level);
 };

@@ -44,6 +44,8 @@ function Trump(grid, column, row, image) {
     }.bind(this);
 
     this.checkState = function () {
+        var ctx = CANVAS_MANAGER.gameCanvas.getContext();
+        
         if (moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
             if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
                 if (distanceBetween(
@@ -117,9 +119,9 @@ function Trump(grid, column, row, image) {
         collided = true;
         RESOURCES.playSound("explosion")
         grid.getSectionAt(this.column, this.row).animate();
+        lives--;
         setTimeout(function() {
             this.settleTrump();
-            lives--;
             if (lives != 0) {
                 GAME.setupLevel(false);
             } else {

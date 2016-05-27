@@ -103,10 +103,6 @@ PlayerData.prototype.mergeScores = function(scoreHistory){
 };
 
 
-
-
-
-
 /**
  *
  * @param id

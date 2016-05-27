@@ -72,7 +72,8 @@ function Main(){
         }
     });
     
-    container.appendChild(mute);
+
+    $("#container").append(mute);
 }
 
 /**

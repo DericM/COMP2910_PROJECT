@@ -43,7 +43,7 @@ function ScoringSystem(canvas) {
         //this.ctx.font = (13) + "px Arial";
         //this.ctx.fillText("Lives: ", place - 55, 73);
 
-        for (var i = GAME.grid.getTrump().getLives(); i >= 0; i--) {
+        for (var i = GAME.grid.getTrump().getLives(); i > 0; i--) {
             // this.ctx.fillStyle = "#CCC";
             // this.ctx.fillRect((place += 35), 50, 30, 30);
             this.ctx.drawImage(RESOURCES.getImage("trump"), (place += 35), 50, 30, 30);
@@ -57,7 +57,7 @@ function ScoringSystem(canvas) {
     };
     
     this.incrementFail = function() {
-        this.fail++;
+        (this.fail)++;
     };
     
     this.setFactor = function(factor) {
