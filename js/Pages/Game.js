@@ -52,7 +52,7 @@ Game.prototype.constructor = Game;
  * Initializes a new game.
  */
 Game.prototype.newGame = function() {
-    this.level = 48;
+    this.level = 0;
     this.scoreTracker.resetScore();
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
@@ -71,7 +71,6 @@ Game.prototype.newGame = function() {
 Game.prototype.setupLevel = function(passed) {
     if(passed) {
         if (this.scoreTracker.getScore() > 1000) {
-            console.log("alsdkjfsfdj");
             $.ajax ({
                 type: "POST",
                 url: "php/update_achievement.php",
@@ -91,13 +90,15 @@ Game.prototype.setupLevel = function(passed) {
 		this.grid.initializeLevel(this.level);
 	} else {
 		//VICTORY!
-		this.grid.stop();
+        this.grid.getTrump().toggleListener(false);
+        setTimeout(function() {
+            this.grid.end();
+        }.bind(this), RESOURCES.getAnimation("explosion").length * 15 + 1000);
 		if (PLAYER_DATA.getLoggedInState()) {
 			this.logScore();
 		}
 		this.grid.getTrump().resetLives();
-		RESOURCES.playSound("make_america_great");
-		DEFEAT.setVisibility(true);
+        VICTORY.setVisibility(true);
 	}
 };
 

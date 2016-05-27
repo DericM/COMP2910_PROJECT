@@ -131,6 +131,14 @@ function Grid() {
 		return trump;
 	};
 
+	this.end = function() {
+		console.log("why");
+		trump.settleTrump();
+		trump.toggleListener(false);
+		this.clearGrid();
+		this.stop();
+	};
+
 	/**
 	 * Read the specified level string and returns
 	 * an array of objects to be displayed on the grid for the level.
@@ -417,22 +425,24 @@ function Grid() {
 
 	};
 
+
 	/**
 	 * Renders the game display
 	 */
 	var render = function(interpolatedTime) {
-		CANVAS_MANAGER.gameCanvas.clear();
-		for(var i = 0; i < entities.length; i++) {
-			for(var j = 0; j < entities[0].length; j++) {
-				if(entities[i][j] != null) {
-					entities[i][j].drawEntity();
+		if(running) {
+			CANVAS_MANAGER.gameCanvas.clear();
+			for (var i = 0; i < entities.length; i++) {
+				for (var j = 0; j < entities[0].length; j++) {
+					if (entities[i][j] != null) {
+						entities[i][j].drawEntity();
+					}
 				}
 			}
-		}
-		
-		GAME.scoreTracker.draw();
-	};
 
+			GAME.scoreTracker.draw();
+		}
+	};
 	/**
 	 * Starts animation
 	 */

@@ -123,7 +123,7 @@ function Trump(grid, column, row, image) {
             if (lives != 0) {
                 GAME.setupLevel(false);
             } else {
-                grid.stop();
+                grid.end();
                 if (PLAYER_DATA.getLoggedInState()) {
                     GAME.logScore();
                 }
