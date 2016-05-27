@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Achievement
+ * Defines the achievements of a user
+ * and contains methods for creating, deleting, and updating achievements
+ * of a user in in the database
+ * a1 == MAKE AMERICA GREAT AGAIN (beat the game)
+ * a2 == MEET THE WITCH (meet hilary clinton @ level 1)
+ * a3 == HIGH ENERGY (score >= 25_000)
+ */
 require_once('database.php');
 class Achievement {
 	public $id;
@@ -51,9 +60,6 @@ class Achievement {
 
   	public function create() {
 		global $database;
-		// - INSERT INTO table (key, key) VALUES ('value', 'value')
-		// - single-quotes around all values
-		// - escape all values to prevent SQL injection
 		$attributes = $this->attributes();
 	  $sql = "INSERT INTO " .self::$table_name." (";
 		$sql .= join(", ", array_keys($attributes));

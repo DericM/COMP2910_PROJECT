@@ -59,16 +59,7 @@ class User{
 	}
 
 	private static function instantiate($record) {
-		// Could check that $record exists and is an array
-    $object = new self;
-		// Simple, long-form approach:
-		// $object->id 				= $record['id'];
-		// $object->username 	= $record['username'];
-		// $object->password 	= $record['password'];
-		// $object->first_name = $record['first_name'];
-		// $object->last_name 	= $record['last_name'];
-		
-		// More dynamic, short-form approach:
+	$object = new self;
 		foreach($record as $attribute=>$value){
 		  if($object->has_attribute($attribute)) {
 		    $object->$attribute = $value;
@@ -78,8 +69,6 @@ class User{
 	}
 	
 	private function has_attribute($attribute) {
-	  // We don't care about the value, we just want to know if the key exists
-	  // Will return true or false
 	  return array_key_exists($attribute, $this->attributes());
 	}
 
@@ -98,7 +87,6 @@ class User{
 	  global $database;
 	  $clean_attributes = array();
 	  // sanitize the values before submitting
-	  // Note: does not alter the actual value of each attribute
 	  foreach($this->attributes() as $key => $value){
 	    $clean_attributes[$key] = $database->escape_value($value);
 	  }

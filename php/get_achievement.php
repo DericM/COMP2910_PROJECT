@@ -1,4 +1,5 @@
 <?php 
+/*Process Request to return the current user's achievment status*/
 require_once('achievement.php');
 
 $id = $_POST['id'];
