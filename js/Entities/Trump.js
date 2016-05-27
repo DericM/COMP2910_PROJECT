@@ -89,10 +89,14 @@ function Trump(grid, column, row, image) {
                 }
             } else if (grid.getSectionAt(this.column, this.row) instanceof Star) {
                 RESOURCES.playSound("star");
+                GAME.scoreTracker.giveScore(300);
             } else if (grid.getSectionAt(this.column, this.row) instanceof Certificate) {
                 RESOURCES.playSound("certificate");
+                GAME.scoreTracker.giveScore(400);
+                
             } else if (grid.getSectionAt(this.column, this.row) instanceof SprayTan) {
                 RESOURCES.playSound("spraytan");
+                GAME.scoreTracker.giveScore(50);
             }
         }
     };
