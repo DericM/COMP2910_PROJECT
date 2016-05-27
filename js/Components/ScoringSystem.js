@@ -34,10 +34,6 @@ function ScoringSystem(canvas) {
         this.ctx.fillText("Score: " + this.score, 30, 75);
         this.ctx.strokeText("Score: " + this.score, 30, 75);
 
-        if (PLAYER_DATA.getLoggedInState()) {
-            this.ctx.fillText("Logged in as: " + PLAYER_DATA.getUserName(), 10, 30);
-        }
-
         var place = WIDTH / 2;
 
         //this.ctx.font = (13) + "px Arial";
@@ -57,7 +53,7 @@ function ScoringSystem(canvas) {
     };
     
     this.incrementFail = function() {
-        this.fail++;
+        (this.fail)++;
     };
     
     this.setFactor = function(factor) {
@@ -72,6 +68,11 @@ function ScoringSystem(canvas) {
     this.addToScore = function(level) {
         this.score += ((level + 1) * 100) * failFactor[this.fail] ;
         
+    };
+    
+    this.giveScore = function(amount) {
+        console.log("giving " + amount);
+        this.score = this.score + amount;
     };
     
     this.getScore = function() {

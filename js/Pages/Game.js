@@ -3,10 +3,9 @@
  */
 function Game() {
     Page.call(this);
-
+    
     this.page.id = "game-page";
     this.page.className = "game";
-
 
     this.level = 0;
     this.scoreTracker = new ScoringSystem(CANVAS_MANAGER.gameCanvas);
@@ -22,14 +21,12 @@ function Game() {
         MENU.setVisibility(true);
     });
 
-
     var achievement = document.createElement("div");
     achievement.className = "achievement-popup";
     achievement.addEventListener('click', function(){
         GAME.setVisibility(false);
         MENU.setVisibility(true);
     });
-
 
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.backgroundCanvas.canvas);
@@ -56,7 +53,7 @@ Game.prototype.newGame = function() {
     this.scoreTracker.resetScore();
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
-    this.setupLevel(false);
+    this.setupLevel(null);
     RESOURCES.playSound("make_america_great");
     this.grid.start();
 };
@@ -69,21 +66,31 @@ Game.prototype.newGame = function() {
  *                             level should was passed.
  */
 Game.prototype.setupLevel = function(passed) {
+    
     if(passed) {
-        if (this.scoreTracker.getScore() > 1000) {
-            $.ajax ({
-                type: "POST",
-                url: "php/update_achievement.php",
-                data: {id: PLAYER_DATA.id, achNo: 3}
-            });
-        }
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
+        
+        if (this.scoreTracker.getScore() > 2500) {
+            
+            console.log("giving an achievement");
+            PLAYER_DATA.giveAchievement(1);
+            
+        } else if (this.scoreTracker.getScore() > 100000) {
+            
+            PLAYER_DATA.giveAchievement(2);
+            
+        }
+        
         this.scoreTracker.clearFail();
         this.level++;
     } else if (passed == false) {
         this.scoreTracker.incrementFail();
-    }
+    } 
+        
+    this.grid.populateLevel(this.level);
+    this.grid.initializeLevel(this.level);
+//renato added
     if (this.level != 50) {
 		//from 1st level to 50th level
 		this.grid.populateLevel(this.level);

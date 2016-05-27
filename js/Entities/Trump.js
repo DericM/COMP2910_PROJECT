@@ -44,6 +44,8 @@ function Trump(grid, column, row, image) {
     }.bind(this);
 
     this.checkState = function () {
+        var ctx = CANVAS_MANAGER.gameCanvas.getContext();
+        
         if (moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
             if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
                 if (distanceBetween(
@@ -87,10 +89,14 @@ function Trump(grid, column, row, image) {
                 }
             } else if (grid.getSectionAt(this.column, this.row) instanceof Star) {
                 RESOURCES.playSound("star");
+                GAME.scoreTracker.giveScore(300);
             } else if (grid.getSectionAt(this.column, this.row) instanceof Certificate) {
                 RESOURCES.playSound("certificate");
+                GAME.scoreTracker.giveScore(400);
+                
             } else if (grid.getSectionAt(this.column, this.row) instanceof SprayTan) {
                 RESOURCES.playSound("spraytan");
+                GAME.scoreTracker.giveScore(50);
             }
         }
     };
@@ -117,9 +123,9 @@ function Trump(grid, column, row, image) {
         collided = true;
         RESOURCES.playSound("explosion");
         grid.getSectionAt(this.column, this.row).animate();
+        lives--;
         setTimeout(function() {
             this.settleTrump();
-            lives--;
             if (lives != 0) {
                 GAME.setupLevel(false);
             } else {
