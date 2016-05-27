@@ -14,11 +14,17 @@ function Mine(grid, column, row, image) {
 	var timer;
 	var animationOngoing = false;
 
+	/**
+	 * Activates animation of the mine.
+	 */
 	this.animate = function() {
 		timer = setInterval(this.animation, 45);
 		animationOngoing = true;
 	};
 
+	/**
+	 * Draws the mine taking into account whether it's being animated.
+	 */
 	this.drawEntity = function () {
 		if (this.visible == true) {
 			if(animationOngoing) {
@@ -32,6 +38,9 @@ function Mine(grid, column, row, image) {
 		}
 	};
 
+	/**
+	 * Runs the animation of the mine.
+	 */
 	this.animation = function() {
 		this.image = frames[frame];
 		this.visible = true;

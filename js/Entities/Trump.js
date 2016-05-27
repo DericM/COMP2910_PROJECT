@@ -32,10 +32,16 @@ function Trump(grid, column, row, image) {
     var frame = 0;
     var timer;
 
+	/**
+	 * Sets the timer to run Trump's animation.
+	 */
     this.animate = function() {
         timer = setInterval(this.animation, 30);
     };
 
+	/**
+	 * Runs the animation of Trump.
+	 */
     this.animation = function() {
         this.image = frames[frame];
         if(frames[++frame] == undefined) {
@@ -43,6 +49,10 @@ function Trump(grid, column, row, image) {
         }
     }.bind(this);
 
+	/**
+	 * Checks the state of Trump upon collision with another Entity, calling the methods
+	 * for the needed effect.
+	 */
     this.checkState = function () {
         var ctx = CANVAS_MANAGER.gameCanvas.getContext();
         
@@ -101,6 +111,9 @@ function Trump(grid, column, row, image) {
         }
     };
 
+	/**
+	 * Draws Trump on the game canvas, if the variable "visible" is true.
+	 */
     this.drawEntity = function() {
         if (this.visible == true) {
             CANVAS_MANAGER.gameCanvas.getContext().drawImage(this.image,
@@ -109,14 +122,23 @@ function Trump(grid, column, row, image) {
         }
     };
     
+	/**
+	 * @returns {number} the number of lives Trump has
+	 */
     this.getLives = function() {
         return lives;
     };
 
+	/**
+	 * @returns {number} the distance between two x-y coordinates
+	 */
     var distanceBetween = function (x1, y1, x2, y2) {
         return (Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
     };
 
+	/**
+	 * Carries out the effects of Trump hitting a mine.
+	 */
     this.hitAMine = function () {
         dead = true;
         rotating = true;
@@ -140,15 +162,26 @@ function Trump(grid, column, row, image) {
         }.bind(this), RESOURCES.getAnimation("explosion").length * 15 + 1000);
     };
 
+	/**
+	 * Carries out the effects of Trump arriving at the White House.
+	 */
     this.hitTheWhiteHouse = function () {
         collided = true;
         GAME.setupLevel(true);
     };
 
+	/**
+	 * Resets the number of Trump's lives to the maximum.
+	 */
     this.resetLives = function () {
         lives = maxLives;
     };
 
+	/**
+	 * Updates Trump's position for the animation.
+	 *
+	 * @param {number} delta : how long the last frame lasts
+	 */
     this.updateEntity = function(delta) {
         this.xCoord += xVel * delta;
         this.yCoord += yVel * delta;
@@ -207,6 +240,9 @@ function Trump(grid, column, row, image) {
         }
     };
 
+	/**
+	 * Settles Trump's image to its initial state.
+	 */
     this.settleTrump = function() {
         clearInterval(timer);
         this.image = RESOURCES.getImage("trump");
@@ -235,7 +271,7 @@ function Trump(grid, column, row, image) {
     /**
      * Moves trump in the specified direction. (called by the mouse listener)
      *
-     * @param {event} event  :
+     * @param {event} event
      */
     this.moveMe = function(event) {
         if(keySwitch && moving == false) {

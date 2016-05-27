@@ -64,7 +64,7 @@ Game.prototype.newGame = function() {
  * Sets up the next level to be played
  *
  * @param {boolean} passed  :  whether or not the previous
- *                             level should was passed.
+ *                             level was passed.
  */
 Game.prototype.setupLevel = function(passed) {
     if(passed) {
@@ -98,10 +98,13 @@ Game.prototype.setupLevel = function(passed) {
         this.setupLevelPartDos();
 };
 
+/**
+ * 
+ */
 Game.prototype.setupLevelPartDos = function() {
     this.grid.populateLevel(this.level);
     this.grid.initializeLevel(this.level);
-//renato added
+
     if (this.level != 50) {
 		//from 1st level to 50th level
 		this.grid.populateLevel(this.level);
@@ -131,7 +134,11 @@ Game.prototype.logScore = function() {
     */
 };
 
-
+/**
+ * Changes the text of the achievement div when an achievement is earned.
+ *
+ * @param {String} text : the text to be displayed
+ */
 Game.prototype.popup = function(text){
     this.achievement.innerHTML = text;
     this.achievement.style.display = "block";

@@ -28,7 +28,12 @@ Tutorial.prototype = Object.create(Page.prototype);
 Tutorial.prototype.constructor = Tutorial;
 
 
-
+/**
+ * Runs the tutorial.
+ *
+ * @param {number} width  : the width of the container
+ * @param {number} height : the height of the container
+ */
 Tutorial.prototype.reset = function(width, height){
     var end = false;
     this.ctx.clearRect(0,0, width, height);
