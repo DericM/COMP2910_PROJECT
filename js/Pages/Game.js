@@ -88,7 +88,7 @@ Game.prototype.setupLevel = function(passed) {
             
         }
         this.grid.getTrump().toggleListener(false);
-        CANVAS_MANAGER.uiCanvas.getContext().drawImage(RESOURCES.getImage("snake"), this.grid.getXCoord(), this.grid.getYCoord(), this.grid.getWidth(), this.grid.getHeight());
+        CANVAS_MANAGER.uiCanvas.getContext().drawImage(RESOURCES.getImage("snake"), this.grid.getXCoord(), this.grid.getYCoord() - WIDTH * 0.05 *0.9, this.grid.getWidth(), this.grid.getHeight() + WIDTH *0.05*0.9);
         RESOURCES.playSound("snake_woman");
         setTimeout(function() {
             CANVAS_MANAGER.uiCanvas.clear();

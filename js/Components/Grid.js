@@ -73,6 +73,12 @@ function Grid() {
 		["xxxtx*", "*x***c", "xxx**x", "*xxx*x", "**xxxx", "xxx**x", "xxx**x", "*wxxxx"],
 		["xxxw**", "xxx***", "**xxx*", "xxxxx*", "xx****", "xxxxx*", "***xxx", "txxxxx"]
 	];
+
+	var fenceWidth;
+	var fenceDepth;
+	var fenceHeight;
+
+
 	var trump = new Trump(this, 0, 0, RESOURCES.getImage("trump"));
 	var whitehouse = new WhiteHouse(this, 0, 0, RESOURCES.getImage("whitehouse"));
 	var mines = [];
@@ -200,6 +206,9 @@ function Grid() {
 	 * Determines the coordinates needed to draw the grid.
 	 */
 	this.setDimensions = function() {
+		fenceWidth = WIDTH * 0.05;
+		fenceDepth = fenceWidth * 0.9;
+		fenceHeight = fenceWidth * 2 + fenceDepth + height;
 		width = WIDTH * perc;
 		height = width * rows / columns;
 		if(height > HEIGHT * perc) {
@@ -323,14 +332,14 @@ function Grid() {
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
 				if(grass) {
-					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+					CANVAS_MANAGER.gameCanvas.getContext().drawImage(
 						RESOURCES.getImage("grass1"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
 
 					grass = false;
 					//CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#3CBF13";
 				}
 				else {
-					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+					CANVAS_MANAGER.gameCanvas.getContext().drawImage(
 						RESOURCES.getImage("grass2"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
 					grass = true;
 					//CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#2A9708";
@@ -341,6 +350,10 @@ function Grid() {
 			xOffset = xCoord;
 			yOffset += sectionHeight;
 		}
+		var context = CANVAS_MANAGER.gameCanvas.getContext();
+		context.globalAlpha = 0.3;
+		context.fillRect(xCoord, yCoord-10, width, fenceDepth);
+		context.globalAlpha = 1;
 	};
 
 	/**
@@ -433,9 +446,7 @@ function Grid() {
 
 	this.drawFence = function() {
 		var context = CANVAS_MANAGER.gameCanvas.getContext();
-		var fenceWidth = WIDTH * 0.05;
-		var fenceDepth = fenceWidth * 0.7;
-		var fenceHeight = fenceWidth * 2 + fenceDepth + height;
+
 
 		context.fillStyle = "#92ac93";
 		context.fillRect(xCoord - fenceWidth, yCoord - fenceWidth - fenceDepth, fenceWidth,  fenceHeight);
@@ -447,7 +458,6 @@ function Grid() {
 		context.fillRect(xCoord - fenceWidth, yCoord + height + fenceWidth, width + fenceWidth * 2, fenceDepth);
 		context.fillRect(xCoord, yCoord - fenceDepth, width, fenceDepth);
 		context.globalAlpha = 0.3;
-		context.fillRect(xCoord, yCoord, width, fenceDepth);
 		context.fillRect(xCoord - fenceWidth, yCoord + height + fenceWidth + fenceDepth, width + fenceWidth *2, fenceDepth);
 		context.globalAlpha = 1;
 	};
@@ -461,6 +471,7 @@ function Grid() {
 
 			CANVAS_MANAGER.gameCanvas.clear();
 			this.drawFence();
+			this.drawGrass();
 			for (var i = 0; i < entities.length; i++) {
 				for (var j = 0; j < entities[0].length; j++) {
 					if (entities[i][j] != null) {

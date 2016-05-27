@@ -11,10 +11,8 @@ function WhiteHouse(grid, column, row, image) {
 
 	this.drawEntity = function() {
 		if (this.visible == true) {
-			var width = grid.getSectionWidth() * 1.5;
-			var height = grid.getSectionHeight() * 1.5;
 			CANVAS_MANAGER.gameCanvas.getContext().drawImage(this.image
-				, this.xCoord - grid.getSectionWidth() * 0.25, this.yCoord - grid.getSectionHeight() *0.5, width, height);
+				, this.xCoord, this.yCoord - grid.getSectionHeight() *0.25, grid.getSectionWidth(), grid.getSectionHeight());
 		}
 	}
 }
