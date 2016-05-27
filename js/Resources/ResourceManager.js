@@ -21,7 +21,7 @@ function ResourceManager() {
     var sounds = {};
     var soundSources = {
 		chime : "Sounds/chime.mp3",
-        explosion : "Sounds/explosion.mp3",
+        explosion : "Sounds/mine_explosion.mp3",
 		spraytan : "Sounds/spraytan.mp3",
 		star : "Sounds/star.mp3",
 		certificate : "Sounds/certificate.mp3",
@@ -79,6 +79,26 @@ function ResourceManager() {
             "Images/explosion/22.gif",
             "Images/explosion/23.gif",
             "Images/explosion/24.gif"
+        ],
+        rage : [
+            "Images/rage/0.gif",
+            "Images/rage/1.gif",
+            "Images/rage/2.gif",
+            "Images/rage/3.gif",
+            "Images/rage/4.gif",
+            "Images/rage/5.gif",
+            "Images/rage/6.gif",
+            "Images/rage/7.gif",
+            "Images/rage/8.gif",
+            "Images/rage/9.gif",
+            "Images/rage/10.gif",
+            "Images/rage/11.gif",
+            "Images/rage/12.gif",
+            "Images/rage/13.gif",
+            "Images/rage/14.gif",
+            "Images/rage/15.gif",
+            "Images/rage/16.gif",
+            "Images/rage/17.gif"
         ]
     };
 
@@ -161,7 +181,12 @@ function ResourceManager() {
 
     this.playSound = function(name) {
         if (PLAYER_DATA.soundStatus) {
-            sounds[name].play();
+            if (sounds[name].pause) {
+                var newSound = sounds[name].cloneNode(true);
+                newSound.play();
+            } else {
+                sounds[name].play();
+            }
         }
     };
 

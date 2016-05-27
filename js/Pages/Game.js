@@ -49,6 +49,7 @@ Game.prototype.newGame = function() {
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
     this.setupLevel(false);
+    RESOURCES.playSound("make_america_great");
     this.grid.start();
 };
 

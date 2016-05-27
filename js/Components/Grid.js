@@ -172,6 +172,14 @@ function Grid() {
 		entities = level;
 	};
 
+	this.clearGrid = function() {
+		for(var i = 0; i < entities.length; i++) {
+			for(var j = 0; j < entities.length[0]; j++) {
+				entities[i][j] = null;
+			}
+		}
+	};
+
 	this.getSectionAt = function(column, row){
 		return entities[row][column];
 	};
@@ -446,7 +454,7 @@ function Grid() {
 	/**
 	 * Stops animation
 	 */
-	var stop = function() {
+	this.stop = function() {
 		running = false;
 		started = false;
 		cancelAnimationFrame(frameID);
