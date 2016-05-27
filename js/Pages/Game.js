@@ -21,18 +21,19 @@ function Game() {
         MENU.setVisibility(true);
     });
 
-    var achievement = document.createElement("div");
-    achievement.className = "achievement-popup";
-    achievement.addEventListener('click', function(){
-        GAME.setVisibility(false);
-        MENU.setVisibility(true);
-    });
+
+    this.achievement = document.createElement("div");
+    this.achievement.id = "achievement-popup";
+
+
+
 
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.backgroundCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.uiCanvas.canvas);
     this.page.appendChild(home);
+    this.page.appendChild(this.achievement);
     
     
 }
@@ -66,14 +67,14 @@ Game.prototype.newGame = function() {
  *                             level should was passed.
  */
 Game.prototype.setupLevel = function(passed) {
-    if (passed) {
+    if(passed) {
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
-        if (this.scoreTracker.getScore() > 2500) {
-            console.log("giving an achievement");
-            PLAYER_DATA.giveAchievement(1);
-        } else if (this.scoreTracker.getScore() > 100000) {
-            PLAYER_DATA.giveAchievement(2);
+
+        if (this.scoreTracker.getScore() > 1500 && PLAYER_DATA.giveAchievement(1)) {
+            GAME.popup("ACHIEVEMENT UNLOCKED: HIGH ENERGY");
+        } else if (this.scoreTracker.getScore() > 100000 && PLAYER_DATA.giveAchievement(2)) {
+            GAME.popup("ACHIEVEMENT UNLOCKED: MAKE AMERICA GREAT AGAIN");
         }
 
         this.scoreTracker.clearFail();
@@ -127,4 +128,10 @@ Game.prototype.logScore = function() {
 };
 
 
-
+Game.prototype.popup = function(text){
+    this.achievement.innerHTML = text;
+    this.achievement.style.display = "block";
+    setTimeout(function(){
+        $("#achievement-popup").fadeOut("slow");
+    }, 2000);
+};
