@@ -91,7 +91,7 @@ function Grid() {
 
 	var columns = 5;
 	var rows = 7;
-	var perc = 0.85;
+	var perc = 0.8;
 	var width;
 	var height;
 	var xCoord;
@@ -315,21 +315,30 @@ function Grid() {
 	 * Draws the grass.
 	 */
 	this.drawGrass = function() {
+		CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#5DCB3A";
+		CANVAS_MANAGER.backgroundCanvas.getContext().fillRect(0, 0, WIDTH, HEIGHT);
 		var grass = false;
 		var xOffset = xCoord;
 		var yOffset = yCoord;
 		for(var i = 0; i < rows; i++) {
 			for(var j = 0; j < columns; j++) {
 				if(grass) {
-					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-						RESOURCES.getImage("grass1"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
+
+					//CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+						//RESOURCES.getImage("grass1"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
+
 					grass = false;
+					CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#3CBF13";
 				}
 				else {
-					CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
-						RESOURCES.getImage("grass2"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
+
+					//CANVAS_MANAGER.backgroundCanvas.getContext().drawImage(
+						//RESOURCES.getImage("grass2"), xOffset, yOffset - 15, sectionWidth, sectionHeight + 15);
+
 					grass = true;
+					CANVAS_MANAGER.backgroundCanvas.getContext().fillStyle = "#2A9708";
 				}
+				//CANVAS_MANAGER.backgroundCanvas.getContext().fillRect(xOffset, yOffset, sectionWidth, sectionHeight);
 				xOffset += sectionWidth;
 			}
 			xOffset = xCoord;
@@ -425,13 +434,36 @@ function Grid() {
 
 	};
 
+	this.drawFence = function() {
+		var context = CANVAS_MANAGER.gameCanvas.getContext();
+		var fenceWidth = WIDTH * 0.05;
+		var fenceDepth = fenceWidth * 0.7;
+		var fenceHeight = fenceWidth * 2 + fenceDepth + height;
+
+		context.fillStyle = "#92ac93";
+		context.fillRect(xCoord - fenceWidth, yCoord - fenceWidth - fenceDepth, fenceWidth,  fenceHeight);
+		context.fillRect(xCoord + width, yCoord - fenceWidth - fenceDepth, fenceWidth, fenceHeight);
+		context.fillRect(xCoord - 1, yCoord - fenceWidth - fenceDepth, width + 2, fenceWidth);
+
+		/*the thing*/context.fillRect(xCoord - 1, yCoord + height, width + 2, fenceWidth);
+		context.fillStyle = "#374837";
+		context.fillRect(xCoord - fenceWidth, yCoord + height + fenceWidth, width + fenceWidth * 2, fenceDepth);
+		context.fillRect(xCoord, yCoord - fenceDepth, width, fenceDepth);
+		context.globalAlpha = 0.3;
+		context.fillRect(xCoord, yCoord, width, fenceDepth);
+		context.fillRect(xCoord - fenceWidth, yCoord + height + fenceWidth + fenceDepth, width + fenceWidth *2, fenceDepth);
+		context.globalAlpha = 1;
+	};
+
 
 	/**
 	 * Renders the game display
 	 */
-	var render = function(interpolatedTime) {
+	this.render = function(interpolatedTime) {
 		if(running) {
+
 			CANVAS_MANAGER.gameCanvas.clear();
+			this.drawFence();
 			for (var i = 0; i < entities.length; i++) {
 				for (var j = 0; j < entities[0].length; j++) {
 					if (entities[i][j] != null) {
@@ -439,7 +471,6 @@ function Grid() {
 					}
 				}
 			}
-
 			GAME.scoreTracker.draw();
 		}
 	};
@@ -451,13 +482,13 @@ function Grid() {
 			started = true;
 			// Your code to render the initial state goes here
 			frameID = requestAnimationFrame(function(timestamp) {
-				render(1);
+				this.render(1);
 				running = true;
 				lastFrameTimeMs = timestamp;
 				lastFpsUpdate = timestamp;
 				framesThisSecond = 0;
 				frameID = requestAnimationFrame(mainGameLoop);
-			});
+			}.bind(this));
 		}
 	};
 
@@ -503,10 +534,10 @@ function Grid() {
 			}
 		}
 
-		render(delta / timestep);
+		this.render(delta / timestep);
 
 		frameID = requestAnimationFrame(mainGameLoop);
-	};
+	}.bind(this);
 
 	this.createEntityPool = function() {
 		for(var i = 0; i < levels.length; i++) {

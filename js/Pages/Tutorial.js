@@ -80,6 +80,7 @@ Tutorial.prototype.checkCookie = function() {
  */
 Tutorial.prototype.drawArrow = function(width, height) {
     this.ctx.strokeStyle="#FFFFFF";
+    this.ctx.lineWidth = 5;
     this.ctx.beginPath();
     this.ctx.moveTo(width / 2, height * 0.8);
     this.ctx.quadraticCurveTo(width * 0.75, height * 0.8, width / 2, height * 0.3);

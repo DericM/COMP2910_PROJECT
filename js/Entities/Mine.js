@@ -15,9 +15,8 @@ function Mine(grid, column, row, image) {
 	var animationOngoing = false;
 
 	this.animate = function() {
-		animationOngoing = true;
-		this.visible = true;
 		timer = setInterval(this.animation, 45);
+		animationOngoing = true;
 	};
 
 	this.drawEntity = function () {
@@ -35,6 +34,7 @@ function Mine(grid, column, row, image) {
 
 	this.animation = function() {
 		this.image = frames[frame];
+		this.visible = true;
 		if(frames[++frame] == undefined) {
 			clearInterval(timer);
 			animationOngoing = false;
