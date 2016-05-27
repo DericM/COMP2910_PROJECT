@@ -72,7 +72,7 @@ input.formInvalid::-webkit-input-placeholder {
 }
 
 .page {
-    background: white url("../Images/menu_background.png") no-repeat;
+    background: url("../Images/menu_background.png") no-repeat;
     background-size: 100%;
 }
 
@@ -208,14 +208,12 @@ h4 {
 
 
 #container {
-    /*
     background: url(https://upload.wikimedia.org/wikipedia/commons/0/08/Vertical_United_States_Flag.svg) no-repeat ;
     background-size: 100%;
-    */
 }
 
 #game-page {
-    background-color: #188518;
+    /*background-color: white; */
 
 }
 
@@ -232,11 +230,12 @@ h4 {
 .mute-button {
     position: absolute;
     bottom: 20px;
-    right: 100px;
+    right: 290px;
     width: 50px;
     height: 50px;
-    background-image: url("../Images/full_volume.png");
+    background-image: url("../Images/yessound.png");
     background-size: 100%;
+    z-index: 1000;
 
 }
 

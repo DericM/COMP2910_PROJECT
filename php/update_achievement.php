@@ -1,4 +1,5 @@
 <?php
+require_once('achievement.php');
 /*Processes request for updating an achievement
 -achievement 1 : Make America Great Again (beat the game) 
 -achievement 2 : Meet the witch (Hilary Clinton)

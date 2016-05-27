@@ -30,8 +30,8 @@ function Menu() {
         HIGH_SCORE.pullHighScores();
         HIGH_SCORE.setVisibility(true);
     });
-    
-    
+
+
 
     /* CODE FOR FACEBOOK LOGIN BUTTON*/
     /*

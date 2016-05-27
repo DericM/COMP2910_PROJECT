@@ -4,7 +4,7 @@ function ResourceManager() {
     var imageSources = {
         mine: "Images/land_mine.png",
         trump: "Images/trump.png",
-        whitehouse: "Images/whitehouse.png",
+        whitehouse: "Images/white.png",
         snake: "Images/snakeWoman.jpg",
         orientlistener: "Images/orientlistener.png",
         spraytan: "Images/spraytan.png",
@@ -46,7 +46,9 @@ function ResourceManager() {
 		like_in_a_war : "Sounds/like_in_a_war.mp3",
 		more_energy_tonight : "Sounds/more_energy_tonight.mp3",
 		proud : "Sounds/proud.mp3",
-		wonderful_guy : "Sounds/wonderful_guy.mp3"
+		wonderful_guy : "Sounds/wonderful_guy.mp3",
+        
+        anthem : "Sounds/anthem.mp3"
     };
 
     var animations = {};
@@ -150,6 +152,10 @@ function ResourceManager() {
             sounds[src] = document.createElement("audio");
             sounds[src].setAttribute("src", soundSources[src]);
             sounds[src].setAttribute("type", "audio/mp3");
+            
+            if (src == "anthem") {
+                sounds[src].setAttribute("loop", "");
+            }
         }
     };
 
@@ -162,4 +168,14 @@ function ResourceManager() {
     this.pauseSound = function(name) {
         sounds[name].pause();
     };
+    
+    this.checkSound = function() {
+        if (PLAYER_DATA.soundStatus) {
+            $(".mute-button").css("background-image", "url(Images/yessound.png)");
+        } else {
+            //turn it on
+            $(".mute-button").css("background-image", "url(Images/nosound.png)");
+        }
+
+    }
 }

@@ -45,10 +45,7 @@ function HighScore() {
     var score = document.createElement("th");
     score.appendChild(document.createTextNode("Score"));
 
-
     this.achievements = document.createElement("div");
-
-
 
     this.page.appendChild(title);
 
