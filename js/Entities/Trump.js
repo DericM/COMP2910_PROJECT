@@ -115,7 +115,7 @@ function Trump(grid, column, row, image) {
         dead = true;
         rotating = true;
         collided = true;
-        RESOURCES.playSound("explosion")
+        RESOURCES.playSound("explosion");
         grid.getSectionAt(this.column, this.row).animate();
         setTimeout(function() {
             this.settleTrump();

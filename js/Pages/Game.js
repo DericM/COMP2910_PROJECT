@@ -74,7 +74,7 @@ Game.prototype.setupLevel = function(passed) {
         this.scoreTracker.addToScore(this.level);
         this.scoreTracker.clearFail();
         this.level++;
-    } else if (passed === false) {
+    } else if (passed == false) {
         this.scoreTracker.incrementFail();
     }
     this.grid.populateLevel(this.level);
