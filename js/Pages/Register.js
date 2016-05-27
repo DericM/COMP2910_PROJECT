@@ -46,14 +46,6 @@ function Register() {
 
         //form validation
         var valid = true;
-        if(username.value == "" || username.value.length > 30 || username.value.length < 5){
-            username.className = "formInvalid";
-            valid = false;
-        }
-        if(password.value == "" || username.value.length > 30 || username.value.length < 5){
-            password.className = "formInvalid";
-            valid = false;
-        }
         if(password.value != confirm_password.value){
             confirm_password.className = "formInvalid";
             valid = false;
@@ -72,8 +64,8 @@ function Register() {
                 //data is the echo from create_account.php
                 // data == 'success' || data=='failure'
                 //if(data ==) // show response from the php script.
-                alert(data);
-                if(data == "success"){
+
+                if(data.trim() == "success"){
                     REGISTER.setVisibility(false);
                     LOGIN.setVisibility(true);
                 }
