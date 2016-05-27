@@ -80,7 +80,7 @@ Tutorial.prototype.checkCookie = function() {
  */
 Tutorial.prototype.drawArrow = function(width, height) {
     this.ctx.strokeStyle="#FFFFFF";
-    this.ctx.lineWidth = 5;
+    this.ctx.lineWidth = 2;
     this.ctx.beginPath();
     this.ctx.moveTo(width / 2, height * 0.8);
     this.ctx.quadraticCurveTo(width * 0.75, height * 0.8, width / 2, height * 0.3);
@@ -90,12 +90,10 @@ Tutorial.prototype.drawArrow = function(width, height) {
     this.ctx.moveTo(width / 2, height * 0.3);
     this.ctx.lineTo(width * 0.65, height * 0.4);
     this.ctx.stroke();
-
-    this.ctx.font = (HEIGHT * 0.05) + "px Arial";
+    this.ctx.font = (HEIGHT * 0.02) + "px Arial";
     this.ctx.fillStyle = "#FFFFFF";
-    this.ctx.fillText("Guide Trump", width * 0.11, height * 0.45);
-    this.ctx.fillText("to the White  House", width * 0.11, height * 0.6);
-    this.ctx.fillText("avoiding the  mines", width * 0.11, height * 0.7);
+    this.ctx.fillText("Get Trump to the WhiteHouse!", WIDTH * 0.12, HEIGHT * 0.6);
+    this.ctx.fillText("...click to continue", WIDTH * 0.12, HEIGHT * 0.65);
 };
 
 /**
@@ -103,7 +101,7 @@ Tutorial.prototype.drawArrow = function(width, height) {
  * to the areas that Trump is moved with.
  */
 Tutorial.prototype.showTriangles = function(ctx, width, height) {
-	ctx.font = (HEIGHT * 0.065) + "px Arial";
+	ctx.font = (HEIGHT * 0.05) + "px Arial";
 	ctx.globalAlpha=0.5;
 	
 	//UP triangle
@@ -115,7 +113,7 @@ Tutorial.prototype.showTriangles = function(ctx, width, height) {
 	ctx.closePath();
 	ctx.fill();
 	ctx.fillStyle = "#000";
-	ctx.fillText("UP", width * 0.4, height * 0.3);
+	ctx.fillText("UP", width * 0.43, height * 0.3);
 	
 	//LEFT triangle
 	ctx.fillStyle = "#FF0";
@@ -126,7 +124,7 @@ Tutorial.prototype.showTriangles = function(ctx, width, height) {
 	ctx.closePath();
 	ctx.fill();
 	ctx.fillStyle = "#000";
-	ctx.fillText("LEFT", width * 0.11, height * 0.5);
+	ctx.fillText("LEFT", width * 0.15, height * 0.5);
 	
 	//RIGHT triangle
 	ctx.fillStyle = "#FF0";
@@ -137,7 +135,7 @@ Tutorial.prototype.showTriangles = function(ctx, width, height) {
 	ctx.closePath();
 	ctx.fill();
 	ctx.fillStyle = "#000";
-	ctx.fillText("RIGHT", width * 0.55, height * 0.5);
+	ctx.fillText("RIGHT", width * 0.57, height * 0.5);
 	
 	//DOWN triangle
 	ctx.fillStyle = "#FF0";
@@ -148,7 +146,7 @@ Tutorial.prototype.showTriangles = function(ctx, width, height) {
 	ctx.closePath();
 	ctx.fill();
 	ctx.fillStyle = "#000";
-	ctx.fillText("DOWN", width * 0.31, height * 0.75);
+	ctx.fillText("DOWN", width * 0.36, height * 0.75);
 	
 	ctx.globalAlpha=1;
 };

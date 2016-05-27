@@ -23,11 +23,11 @@ function Mine(grid, column, row, image) {
 		if (this.visible == true) {
 			if(animationOngoing) {
 				CANVAS_MANAGER.gameCanvas.getContext().drawImage(this.image
-					, this.xCoord - grid.getSectionWidth() * 0.5, this.yCoord - grid.getSectionHeight(),
+					, this.xCoord - grid.getSectionWidth() * 0.5, this.yCoord - grid.getSectionHeight() - 7,
 					grid.getSectionWidth() * 2, grid.getSectionHeight() * 1.7);
 			} else {
 				CANVAS_MANAGER.gameCanvas.getContext().drawImage(this.image
-					, this.xCoord, this.yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+					, this.xCoord, this.yCoord - 7, grid.getSectionWidth(), grid.getSectionHeight());
 			}
 		}
 	};
