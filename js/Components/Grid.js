@@ -282,7 +282,7 @@ function Grid() {
 		setTimeout(function() {
 			trump.toggleListener(true);
 			ingameVisibility();
-		}.bind(this), 3000);
+		}.bind(this), 2000);
 	};
 
 	/**
