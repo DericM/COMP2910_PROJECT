@@ -69,15 +69,16 @@ Game.prototype.newGame = function() {
  */
 Game.prototype.setupLevel = function(passed) {
     if(passed) {
-        if (this.scoreTracker.getScore() > 1000) {
-            $.ajax ({
-                type: "POST",
-                url: "php/update_achievement.php",
-                data: {id: PLAYER_DATA.id, achNo: 3}
-            });
-        }
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
+
+        if (this.scoreTracker.getScore() > 2500) {
+            console.log("giving an achievement");
+            PLAYER_DATA.giveAchievement(1);
+        } else if (this.scoreTracker.getScore() > 100000) {
+            PLAYER_DATA.giveAchievement(2);
+        }
+        
         this.scoreTracker.clearFail();
         this.level++;
     } else if (passed == false) {
