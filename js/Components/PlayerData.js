@@ -19,9 +19,9 @@ function PlayerData(){
     this.achievements[2] = false;
 
     this.achievName = new Array(3);
-    this.achievName[0] = "Make America Great Again!";
-    this.achievName[1] = "Meet the Witch!";
-    this.achievName[2] = "High Energy!";
+    this.achievName[0] = "Meet the Witch!";
+    this.achievName[1] = "High Energy!";
+    this.achievName[2] = "Make America Great Again!";
     
     this.soundStatus = true;
 }
@@ -59,7 +59,7 @@ PlayerData.prototype.setAchievements = function(obj){
  * @param number
  * @returns {boolean}
  */
-PlayerData.giveAchievement = function(number){
+PlayerData.prototype.giveAchievement = function(number){
 
     if(!this.loggedInState){
         return false;
