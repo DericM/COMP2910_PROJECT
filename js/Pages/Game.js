@@ -22,12 +22,10 @@ function Game() {
     });
 
 
-    var achievement = document.createElement("div");
-    achievement.className = "achievement-popup";
-    achievement.addEventListener('click', function(){
-        GAME.setVisibility(false);
-        MENU.setVisibility(true);
-    });
+    this.achievement = document.createElement("div");
+    this.achievement.id = "achievement-popup";
+
+
 
 
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
@@ -35,6 +33,7 @@ function Game() {
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.uiCanvas.canvas);
     this.page.appendChild(home);
+    this.page.appendChild(this.achievement);
     
     
 }
@@ -58,6 +57,7 @@ Game.prototype.newGame = function() {
     this.setupLevel(null);
     RESOURCES.playSound("make_america_great");
     this.grid.start();
+    GAME.popup("HELLO CUNT");
 };
 
 
@@ -117,4 +117,10 @@ Game.prototype.logScore = function() {
 };
 
 
-
+Game.prototype.popup = function(text){
+    this.achievement.innerHTML = text;
+    this.achievement.style.display = "block";
+    setTimeout(function(){
+        $("#achievement-popup").fadeOut("slow");
+    }, 2000);
+};
