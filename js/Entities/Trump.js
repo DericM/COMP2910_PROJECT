@@ -117,7 +117,7 @@ function Trump(grid, column, row, image) {
         dead = true;
         rotating = true;
         collided = true;
-        RESOURCES.playSound("explosion")
+        RESOURCES.playSound("explosion");
         grid.getSectionAt(this.column, this.row).animate();
         lives--;
         setTimeout(function() {
@@ -125,7 +125,7 @@ function Trump(grid, column, row, image) {
             if (lives != 0) {
                 GAME.setupLevel(false);
             } else {
-                grid.stop();
+                grid.end();
                 if (PLAYER_DATA.getLoggedInState()) {
                     GAME.logScore();
                 }

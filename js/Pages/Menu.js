@@ -27,7 +27,7 @@ function Menu() {
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
         MENU.setVisibility(false);
-        HIGH_SCORE.pullHighScores();
+        HIGH_SCORE.build();
         HIGH_SCORE.setVisibility(true);
     });
 

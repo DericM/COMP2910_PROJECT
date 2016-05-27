@@ -22,6 +22,14 @@ function Game() {
     });
 
 
+    var achievement = document.createElement("div");
+    achievement.className = "achievement-popup";
+    achievement.addEventListener('click', function(){
+        GAME.setVisibility(false);
+        MENU.setVisibility(true);
+    });
+
+
     this.page.appendChild(CANVAS_MANAGER.orientCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.backgroundCanvas.canvas);
     this.page.appendChild(CANVAS_MANAGER.gameCanvas.canvas);
@@ -62,7 +70,6 @@ Game.prototype.newGame = function() {
 Game.prototype.setupLevel = function(passed) {
     if(passed) {
         if (this.scoreTracker.getScore() > 1000) {
-            console.log("alsdkjfsfdj");
             $.ajax ({
                 type: "POST",
                 url: "php/update_achievement.php",
@@ -73,12 +80,29 @@ Game.prototype.setupLevel = function(passed) {
         this.scoreTracker.addToScore(this.level);
         this.scoreTracker.clearFail();
         this.level++;
-    } else if (passed === false) {
+    } else if (passed == false) {
         this.scoreTracker.incrementFail();
     } 
         
     this.grid.populateLevel(this.level);
     this.grid.initializeLevel(this.level);
+//renato added
+    if (this.level != 50) {
+		//from 1st level to 50th level
+		this.grid.populateLevel(this.level);
+		this.grid.initializeLevel(this.level);
+	} else {
+		//VICTORY!
+        this.grid.getTrump().toggleListener(false);
+        setTimeout(function() {
+            this.grid.end();
+        }.bind(this), RESOURCES.getAnimation("explosion").length * 15 + 1000);
+		if (PLAYER_DATA.getLoggedInState()) {
+			this.logScore();
+		}
+		this.grid.getTrump().resetLives();
+        VICTORY.setVisibility(true);
+	}
 };
 
 /**

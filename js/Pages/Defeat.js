@@ -30,7 +30,7 @@ function Defeat() {
     score.addEventListener('click', function(){
         GAME.setVisibility(false);
         DEFEAT.setVisibility(false);
-        HIGH_SCORE.pullHighScores();
+        HIGH_SCORE.build();
         HIGH_SCORE.setVisibility(true);
     });
 
@@ -47,9 +47,10 @@ function Defeat() {
     wrapper.appendChild(title);
     wrapper.appendChild(newGame);
     wrapper.appendChild(score);
-    wrapper.appendChild(home);
+
 
     this.page.appendChild(wrapper);
+    this.page.appendChild(home);
 
 }
 

@@ -12,7 +12,6 @@ function Victory() {
     this.page.id = "victory";
     this.page.className = "popup";
 
-    //build
     var title = document.createElement("h1");
     title.innerHTML = "Victory";
 
@@ -20,31 +19,27 @@ function Victory() {
     wrapper.className  = "wrapper";
 
     var newGame = document.createElement("button");
-    newGame.appendChild(document.createTextNode("Play"));
+    newGame.appendChild(document.createTextNode("New Game"));
     newGame.addEventListener('click', function(){
-        DEFEAT.setVisibility(false);
+        VICTORY.setVisibility(false);
         GAME.newGame();
     });
 
     var score = document.createElement("button");
     score.appendChild(document.createTextNode("High Score"));
     score.addEventListener('click', function(){
-        CANVAS_MANAGER.gameCanvas.setVisible(false);
-        CANVAS_MANAGER.uiCanvas.setVisible(false);
-        DEFEAT.setVisibility(false);
-        HIGH_SCORE.pullHighScores();
+        GAME.setVisibility(false);
+        VICTORY.setVisibility(false);
+        HIGH_SCORE.build();
         HIGH_SCORE.setVisibility(true);
-
-        //future call to high scores
     });
 
 
     var home = document.createElement("div");
     home.className = "home-button";
     home.addEventListener('click', function(){
-        CANVAS_MANAGER.gameCanvas.setVisible(false);
-        CANVAS_MANAGER.uiCanvas.setVisible(false);
-        DEFEAT.setVisibility(false);
+        GAME.setVisibility(false);
+        VICTORY.setVisibility(false);
         MENU.setVisibility(true);
     });
 
@@ -52,10 +47,10 @@ function Victory() {
     wrapper.appendChild(title);
     wrapper.appendChild(newGame);
     wrapper.appendChild(score);
-    wrapper.appendChild(home);
+
 
     this.page.appendChild(wrapper);
-
+    this.page.appendChild(home);
 }
 
 //inheritance stuff
