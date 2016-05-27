@@ -69,7 +69,7 @@ Tutorial.prototype.setCookie = function(done, exdays) {
  * the tutorial should be run.
  */
 Tutorial.prototype.checkCookie = function() {
- 	return document.cookie;
+ 	return !!document.cookie;
 };
 
 

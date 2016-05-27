@@ -43,6 +43,7 @@ function HighScore() {
     var score = document.createElement("th");
     score.appendChild(document.createTextNode("Score"));
 
+
     var achievements = document.createElement("button");
     achievements.appendChild(document.createTextNode("Achievements"));
     achievements.addEventListener('click', function(){
@@ -50,6 +51,7 @@ function HighScore() {
         ACHIEVEMENTS.build();
         ACHIEVEMENTS.setVisibility(true);
     });
+
 
     this.page.appendChild(title);
 

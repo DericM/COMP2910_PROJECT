@@ -17,9 +17,13 @@ function Page() {
 Page.prototype.setVisibility = function(visibility){
     var container = document.getElementById("container");
     if(visibility == true){
+        // setTimeout( function() {
+        //     RESOURCES.playSound("anthem");
+        // } , 10);
         container.appendChild(this.page);
     }
     else {
         container.removeChild(this.page);
+        // RESOURCES.pauseSound("anthem");
     }
 };

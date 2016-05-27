@@ -4,7 +4,7 @@ function ResourceManager() {
     var imageSources = {
         mine: "Images/land_mine.png",
         trump: "Images/trump.png",
-        whitehouse: "Images/whitehouse.png",
+        whitehouse: "Images/white.png",
         snake: "Images/snakeWoman.jpg",
         orientlistener: "Images/orientlistener.png",
         spraytan: "Images/spraytan.png",
@@ -21,7 +21,7 @@ function ResourceManager() {
     var sounds = {};
     var soundSources = {
 		chime : "Sounds/chime.mp3",
-        explosion : "Sounds/explosion.mp3",
+        explosion : "Sounds/mine_explosion.mp3",
 		spraytan : "Sounds/spraytan.mp3",
 		star : "Sounds/star.mp3",
 		certificate : "Sounds/certificate.mp3",
@@ -46,7 +46,9 @@ function ResourceManager() {
 		like_in_a_war : "Sounds/like_in_a_war.mp3",
 		more_energy_tonight : "Sounds/more_energy_tonight.mp3",
 		proud : "Sounds/proud.mp3",
-		wonderful_guy : "Sounds/wonderful_guy.mp3"
+		wonderful_guy : "Sounds/wonderful_guy.mp3",
+        
+        anthem : "Sounds/anthem.mp3"
     };
 
     var animations = {};
@@ -77,6 +79,26 @@ function ResourceManager() {
             "Images/explosion/22.gif",
             "Images/explosion/23.gif",
             "Images/explosion/24.gif"
+        ],
+        rage : [
+            "Images/rage/0.gif",
+            "Images/rage/1.gif",
+            "Images/rage/2.gif",
+            "Images/rage/3.gif",
+            "Images/rage/4.gif",
+            "Images/rage/5.gif",
+            "Images/rage/6.gif",
+            "Images/rage/7.gif",
+            "Images/rage/8.gif",
+            "Images/rage/9.gif",
+            "Images/rage/10.gif",
+            "Images/rage/11.gif",
+            "Images/rage/12.gif",
+            "Images/rage/13.gif",
+            "Images/rage/14.gif",
+            "Images/rage/15.gif",
+            "Images/rage/16.gif",
+            "Images/rage/17.gif"
         ]
     };
 
@@ -150,14 +172,37 @@ function ResourceManager() {
             sounds[src] = document.createElement("audio");
             sounds[src].setAttribute("src", soundSources[src]);
             sounds[src].setAttribute("type", "audio/mp3");
+            
+            if (src == "anthem") {
+                sounds[src].setAttribute("loop", "");
+            }
         }
     };
 
     this.playSound = function(name) {
-        sounds[name].play();
+        if (PLAYER_DATA.soundStatus) {
+            // if (sounds[name].pause) {
+            //     var newSound = sounds[name].cloneNode(true);
+            //     newSound.play();
+            // } else {
+            //     sounds[name].play();
+            // }
+
+            sounds[name].play();
+        }
     };
 
     this.pauseSound = function(name) {
         sounds[name].pause();
     };
+    
+    this.checkSound = function() {
+        if (PLAYER_DATA.soundStatus) {
+            $(".mute-button").css("background-image", "url(Images/yessound.png)");
+        } else {
+            //turn it on
+            $(".mute-button").css("background-image", "url(Images/nosound.png)");
+        }
+
+    }
 }

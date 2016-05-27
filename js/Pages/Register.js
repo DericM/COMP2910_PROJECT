@@ -91,7 +91,6 @@ function Register() {
         MENU.setVisibility(true);
     });
 
-
     this.page.appendChild(title);
 
     form.appendChild(username);
@@ -103,6 +102,7 @@ function Register() {
 
     this.page.appendChild(wrapper);
     this.page.appendChild(home);
+    // this.page.appendChild(mute);
 }
 
 //inheritance stuff

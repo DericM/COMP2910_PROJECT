@@ -57,6 +57,7 @@ Game.prototype.newGame = function() {
     this.scoreTracker.clearFail();
     // this.grid.trump.resetLives();
     this.setupLevel(false);
+    RESOURCES.playSound("make_america_great");
     this.grid.start();
 };
 
@@ -69,6 +70,14 @@ Game.prototype.newGame = function() {
  */
 Game.prototype.setupLevel = function(passed) {
     if(passed) {
+        if (this.scoreTracker.getScore() > 1000) {
+            console.log("alsdkjfsfdj");
+            $.ajax ({
+                type: "POST",
+                url: "php/update_achievement.php",
+                data: {id: PLAYER_DATA.id, achNo: 3}
+            });
+        }
         RESOURCES.playSound(RESOURCES.getNextWinSound());
         this.scoreTracker.addToScore(this.level);
         this.scoreTracker.clearFail();

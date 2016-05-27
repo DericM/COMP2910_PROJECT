@@ -26,11 +26,13 @@ function ScoringSystem(canvas) {
     failFactor[2] = 0.4;
 
     this.draw = function() {
-        this.ctx.fillStyle = "#CCC";
-        this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
-        this.ctx.fillStyle = "#000";
+        // this.ctx.fillStyle = "#CCC";
+        // this.ctx.fillRect(0, HEIGHT - (HEIGHT * 0.1), WIDTH, HEIGHT * 0.1);
+        this.ctx.fillStyle = "#ffcc99";
+        this.ctx.strokeStyle = "#000";
         this.ctx.font = (HEIGHT * 0.05) + "px Arial";
-        this.ctx.fillText("Score: " + this.score, 10, HEIGHT - 10);
+        this.ctx.fillText("Score: " + this.score, 30, 75);
+        this.ctx.strokeText("Score: " + this.score, 30, 75);
 
         if (PLAYER_DATA.getLoggedInState()) {
             this.ctx.fillText("Logged in as: " + PLAYER_DATA.getUserName(), 10, 30);
@@ -42,8 +44,9 @@ function ScoringSystem(canvas) {
         //this.ctx.fillText("Lives: ", place - 55, 73);
 
         for (var i = GAME.grid.getTrump().getLives(); i >= 0; i--) {
-            this.ctx.fillStyle = "#CCC";
-            this.ctx.fillRect((place += 35), 50, 30, 30);
+            // this.ctx.fillStyle = "#CCC";
+            // this.ctx.fillRect((place += 35), 50, 30, 30);
+            this.ctx.drawImage(RESOURCES.getImage("trump"), (place += 35), 50, 30, 30);
         }
 
 
@@ -72,7 +75,7 @@ function ScoringSystem(canvas) {
     };
     
     this.getScore = function() {
-        return this.score
+        return this.score;
         
     };
 

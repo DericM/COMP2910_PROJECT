@@ -27,7 +27,7 @@ var TUTORIAL;
  * Entry point for the program.
  */
 function Main(){
-    
+
     WIDTH = window.innerWidth;
     HEIGHT = window.innerHeight;
     PIXEL_RATIO = 16 / 9;
@@ -53,6 +53,26 @@ function Main(){
     RESOURCES = new ResourceManager();
     RESOURCES.loadImages(this);
     RESOURCES.loadSounds();
+    
+    var mute = document.createElement("div");
+    mute.className = "mute-button";
+    mute.addEventListener('click', function() {
+
+        if (PLAYER_DATA.soundStatus) {
+            //mute
+            $(".mute-button").css("background-image", "url(Images/nosound.png)");
+            PLAYER_DATA.soundStatus = false;
+            RESOURCES.pauseSound("anthem");
+
+        } else {
+            //turn it on
+            $(".mute-button").css("background-image", "url(Images/yessound.png)");
+            PLAYER_DATA.soundStatus = true;
+            RESOURCES.playSound("anthem");
+        }
+    });
+    
+    container.appendChild(mute);
 }
 
 /**
@@ -77,6 +97,7 @@ Main.prototype.init = function() {
     LOADING_SCREEN.setVisibility(false);
     MENU.setVisibility(true);
 
+    RESOURCES.playSound("anthem");
 };
 
 

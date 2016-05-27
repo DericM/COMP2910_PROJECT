@@ -9,8 +9,7 @@
  */
 function Trump(grid, column, row, image) {
     Entity.call(this, grid, column, row, image, false);
-
-    var maxLives = 2;
+    var maxLives = 3;
     var lives = maxLives;
     var centerX;
     var centerY;
@@ -22,11 +21,30 @@ function Trump(grid, column, row, image) {
     var xVel = 0;
     var yVel = 0;
     var vel = 0.6;
+    var flyingVel = 0.001;
     var moving = false;
     var collided = false;
+    var dead = false;
+    var rotating = false;
+    var rotation = 0;
 
-    this.checkState = function() {
-        if(moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
+    var frames = RESOURCES.getAnimation("rage");
+    var frame = 0;
+    var timer;
+
+    this.animate = function() {
+        timer = setInterval(this.animation, 30);
+    };
+
+    this.animation = function() {
+        this.image = frames[frame];
+        if(frames[++frame] == undefined) {
+            frame = 0;
+        }
+    }.bind(this);
+
+    this.checkState = function () {
+        if (moving && collided == false && grid.getSectionAt(this.column, this.row) != null) {
             if (grid.getSectionAt(this.column, this.row) instanceof Mine) {
                 if (distanceBetween(
                         this.xCoord + (grid.getSectionWidth() / 2),
@@ -36,8 +54,8 @@ function Trump(grid, column, row, image) {
                     ) <= grid.getSectionWidth() * 1.4) {
                     this.hitAMine();
                 }
-            } else if(grid.getSectionAt(this.column, this.row) instanceof WhiteHouse) {
-                if(distanceBetween(
+            } else if (grid.getSectionAt(this.column, this.row) instanceof WhiteHouse) {
+                if (distanceBetween(
                         this.xCoord + (grid.getSectionWidth() / 2),
                         this.yCoord + (grid.getSectionHeight() / 2),
                         grid.getSectionAt(this.column, this.row).getXCoord(),
@@ -76,74 +94,116 @@ function Trump(grid, column, row, image) {
             }
         }
     };
+
+    this.drawEntity = function() {
+        if (this.visible == true) {
+            CANVAS_MANAGER.gameCanvas.getContext().drawImage(this.image,
+                this.xCoord, this.yCoord, grid.getSectionWidth(), grid.getSectionHeight());
+
+        }
+    };
     
     this.getLives = function() {
         return lives;
     };
 
-    var distanceBetween = function(x1, y1, x2, y2) {
+    var distanceBetween = function (x1, y1, x2, y2) {
         return (Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
     };
 
-    this.hitAMine = function() {
+    this.hitAMine = function () {
+        dead = true;
+        rotating = true;
         collided = true;
-        lives--;
+        RESOURCES.playSound("explosion")
         grid.getSectionAt(this.column, this.row).animate();
-        if (lives != 0) {
-            //hit a mine
-            GAME.setupLevel(false);
-        } else {
-            //die
-            if (PLAYER_DATA.getLoggedInState()) {
-                GAME.logScore();
+        setTimeout(function() {
+            this.settleTrump();
+            lives--;
+            if (lives != 0) {
+                GAME.setupLevel(false);
+            } else {
+                grid.stop();
+                if (PLAYER_DATA.getLoggedInState()) {
+                    GAME.logScore();
+                }
+                this.resetLives();
+                RESOURCES.playSound("neverbegreat");
+                DEFEAT.setVisibility(true);
             }
-            this.resetLives();
-            RESOURCES.playSound("neverbegreat");
-            DEFEAT.setVisibility(true);
-        }
+        }.bind(this), RESOURCES.getAnimation("explosion").length * 15 + 1000);
     };
 
-    this.hitTheWhiteHouse = function() {
+    this.hitTheWhiteHouse = function () {
         collided = true;
         GAME.setupLevel(true);
     };
 
-    this.resetLives = function() {
+    this.resetLives = function () {
         lives = maxLives;
     };
 
     this.updateEntity = function(delta) {
         this.xCoord += xVel * delta;
         this.yCoord += yVel * delta;
+        if(rotating) {
+            rotation += 1 * delta;
+        }
         if(moving) {
-            this.checkState();
-            if (xVel == -vel) {
-                if (this.xCoord <= this.column * grid.getSectionWidth() + grid.getXCoord()
-                    && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
-                    this.settleTrump();
+            if (dead) {
+                if(xVel != 0) {
+                    yVel = Math.random() / 5;
+                    if (Math.random() - 0.5 >= 0)
+                        yVel = -yVel;
+                    if (xVel >= 0)
+                        xVel = -flyingVel * delta;
+                    else
+                        xVel = flyingVel * delta;
+                } else {
+                    xVel = Math.random() / 5;
+                    if (Math.random() - 0.5 >= 0)
+                        xVel = -xVel;
+                    if (yVel >= 0)
+                        yVel = -flyingVel * delta;
+                    else
+                        yVel = flyingVel * delta;
                 }
-            } else if (xVel == vel) {
-                if (this.xCoord >= this.column * grid.getSectionWidth() + grid.getXCoord()
-                    && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
-                    this.settleTrump();
-                }
-            } else if (yVel == -vel) {
-                if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
-                    && this.yCoord <= this.row * grid.getSectionHeight() + grid.getYCoord()) {
-                    this.settleTrump();
-                }
-            } else if (yVel == vel) {
-                if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
-                    && this.yCoord >= this.row * grid.getSectionHeight() + grid.getYCoord()) {
-                    this.settleTrump();
+                dead = false;
+                this.animate();
+            } else {
+                this.checkState();
+                if (xVel == -vel) {
+                    if (this.xCoord <= this.column * grid.getSectionWidth() + grid.getXCoord()
+                        && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                        this.settleTrump();
+                    }
+                } else if (xVel == vel) {
+                    if (this.xCoord >= this.column * grid.getSectionWidth() + grid.getXCoord()
+                        && this.yCoord == this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                        this.settleTrump();
+                    }
+                } else if (yVel == -vel) {
+                    if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
+                        && this.yCoord <= this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                        this.settleTrump();
+                    }
+                } else if (yVel == vel) {
+                    if (this.xCoord == this.column * grid.getSectionWidth() + grid.getXCoord()
+                        && this.yCoord >= this.row * grid.getSectionHeight() + grid.getYCoord()) {
+                        this.settleTrump();
+                    }
                 }
             }
         }
     };
 
     this.settleTrump = function() {
+        clearInterval(timer);
+        this.image = RESOURCES.getImage("trump");
+        rotating = false;
         moving = false;
         collided = false;
+        rotation = 0;
         xVel = 0;
         yVel = 0;
         this.setCoords();

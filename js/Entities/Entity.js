@@ -29,6 +29,11 @@ function Entity(_grid, _column, _row, _image, _visible) {
 		this.setCoords();
 	};
 
+	this.setDimensions = function() {
+		this.width = grid.getSectionWidth();
+		this.height = grid.getSectionHeight();
+	};
+
 	/**
 	 * Sets the visibility property of this Fadable.
 	 *
