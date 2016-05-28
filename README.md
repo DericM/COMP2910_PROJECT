@@ -6,6 +6,9 @@ the class COMP2910.
 View it @:
 www.trumprunner.lol
 
+Readme.docx contains the team and product information below, as well as a user
+guide with screenshots and the network graph for sprint 3.
+
 ///////////////////////////////////////////////////////////////////////////////
 
 == Team Information ==
@@ -48,6 +51,8 @@ Components: elements drawn on the pages that are not
 Entities:   objects drawable on the grid along with their
             behaviour methods
 
+Libraries:  unused
+			
 Pages:      scripts for initializing and viewing the various
             screens of the game
 
